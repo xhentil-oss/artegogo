@@ -1,0 +1,144 @@
+
+@font-face {
+  font-family: 'LemonMilk';
+  src: url('https://c.animaapp.com/mo8jie1sg5kjlz/img/lemonmilk-medium.otf') format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* #F9FAFB → hsl(220, 14%, 96%) */
+    --background: 220 14% 96%;
+    --foreground: 240 10% 10%;
+
+    --muted: 220 14% 92%;
+    --muted-foreground: 220 9% 40%;
+
+    --popover: 220 14% 96%;
+    --popover-foreground: 240 10% 10%;
+
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+
+    --primary: 262 80% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 92%;
+    --secondary-foreground: 240 10% 10%;
+
+    --accent: 262 80% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ring: 249 50% 80%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --card: transparent;
+    --card-foreground: 213 31% 91%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'LemonMilk', ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes aura-pulse {
+  0%, 100% { opacity: 0.18; transform: scale(1); }
+  50%       { opacity: 0.38; transform: scale(1.12); }
+}
+
+@keyframes light-ray {
+  0%   { opacity: 0; transform: rotate(var(--ray-angle, 0deg)) scaleY(0.6); }
+  50%  { opacity: 0.25; transform: rotate(var(--ray-angle, 0deg)) scaleY(1); }
+  100% { opacity: 0; transform: rotate(var(--ray-angle, 0deg)) scaleY(0.6); }
+}
+
+@keyframes orb-float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33%       { transform: translateY(-18px) translateX(8px); }
+  66%       { transform: translateY(10px) translateX(-10px); }
+}
+
+@keyframes shimmer-sweep {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes particle-rise {
+  0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+  20%  { opacity: 0.9; }
+  100% { opacity: 0; transform: translateY(-80px) scale(1.2); }
+}
+
+@layer utilities {
+  .text-gradient-brand {
+    background: linear-gradient(135deg, #ffffff 0%, #e8e0ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-breathable {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .section-breathable-sm {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
