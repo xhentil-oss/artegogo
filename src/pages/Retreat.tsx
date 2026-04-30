@@ -92,7 +92,7 @@ export const RetreatPage = () => {
     <div className="min-h-screen bg-white">
 
       {/* Hero */}
-      <div className="relative py-32 px-6 overflow-hidden">
+      <div className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776945645841-0.jpeg')" }}

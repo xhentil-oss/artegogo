@@ -110,7 +110,7 @@ export function OfferSection() {
           {offers.map((offer, i) => (
             <div key={offer.title} className={`flex flex-col bg-white border border-gray-200 rounded-2xl p-6 hover:-translate-y-1 transition-all duration-300 group ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${100 + i * 80}ms` }}>
-              <span className="self-start text-xs font-semibold tracking-widest uppercase rounded-full px-3 py-1 mb-5" style={{ backgroundColor: '#F3F0FF', color: '#9D8FEF' }}>{offer.tag}</span>
+              <span className="text-xs font-semibold tracking-widest uppercase rounded-full px-3 py-1 mb-5 self-start" style={{ backgroundColor: '#F3F0FF', color: '#9D8FEF' }}>{offer.tag}</span>
               <div className="w-12 h-12 rounded-xl text-white flex items-center justify-center mb-5 transition-colors duration-200" style={{ backgroundColor: '#000000' }}>{offer.icon}</div>
               <h3 className="text-base font-bold text-zinc-900 mb-2 leading-snug">{offer.title}</h3>
               <p className="text-sm leading-relaxed text-zinc-700 md:text-base flex-1 mb-6">{offer.desc}</p>

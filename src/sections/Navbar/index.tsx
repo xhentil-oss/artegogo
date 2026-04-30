@@ -276,16 +276,25 @@ export const Navbar = () => {
             <div key={item.href} className="border-b last:border-0" style={{ borderColor: 'rgba(0,0,0,0.06)' }}>
               {item.children ? (
                 <>
-                  <button
-                    onClick={() => setMobileExpanded((e) => (e === item.href ? null : item.href))}
-                    className="flex items-center justify-between w-full py-3 text-sm font-medium text-zinc-700"
-                  >
-                    {item.label}
-                    <ChevronDown
-                      size={16}
-                      className={`transition-transform ${mobileExpanded === item.href ? "rotate-180" : ""}`}
-                    />
-                  </button>
+                  <div className="flex items-center justify-between">
+                    <Link
+                      to={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="flex-1 py-3 text-sm font-medium text-zinc-700 hover:text-violet-700"
+                    >
+                      {item.label}
+                    </Link>
+                    <button
+                      onClick={() => setMobileExpanded((e) => (e === item.href ? null : item.href))}
+                      className="px-2 py-3 text-zinc-400 hover:text-zinc-700"
+                      aria-label="Toggle submenu"
+                    >
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform ${mobileExpanded === item.href ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                  </div>
                   {mobileExpanded === item.href && (
                     <div className="pl-4 pb-2 flex flex-col gap-1">
                       {item.children.map((child) => (

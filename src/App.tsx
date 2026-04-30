@@ -1,4 +1,11 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+};
 import { CartProvider } from "@/context/CartContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { CartDrawer } from "@/components/CartDrawer";
@@ -8,12 +15,10 @@ import { MainContent } from "@/sections/MainContent";
 import { RrethNeshPage } from "@/pages/RrethNesh";
 import { MisioniPage } from "@/pages/Misioni";
 import { ShtyllatEPunesPage } from "@/pages/ShtyllatEPunes";
-import { EventetPage } from "@/pages/Eventet";
 import { RetreatPage } from "@/pages/Retreat";
 import { TrajnimeOnlinePage } from "@/pages/TrajnimeOnline";
 import { WorkshopePage } from "@/pages/Workshope";
 import { LivePage } from "@/pages/Live";
-import { RezultatetPage } from "@/pages/Rezultatet";
 import { TestimonialsPage } from "@/pages/Testimonials";
 import { VideoTestimonialsPage } from "@/pages/VideoTestimonials";
 import { RezultatetShkencorePage } from "@/pages/RezultatetShkencore";
@@ -41,17 +46,18 @@ export const App = () => {
     <BrowserRouter>
     <LanguageProvider>
     <CartProvider>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout><MainContent /></Layout>} />
         <Route path="/rreth-nesh" element={<Layout><RrethNeshPage /></Layout>} />
         <Route path="/rreth-nesh/misioni" element={<Layout><MisioniPage /></Layout>} />
         <Route path="/rreth-nesh/shtyllat-e-punes" element={<Layout><ShtyllatEPunesPage /></Layout>} />
-        <Route path="/eventet" element={<Layout><EventetPage /></Layout>} />
+        <Route path="/eventet" element={<Navigate to="/eventet/retreat" replace />} />
         <Route path="/eventet/retreat" element={<Layout><RetreatPage /></Layout>} />
         <Route path="/eventet/trajnime-online" element={<Layout><TrajnimeOnlinePage /></Layout>} />
         <Route path="/eventet/workshope" element={<Layout><WorkshopePage /></Layout>} />
         <Route path="/live" element={<Layout><LivePage /></Layout>} />
-        <Route path="/rezultatet" element={<Layout><RezultatetPage /></Layout>} />
+        <Route path="/rezultatet" element={<Navigate to="/rezultatet/testimonials" replace />} />
         <Route path="/rezultatet/testimonials" element={<Layout><TestimonialsPage /></Layout>} />
         <Route path="/rezultatet/video-testimonials" element={<Layout><VideoTestimonialsPage /></Layout>} />
         <Route path="/rezultatet/shkencore" element={<Layout><RezultatetShkencorePage /></Layout>} />

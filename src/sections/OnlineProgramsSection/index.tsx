@@ -85,7 +85,7 @@ export const OnlineProgramsSection = () => {
               ))}
             </ul>
 
-            <div className={`transition-all duration-700 delay-[800ms] ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            <div className={`flex transition-all duration-700 delay-[800ms] ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
               <button onClick={() => navigate("/eventet/trajnime-online")}
                 className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.03]" style={{ backgroundColor: "#9D8FEF" }}>
                 <span className="relative z-10 text-sm leading-relaxed md:text-base">{t("Shiko programet", "View programs")}</span>

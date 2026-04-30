@@ -53,10 +53,7 @@ export const SignUpPage = () => {
             <label className="flex items-start gap-2.5 cursor-pointer">
               <input type="checkbox" required className="mt-0.5 accent-purple-600" />
               <span className="text-xs text-zinc-500">
-                {t("Pranoj", "I agree to the")}{" "}
-                <Link to="#" className="text-purple-600 hover:underline">{t("Kushtet e Shërbimit", "Terms of Service")}</Link>{" "}
-                {t("dhe", "and")}{" "}
-                <Link to="#" className="text-purple-600 hover:underline">{t("Politikën e Privatësisë", "Privacy Policy")}</Link>
+                {t("Pranoj kushtet e shërbimit dhe politikën e privatësisë.", "I agree to the terms of service and privacy policy.")}
               </span>
             </label>
             <button type="submit" className="w-full py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 transition-all">

@@ -123,7 +123,7 @@ export const MeditimePage = () => {
     <div className="min-h-screen bg-white">
       {/* Hero */}
       <div
-        className="relative py-28 px-6 overflow-hidden"
+        className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center"
         style={{
           backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777032248494-0.jpeg')",
           backgroundSize: "cover",

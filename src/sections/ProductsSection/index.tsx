@@ -18,7 +18,7 @@ export const ProductsSection = () => {
       </div>
       <div className="box-border caret-transparent outline-[3px] w-full mt-4">
         <a
-          href="/courses"
+          href="/shop"
           className="text-amber-200 box-border caret-transparent outline-[3px]"
         >
           <button className="text-white text-base font-bold bg-amber-200 caret-transparent leading-6 min-w-[250px] outline-[3px] border px-[18px] py-[13px] border-transparent">

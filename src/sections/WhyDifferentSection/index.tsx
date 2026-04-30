@@ -77,7 +77,7 @@ export const WhyDifferentSection = () => {
               {pillars.map((item, i) => (
                 <li key={i} className="relative flex gap-8 pb-10 last:pb-0 group"
                   style={{ opacity: visible ? 1 : 0, transform: visible ? "translateX(0)" : "translateX(-28px)", transition: `opacity 0.55s ease ${350 + i * 110}ms, transform 0.55s ease ${350 + i * 110}ms` }}>
-                  <div className="relative z-10 flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center transition-colors duration-300" style={{ background: "rgba(157,143,239,0.12)", border: "2px solid rgba(157,143,239,0.35)" }}>
+                  <div className="relative z-10 w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300" style={{ background: "rgba(157,143,239,0.12)", border: "2px solid rgba(157,143,239,0.35)" }}>
                     <span className="font-bold text-sm tracking-wider" style={{ color: "#9D8FEF" }}>{item.number}</span>
                   </div>
                   <div>

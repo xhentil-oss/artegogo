@@ -57,27 +57,27 @@ export const PhilosophySection = () => {
           ))}
         </div>
 
-        <div className={`mx-auto mb-10 flex max-w-xl items-center justify-center gap-3 transition-all duration-700 delay-300 ${visible ? "opacity-100" : "opacity-0"}`}>
+        <div className={`mx-auto mb-10 flex flex-wrap items-center justify-center gap-2 md:gap-3 transition-all duration-700 delay-300 ${visible ? "opacity-100" : "opacity-0"}`}>
           {[
             { icon: "♡", label: t("Zemra", "Heart") },
             { icon: "◎", label: t("Truri", "Mind") },
             { icon: "◈", label: t("Trupi", "Body") },
           ].map((item, i, arr) => (
             <>
-              <span key={item.label} className="rounded-full border border-zinc-200 bg-white px-4 py-1.5 text-sm font-semibold leading-relaxed text-zinc-700 md:text-base">
+              <span key={item.label} className="rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-sm font-semibold leading-relaxed text-zinc-700">
                 {item.icon} {item.label}
               </span>
               {i < arr.length - 1 && (
-                <svg key={`arrow-${i}`} className="h-3 w-3" style={{ color: "#9D8FEF" }} fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={2}>
+                <svg key={`arrow-${i}`} className="h-3 w-3 shrink-0" style={{ color: "#9D8FEF" }} fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8h10M9 4l4 4-4 4" />
                 </svg>
               )}
             </>
           ))}
-          <svg className="h-3 w-3" style={{ color: "#9D8FEF" }} fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={2}>
+          <svg className="h-3 w-3 shrink-0" style={{ color: "#9D8FEF" }} fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 8h10M9 4l4 4-4 4" />
           </svg>
-          <span className="rounded-full px-4 py-1.5 text-sm font-semibold leading-relaxed md:text-base" style={{ border: "1px solid #DDD6FE", backgroundColor: "#F3F0FF", color: "#9D8FEF" }}>
+          <span className="rounded-full px-3 py-1.5 text-sm font-semibold leading-relaxed" style={{ border: "1px solid #DDD6FE", backgroundColor: "#F3F0FF", color: "#9D8FEF" }}>
             ✦ {t("Harmoni", "Harmony")}
           </span>
         </div>

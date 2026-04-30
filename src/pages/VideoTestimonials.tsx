@@ -58,15 +58,15 @@ export const VideoTestimonialsPage = () => {
   const { t } = useLanguage();
 
   const videos = [
-    { id: 1, src: "", title: t("Dëshmi #1", "Testimonial #1"), description: t("Pjesëmarrëse në Retreat 2025", "Retreat 2025 participant") },
-    { id: 2, src: "", title: t("Dëshmi #2", "Testimonial #2"), description: t("Trajnim Online - Transformim personal", "Online Training - Personal transformation") },
-    { id: 3, src: "", title: t("Dëshmi #3", "Testimonial #3"), description: t("Workshop - Hapje Zemre", "Workshop - Heart Opening") },
-    { id: 4, src: "", title: t("Dëshmi #4", "Testimonial #4"), description: t("Retreat 2024 - Ndryshim i jetës", "Retreat 2024 - Life change") },
+    { id: 1, src: "/img/TONI2692.mp4", title: t("Dëshmi 1", "Testimonial #1"), description: t("Pjesëmarrëse në Retreat 2025", "Retreat 2025 participant") },
+    { id: 2, src: "/img/TONI2730.mp4", title: t("Dëshmi 2", "Testimonial #2"), description: t("Trajnim Online - Transformim personal", "Online Training - Personal transformation") },
+    { id: 3, src: "/img/2026-03-29 22-43-36.mov", title: t("Dëshmi 3", "Testimonial #3"), description: t("Workshop - Hapje Zemre", "Workshop - Heart Opening") },
+    { id: 4, src: "/img/2026-03-29 22-53-07.mov", title: t("Dëshmi 4", "Testimonial #4"), description: t("Retreat 2024 - Ndryshim i jetës", "Retreat 2024 - Life change") },
   ];
 
   return (
     <div>
-      <div className="relative py-32 px-6 overflow-hidden" style={{ minHeight: 380 }}>
+      <div className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776860167679-0.png')" }}

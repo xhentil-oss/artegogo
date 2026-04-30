@@ -1,14 +1,13 @@
 import { ShoppingCart, Star, BookOpen, ChevronDown, ChevronUp, Check } from 'lucide-react';
 import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
-import type { Product } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 
 const BOOK_COVER = 'https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776931629479-0.png';
 const BOOK2_COVER = 'https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776932436081-0.png';
 
 export const ShopLibratPage = () => {
-  const { totalItems, setCartOpen, addToCart } = useCart();
+  const { addItem } = useCart();
   const { t } = useLanguage();
   const [added, setAdded] = useState(false);
   const [descOpen, setDescOpen] = useState(false);
@@ -42,19 +41,13 @@ export const ShopLibratPage = () => {
   );
 
   const handleAdd = () => {
-    const product: Product = {
+    addItem({
       id: 'libri-mjeshtriliritpasqyre',
       title: t('Mieshtri i Liqenit Pasqyrë', 'The Master of Mirror Lake'),
       subtitle: 'Dr. Marvin Bundo & Dr. Artemisa Gogollari',
       price: 15,
-      originalPrice: 22,
       image: BOOK_COVER,
-      category: t('Libra', 'Books'),
-      rating: 4.8,
-      reviews: 48,
-      description: t('Një udhëtim poetik drejt vetes suaj të vërtetë.', 'A poetic journey toward your true self.'),
-    };
-    addToCart(product);
+    });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
@@ -63,7 +56,7 @@ export const ShopLibratPage = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero */}
       <div
-        className="relative py-28 px-6 overflow-hidden"
+        className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center"
         style={{
           backgroundImage: 'url(https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777361096433-1.jpeg)',
           backgroundSize: 'cover',
@@ -160,7 +153,7 @@ export const ShopLibratPage = () => {
                   <div className="bg-violet-50 border border-violet-100 rounded-2xl p-5 text-zinc-700 text-sm leading-relaxed space-y-3">
                     {FULL_DESCRIPTION.trim()
                       .split('\n\n')
-                      .map((para, i) => (
+                      .map((para: string, i: number) => (
                         <p key={i} className="whitespace-pre-line">
                           {para}
                         </p>
@@ -286,7 +279,7 @@ export const ShopLibratPage = () => {
                   <div className="bg-violet-50 border border-violet-100 rounded-2xl p-5 text-zinc-700 text-sm leading-relaxed space-y-3">
                     {FULL_DESCRIPTION2.trim()
                       .split('\n\n')
-                      .map((para, i) => (
+                      .map((para: string, i: number) => (
                         <p key={i} className="whitespace-pre-line">
                           {para}
                         </p>
@@ -313,22 +306,13 @@ export const ShopLibratPage = () => {
                 </div>
                 <button
                   onClick={() => {
-                    const product2: Product = {
+                    addItem({
                       id: 'libri-krijojeten',
                       title: t('Krijo jetën e re', 'Create Your New Life'),
                       subtitle: 'Dr. Marvin Bundo & Dr. Artemisa Gogollari',
                       price: 15,
-                      originalPrice: 22,
                       image: BOOK2_COVER,
-                      category: t('Libra', 'Books'),
-                      rating: 5,
-                      reviews: 32,
-                      description: t(
-                        'Libër-ditar transformimi për jetën që dëshiron të jetosh.',
-                        'Transformation journal-book for the life you wish to live.'
-                      ),
-                    };
-                    addToCart(product2);
+                    });
                     setAdded2(true);
                     setTimeout(() => setAdded2(false), 2000);
                   }}

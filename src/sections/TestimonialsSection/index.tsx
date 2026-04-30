@@ -264,7 +264,7 @@ export const TestimonialsSection = () => {
                   <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "#000000" }}>
                     <span className="text-white text-xs font-bold">{testimonial.initials}</span>
                   </div>
-                  <div>
+                  <div className="text-left">
                     <p className="text-zinc-800 text-sm font-semibold leading-tight">{testimonial.name}</p>
                     <p className="text-zinc-400 text-xs">{testimonial.location}</p>
                   </div>

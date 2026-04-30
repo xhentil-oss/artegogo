@@ -34,7 +34,7 @@ export const LoginPage = () => {
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="block text-sm font-medium text-zinc-700">{t("Fjalëkalimi", "Password")}</label>
-                <Link to="#" className="text-xs text-purple-600 hover:underline">{t("Keni harruar fjalëkalimin?", "Forgot your password?")}</Link>
+                <Link to="/kontakt" className="text-xs text-purple-600 hover:underline">{t("Keni harruar fjalëkalimin?", "Forgot your password?")}</Link>
               </div>
               <div className="relative">
                 <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />

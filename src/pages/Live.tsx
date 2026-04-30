@@ -5,7 +5,7 @@ export const LivePage = () => {
 
   return (
     <div className="min-h-screen text-zinc-800" style={{ backgroundColor: "#F9FAFB" }}>
-      <div className="relative py-28 px-6 overflow-hidden" style={{ backgroundColor: "#F9FAFB" }}>
+      <div className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center" style={{ backgroundColor: "#F9FAFB" }}>
         <div className="relative max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-red-100 border border-red-300 rounded-full px-4 py-1.5 mb-6">
             <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />

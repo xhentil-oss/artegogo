@@ -199,7 +199,7 @@ export const ShopPage = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero */}
       <div
-        className="relative py-28 px-6 overflow-hidden"
+        className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center"
         style={{
           backgroundImage: "url(https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777361096433-1.jpeg)",
           backgroundSize: "cover",
@@ -242,7 +242,7 @@ export const ShopPage = () => {
                   <h2 className="text-2xl font-bold text-zinc-800">{t((section as any).labelAl, (section as any).labelEn)}</h2>
                   <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{t((section as any).descAl, (section as any).descEn)}</p>
                 </div>
-                <div className="ml-auto flex items-center gap-3">
+                <div className="ml-auto flex items-center gap-2 flex-shrink-0">
                   <span className={`text-sm leading-relaxed md:text-base font-semibold px-3 py-1 rounded-full border ${section.tag}`}>
                     {sectionProducts.length} {t("produkte", "products")}
                   </span>

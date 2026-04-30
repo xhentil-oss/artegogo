@@ -1,6 +1,5 @@
-import { ShoppingCart, Plus, Star } from "lucide-react";
+import { Plus, Star } from "lucide-react";
 import { useCart } from "@/context/CartContext";
-import type { CartItem } from "@/context/CartContext";
 
 interface Product {
   id: string;
@@ -97,7 +96,7 @@ const ProductCard = ({
 );
 
 export const ShopMeditimePage = () => {
-  const { addItem, totalItems, setCartOpen } = useCart();
+  const { addItem } = useCart();
   const addToCart = (p: Product) => {
     addItem({ id: p.id, title: p.title, subtitle: p.subtitle, price: p.price, image: p.image });
   };
@@ -197,7 +196,7 @@ export const ShopMeditimePage = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero */}
       <div
-        className="relative py-28 px-6 overflow-hidden"
+        className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center"
         style={{
           backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777361366707-1.jpeg')",
           backgroundSize: "cover",

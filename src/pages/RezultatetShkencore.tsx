@@ -88,7 +88,7 @@ export const RezultatetShkencorePage = () => {
 
   return (
     <div className="bg-white">
-      <div className="relative py-32 px-6 overflow-hidden" style={{ minHeight: 380 }}>
+      <div className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776860769632-0.png')" }}

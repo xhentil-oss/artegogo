@@ -12,7 +12,7 @@ export const KontaktPage = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>
-      <div className="relative py-28 px-6 overflow-hidden"
+      <div className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center"
         style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776944742321-0.jpeg')", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.55)" }} />
         <div className="relative max-w-4xl mx-auto text-center">

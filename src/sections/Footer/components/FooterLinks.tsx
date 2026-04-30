@@ -66,7 +66,7 @@ export const FooterLinks = () => {
               { label: t("Retreat", "Retreat"), href: "/eventet/retreat" },
               { label: t("Trajnime Online", "Online Trainings"), href: "/eventet/trajnime-online" },
               { label: t("Workshope", "Workshops"), href: "/eventet/workshope" },
-              { label: t("Rezultatet", "Results"), href: "/rezultatet" },
+              { label: t("Testimonials", "Testimonials"), href: "/rezultatet/testimonials" },
               { label: t("Shop", "Shop"), href: "/shop" },
             ].map((l) => (
               <li key={l.href}><Link to={l.href} className="text-white hover:text-gray-300 text-sm leading-relaxed md:text-base transition-colors">{l.label}</Link></li>
@@ -80,8 +80,6 @@ export const FooterLinks = () => {
             {[
               { label: t("Na Kontaktoni", "Contact Us"), href: "/kontakt" },
               { label: t("FAQ", "FAQ"), href: "/faq" },
-              { label: t("Kushtet e Përdorimit", "Terms of Use"), href: "/p/terms" },
-              { label: t("Politika e Privatësisë", "Privacy Policy"), href: "/p/privacy" },
             ].map((l) => (
               <li key={l.href}><Link to={l.href} className="text-white hover:text-gray-300 text-sm leading-relaxed md:text-base transition-colors">{l.label}</Link></li>
             ))}
