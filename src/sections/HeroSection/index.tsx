@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const HeroSection = () => {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -49,22 +51,22 @@ export const HeroSection = () => {
 
         <div className={`transition-all duration-800 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "450ms" }}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <a
-              href="/eventet/retreat"
+            <button
+              onClick={() => navigate("/eventet/retreat")}
               className="group relative inline-flex items-center gap-3 text-white font-semibold px-8 py-4 rounded-full text-base md:text-lg transition-all duration-300 hover:scale-105 active:scale-100"
               style={{ backgroundColor: "#9D8FEF" }}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
               Rezervo Retreat-in
-            </a>
-            <a
-              href="/eventet/trajnime-online"
+            </button>
+            <button
+              onClick={() => navigate("/eventet/trajnime-online")}
               className="group inline-flex items-center gap-3 font-semibold px-8 py-4 rounded-full text-base md:text-lg transition-all duration-300 hover:scale-105 active:scale-100"
               style={{ backgroundColor: "#eeeaf9", border: "1.5px solid #c4baf7", color: "#9D8FEF" }}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
               Shiko Trajnimet Online
-            </a>
+            </button>
           </div>
         </div>
 
