@@ -171,21 +171,21 @@ export const MisioniPage = () => {
             </p>
 
             <div className="flex flex-col items-center gap-5 mb-16">
-              <div className="flex items-center gap-4 max-w-lg w-full">
+              <div className="flex items-center justify-center gap-4 max-w-lg w-full">
                 <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#9D8FEF" }} />
-                <p className="text-sm leading-relaxed text-white/70 md:text-base italic text-left">
+                <p className="text-sm leading-relaxed text-white/70 md:text-base italic text-center">
                   {t("Kur riktheheni tek vetja…", "When you return to yourself…")}
                 </p>
               </div>
-              <div className="flex items-center gap-4 max-w-lg w-full">
+              <div className="flex items-center justify-center gap-4 max-w-lg w-full">
                 <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#9D8FEF" }} />
-                <p className="text-sm leading-relaxed text-white/70 md:text-base italic text-left">
+                <p className="text-sm leading-relaxed text-white/70 md:text-base italic text-center">
                   {t("kur trupi, mendja dhe zemra hyjnë në harmoni…", "when body, mind and heart come into harmony…")}
                 </p>
               </div>
-              <div className="flex items-center gap-4 max-w-lg w-full">
+              <div className="flex items-center justify-center gap-4 max-w-lg w-full">
                 <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#9D8FEF" }} />
-                <p className="text-sm leading-relaxed text-white/70 md:text-base italic text-left">
+                <p className="text-sm leading-relaxed text-white/70 md:text-base italic text-center">
                   {t("hapet rruga për shërim, për bollëk dhe për krijimin e një realiteti të ri.", "the path opens for healing, abundance and the creation of a new reality.")}
                 </p>
               </div>

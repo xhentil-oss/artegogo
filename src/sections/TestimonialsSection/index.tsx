@@ -216,19 +216,19 @@ export const TestimonialsSection = () => {
           ))}
         </div>
 
-        <div className="mb-10"
+        <div className="my-16"
           style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(28px)", transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s" }}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {categories.map((c, i) => (
               <button key={c.id} onClick={() => setActiveCategory(i)}
                 className="relative rounded-2xl overflow-hidden group cursor-pointer border-2 transition-all duration-300 text-left"
-                style={{ borderColor: activeCategory === i ? "#ffffff" : "rgba(0,0,0,0.08)", boxShadow: activeCategory === i ? "0 0 0 3px rgba(255,255,255,0.6)" : "none", aspectRatio: "16/10" }}>
+                style={{ borderColor: activeCategory === i ? "#ffffff" : "rgba(0,0,0,0.08)", boxShadow: activeCategory === i ? "0 0 0 3px rgba(255,255,255,0.6)" : "none", aspectRatio: "16/10", margin: "6px 0" }}>
                 <img src={c.image} alt={c.label} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   style={{ filter: activeCategory === i ? "brightness(0.85)" : "brightness(0.75)" }} />
                 <div className="absolute inset-0 bg-black/40" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-3 text-center">
-                  <span className="text-sm md:text-base font-bold leading-tight text-white drop-shadow">{c.label}</span>
-                  <span className="text-sm mt-1 leading-relaxed text-white/80 md:text-base">{c.description}</span>
+                <div className="absolute inset-0 flex flex-col items-center justify-center px-3 py-4 text-center">
+                  <span className="text-xs md:text-sm font-bold leading-tight text-white drop-shadow">{c.label}</span>
+                  <span className="text-xs mt-1 leading-relaxed text-white/80 md:text-sm">{c.description}</span>
                 </div>
                 {activeCategory === i && (
                   <div className="absolute bottom-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #9D8FEF, #c084fc)" }} />

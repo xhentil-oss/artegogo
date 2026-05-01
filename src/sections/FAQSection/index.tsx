@@ -405,9 +405,9 @@ export const FAQSection = () => {
         <div className="mt-12 text-center transition-all duration-700 delay-500"
           style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(16px)" }}>
           <p className="text-sm leading-relaxed text-zinc-700 md:text-base">
-            {t("Keni pyetje të tjera?", "Have more questions?")}{" "}
+            {t("Nuk gjete përgjigjen?", "Didn't find the answer?")}{" "}
             <a href="/kontakt" className="font-semibold" style={{ color: "#9D8FEF" }}>
-              {t("Na kontaktoni", "Contact us")}
+              {t("Dërgoni mesazh →", "Send a message →")}
             </a>
           </p>
         </div>

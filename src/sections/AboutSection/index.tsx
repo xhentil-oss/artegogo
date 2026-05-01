@@ -192,7 +192,7 @@ export function AboutSection() {
 
         <div className={`grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16 transition-all duration-700 delay-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {pillarData.map((p) => (
-            <div key={p.label} className="bg-white border border-zinc-100 rounded-2xl p-6 flex flex-col gap-3 hover:-translate-y-1 transition-all duration-300">
+            <div key={p.label} className="bg-white border border-zinc-100 rounded-2xl p-6 flex flex-col items-center text-center gap-3 hover:-translate-y-1 transition-all duration-300">
               <span className="w-10 h-10 flex items-center justify-center rounded-xl" style={{background:'#F3F0FF', color:'#9D8FEF'}}>{p.icon}</span>
               <p className="font-semibold text-zinc-800">{p.label}</p>
               <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{p.desc}</p>

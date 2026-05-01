@@ -104,7 +104,7 @@ export const WorkshopePage = () => {
           {days.map((d, i) => (
             <div key={i} className="rounded-2xl border border-zinc-100 bg-white transition-all duration-300 hover:-translate-y-1 overflow-hidden">
               <div className="h-1.5 bg-zinc-900" />
-              <div className="p-7">
+              <div className="p-7 flex flex-col items-center text-center">
                 <div className="w-12 h-12 rounded-xl bg-zinc-900 flex items-center justify-center text-white font-bold text-lg mb-5">
                   {d.num}
                 </div>
