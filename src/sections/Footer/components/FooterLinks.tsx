@@ -15,7 +15,7 @@ export const FooterLinks = () => {
               className="h-16 w-auto object-contain"
             />
           </div>
-          <p className="text-white text-sm leading-relaxed md:text-base">
+          <p className="text-white text-base leading-relaxed">
             {t("Bashkojmë shkencën moderne me meditimet dhe teknikat e transformimit.", "We combine modern science with meditations and transformation techniques.")}
           </p>
           <div className="flex flex-wrap gap-3 mt-4">
@@ -54,7 +54,7 @@ export const FooterLinks = () => {
               { label: t("Meditime", "Meditation"), href: "/meditime" },
               { label: t("Live", "Live"), href: "/live" },
             ].map((l) => (
-              <li key={l.href}><Link to={l.href} className="text-white hover:text-gray-300 text-sm leading-relaxed md:text-base transition-colors">{l.label}</Link></li>
+              <li key={l.href}><Link to={l.href} className="text-white hover:text-gray-300 text-base leading-relaxed transition-colors">{l.label}</Link></li>
             ))}
           </ul>
         </div>
@@ -69,7 +69,7 @@ export const FooterLinks = () => {
               { label: t("Testimonials", "Testimonials"), href: "/rezultatet/testimonials" },
               { label: t("Shop", "Shop"), href: "/shop" },
             ].map((l) => (
-              <li key={l.href}><Link to={l.href} className="text-white hover:text-gray-300 text-sm leading-relaxed md:text-base transition-colors">{l.label}</Link></li>
+              <li key={l.href}><Link to={l.href} className="text-white hover:text-gray-300 text-base leading-relaxed transition-colors">{l.label}</Link></li>
             ))}
           </ul>
         </div>
@@ -81,19 +81,19 @@ export const FooterLinks = () => {
               { label: t("Na Kontaktoni", "Contact Us"), href: "/kontakt" },
               { label: t("FAQ", "FAQ"), href: "/faq" },
             ].map((l) => (
-              <li key={l.href}><Link to={l.href} className="text-white hover:text-gray-300 text-sm leading-relaxed md:text-base transition-colors">{l.label}</Link></li>
+              <li key={l.href}><Link to={l.href} className="text-white hover:text-gray-300 text-base leading-relaxed transition-colors">{l.label}</Link></li>
             ))}
           </ul>
         </div>
       </div>
 
       <div className="border-t border-purple-400/30 pt-6 flex flex-col md:flex-row items-center justify-between gap-2">
-        <p className="text-white text-sm leading-relaxed md:text-base">
+        <p className="text-white text-base leading-relaxed">
           {t("© 2026 by ", "© 2026 by ")}
           <a href="https://bos.al/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">Bos.al</a>
           {t(". Të gjitha të drejtat e rezervuara.", ". All rights reserved.")}
         </p>
-        <p className="text-white text-sm leading-relaxed md:text-base">Dr. Marvin Bundo &amp; Dr. Artemisa Gogollari</p>
+        <p className="text-white text-base leading-relaxed">Dr. Marvin Bundo &amp; Dr. Artemisa Gogollari</p>
       </div>
     </div>
   );

@@ -52,7 +52,7 @@ export const PhilosophySection = () => {
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl border" style={{ backgroundColor: "#F3F0FF", borderColor: "#DDD6FE" }}>
                 <span className="text-2xl" style={{ color: "#9D8FEF" }}>{p.icon}</span>
               </div>
-              <span className="text-sm font-semibold leading-relaxed text-zinc-700 md:text-base">{p.label}</span>
+              <span className="text-base font-semibold leading-relaxed text-zinc-700">{p.label}</span>
             </div>
           ))}
         </div>
@@ -82,7 +82,7 @@ export const PhilosophySection = () => {
           </span>
         </div>
 
-        <p className={`mx-auto mb-6 max-w-2xl text-sm leading-relaxed text-zinc-700 transition-all duration-700 delay-400 md:text-base ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+        <p className={`mx-auto mb-6 max-w-2xl text-base leading-relaxed text-zinc-700 transition-all duration-700 delay-400 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           {t(
             "Kur zemra, truri dhe trupi fillojnë të punojnë në harmoni, ndryshon mënyra si ndihesh, si mendon, si vepron dhe çfarë tërheq në jetën tënde.",
             "When the heart, mind and body begin to work in harmony, the way you feel, think, act and what you attract into your life changes."
@@ -91,7 +91,7 @@ export const PhilosophySection = () => {
 
         <blockquote className={`mx-auto mt-10 max-w-xl rounded-2xl border border-zinc-200 bg-white px-8 py-6 text-center transition-all duration-700 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           <span className="mb-3 block text-3xl" style={{ color: "#9D8FEF" }}>"</span>
-          <p className="text-sm italic leading-relaxed text-zinc-700 md:text-base">
+          <p className="text-base italic leading-relaxed text-zinc-700">
             {t(
               "Puna jonë nuk fillon dhe mbaron me ndjenjën e mirë — ajo ndryshon mënyrën si jeton.",
               "Our work doesn't begin and end with feeling good — it changes the way you live."

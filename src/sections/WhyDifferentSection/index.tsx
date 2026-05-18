@@ -63,7 +63,7 @@ export const WhyDifferentSection = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 leading-tight text-center mb-5">
             {t("Pse kjo qasje është ndryshe", "Why this approach is different")}
           </h2>
-          <p className="text-sm leading-relaxed text-zinc-700 md:text-base text-center max-w-2xl mx-auto">
+          <p className="text-base leading-relaxed text-zinc-700 text-center max-w-2xl mx-auto">
             {t(
               "Metoda jonë nuk mbështetet vetëm në teori apo motivim të përkohshëm. Ajo bashkon pesë shtylla të fuqishme.",
               "Our method does not rely solely on theory or temporary motivation. It combines five powerful pillars."
@@ -82,7 +82,7 @@ export const WhyDifferentSection = () => {
                   </div>
                   <div>
                     <h3 className="text-black font-bold text-lg mb-1 leading-snug">{item.label}</h3>
-                    <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{item.desc}</p>
+                    <p className="text-base leading-relaxed text-zinc-700">{item.desc}</p>
                   </div>
                 </li>
               ))}
@@ -97,7 +97,7 @@ export const WhyDifferentSection = () => {
               <div className="relative z-10">
                 <div className="w-10 h-1.5 rounded-full mb-6" style={{ background: "#9D8FEF" }} />
                 <h3 className="text-black font-bold text-2xl leading-snug mb-4">{t("Qëllimi i vërtetë", "The True Goal")}</h3>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base mb-8">
+                <p className="text-base leading-relaxed text-zinc-700 mb-8">
                   {t(
                     "Qëllimi nuk është vetëm të ndihesh mirë për pak çaste, por të krijosh një",
                     "The goal is not just to feel good for a few moments, but to create a"
@@ -109,14 +109,14 @@ export const WhyDifferentSection = () => {
                 </p>
                 <div className="grid grid-cols-2 gap-2">
                   {quadrants.map((w, i) => (
-                    <div key={w} className="relative overflow-hidden rounded-2xl py-4 px-4 font-semibold text-sm leading-relaxed md:text-base tracking-wide text-center"
+                    <div key={w} className="relative overflow-hidden rounded-2xl py-4 px-4 font-semibold text-base leading-relaxed tracking-wide text-center"
                       style={{ background: "rgba(157,143,239,0.12)", border: "1px solid rgba(157,143,239,0.35)", color: "#9D8FEF", opacity: visible ? 1 : 0, transform: visible ? "scale(1)" : "scale(0.85)", transition: `opacity 0.4s ease ${800 + i * 80}ms, transform 0.4s ease ${800 + i * 80}ms` }}>
                       <span className="relative z-10">{w}</span>
                     </div>
                   ))}
                 </div>
                 <div className="mt-8 pt-6 border-t border-violet-200">
-                  <p className="text-sm leading-relaxed text-zinc-700 md:text-base tracking-wide font-semibold">
+                  <p className="text-base leading-relaxed text-zinc-700 tracking-wide font-semibold">
                     {t("Transformim real · Jo i përkohshëm", "Real Transformation · Not Temporary")}
                   </p>
                 </div>

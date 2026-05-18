@@ -46,7 +46,7 @@ export const FeaturedRetreatSection = () => {
               </span>
             </h2>
 
-            <p className={`mb-10 max-w-lg text-sm leading-relaxed text-zinc-700 md:text-base transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <p className={`mb-10 max-w-lg text-base leading-relaxed text-zinc-700 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
               {t(
                 "Një përvojë immersive për të liruar emocionet, për të harmonizuar energjinë dhe për të hyrë në një nivel të ri të vetes.",
                 "An immersive experience to release emotions, harmonize energy and enter a new level of yourself."
@@ -60,12 +60,12 @@ export const FeaturedRetreatSection = () => {
                   <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs font-bold" style={{ backgroundColor: "#F3F0FF", border: "1px solid #DDD6FE", color: "#9D8FEF" }}>
                     {topic.number}
                   </span>
-                  <span className="text-sm leading-relaxed text-zinc-700 md:text-base font-normal">{topic.label}</span>
+                  <span className="text-base leading-relaxed text-zinc-700 font-normal">{topic.label}</span>
                 </li>
               ))}
             </ul>
 
-            <p className={`mb-10 pl-5 text-sm italic leading-relaxed text-zinc-700 md:text-base transition-all duration-700 delay-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ borderLeft: "2px solid #9D8FEF" }}>
+            <p className={`mb-10 pl-5 text-base italic leading-relaxed text-zinc-700 transition-all duration-700 delay-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ borderLeft: "2px solid #9D8FEF" }}>
               {t(
                 "Ky retreat është për ata që duan të dalin nga mbijetesa dhe të hyjnë në një gjendje më të lartë paqeje, fuqie dhe krijimi.",
                 "This retreat is for those who want to move beyond survival and enter a higher state of peace, power and creation."
@@ -75,7 +75,7 @@ export const FeaturedRetreatSection = () => {
             <div className={`flex transition-all duration-700 delay-[800ms] ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
               <button onClick={() => navigate("/eventet/retreat")}
                 className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-[1.03]" style={{ backgroundColor: "#9D8FEF" }}>
-                <span className="relative z-10 text-sm leading-relaxed md:text-base">{t("Rezervo vendin tënd", "Reserve your spot")}</span>
+                <span className="relative z-10 text-base leading-relaxed">{t("Rezervo vendin tënd", "Reserve your spot")}</span>
                 <svg className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -104,7 +104,7 @@ export const FeaturedRetreatSection = () => {
                   ].map((s) => (
                     <div key={s.label} className="rounded-xl bg-gray-50 border border-gray-200 p-3 text-center">
                       <div className="text-2xl font-extrabold" style={{ color: "#000000" }}>{s.value}</div>
-                      <div className="text-sm leading-relaxed text-zinc-700 md:text-base mt-0.5">{s.label}</div>
+                      <div className="text-base leading-relaxed text-zinc-700 mt-0.5">{s.label}</div>
                     </div>
                   ))}
                 </div>
@@ -122,7 +122,7 @@ export const FeaturedRetreatSection = () => {
                       t("Materiale & audio", "Materials & audio"),
                       t("Mbështetje pas retreat-it", "Post-retreat support"),
                     ].map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-sm leading-relaxed text-zinc-700 md:text-base">
+                      <li key={item} className="flex items-center gap-2 text-base leading-relaxed text-zinc-700">
                         <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: "#000000" }} />
                         {item}
                       </li>

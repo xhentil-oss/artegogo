@@ -211,7 +211,7 @@ export const TestimonialsSection = () => {
               style={{ background: "linear-gradient(145deg, rgba(157,143,239,0.08) 0%, rgba(157,143,239,0.03) 100%)" }}>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-100/40 to-transparent pointer-events-none" />
               <div className="text-3xl font-bold mb-1" style={{ color: "#9D8FEF" }}>{o.stat}</div>
-              <div className="text-sm leading-relaxed text-zinc-700 md:text-base">{o.label}</div>
+              <div className="text-base leading-relaxed text-zinc-700">{o.label}</div>
             </div>
           ))}
         </div>
@@ -243,7 +243,7 @@ export const TestimonialsSection = () => {
             <img src={cat.image} alt={cat.label} className="w-full h-48 md:h-64 object-cover" style={{ filter: "brightness(0.75)" }} />
             <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-12">
               <h3 className="text-white font-bold text-2xl md:text-3xl mb-2">{cat.label}</h3>
-              <p className="text-sm leading-relaxed text-white md:text-base max-w-md" style={{ color: "rgba(255,255,255,0.9)" }}>{cat.description}</p>
+              <p className="text-base leading-relaxed text-white max-w-md" style={{ color: "rgba(255,255,255,0.9)" }}>{cat.description}</p>
             </div>
           </div>
 
@@ -254,10 +254,10 @@ export const TestimonialsSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute top-4 right-5 text-6xl font-serif text-purple-100 leading-none select-none">"</div>
                 <div className="relative z-10">
-                  <p className="text-sm leading-relaxed text-zinc-700 md:text-base mb-5 italic">&#34;{testimonial.quote}&#34;</p>
+                  <p className="text-base leading-relaxed text-zinc-700 mb-5 italic">&#34;{testimonial.quote}&#34;</p>
                   <div className="inline-flex items-center gap-1.5 border border-purple-200 rounded-full px-3 py-1 mb-5" style={{ background: "rgba(157,143,239,0.08)" }}>
                     <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#9D8FEF" }} />
-                    <span className="text-sm leading-relaxed text-zinc-700 md:text-base font-medium" style={{ color: "#9D8FEF" }}>{testimonial.result}</span>
+                    <span className="text-base leading-relaxed text-zinc-700 font-medium" style={{ color: "#9D8FEF" }}>{testimonial.result}</span>
                   </div>
                 </div>
                 <div className="relative z-10 flex items-center gap-3 mt-auto pt-4" style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}>

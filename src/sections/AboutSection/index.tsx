@@ -1,220 +1,225 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
+const STATS = [
+  {
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#b8a9e8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
+    value: '4000+',
+    label: { al: 'LIVES IMPACTED', en: 'LIVES IMPACTED' },
+    desc: {
+      al: 'Nëpër retreat-e, trajnime dhe programe online në Shqipëri dhe ndërkombëtarisht.',
+      en: 'Across retreats, trainings and online programs in Albania and internationally.',
+    },
+  },
+  {
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#b8a9e8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2z" />
+        <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2z" />
+      </svg>
+    ),
+    value: '',
+    label: { al: 'Neuroshkencë & Meditim', en: 'Neuroscience & Meditation' },
+    desc: {
+      al: 'Duke integruar njohuri mjekësore, EEG biofeedback, rregullim nervoz dhe praktika kontemplative.',
+      en: 'Integrating medical knowledge, EEG biofeedback, nervous system regulation and contemplative practices.',
+    },
+  },
+  {
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#b8a9e8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+        <path d="M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M19.07 4.93l-2.83 2.83M7.76 16.24l-2.83 2.83" />
+      </svg>
+    ),
+    value: '',
+    label: { al: 'Retreat 8-Ditësh', en: '8-Day Immersive Retreats' },
+    desc: {
+      al: 'Udhëtime transformuese për të liruar, rireshtuar dhe rikthyer lidhjen me thelbin tuaj.',
+      en: 'Deep transformational journeys designed to release, realign and reconnect you with your essence.',
+    },
+  },
+  {
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#b8a9e8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+      </svg>
+    ),
+    value: '',
+    label: { al: 'Transformim Real', en: 'Real Transformation' },
+    desc: {
+      al: 'Nga mbingarkesa emocionale drejt koherencës, qartësisë dhe jetës që doni.',
+      en: 'From emotional overwhelm and disconnection to coherence, clarity and a life you love.',
+    },
+  },
+];
+
 export function AboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const { t } = useLanguage();
-
-  const pillarData = [
-    {
-      label: t('Shërim Emocional', 'Emotional Healing'),
-      desc: t('Lirimi i bllokimeve dhe traumave të së shkuarës', 'Releasing blockages and past traumas'),
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-        </svg>
-      ),
-    },
-    {
-      label: t('Kërkimi Shkencor', 'Scientific Research'),
-      desc: t('EEG, koherencë zemër-tru dhe metoda klinike të provuara', 'EEG, heart-brain coherence and proven clinical methods'),
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-          <path d="M2 12h20" />
-        </svg>
-      ),
-    },
-    {
-      label: t('Transformim i Thellë', 'Deep Transformation'),
-      desc: t('Modele të reja mendimi, ndjenje dhe veprim', 'New patterns of thought, feeling and action'),
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-        </svg>
-      ),
-    },
-    {
-      label: t('Potencial i Plotë', 'Full Potential'),
-      desc: t('Aktivizimi i burimeve dhe energjisë suaj të brendshme', 'Activating your inner resources and energy'),
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-        </svg>
-      ),
-    },
-  ];
-
-  const differentiators = [
-    {
-      num: '01',
-      title: t('Bazë Shkencore', 'Scientific Foundation'),
-      desc: t('Çdo metodë mbështetet nga hulumtime klinike dhe neuroshencat e aplikuara.', 'Every method is supported by clinical research and applied neuroscience.'),
-    },
-    {
-      num: '02',
-      title: t('Qasje Holistike', 'Holistic Approach'),
-      desc: t('Trajtojmë njeriun në tërësi — trup, mendje dhe shpirt.', 'We treat the whole person — body, mind and spirit.'),
-    },
-    {
-      num: '03',
-      title: t('Rezultate të Matshme', 'Measurable Results'),
-      desc: t('Monitorojmë progresin me instrumente EEG dhe feedback të vazhdueshëm.', 'We monitor progress with EEG instruments and continuous feedback.'),
-    },
-    {
-      num: '04',
-      title: t('Eksperiencë e Personalizuar', 'Personalized Experience'),
-      desc: t('Çdo program është i adaptuar sipas nevojave dhe qëllimeve tuaja.', 'Every program is adapted to your needs and goals.'),
-    },
-  ];
-
-  const doctors = [
-    {
-      name: 'Dr. Marvin',
-      role: t('Neuroshumënicë & Koçing Kuantik', 'Neuroscience & Quantum Coaching'),
-      color: 'from-violet-600 to-purple-700',
-      initials: 'DM',
-    },
-    {
-      name: 'Dr. Artemisa',
-      role: t('Psikologji Pozitive & Shërim Emocional', 'Positive Psychology & Emotional Healing'),
-      color: 'from-purple-500 to-fuchsia-600',
-      initials: 'DA',
-    },
-  ];
+  const { t, lang } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.15 }
+      { threshold: 0.08 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section ref={sectionRef} id="about" className="relative py-24 bg-white overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-violet-100 rounded-full blur-3xl opacity-40 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-100 rounded-full blur-3xl opacity-30 pointer-events-none" />
+    <section ref={sectionRef} className="w-full bg-white overflow-hidden">
 
-      <div className="relative max-w-6xl mx-auto px-6">
-        <div className={`text-center mb-16 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase rounded-full px-4 py-1 mb-4" style={{color:'#9D8FEF', background:'#F3F0FF', border:'1px solid #C4B8F9'}}>
-            {t('Rreth Nesh', 'About Us')}
-          </span>
-          <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-4 leading-tight">
-            {t('Shkenca që', 'The Science that')}{' '}
-            <span style={{color:'#9D8FEF'}}>
-              {t('Transformon', 'Transforms')}
-            </span>
+      {/* ── Hero split ── */}
+      <div className="relative w-full" style={{ minHeight: '600px' }}>
+
+        {/* Photo — right side, bleeds to edge */}
+        <div
+          className="absolute right-0 top-0 bottom-0 flex"
+          style={{ width: '50%' }}
+        >
+          <img
+            src="/img/photo-rrethnesh.png"
+            alt="Dr. Marvin Bundo dhe Dr. Artemisa Gogellari"
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Subtle blur on the left edge of the photo */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 6%, rgba(255,255,255,0) 16%)',
+            }}
+          />
+        </div>
+
+        {/* Text — left, above photo */}
+        <div
+          className="relative z-10 px-6 md:px-12 lg:px-20 py-14 flex flex-col justify-center"
+          style={{
+            maxWidth: '50%',
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 0.6s ease, transform 0.6s ease',
+          }}
+        >
+          {/* Label */}
+          <p
+            className="text-xs font-bold uppercase tracking-widest mb-5"
+            style={{
+              color: '#c9a84c',
+              fontFamily: "'Inter', sans-serif",
+              letterSpacing: '0.18em',
+            }}
+          >
+            {t('Kush jemi', 'Who we are')}
+          </p>
+
+          {/* Heading */}
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-zinc-900 mb-1"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+          >
+            {t('Ku shkenca takon', 'Where science meets')}
+            <br />
+            {t('ndërgjegjën.', 'consciousness.')}
           </h2>
-          <p className="text-sm leading-relaxed text-zinc-700 md:text-base max-w-2xl mx-auto">
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6"
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              color: '#4e29c5',
+              fontStyle: 'italic',
+            }}
+          >
+            {t('Transformimi fillon.', 'Transformation begins.')}
+          </h2>
+
+          {/* Gold divider */}
+          <div className="w-10 h-0.5 mb-6" style={{ background: '#c9a84c' }} />
+
+          {/* Description */}
+          <p
+            className="text-base text-zinc-500 leading-relaxed mb-5"
+            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400 }}
+          >
             {t(
-              'Harmonizim Kuantik bashkon neuroshkencat moderne me kuptimet e thella të psikologjisë për të sjellë ndryshim të qëndrueshëm.',
-              'Quantum Harmonization combines modern neuroscience with deep psychological insights to bring sustainable change.'
+              'Jemi Dr. Marvin Bundo dhe Dr. Artemisa Gogellari. Prej më shumë se një dekade, kemi udhëhequr mijëra njerëz nëpër retreat-e imersive, trajnime dhe përvoja transformuese që kombinojnë neuroshkencën, shërimin emocional dhe praktika të avancuara meditimi.',
+              'We are Dr. Marvin Bundo and Dr. Artemisa Gogellari. For more than a decade, we have guided thousands of people through immersive retreats, trainings and transformational experiences that combine neuroscience, emotional healing and advanced meditation practices.'
+            )}
+          </p>
+
+          {/* Mission bold */}
+          <p
+            className="text-base text-zinc-800 leading-relaxed font-semibold"
+            style={{ fontFamily: "'Inter', sans-serif" }}
+          >
+            {t(
+              "Misioni ynë është t'ju ndihmojmë të rregulloni sistemin nervor, të riktheheni tek vetja dhe të krijoni një jetë qartësie, koherence dhe fuqie të brendshme.",
+              "Our mission is to help you regulate your nervous system, reconnect with yourself and create a life of clarity, coherence and inner power."
             )}
           </p>
         </div>
+      </div>
 
-        {/* Doctor Cards */}
-        <div className={`grid md:grid-cols-2 gap-8 mb-16 transition-all duration-700 delay-100 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Dr. Marvin */}
-          <div className="relative rounded-3xl p-8 overflow-hidden group hover:-translate-y-1 transition-all duration-300" style={{background:'#F9FAFB',border:'1px solid #E5E7EB'}}>
-            <div className="absolute top-0 right-0 w-40 h-40 bg-violet-100 rounded-full blur-3xl opacity-40 pointer-events-none" />
-            <div className="relative flex items-start gap-5">
-              <div className="flex-shrink-0 w-20 h-20 rounded-2xl overflow-hidden">
-                <img src="https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777283783333-0.png" alt="Dr. Marvin Bundo" className="w-full h-full object-cover object-top" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex flex-wrap items-center gap-2 mb-1">
-                  <p className="font-bold text-zinc-900 text-xl">Dr. Marvin Bundo</p>
-                </div>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base">
-                  {t(
-                    'Mjek dhe studiues shkencor në Zvicër. Specialist i neuroshumënicës dhe koçingut kuantik — bashkon shkencën e trurit me metodat e transformimit të thellë personal.',
-                    'Medical doctor and scientific researcher in Switzerland. Specialist in neuroscience and quantum coaching — bridging brain science with deep personal transformation methods.'
-                  )}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {[t('Neuroshumënicë', 'Neuroscience'), t('EEG & Biofeedback', 'EEG & Biofeedback'), t('Koçing Kuantik', 'Quantum Coaching')].map((tag) => (
-                    <span key={tag} className="text-sm md:text-base bg-white rounded-full px-3 py-1 font-medium" style={{color:'#9D8FEF', border:'1px solid #C4B8F9'}}>{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* ── Stats row ── */}
+      <div
+        className="w-full"
+        style={{
+          background: '#ffffff',
+          opacity: visible ? 1 : 0,
+          transition: 'opacity 0.6s ease 0.35s',
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 grid grid-cols-2 md:grid-cols-4">
+          {STATS.map((stat, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center text-center px-6 py-12"
+              style={{
+                borderRight: i < STATS.length - 1 ? '1px solid rgba(120,80,200,0.12)' : 'none',
+              }}
+            >
+              {/* Icon — no circle bg */}
+              <div className="mb-4">{stat.icon}</div>
 
-          {/* Dr. Artemisa */}
-          <div className="relative rounded-3xl p-8 overflow-hidden group hover:-translate-y-1 transition-all duration-300" style={{background:'#F9FAFB',border:'1px solid #E5E7EB'}}>
-            <div className="absolute top-0 right-0 w-40 h-40 bg-fuchsia-100 rounded-full blur-3xl opacity-40 pointer-events-none" />
-            <div className="relative flex items-start gap-5">
-              <div className="flex-shrink-0 w-20 h-20 rounded-2xl overflow-hidden">
-                <img src="https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777283875044-0.png" alt="Dr. Artemisa Gogollari" className="w-full h-full object-cover object-top" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex flex-wrap items-center gap-2 mb-1">
-                  <p className="font-bold text-zinc-900 text-xl">Dr. Artemisa Gogollari</p>
-                </div>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base">
-                  {t(
-                    'Mjeke dhe mentore e zhvillimit personal. Eksperte e psikologjisë pozitive dhe shërimit emocional — ndihmon njerëzit të çlirohen nga bllokimet dhe të rikthehen tek vetja e tyre e vërtetë.',
-                    'Medical doctor and personal development mentor. Expert in positive psychology and emotional healing — helping people release blockages and reconnect with their true selves.'
-                  )}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {[t('Psikologji Pozitive', 'Positive Psychology'), t('Shërim Emocional', 'Emotional Healing'), t('Meditim', 'Meditation')].map((tag) => (
-                    <span key={tag} className="text-sm md:text-base bg-white rounded-full px-3 py-1 font-medium" style={{color:'#9D8FEF', border:'1px solid #C4B8F9'}}>{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+              {/* Label — same size for all */}
+              <p
+                className="font-bold mb-3 leading-snug"
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  color: '#2d1870',
+                  fontSize: '20px',
+                }}
+              >
+                {stat.value ? `${stat.value} ${lang === 'al' ? stat.label.al : stat.label.en}` : (lang === 'al' ? stat.label.al : stat.label.en)}
+              </p>
 
-        {/* Mission Quote */}
-        <div className={`relative bg-zinc-900 rounded-3xl p-8 md:p-12 text-white text-center mb-16 overflow-hidden transition-all duration-700 delay-200 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="absolute inset-0 opacity-10 pointer-events-none" style={{backgroundImage: 'radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)', backgroundSize: '40px 40px'}} />
-          <p className="relative text-5xl font-black text-white/20 leading-none mb-4 select-none">&ldquo;</p>
-          <p className="relative text-xl md:text-2xl font-semibold leading-relaxed max-w-3xl mx-auto -mt-6">
-            {t(
-              'Ne ju ndihmojmë të riktheheni tek vetja juaj e vërtetë, të lironi bllokimet emocionale dhe të krijoni një jetë me më shumë qartësi, energji dhe dashuri.',
-              'We help you reconnect with your true self, release emotional blockages and create a life with more clarity, energy and love.'
-            )}
-          </p>
-          <div className="relative flex items-center justify-center gap-4 mt-6">
-            <span className="w-8 h-0.5 bg-white/40 rounded-full" />
-            <p className="text-white/70 text-sm font-medium">Dr. Marvin Bundo & Dr. Artemisa Gogollari</p>
-            <span className="w-8 h-0.5 bg-white/40 rounded-full" />
-          </div>
-        </div>
-
-        <div className={`grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16 transition-all duration-700 delay-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {pillarData.map((p) => (
-            <div key={p.label} className="bg-white border border-zinc-100 rounded-2xl p-6 flex flex-col items-center text-center gap-3 hover:-translate-y-1 transition-all duration-300">
-              <span className="w-10 h-10 flex items-center justify-center rounded-xl" style={{background:'#F3F0FF', color:'#9D8FEF'}}>{p.icon}</span>
-              <p className="font-semibold text-zinc-800">{p.label}</p>
-              <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{p.desc}</p>
+              {/* Description */}
+              <p
+                className="text-base leading-relaxed"
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 400,
+                  color: 'rgba(60,30,130,0.6)',
+                }}
+              >
+                {lang === 'al' ? stat.desc.al : stat.desc.en}
+              </p>
             </div>
           ))}
         </div>
-
-        <div className={`transition-all duration-700 delay-400 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h3 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-8 text-center">{t('Pse Harmonizim Kuantik?', 'Why Quantum Harmonization?')}</h3>
-          <div className="grid sm:grid-cols-2 gap-5">
-            {differentiators.map((d) => (
-              <div key={d.num} className="flex gap-4 rounded-2xl p-6" style={{background:'#F9FAFB', border:'1px solid #E5E7EB'}}>
-                <span className="flex-shrink-0 text-3xl font-black text-violet-200 leading-none select-none">{d.num}</span>
-                <div>
-                  <p className="font-semibold text-zinc-800 mb-1">{d.title}</p>
-                  <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{d.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
+
     </section>
   );
 }

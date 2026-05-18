@@ -42,7 +42,7 @@ export const ContactBannerSection = () => {
               {t("për ju", "for you")}
             </span>
           </h2>
-          <p className="text-sm leading-relaxed text-zinc-700 md:text-base max-w-2xl mx-auto">
+          <p className="text-base leading-relaxed text-zinc-700 max-w-2xl mx-auto">
             {t(
               "Jemi këtu për t'ju mbështetur në çdo hap të rrugëtimit tuaj. Na kontaktoni në mënyrat e mëposhtme:",
               "We are here to support you at every step of your journey. Contact us in the following ways:"
@@ -62,9 +62,9 @@ export const ContactBannerSection = () => {
                 </svg>
               </div>
               <div className="min-w-0">
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base font-bold mb-0.5">WhatsApp</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{t("Për pyetje dhe informacione:", "For questions and information:")}</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base font-semibold mt-0.5">+355 69 242 0827</p>
+                <p className="text-base leading-relaxed text-zinc-700 font-bold mb-0.5">WhatsApp</p>
+                <p className="text-base leading-relaxed text-zinc-700">{t("Për pyetje dhe informacione:", "For questions and information:")}</p>
+                <p className="text-base leading-relaxed text-zinc-700 font-semibold mt-0.5">+355 69 242 0827</p>
               </div>
             </a>
 
@@ -75,9 +75,9 @@ export const ContactBannerSection = () => {
                 <Instagram className="w-6 h-6 text-white" />
               </div>
               <div className="min-w-0">
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base font-bold mb-0.5">Instagram</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{t("Na ndiqni dhe na shkruani direkt:", "Follow us and write to us directly:")}</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base font-semibold mt-0.5">@arte_gogo</p>
+                <p className="text-base leading-relaxed text-zinc-700 font-bold mb-0.5">Instagram</p>
+                <p className="text-base leading-relaxed text-zinc-700">{t("Na ndiqni dhe na shkruani direkt:", "Follow us and write to us directly:")}</p>
+                <p className="text-base leading-relaxed text-zinc-700 font-semibold mt-0.5">@arte_gogo</p>
               </div>
             </a>
 
@@ -88,9 +88,9 @@ export const ContactBannerSection = () => {
                 <Facebook className="w-6 h-6 text-white" />
               </div>
               <div className="min-w-0">
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base font-bold mb-0.5">Facebook</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{t("Na ndiqni:", "Follow us:")}</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base font-semibold mt-0.5">Arte Gogo — Facebook</p>
+                <p className="text-base leading-relaxed text-zinc-700 font-bold mb-0.5">Facebook</p>
+                <p className="text-base leading-relaxed text-zinc-700">{t("Na ndiqni:", "Follow us:")}</p>
+                <p className="text-base leading-relaxed text-zinc-700 font-semibold mt-0.5">Arte Gogo — Facebook</p>
               </div>
             </a>
 
@@ -101,9 +101,9 @@ export const ContactBannerSection = () => {
                 <Youtube className="w-6 h-6 text-white" />
               </div>
               <div className="min-w-0">
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base font-bold mb-0.5">YouTube</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{t("Na ndiqni:", "Follow us:")}</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base font-semibold mt-0.5">@artegogo3246</p>
+                <p className="text-base leading-relaxed text-zinc-700 font-bold mb-0.5">YouTube</p>
+                <p className="text-base leading-relaxed text-zinc-700">{t("Na ndiqni:", "Follow us:")}</p>
+                <p className="text-base leading-relaxed text-zinc-700 font-semibold mt-0.5">@artegogo3246</p>
               </div>
             </a>
 
@@ -115,9 +115,9 @@ export const ContactBannerSection = () => {
                 <Mail className="w-6 h-6 text-white" />
               </div>
               <div className="min-w-0">
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base font-bold mb-0.5">Email</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{t("Na shkruani:", "Write to us:")}</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base font-semibold mt-0.5">info@artogogo.com</p>
+                <p className="text-base leading-relaxed text-zinc-700 font-bold mb-0.5">Email</p>
+                <p className="text-base leading-relaxed text-zinc-700">{t("Na shkruani:", "Write to us:")}</p>
+                <p className="text-base leading-relaxed text-zinc-700 font-semibold mt-0.5">info@artogogo.com</p>
               </div>
             </a>
 
@@ -127,9 +127,9 @@ export const ContactBannerSection = () => {
                 <TikTokIcon />
               </div>
               <div className="min-w-0">
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base font-bold mb-0.5">TikTok</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{t("Na ndiqni:", "Follow us:")}</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base font-semibold mt-0.5">@dr.artegogo</p>
+                <p className="text-base leading-relaxed text-zinc-700 font-bold mb-0.5">TikTok</p>
+                <p className="text-base leading-relaxed text-zinc-700">{t("Na ndiqni:", "Follow us:")}</p>
+                <p className="text-base leading-relaxed text-zinc-700 font-semibold mt-0.5">@dr.artegogo</p>
               </div>
             </a>
           </div>
@@ -138,7 +138,7 @@ export const ContactBannerSection = () => {
             <div className="flex items-center gap-3 p-5 rounded-2xl max-w-md w-full"
               style={{ background: "#F9FAFB", border: "1px solid #d4d4d8" }}>
               <MessageCircle className="w-5 h-5 flex-shrink-0" style={{ color: "#9D8FEF" }} />
-              <p className="text-sm leading-relaxed text-zinc-700 md:text-base text-center">
+              <p className="text-base leading-relaxed text-zinc-700 text-center">
                 {t("Ju përgjigjemi brenda", "We respond within")}{" "}
                 <span className="font-bold" style={{ color: "#9D8FEF" }}>{t("24 orëve", "24 hours")}</span>.{" "}
                 {t("Jemi këtu për t'ju ndihmuar të bëni hapin e radhës.", "We are here to help you take the next step.")}

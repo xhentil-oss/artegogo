@@ -1,7 +1,15 @@
 import { HeroSection } from "@/sections/HeroSection";
+import { CommunitySection } from "@/sections/CommunitySection";
+import { WhatWeOfferStrip } from "@/sections/WhatWeOfferStrip";
+import { RetreatVideoSection } from "@/sections/RetreatVideoSection";
+import { UniversityBanner } from "@/sections/UniversityBanner";
 import { AboutSection } from "@/sections/AboutSection";
 import { OfferSection } from "@/sections/OfferSection";
 import { WhyDifferentSection } from "@/sections/WhyDifferentSection";
+import { PromiseSection } from "@/sections/PromiseSection";
+import { FoundationSection } from "@/sections/FoundationSection";
+import { MissionBanner } from "@/sections/MissionBanner";
+import { RetreatCardSection } from "@/sections/RetreatCardSection";
 import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { FeaturedRetreatSection } from "@/sections/FeaturedRetreatSection";
 import { OnlineProgramsSection } from "@/sections/OnlineProgramsSection";
@@ -14,8 +22,24 @@ export const MainContent = () => {
     <main className="box-border caret-transparent flex basis-[0%] flex-col grow min-h-[auto] min-w-[auto] outline-[3px]">
       <div className="box-border caret-transparent min-h-[auto] min-w-[auto] outline-[3px]">
         <HeroSection />
+        <CommunitySection />
+        <WhatWeOfferStrip />
+        <RetreatVideoSection />
+        <UniversityBanner />
         <div className="box-border caret-transparent outline-[3px]">
           <AboutSection />
+        </div>
+        <div className="box-border caret-transparent outline-[3px]">
+          <PromiseSection />
+        </div>
+        <div className="box-border caret-transparent outline-[3px]">
+          <FoundationSection />
+        </div>
+        <div className="box-border caret-transparent outline-[3px]">
+          <MissionBanner />
+        </div>
+        <div className="box-border caret-transparent outline-[3px]">
+          <RetreatCardSection />
         </div>
         <div className="box-border caret-transparent outline-[3px]">
           <OfferSection />

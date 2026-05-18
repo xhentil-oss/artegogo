@@ -66,7 +66,7 @@ export const OnlineProgramsSection = () => {
               </span>
             </h2>
 
-            <p className={`mb-10 text-sm leading-relaxed text-zinc-700 md:text-base transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <p className={`mb-10 text-base leading-relaxed text-zinc-700 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
               {t(
                 "Fillo me trajnimet tona online dhe puno me veten nga kudo që ndodhesh. Këto programe të ndihmojnë të:",
                 "Start with our online trainings and work on yourself from wherever you are. These programs help you to:"
@@ -80,7 +80,7 @@ export const OnlineProgramsSection = () => {
                   <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: "#EDE9FF" }}>
                     <span className="h-2 w-2 rounded-full" style={{ backgroundColor: "#9D8FEF" }} />
                   </span>
-                  <span className="text-sm leading-relaxed text-zinc-700 md:text-base">{b}</span>
+                  <span className="text-base leading-relaxed text-zinc-700">{b}</span>
                 </li>
               ))}
             </ul>
@@ -88,7 +88,7 @@ export const OnlineProgramsSection = () => {
             <div className={`flex transition-all duration-700 delay-[800ms] ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
               <button onClick={() => navigate("/eventet/trajnime-online")}
                 className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.03]" style={{ backgroundColor: "#9D8FEF" }}>
-                <span className="relative z-10 text-sm leading-relaxed md:text-base">{t("Shiko programet", "View programs")}</span>
+                <span className="relative z-10 text-base leading-relaxed">{t("Shiko programet", "View programs")}</span>
                 <svg className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -104,8 +104,8 @@ export const OnlineProgramsSection = () => {
                   <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-2xl" style={{ backgroundColor: "#000000" }}>
                     <f.Icon className="w-5 h-5 text-white" strokeWidth={1.8} />
                   </div>
-                  <h3 className="mb-1.5 text-sm font-bold leading-relaxed text-zinc-700 md:text-base">{f.title}</h3>
-                  <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{f.desc}</p>
+                  <h3 className="mb-1.5 text-base font-bold leading-relaxed text-zinc-700">{f.title}</h3>
+                  <p className="text-base leading-relaxed text-zinc-700">{f.desc}</p>
                 </div>
               ))}
             </div>
@@ -114,8 +114,8 @@ export const OnlineProgramsSection = () => {
                 <Infinity className="w-5 h-5" strokeWidth={1.8} />
               </div>
               <div>
-                <p className="text-sm font-bold leading-relaxed text-zinc-700 md:text-base">{t("Akses i përhershëm", "Permanent Access")}</p>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{t("Pas regjistrimit, materiali është i yt përgjithmonë", "After registration, the material is yours forever")}</p>
+                <p className="text-base font-bold leading-relaxed text-zinc-700">{t("Akses i përhershëm", "Permanent Access")}</p>
+                <p className="text-base leading-relaxed text-zinc-700">{t("Pas regjistrimit, materiali është i yt përgjithmonë", "After registration, the material is yours forever")}</p>
               </div>
             </div>
           </div>

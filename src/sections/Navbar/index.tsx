@@ -206,12 +206,52 @@ const LangToggle = () => {
 export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [bannerVisible, setBannerVisible] = useState(true);
   const { totalItems, setCartOpen } = useCart();
   const { lang } = useLanguage();
   const navItems = lang === "al" ? navItemsAL : navItemsEN;
 
   return (
       <header className="sticky top-0 z-50 backdrop-blur-sm border-b" style={{ backgroundColor: 'rgba(255,255,255,0.97)', borderColor: 'rgba(0,0,0,0.08)' }}>
+
+      {/* ── Announcement banner ── */}
+      {bannerVisible && (
+        <div
+          className="w-full flex items-center justify-between gap-4 px-4 sm:px-6 py-2.5"
+          style={{ backgroundColor: "#4e29c5" }}
+        >
+          {/* Left sparkle (decorative spacer) */}
+          <span className="hidden sm:flex items-center shrink-0 text-white/70">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l1.5 7.5L21 12l-7.5 1.5L12 21l-1.5-7.5L3 12l7.5-1.5z" />
+            </svg>
+          </span>
+
+          {/* Center text */}
+          <p className="flex-1 text-center text-white text-xs sm:text-sm font-semibold tracking-widest uppercase">
+            {lang === "al"
+              ? "Regjistrimet për retreatin e meditimit pranverë 2027 janë hapur"
+              : "Registrations for the Spring 2027 Meditation Retreat are open"}
+          </p>
+
+          {/* Right CTA */}
+          <div className="flex items-center gap-3 shrink-0">
+            <Link
+              to="/eventet/retreat"
+              className="text-white text-xs sm:text-sm font-semibold whitespace-nowrap hover:underline underline-offset-2 transition-all"
+            >
+              {lang === "al" ? "Shiko ofertën" : "View offer"} →
+            </Link>
+            <button
+              onClick={() => setBannerVisible(false)}
+              aria-label="Mbyll"
+              className="text-white/60 hover:text-white transition-colors"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        </div>
+      )}
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
         {/* Brand */}
         <Link to="/" className="flex items-center shrink-0">
