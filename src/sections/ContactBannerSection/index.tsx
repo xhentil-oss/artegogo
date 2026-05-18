@@ -38,7 +38,7 @@ export const ContactBannerSection = () => {
           </span>
           <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-5 leading-tight">
             {t("Jemi këtu", "We are here")}{" "}
-            <span style={{ color: "#9D8FEF" }}>
+            <span style={{ color: "#4e29c5" }}>
               {t("për ju", "for you")}
             </span>
           </h2>

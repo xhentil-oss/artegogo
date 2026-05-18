@@ -1,0 +1,130 @@
+import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { Lock, Sparkles, Download, Infinity, ShieldCheck, Heart, Flower2, User, Moon, Wind } from "lucide-react";
+
+const CARDS = [
+  {
+    titleAl: "Meditimi i Manifestimit",
+    titleEn: "Manifestation Meditation",
+    img: "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?w=400&q=80",
+    Icon: Flower2,
+  },
+  {
+    titleAl: "Meditimi i Energisë",
+    titleEn: "Energy Meditation",
+    img: "https://images.unsplash.com/photo-1554244933-d876deb6b2ff?w=400&q=80",
+    Icon: User,
+  },
+  {
+    titleAl: "Meditimi i Gjumit të Thellë",
+    titleEn: "Deep Sleep Meditation",
+    img: "https://images.unsplash.com/photo-1511295742362-92c96b1cf484?w=400&q=80",
+    Icon: Moon,
+  },
+  {
+    titleAl: "Breathwork Experience",
+    titleEn: "Breathwork Experience",
+    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80",
+    Icon: Wind,
+  },
+];
+
+const FEATURES = [
+  { Icon: Download,    titleAl: "Shkarko menjëherë",      titleEn: "Download instantly",    descAl: "Dëgjo kudo, kurdo",             descEn: "Listen anywhere, anytime" },
+  { Icon: Infinity,    titleAl: "Përdor sa herë dëshiron", titleEn: "Use as many times",     descAl: "Pa limit kohor",                descEn: "No time limit" },
+  { Icon: ShieldCheck, titleAl: "Sigurt & Privat",         titleEn: "Safe & Private",        descAl: "Përvoja jote, hapësira jote",   descEn: "Your experience, your space" },
+  { Icon: Heart,       titleAl: "Mbështetje",              titleEn: "Support",               descAl: "Jemi këtu për ty",              descEn: "We are here for you" },
+];
+
+export const ComingSoonSection = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const { t, lang } = useLanguage();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.08 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={ref} className="w-full bg-white py-16 px-6 overflow-hidden"
+      style={{ opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}>
+
+      <div className="max-w-5xl mx-auto">
+
+        {/* Header */}
+        <div className="text-center mb-10">
+          <Sparkles className="w-5 h-5 mx-auto mb-3" style={{ color: "#a78bfa" }} />
+          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-2"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+            {t("Do të vijne", "Coming")} <span style={{ color: "#4e29c5" }}>{t("së shpejti", "soon")}</span>
+          </h2>
+          <p className="text-base text-zinc-500">
+            {t("Meditime të reja për çdo aspekt të jetës tënde.", "New meditations for every aspect of your life.")}
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          {CARDS.map((card, i) => (
+            <div key={i} className="relative rounded-2xl overflow-hidden cursor-pointer group"
+              style={{
+                height: 260,
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(24px)",
+                transition: `opacity 0.5s ease ${i * 100}ms, transform 0.5s ease ${i * 100}ms`,
+              }}>
+              {/* Background image */}
+              <img src={card.img} alt={lang === "al" ? card.titleAl : card.titleEn}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              {/* Purple overlay */}
+              <div className="absolute inset-0"
+                style={{ background: "linear-gradient(to bottom, rgba(88,28,180,0.3) 0%, rgba(109,40,217,0.65) 60%, rgba(76,29,149,0.85) 100%)" }} />
+
+              {/* Lock top-right */}
+              <div className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center"
+                style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)" }}>
+                <Lock className="w-3.5 h-3.5 text-white" />
+              </div>
+
+              {/* Bottom content */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+                <div className="w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-2"
+                  style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)" }}>
+                  <card.Icon className="w-4 h-4 text-white" strokeWidth={1.5} />
+                </div>
+                <p className="text-white font-semibold text-sm leading-tight mb-2">
+                  {lang === "al" ? card.titleAl : card.titleEn}
+                </p>
+                <span className="inline-block px-3 py-1 rounded-full text-white text-[10px] font-bold tracking-widest uppercase"
+                  style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.3)" }}>
+                  {t("SË SHPEJTI", "COMING SOON")}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Features row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-zinc-100">
+          {FEATURES.map((f, i) => (
+            <div key={i} className="flex flex-col items-center text-center gap-2">
+              <f.Icon className="w-5 h-5" style={{ color: "#7c3aed" }} strokeWidth={1.5} />
+              <p className="text-sm font-semibold text-zinc-800">
+                {lang === "al" ? f.titleAl : f.titleEn}
+              </p>
+              <p className="text-xs text-zinc-400">
+                {lang === "al" ? f.descAl : f.descEn}
+              </p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+};

@@ -98,7 +98,7 @@ export function OfferSection() {
             {t('Transformohu', 'Transform')}{' '}
             <span style={{ color: '#9D8FEF' }}>{t('me ne', 'with us')}</span>
           </h2>
-          <p className="text-base leading-relaxed text-zinc-700 max-w-2xl mx-auto">
+          <p className="text-base leading-relaxed text-zinc-800 max-w-2xl mx-auto">
             {t(
               'Zgjidh rrugën që i përshtatet momentit tënd të jetës. Qoftë në retreat, online apo në evente live, çdo përvojë është krijuar për të të çuar drejt ndryshimit real dhe të qëndrueshëm.',
               'Choose the path that suits your current moment in life. Whether in a retreat, online or at live events, every experience is designed to lead you toward real and lasting change.'
@@ -113,8 +113,8 @@ export function OfferSection() {
               <span className="text-xs font-semibold tracking-widest uppercase rounded-full px-3 py-1 mb-5" style={{ backgroundColor: '#F3F0FF', color: '#9D8FEF' }}>{offer.tag}</span>
               <div className="w-12 h-12 rounded-xl text-white flex items-center justify-center mb-5 transition-colors duration-200" style={{ backgroundColor: '#000000' }}>{offer.icon}</div>
               <h3 className="text-base font-bold text-zinc-900 mb-2 leading-snug">{offer.title}</h3>
-              <p className="text-base leading-relaxed text-zinc-700 flex-1 mb-6">{offer.desc}</p>
-              <button onClick={() => navigate(offer.route)} className="w-full py-2.5 px-4 rounded-xl text-base leading-relaxed text-zinc-700 font-semibold transition-all duration-200 hover:text-white whitespace-nowrap" style={{ border: '1px solid #DDD6FE', color: '#9D8FEF' }} onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#9D8FEF'; (e.currentTarget as HTMLButtonElement).style.borderColor = '#9D8FEF'; (e.currentTarget as HTMLButtonElement).style.color = '#fff'; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLButtonElement).style.borderColor = '#DDD6FE'; (e.currentTarget as HTMLButtonElement).style.color = '#9D8FEF'; }}>
+              <p className="text-base leading-relaxed text-zinc-800 flex-1 mb-6">{offer.desc}</p>
+              <button onClick={() => navigate(offer.route)} className="w-full py-2.5 px-4 rounded-xl text-base leading-relaxed text-zinc-800 font-semibold transition-all duration-200 hover:text-white whitespace-nowrap" style={{ border: '1px solid #DDD6FE', color: '#9D8FEF' }} onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#9D8FEF'; (e.currentTarget as HTMLButtonElement).style.borderColor = '#9D8FEF'; (e.currentTarget as HTMLButtonElement).style.color = '#fff'; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLButtonElement).style.borderColor = '#DDD6FE'; (e.currentTarget as HTMLButtonElement).style.color = '#9D8FEF'; }}>
                 {offer.cta}
               </button>
             </div>

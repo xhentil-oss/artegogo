@@ -115,7 +115,7 @@ export const FoundationSection = () => {
         >
           <p
             className="text-xs font-bold uppercase tracking-widest mb-5"
-            style={{ color: "#c9a84c", fontFamily: "'Inter', sans-serif", letterSpacing: "0.2em" }}
+            style={{ color: "#c9a84c", fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "0.2em" }}
           >
             {t("I rrënjosur në shkencë. I udhëhequr nga përvoja.", "Rooted in science. Guided by experience.")}
           </p>
@@ -178,7 +178,7 @@ export const FoundationSection = () => {
               {/* Title */}
               <h3
                 className="font-bold text-zinc-900 mb-2 leading-snug"
-                style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px" }}
+                style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "14px" }}
               >
                 {lang === "al" ? p.title.al : p.title.en}
               </h3>

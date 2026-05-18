@@ -62,7 +62,7 @@ export const MissionBanner = () => {
           </span>
           <span
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Playfair Display', Georgia, serif",
               fontSize: "clamp(1.4rem, 3.5vw, 2.5rem)",
               fontWeight: 700,
               color: "#c9a84c",
@@ -78,7 +78,7 @@ export const MissionBanner = () => {
           <div className="h-px w-16 md:w-24" style={{ background: "#c9a84c", opacity: 0.7 }} />
           <span
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Playfair Display', Georgia, serif",
               fontSize: "clamp(0.65rem, 1.5vw, 0.8rem)",
               fontWeight: 600,
               color: "#c9a84c",
@@ -93,7 +93,7 @@ export const MissionBanner = () => {
         {/* Subtitle */}
         <p
           style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: "clamp(0.85rem, 1.8vw, 1rem)",
             color: "rgba(255,255,255,0.75)",
             fontWeight: 300,

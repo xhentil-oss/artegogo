@@ -1,4 +1,3 @@
-import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const TestimonialsPage = () => {
@@ -26,7 +25,6 @@ export const TestimonialsPage = () => {
           </p>
         </div>
       </div>
-      <TestimonialsSection />
     </div>
   );
 };

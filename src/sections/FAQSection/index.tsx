@@ -17,7 +17,7 @@ function FAQItem({ item, index, open, onToggle, visible }: {
             style={{ background: open ? "#9D8FEF" : "rgba(157,143,239,0.12)", color: open ? "#fff" : "#9D8FEF" }}>
             {String(index + 1).padStart(2, "0")}
           </span>
-          <span className="text-base leading-relaxed font-normal transition-colors duration-300 text-zinc-700">
+          <span className="text-base leading-relaxed font-normal transition-colors duration-300 text-zinc-800">
             {item.q}
           </span>
         </div>
@@ -27,19 +27,19 @@ function FAQItem({ item, index, open, onToggle, visible }: {
 
       <div className="overflow-hidden transition-all duration-500" style={{ maxHeight: open ? "600px" : "0px" }}>
         <div className="px-6 pt-3 pb-5 pl-[4.5rem]">
-          {item.a && <p className="text-base leading-relaxed text-zinc-700">{item.a}</p>}
+          {item.a && <p className="text-base leading-relaxed text-zinc-800">{item.a}</p>}
           {item.list && (
             <div>
-              {item.listIntro && <p className="text-base leading-relaxed text-zinc-700 mb-2">{item.listIntro}</p>}
+              {item.listIntro && <p className="text-base leading-relaxed text-zinc-800 mb-2">{item.listIntro}</p>}
               <ul className="space-y-1.5 mb-2">
                 {item.list.map((li, i) => (
-                  <li key={i} className="flex items-center gap-2 text-base leading-relaxed text-zinc-700">
+                  <li key={i} className="flex items-center gap-2 text-base leading-relaxed text-zinc-800">
                     <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#9D8FEF" }} />
                     {li}
                   </li>
                 ))}
               </ul>
-              {item.listOutro && <p className="text-base leading-relaxed text-zinc-700 mt-2">{item.listOutro}</p>}
+              {item.listOutro && <p className="text-base leading-relaxed text-zinc-800 mt-2">{item.listOutro}</p>}
             </div>
           )}
         </div>
@@ -358,11 +358,11 @@ export const FAQSection = () => {
           </span>
           <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-4 leading-tight">
             {t("Gjithçka Që Doni", "Everything You Want")}{" "}
-            <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#9D8FEF,#b8adf5)" }}>
+            <span style={{ color: "#4e29c5" }}>
               {t("të Dini", "to Know")}
             </span>
           </h2>
-          <p className="text-base leading-relaxed text-zinc-700 max-w-xl mx-auto">
+          <p className="text-base leading-relaxed text-zinc-800 max-w-xl mx-auto">
             {t(
               "Gjithçka që dëshironi të dini për metodologjinë, programet dhe rezultatet tona.",
               "Everything you want to know about our methodology, programs and results."
@@ -377,9 +377,9 @@ export const FAQSection = () => {
             <button key={i} onClick={() => { setActiveCategory(i); setOpenMap({}); }}
               className="flex items-center gap-2 px-5 py-2.5 rounded-full text-base leading-relaxed font-semibold transition-all duration-300"
               style={{
-                background: activeCategory === i ? "#9D8FEF" : "rgba(255,255,255,0.8)",
+                background: activeCategory === i ? "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)" : "rgba(255,255,255,0.8)",
                 color: activeCategory === i ? "#fff" : "#18181b",
-                boxShadow: activeCategory === i ? "0 4px 16px rgba(157,143,239,0.35)" : "0 1px 4px rgba(0,0,0,0.07)",
+                boxShadow: activeCategory === i ? "0 4px 16px rgba(78,41,197,0.35)" : "0 1px 4px rgba(0,0,0,0.07)",
                 border: activeCategory === i ? "1.5px solid transparent" : "1.5px solid rgba(157,143,239,0.25)",
               }}>
               <span>{t(cat.label, cat.labelEn)}</span>
@@ -404,7 +404,7 @@ export const FAQSection = () => {
         {/* Footer CTA */}
         <div className="mt-12 text-center transition-all duration-700 delay-500"
           style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(16px)" }}>
-          <p className="text-base leading-relaxed text-zinc-700">
+          <p className="text-base leading-relaxed text-zinc-800">
             {t("Nuk gjete përgjigjen?", "Didn't find the answer?")}{" "}
             <a href="/kontakt" className="font-semibold" style={{ color: "#9D8FEF" }}>
               {t("Dërgoni mesazh →", "Send a message →")}

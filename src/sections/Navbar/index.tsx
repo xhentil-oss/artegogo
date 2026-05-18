@@ -242,23 +242,17 @@ export const Navbar = () => {
             >
               {lang === "al" ? "Shiko ofertën" : "View offer"} →
             </Link>
-            <button
-              onClick={() => setBannerVisible(false)}
-              aria-label="Mbyll"
-              className="text-white/60 hover:text-white transition-colors"
-            >
-              <X size={14} />
-            </button>
           </div>
         </div>
       )}
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
+      <nav className="w-full px-4 sm:px-8 flex items-center justify-between h-16">
         {/* Brand */}
-        <Link to="/" className="flex items-center shrink-0">
+        <Link to="/" className="flex items-center shrink-0 py-2">
           <img
-            src="https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776841446390-0.png"
+            src="/img/logo-artegogo2.png"
             alt="Arte Gogo Logo"
-            className="h-12 w-auto object-contain"
+            className="h-14 w-auto object-contain"
+            style={{ marginTop: 4, marginBottom: 4 }}
           />
         </Link>
 

@@ -90,10 +90,10 @@ export const WhatWeOfferStrip = () => {
   }, []);
 
   return (
-    <section ref={ref} className="w-full bg-white py-12 border-b border-zinc-100">
+    <section ref={ref} className="w-full bg-white pt-4 pb-8">
       {/* Title */}
       <h2
-        className="text-center text-2xl md:text-3xl font-bold mb-10"
+        className="text-center text-2xl md:text-3xl font-bold mb-6"
         style={{
           fontFamily: "'Playfair Display', Georgia, serif",
           color: BRAND,
@@ -106,11 +106,11 @@ export const WhatWeOfferStrip = () => {
       </h2>
 
       {/* Items strip */}
-      <div className="max-w-6xl mx-auto px-6 md:px-10 flex flex-wrap md:flex-nowrap items-start justify-between gap-8 md:gap-10">
+      <div className="max-w-6xl mx-auto px-4 md:px-10 flex flex-nowrap items-start justify-between gap-3 md:gap-10 overflow-x-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
         {ITEMS.map((item, i) => (
           <div
             key={i}
-            className="flex flex-col items-center text-center gap-3 flex-1 min-w-[140px]"
+            className="flex flex-col items-center text-center gap-1 flex-shrink-0 w-[18%] md:flex-1 md:w-auto"
             style={{
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(20px)",
@@ -119,20 +119,16 @@ export const WhatWeOfferStrip = () => {
           >
             {/* Icon circle */}
             <div
-              className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
+              className="w-9 h-9 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0"
               style={{ background: BRAND_BG }}
             >
-              {item.icon}
+              <div className="scale-75 md:scale-100">{item.icon}</div>
             </div>
 
             {/* Text */}
             <p
-              className="text-base leading-relaxed"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 400,
-                color: BRAND,
-              }}
+              className="text-[9px] md:text-base leading-snug"
+              style={{ fontWeight: 400, color: BRAND }}
             >
               {lang === "al" ? item.al : item.en}
             </p>

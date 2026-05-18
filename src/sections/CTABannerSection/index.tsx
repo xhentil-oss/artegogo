@@ -11,12 +11,12 @@ export const CTABannerSection = () => {
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center lg:px-8">
         <h2 className="mb-5 text-2xl font-bold leading-tight text-zinc-900 md:text-3xl">
           {t("Gati të bësh", "Ready to take")}{" "}
-          <span style={{ color: '#9D8FEF' }}>
+          <span style={{ color: '#4e29c5' }}>
             {t("hapin e parë?", "the first step?")}
           </span>
         </h2>
 
-        <p className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-zinc-700">
+        <p className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-zinc-800">
           {t(
             "Retreat-i, trajnimet online dhe eventet tona të presin. Zgjedh rrugën që i përshtatet momentit tënd dhe fillo transformimin.",
             "Our retreat, online trainings and events await you. Choose the path that suits your moment and begin the transformation."
@@ -25,7 +25,7 @@ export const CTABannerSection = () => {
 
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <button onClick={() => navigate("/eventet/retreat")}
-            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-[1.03]" style={{ backgroundColor: '#9D8FEF' }}>
+            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-[1.03]" style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)" }}>
             <span className="relative z-10 text-base leading-relaxed">{t("Rezervo Retreat-in", "Book the Retreat")}</span>
             <svg className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -38,7 +38,7 @@ export const CTABannerSection = () => {
             style={{ borderColor: '#000000', color: '#000000' }}
             onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#f4f4f5'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#ffffff'; }}>
-            <span className="text-base leading-relaxed text-zinc-700">{t("Shiko trajnimet online", "View online trainings")}</span>
+            <span className="text-base leading-relaxed text-zinc-800">{t("Shiko trajnimet online", "View online trainings")}</span>
           </button>
         </div>
 

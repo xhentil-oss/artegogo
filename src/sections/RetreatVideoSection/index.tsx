@@ -44,7 +44,7 @@ export const RetreatVideoSection = () => {
             className="text-xs font-bold uppercase tracking-widest mb-4"
             style={{
               color: "#4e29c5",
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Playfair Display', Georgia, serif",
               letterSpacing: "0.16em",
             }}
           >
@@ -67,7 +67,7 @@ export const RetreatVideoSection = () => {
           {/* Description */}
           <p
             className="text-base text-zinc-500 leading-relaxed mb-8"
-            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400 }}
+            style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 400 }}
           >
             {t(
               "Një përvojë magjike, për rregim të mendjes, shpirtit dhe trupit. Kthim tek vetja juaj e vërtetë.",
@@ -81,7 +81,7 @@ export const RetreatVideoSection = () => {
             className="inline-flex items-center gap-2 text-white font-semibold px-7 py-3.5 rounded-xl text-base transition-all duration-300 hover:scale-105 active:scale-100"
             style={{
               backgroundColor: "#4e29c5",
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Playfair Display', Georgia, serif",
             }}
           >
             {t("Shiko Retreat-et tona", "View our Retreats")}

@@ -4,16 +4,17 @@ import { WhatWeOfferStrip } from "@/sections/WhatWeOfferStrip";
 import { RetreatVideoSection } from "@/sections/RetreatVideoSection";
 import { UniversityBanner } from "@/sections/UniversityBanner";
 import { AboutSection } from "@/sections/AboutSection";
-import { OfferSection } from "@/sections/OfferSection";
-import { WhyDifferentSection } from "@/sections/WhyDifferentSection";
 import { PromiseSection } from "@/sections/PromiseSection";
 import { FoundationSection } from "@/sections/FoundationSection";
 import { MissionBanner } from "@/sections/MissionBanner";
 import { RetreatCardSection } from "@/sections/RetreatCardSection";
-import { TestimonialsSection } from "@/sections/TestimonialsSection";
-import { FeaturedRetreatSection } from "@/sections/FeaturedRetreatSection";
-import { OnlineProgramsSection } from "@/sections/OnlineProgramsSection";
 import { PhilosophySection } from "@/sections/PhilosophySection";
+import { VideoTestimonialsSection } from "@/sections/VideoTestimonialsSection";
+import { TrajnimOnlineSection } from "@/sections/TrajnimOnlineSection";
+import { SuperkoherencaSection } from "@/sections/SuperkoherencaSection";
+import { ComingSoonSection } from "@/sections/ComingSoonSection";
+import { BlogSection } from "@/sections/BlogSection";
+import { SignaturePhilosophySection } from "@/sections/SignaturePhilosophySection";
 import { FAQSection } from "@/sections/FAQSection";
 import { ContactBannerSection } from "@/sections/ContactBannerSection";
 import { CTABannerSection } from "@/sections/CTABannerSection";
@@ -42,22 +43,25 @@ export const MainContent = () => {
           <RetreatCardSection />
         </div>
         <div className="box-border caret-transparent outline-[3px]">
-          <OfferSection />
-        </div>
-        <div className="box-border caret-transparent outline-[3px]">
-          <WhyDifferentSection />
-        </div>
-        <div className="box-border caret-transparent outline-[3px]">
-          <TestimonialsSection />
-        </div>
-        <div className="box-border caret-transparent outline-[3px]">
-          <FeaturedRetreatSection />
-        </div>
-        <div className="box-border caret-transparent outline-[3px]">
-          <OnlineProgramsSection />
-        </div>
-        <div className="box-border caret-transparent outline-[3px]">
           <PhilosophySection />
+        </div>
+        <div className="box-border caret-transparent outline-[3px]">
+          <VideoTestimonialsSection />
+        </div>
+        <div className="box-border caret-transparent outline-[3px]">
+          <TrajnimOnlineSection />
+        </div>
+        <div className="box-border caret-transparent outline-[3px]">
+          <SuperkoherencaSection />
+        </div>
+        <div className="box-border caret-transparent outline-[3px]">
+          <ComingSoonSection />
+        </div>
+        <div className="box-border caret-transparent outline-[3px]">
+          <BlogSection />
+        </div>
+        <div className="box-border caret-transparent outline-[3px]">
+          <SignaturePhilosophySection />
         </div>
         <div className="box-border caret-transparent outline-[3px]">
           <FAQSection />

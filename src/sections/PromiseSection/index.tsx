@@ -112,7 +112,7 @@ export const PromiseSection = () => {
             className="text-xs font-bold uppercase tracking-widest mb-5"
             style={{
               color: "#c9a84c",
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Playfair Display', Georgia, serif",
               letterSpacing: "0.18em",
             }}
           >
@@ -135,7 +135,7 @@ export const PromiseSection = () => {
           {/* Description */}
           <p
             className="text-base leading-relaxed mb-10"
-            style={{ color: "#3f1e92", fontFamily: "'Inter', sans-serif", fontWeight: 400 }}
+            style={{ color: "#3f1e92", fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 400 }}
           >
             {t(
               "Përdorim një kombinim unik të shkencës dhe urtësisë së lashtë për t'ju ndihmuar të lironi emocionet e grumbulluara, të shëroni të kaluarën dhe të krijoni një të ardhme të re nga një gjendje koherence të brendshme.",
@@ -153,7 +153,7 @@ export const PromiseSection = () => {
                 />
                 <span
                   className="text-base leading-snug font-medium"
-                  style={{ color: "#3f1e92", fontFamily: "'Inter', sans-serif" }}
+                  style={{ color: "#3f1e92", fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                   {lang === "al" ? step.al : step.en}
                 </span>

@@ -117,7 +117,7 @@ export function AboutSection() {
             className="text-xs font-bold uppercase tracking-widest mb-5"
             style={{
               color: '#c9a84c',
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Playfair Display', Georgia, serif",
               letterSpacing: '0.18em',
             }}
           >
@@ -150,7 +150,7 @@ export function AboutSection() {
           {/* Description */}
           <p
             className="text-base text-zinc-500 leading-relaxed mb-5"
-            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400 }}
+            style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 400 }}
           >
             {t(
               'Jemi Dr. Marvin Bundo dhe Dr. Artemisa Gogellari. Prej më shumë se një dekade, kemi udhëhequr mijëra njerëz nëpër retreat-e imersive, trajnime dhe përvoja transformuese që kombinojnë neuroshkencën, shërimin emocional dhe praktika të avancuara meditimi.',
@@ -161,7 +161,7 @@ export function AboutSection() {
           {/* Mission bold */}
           <p
             className="text-base text-zinc-800 leading-relaxed font-semibold"
-            style={{ fontFamily: "'Inter', sans-serif" }}
+            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             {t(
               "Misioni ynë është t'ju ndihmojmë të rregulloni sistemin nervor, të riktheheni tek vetja dhe të krijoni një jetë qartësie, koherence dhe fuqie të brendshme.",
@@ -196,7 +196,7 @@ export function AboutSection() {
               <p
                 className="font-bold mb-3 leading-snug"
                 style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Playfair Display', Georgia, serif",
                   color: '#2d1870',
                   fontSize: '20px',
                 }}
@@ -208,7 +208,7 @@ export function AboutSection() {
               <p
                 className="text-base leading-relaxed"
                 style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Playfair Display', Georgia, serif",
                   fontWeight: 400,
                   color: 'rgba(60,30,130,0.6)',
                 }}

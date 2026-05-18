@@ -56,7 +56,7 @@ export const UniversityBanner = () => {
             className="text-xs font-bold uppercase tracking-widest mb-3"
             style={{
               color: "#a78bfa",
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Playfair Display', Georgia, serif",
               letterSpacing: "0.18em",
             }}
           >
@@ -75,7 +75,7 @@ export const UniversityBanner = () => {
 
           <p
             className="text-base text-white/60"
-            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300 }}
+            style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 300 }}
           >
             {t("Hulumtim. Inovacion. Ndikim global.", "Research. Innovation. Global impact.")}
           </p>
@@ -92,13 +92,13 @@ export const UniversityBanner = () => {
           >
             <span
               className="text-2xl font-black leading-none"
-              style={{ color: "#1a1a2e", fontFamily: "'Playfair Display', serif" }}
+              style={{ color: "#1a1a2e", fontFamily: "'Playfair Display', Georgia, serif" }}
             >
               u<sup style={{ fontSize: "0.6em", verticalAlign: "super" }}>b</sup>
             </span>
             <span
               className="text-[7px] font-semibold uppercase tracking-wider text-center leading-tight mt-1 px-2"
-              style={{ color: "#444", fontFamily: "'Inter', sans-serif" }}
+              style={{ color: "#444", fontFamily: "'Playfair Display', Georgia, serif" }}
             >
               Universität<br />Bern
             </span>
