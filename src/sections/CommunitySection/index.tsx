@@ -34,14 +34,14 @@ export const CommunitySection = () => {
   const img2 = IMAGES[(startIndex + 1) % total];
 
   return (
-    <section ref={sectionRef} className="w-full bg-white pt-6 pb-6 md:pt-20 md:pb-12 overflow-hidden">
+    <section ref={sectionRef} className="w-full bg-white pt-16 pb-6 md:pt-20 md:pb-12 overflow-hidden">
       <div
         className="max-w-6xl mx-auto px-6 flex flex-row items-start gap-6 md:gap-10"
         style={{ opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}
       >
         {/* Left — text */}
         <div className="flex-shrink-0 w-[42%] md:w-[40%] pr-3 md:pr-0">
-          <p className="text-[8px] md:text-xs font-bold tracking-[0.15em] uppercase mb-3 whitespace-nowrap" style={{ color: "#4e29c5" }}>
+          <p className="text-[8px] md:text-xs font-bold tracking-[0.15em] uppercase mb-3" style={{ color: "#4e29c5" }}>
             {t("BËHU PJESË E DICKAS MË TË MADHE", "BE PART OF SOMETHING GREATER")}
           </p>
           <h2

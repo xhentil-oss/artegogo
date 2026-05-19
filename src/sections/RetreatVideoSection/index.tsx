@@ -100,12 +100,14 @@ export const RetreatVideoSection = () => {
             transition: "opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s",
           }}
         >
-          <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-square md:aspect-auto md:h-auto" style={{ background: "#000" }}>
+          <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-square md:aspect-auto md:h-auto" style={{ background: "#1a1a2e" }}>
             <video
               ref={videoRef}
               src="/img/TONI2730.mp4"
+              poster="/img/retreat-photo.png"
               controls
               playsInline
+              preload="metadata"
               className="absolute inset-0 w-full h-full md:relative md:inset-auto md:h-auto"
               style={{ objectFit: "cover", maxHeight: "420px" }}
               onPlay={() => setPlaying(true)}
