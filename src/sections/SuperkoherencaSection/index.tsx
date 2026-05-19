@@ -28,7 +28,7 @@ export const SuperkoherencaSection = () => {
 
   return (
     <section ref={ref} className="relative w-full overflow-hidden"
-      style={{ minHeight: 560, opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}>
+      style={{ opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}>
 
       {/* Background image */}
       <img
@@ -47,28 +47,28 @@ export const SuperkoherencaSection = () => {
         style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.2) 100%)" }} />
 
       {/* Content */}
-      <div className="relative z-10 flex items-center min-h-[560px] px-6 md:px-16 py-16">
+      <div className="relative z-10 flex items-center px-6 md:px-16 py-5 md:py-16">
         <div className="w-full md:max-w-md"
           style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(24px)", transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s" }}>
 
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 mb-5"
+          <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 mb-3 md:mb-5"
             style={{ background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.35)", backdropFilter: "blur(8px)" }}>
-            <Headphones className="w-3.5 h-3.5 text-white" />
-            <span className="text-xs font-bold tracking-widest uppercase text-white">
+            <Headphones className="w-3 h-3 md:w-3.5 md:h-3.5 text-white" />
+            <span className="text-[8px] md:text-xs font-bold tracking-widest uppercase text-white">
               {t("AUDIO EXPERIENCE", "AUDIO EXPERIENCE")}
             </span>
           </div>
 
           {/* Title */}
-          <h2 className="font-bold leading-tight mb-4 text-white"
-            style={{ fontSize: "clamp(2rem, 5vw, 2.8rem)", fontFamily: "'Playfair Display', Georgia, serif" }}>
+          <h2 className="text-lg md:text-[2.8rem] font-bold leading-tight mb-2 md:mb-4 text-white"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
             {t("Meditimi i", "Meditation of")}{" "}
             <span style={{ color: "#c4b5fd" }}>{t("Superkoherencës", "Supercoherence")}</span>
           </h2>
 
           {/* Subtitle */}
-          <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.85)" }}>
+          <p className="text-xs md:text-base leading-relaxed mb-3 md:mb-6 line-clamp-3 md:line-clamp-none" style={{ color: "rgba(255,255,255,0.85)", fontFamily: "'Inter', sans-serif" }}>
             {t(
               "Një udhëtim i thellë për të harmonizuar zemrën, sistemin nervor dhe energjinë e trupit.",
               "A deep journey to harmonize the heart, nervous system and body energy."
@@ -76,15 +76,15 @@ export const SuperkoherencaSection = () => {
           </p>
 
           {/* Features */}
-          <ul className="space-y-2.5 mb-7">
+          <ul className="space-y-1.5 md:space-y-2.5 mb-4 md:mb-7">
             {FEATURES.map((f, i) => (
-              <li key={i} className="flex items-center gap-3"
+              <li key={i} className="flex items-center gap-2 md:gap-3"
                 style={{ opacity: visible ? 1 : 0, transform: visible ? "translateX(0)" : "translateX(-16px)", transition: `opacity 0.4s ease ${400 + i * 80}ms, transform 0.4s ease ${400 + i * 80}ms` }}>
-                <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+                <div className="w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.3)" }}>
-                  <f.Icon className="w-3.5 h-3.5 text-white" strokeWidth={1.8} />
+                  <f.Icon className="w-3 h-3 md:w-3.5 md:h-3.5 text-white" strokeWidth={1.8} />
                 </div>
-                <span className="text-base font-medium text-white">
+                <span className="text-xs md:text-base font-medium text-white" style={{ fontFamily: "'Inter', sans-serif" }}>
                   {lang === "al" ? f.al : f.en}
                 </span>
               </li>
@@ -94,13 +94,10 @@ export const SuperkoherencaSection = () => {
           {/* CTA */}
           <button
             onClick={() => navigate("/eventet/trajnime-online")}
-            className="inline-flex items-center gap-3 px-6 py-3.5 rounded-full text-white font-semibold text-sm transition-all duration-300 hover:scale-105 mb-3"
-            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
-            <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-              <Play className="w-3 h-3 text-white ml-0.5" fill="white" />
-            </div>
+            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl text-xs md:text-lg transition-all duration-300 hover:scale-105 active:scale-100 mb-3"
+            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}>
+            <Play className="w-4 h-4" fill="white" />
             {t("Fillo meditimin", "Start meditation")}
-            <span className="text-white/60 text-lg">+</span>
           </button>
 
           {/* Headphones note */}

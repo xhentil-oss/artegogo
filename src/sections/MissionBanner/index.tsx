@@ -19,7 +19,7 @@ export const MissionBanner = () => {
     <section
       ref={ref}
       className="w-full relative overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #0d0a2e 0%, #1a0f4e 40%, #0d0a2e 100%)", minHeight: "140px" }}
+      style={{ background: "linear-gradient(135deg, #0d0a2e 0%, #1a0f4e 40%, #0d0a2e 100%)" }}
     >
       {/* Glow left */}
       <div className="absolute left-0 top-0 bottom-0 w-64 pointer-events-none"
@@ -40,7 +40,7 @@ export const MissionBanner = () => {
 
       {/* Content */}
       <div
-        className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-10"
+        className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-5 md:py-10"
         style={{
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(16px)",
@@ -48,11 +48,11 @@ export const MissionBanner = () => {
         }}
       >
         {/* 1 MISSION */}
-        <div className="flex items-baseline gap-3 mb-2">
+        <div className="flex items-baseline gap-2 md:gap-3 mb-2">
           <span
+            className="text-2xl md:text-[4.5rem]"
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
               fontWeight: 700,
               color: "#c9a84c",
               lineHeight: 1,
@@ -61,9 +61,9 @@ export const MissionBanner = () => {
             1
           </span>
           <span
+            className="text-lg md:text-[2.5rem]"
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(1.4rem, 3.5vw, 2.5rem)",
               fontWeight: 700,
               color: "#c9a84c",
               letterSpacing: "0.12em",
@@ -74,12 +74,12 @@ export const MissionBanner = () => {
         </div>
 
         {/* Divider with text */}
-        <div className="flex items-center gap-4 mb-4">
-          <div className="h-px w-16 md:w-24" style={{ background: "#c9a84c", opacity: 0.7 }} />
+        <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+          <div className="h-px w-10 md:w-24" style={{ background: "#c9a84c", opacity: 0.7 }} />
           <span
+            className="text-[8px] md:text-base"
             style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(0.65rem, 1.5vw, 0.8rem)",
+              fontFamily: "'Inter', sans-serif",
               fontWeight: 600,
               color: "#c9a84c",
               letterSpacing: "0.22em",
@@ -87,14 +87,14 @@ export const MissionBanner = () => {
           >
             {t("PËR TË NGRITUR NJERËZIMIN", "TO ELEVATE HUMANITY")}
           </span>
-          <div className="h-px w-16 md:w-24" style={{ background: "#c9a84c", opacity: 0.7 }} />
+          <div className="h-px w-10 md:w-24" style={{ background: "#c9a84c", opacity: 0.7 }} />
         </div>
 
         {/* Subtitle */}
         <p
+          className="text-xs md:text-base"
           style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: "clamp(0.85rem, 1.8vw, 1rem)",
+            fontFamily: "'Inter', sans-serif",
             color: "rgba(255,255,255,0.75)",
             fontWeight: 300,
             letterSpacing: "0.02em",

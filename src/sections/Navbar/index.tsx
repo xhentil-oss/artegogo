@@ -235,12 +235,13 @@ export const Navbar = () => {
           </p>
 
           {/* Right CTA */}
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center shrink-0">
             <Link
               to="/eventet/retreat"
-              className="text-white text-xs sm:text-sm font-semibold whitespace-nowrap hover:underline underline-offset-2 transition-all"
+              className="whitespace-nowrap text-[9px] sm:text-xs font-bold px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full transition-all duration-200 hover:bg-white hover:text-purple-700"
+              style={{ background: "rgba(255,255,255,0.2)", color: "#fff", border: "1px solid rgba(255,255,255,0.4)", fontFamily: "'Inter', sans-serif" }}
             >
-              {lang === "al" ? "Shiko ofertën" : "View offer"} →
+              {lang === "al" ? "Shiko ofertën →" : "View offer →"}
             </Link>
           </div>
         </div>

@@ -27,12 +27,12 @@ export const RetreatVideoSection = () => {
   };
 
   return (
-    <section ref={ref} className="w-full bg-white py-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+    <section ref={ref} className="w-full bg-white pt-2 pb-4 md:py-16 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-20 flex flex-row items-start md:items-center gap-4 md:gap-16">
 
         {/* ── Left — text ── */}
         <div
-          className="flex-shrink-0 w-full md:w-[42%]"
+          className="flex-shrink-0 w-[45%] md:w-[42%]"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? "translateY(0)" : "translateY(24px)",
@@ -41,11 +41,11 @@ export const RetreatVideoSection = () => {
         >
           {/* Label */}
           <p
-            className="text-xs font-bold uppercase tracking-widest mb-4"
+            className="text-[8px] md:text-xs font-bold uppercase tracking-[0.15em] mb-2 md:mb-4 whitespace-nowrap overflow-hidden text-ellipsis"
             style={{
               color: "#4e29c5",
-              fontFamily: "'Playfair Display', Georgia, serif",
-              letterSpacing: "0.16em",
+              fontFamily: "'Inter', sans-serif",
+              letterSpacing: "0.12em",
             }}
           >
             {t(
@@ -56,7 +56,7 @@ export const RetreatVideoSection = () => {
 
           {/* Heading */}
           <h2
-            className="text-3xl md:text-4xl lg:text-[2.6rem] font-bold leading-tight text-zinc-900 mb-5"
+            className="text-lg md:text-4xl lg:text-[2.6rem] font-bold leading-tight text-zinc-900 mb-2 md:mb-5"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             {t("Retreat-e që", "Retreats that")}{" "}
@@ -66,8 +66,8 @@ export const RetreatVideoSection = () => {
 
           {/* Description */}
           <p
-            className="text-base text-zinc-500 leading-relaxed mb-8"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 400 }}
+            className="text-xs md:text-base text-zinc-500 leading-relaxed mb-3 md:mb-8 line-clamp-3 md:line-clamp-none"
+            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400 }}
           >
             {t(
               "Një përvojë magjike, për rregim të mendjes, shpirtit dhe trupit. Kthim tek vetja juaj e vërtetë.",
@@ -78,10 +78,10 @@ export const RetreatVideoSection = () => {
           {/* Button */}
           <button
             onClick={() => navigate("/eventet/retreat")}
-            className="inline-flex items-center gap-2 text-white font-semibold px-7 py-3.5 rounded-xl text-base transition-all duration-300 hover:scale-105 active:scale-100"
+            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl text-xs md:text-lg transition-all duration-300 hover:scale-105 active:scale-100 whitespace-nowrap mt-4 md:mt-0"
             style={{
               backgroundColor: "#4e29c5",
-              fontFamily: "'Playfair Display', Georgia, serif",
+              fontFamily: "'Inter', sans-serif",
             }}
           >
             {t("Shiko Retreat-et tona", "View our Retreats")}
@@ -100,14 +100,14 @@ export const RetreatVideoSection = () => {
             transition: "opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s",
           }}
         >
-          <div className="relative rounded-2xl overflow-hidden shadow-xl" style={{ background: "#000" }}>
+          <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-square md:aspect-auto md:h-auto" style={{ background: "#000" }}>
             <video
               ref={videoRef}
               src="/img/TONI2730.mp4"
               controls
               playsInline
-              className="w-full block"
-              style={{ maxHeight: "420px", objectFit: "cover" }}
+              className="absolute inset-0 w-full h-full md:relative md:inset-auto md:h-auto"
+              style={{ objectFit: "cover", maxHeight: "420px" }}
               onPlay={() => setPlaying(true)}
               onPause={() => setPlaying(false)}
             />
@@ -121,10 +121,10 @@ export const RetreatVideoSection = () => {
                 aria-label="Luaj videon"
               >
                 <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                  className="w-9 h-9 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
                   style={{ background: "rgba(255,255,255,0.92)" }}
                 >
-                  <svg className="w-7 h-7 ml-1" viewBox="0 0 24 24" fill="#4e29c5">
+                  <svg className="w-4 h-4 md:w-7 md:h-7 ml-0.5" viewBox="0 0 24 24" fill="#4e29c5">
                     <polygon points="5 3 19 12 5 21 5 3" />
                   </svg>
                 </div>

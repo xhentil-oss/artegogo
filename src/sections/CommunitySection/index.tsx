@@ -34,9 +34,9 @@ export const CommunitySection = () => {
   const img2 = IMAGES[(startIndex + 1) % total];
 
   return (
-    <section ref={sectionRef} className="w-full bg-white pt-20 pb-12 overflow-hidden">
+    <section ref={sectionRef} className="w-full bg-white pt-16 pb-2 md:pt-20 md:pb-12 overflow-hidden">
       <div
-        className="max-w-6xl mx-auto px-6 flex flex-row items-center gap-6 md:gap-10"
+        className="max-w-6xl mx-auto px-6 flex flex-row items-start gap-6 md:gap-10"
         style={{ opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}
       >
         {/* Left — text */}
@@ -45,7 +45,7 @@ export const CommunitySection = () => {
             {t("BËHU PJESË E DICKAS MË TË MADHE", "BE PART OF SOMETHING GREATER")}
           </p>
           <h2
-            className="text-xl md:text-3xl lg:text-4xl font-bold text-zinc-900 leading-snug mb-3"
+            className="text-lg md:text-3xl lg:text-4xl font-bold text-zinc-900 leading-snug mb-3"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             {t("Një komunitet që", "A community that")}{" "}
@@ -53,7 +53,8 @@ export const CommunitySection = () => {
             {t("dhe", "and")}{" "}
             <span style={{ color: "#4e29c5", fontStyle: "italic" }}>{t("të frymëzon.", "inspires you.")}</span>
           </h2>
-          <p className="text-xs md:text-sm leading-relaxed text-zinc-500 mb-5">
+          <p className="text-xs md:text-base leading-relaxed mb-5"
+            style={{ fontFamily: "'Inter', sans-serif", color: "#52525b" }}>
             {t(
               "Lidhu me njerëz që ndajnë të njëjtat vlera, rritet vetëdijën dhe krijoni jetën që doni.",
               "Connect with people who share the same values, grow awareness and create the life you want."
@@ -61,8 +62,8 @@ export const CommunitySection = () => {
           </p>
           <Link
             to="/rezultatet/testimonials"
-            className="inline-flex items-center gap-1 text-[9px] md:text-sm font-semibold px-3 py-1.5 rounded-full text-white transition-all duration-300 hover:scale-105 whitespace-nowrap"
-            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)" }}
+            className="inline-flex items-center gap-1.5 text-xs md:text-lg font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl text-white transition-all duration-300 hover:scale-105 whitespace-nowrap"
+            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}
           >
             {t("Bëhu pjesë e komunitetit", "Join the community")} →
           </Link>
@@ -70,34 +71,42 @@ export const CommunitySection = () => {
 
         {/* Right — photos with overlaid arrows */}
         <div className="flex-1 relative">
-          <div className="flex gap-3">
-            <div className="flex-1 rounded-2xl overflow-hidden" style={{ height: "260px", minHeight: 0 }}>
+
+          {/* Mobile: single image */}
+          <div className="relative md:hidden rounded-2xl overflow-hidden" style={{ height: "220px" }}>
+            <img src={img1.src} alt={img1.alt} className="w-full h-full object-cover" />
+            <button onClick={prev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center"
+              style={{ background: "rgba(255,255,255,0.9)", boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}>
+              <svg className="w-4 h-4" fill="none" stroke="#4e29c5" strokeWidth={2} viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+            </button>
+            <button onClick={next}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center"
+              style={{ background: "rgba(255,255,255,0.9)", boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}>
+              <svg className="w-4 h-4" fill="none" stroke="#4e29c5" strokeWidth={2} viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" /></svg>
+            </button>
+          </div>
+
+          {/* Desktop: two images */}
+          <div className="hidden md:flex gap-3">
+            <div className="flex-1 rounded-2xl overflow-hidden" style={{ height: "260px" }}>
               <img src={img1.src} alt={img1.alt} className="w-full h-full object-cover" />
             </div>
-            <div className="flex-1 rounded-2xl overflow-hidden relative" style={{ height: "260px", minHeight: 0 }}>
+            <div className="flex-1 rounded-2xl overflow-hidden relative" style={{ height: "260px" }}>
               <img src={img2.src} alt={img2.alt} className="w-full h-full object-cover" />
-              {/* Right arrow overlaid */}
-              <button
-                onClick={next}
+              <button onClick={next}
                 className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-                style={{ background: "rgba(255,255,255,0.9)", boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}
-              >
-                <svg className="w-4 h-4" fill="none" stroke="#4e29c5" strokeWidth={2} viewBox="0 0 24 24">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
+                style={{ background: "rgba(255,255,255,0.9)", boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}>
+                <svg className="w-4 h-4" fill="none" stroke="#4e29c5" strokeWidth={2} viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" /></svg>
               </button>
             </div>
           </div>
 
-          {/* Left arrow overlaid on first photo */}
-          <button
-            onClick={prev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-            style={{ background: "rgba(255,255,255,0.9)", boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}
-          >
-            <svg className="w-4 h-4" fill="none" stroke="#4e29c5" strokeWidth={2} viewBox="0 0 24 24">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
+          {/* Desktop left arrow */}
+          <button onClick={prev}
+            className="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full items-center justify-center transition-all duration-200 hover:scale-110"
+            style={{ background: "rgba(255,255,255,0.9)", boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}>
+            <svg className="w-4 h-4" fill="none" stroke="#4e29c5" strokeWidth={2} viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
           </button>
 
           {/* Dots */}

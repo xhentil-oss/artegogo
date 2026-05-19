@@ -51,33 +51,34 @@ export const ComingSoonSection = () => {
   }, []);
 
   return (
-    <section ref={ref} className="w-full bg-white py-16 px-6 overflow-hidden"
+    <section ref={ref} className="w-full bg-white py-4 md:py-16 px-6 overflow-hidden"
       style={{ opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}>
 
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-3 md:mb-10">
           <Sparkles className="w-5 h-5 mx-auto mb-3" style={{ color: "#a78bfa" }} />
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-2"
+          <h2 className="text-lg md:text-4xl font-bold text-zinc-900 mb-2"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
             {t("Do të vijne", "Coming")} <span style={{ color: "#4e29c5" }}>{t("së shpejti", "soon")}</span>
           </h2>
-          <p className="text-base text-zinc-500">
+          <p className="text-xs md:text-base"
+            style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
             {t("Meditime të reja për çdo aspekt të jetës tënde.", "New meditations for every aspect of your life.")}
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-4 gap-2 md:gap-4 mb-3 md:mb-12">
           {CARDS.map((card, i) => (
-            <div key={i} className="relative rounded-2xl overflow-hidden cursor-pointer group"
+            <div key={i}
               style={{
-                height: 260,
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(24px)",
                 transition: `opacity 0.5s ease ${i * 100}ms, transform 0.5s ease ${i * 100}ms`,
               }}>
+            <div className="relative rounded-xl md:rounded-2xl overflow-hidden cursor-pointer group h-[160px] md:h-[260px] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(0,0,0,0.18)]">
               {/* Background image */}
               <img src={card.img} alt={lang === "al" ? card.titleAl : card.titleEn}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -86,38 +87,42 @@ export const ComingSoonSection = () => {
                 style={{ background: "linear-gradient(to bottom, rgba(88,28,180,0.3) 0%, rgba(109,40,217,0.65) 60%, rgba(76,29,149,0.85) 100%)" }} />
 
               {/* Lock top-right */}
-              <div className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center"
+              <div className="absolute top-2 right-2 w-5 h-5 md:w-7 md:h-7 rounded-full flex items-center justify-center"
                 style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)" }}>
-                <Lock className="w-3.5 h-3.5 text-white" />
+                <Lock className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 text-white" />
               </div>
 
               {/* Bottom content */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-2"
+              <div className="absolute bottom-0 left-0 right-0 p-2 md:p-4 text-center">
+                <div className="w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center mx-auto mb-1 md:mb-2"
                   style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)" }}>
-                  <card.Icon className="w-4 h-4 text-white" strokeWidth={1.5} />
+                  <card.Icon className="w-3 h-3 md:w-4 md:h-4 text-white" strokeWidth={1.5} />
                 </div>
-                <p className="text-white font-semibold text-sm leading-tight mb-2">
+                <p className="text-white font-semibold text-xs md:text-base leading-tight mb-1 md:mb-2"
+                  style={{ fontFamily: "'Inter', sans-serif" }}>
                   {lang === "al" ? card.titleAl : card.titleEn}
                 </p>
-                <span className="inline-block px-3 py-1 rounded-full text-white text-[10px] font-bold tracking-widest uppercase"
-                  style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.3)" }}>
+                <span className="inline-block px-1.5 py-0.5 rounded-full text-white text-[6px] md:text-xs font-bold tracking-widest uppercase"
+                  style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.3)", fontFamily: "'Inter', sans-serif" }}>
                   {t("SË SHPEJTI", "COMING SOON")}
                 </span>
               </div>
+            </div>
             </div>
           ))}
         </div>
 
         {/* Features row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-zinc-100">
+        <div className="grid grid-cols-4 gap-2 md:gap-6 pt-4 md:pt-8 border-t border-zinc-100">
           {FEATURES.map((f, i) => (
-            <div key={i} className="flex flex-col items-center text-center gap-2">
-              <f.Icon className="w-5 h-5" style={{ color: "#7c3aed" }} strokeWidth={1.5} />
-              <p className="text-sm font-semibold text-zinc-800">
+            <div key={i} className="flex flex-col items-center text-center gap-1 md:gap-2">
+              <f.Icon className="w-5 h-5 md:w-9 md:h-9" style={{ color: "#4e29c5" }} strokeWidth={1.5} />
+              <p className="text-xs md:text-base font-semibold"
+                style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                 {lang === "al" ? f.titleAl : f.titleEn}
               </p>
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs md:text-base"
+                style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                 {lang === "al" ? f.descAl : f.descEn}
               </p>
             </div>

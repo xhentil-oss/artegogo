@@ -29,15 +29,15 @@ export const RetreatCardSection = () => {
 
   return (
     <section ref={ref} className="w-full bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 py-10 grid lg:grid-cols-2 gap-10 items-center"
+      <div className="max-w-6xl mx-auto px-6 py-4 md:py-10 grid lg:grid-cols-2 gap-4 md:gap-10 items-center"
         style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s" }}>
 
       {/* ── Content left ── */}
-      <div>
+      <div className="order-2 lg:order-1">
         {/* ── Description ── */}
         <p
-          className="text-base leading-relaxed text-zinc-800 mb-6"
-          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+          className="text-xs md:text-base leading-relaxed text-zinc-800 mb-4 md:mb-6"
+          style={{ fontFamily: "'Inter', sans-serif" }}
         >
           {t(
             "Një përvojë immersive për të liruar emocionet, për të harmonizuar energjinë dhe për të hyrë në një nivel më të lartë të vetes.",
@@ -46,7 +46,7 @@ export const RetreatCardSection = () => {
         </p>
 
         {/* ── Stats ── */}
-        <div className="grid grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-3 gap-2 md:gap-4 mb-4 md:mb-6">
           {[
             { Icon: Flower2, value: t("7 Ditë", "7 Days"), label: t("KOHËZGJATJA", "DURATION") },
             { Icon: Users, value: "20+", label: t("SEANCA", "SESSIONS") },
@@ -54,19 +54,19 @@ export const RetreatCardSection = () => {
           ].map((s, i) => (
             <div
               key={i}
-              className="flex flex-col items-center text-center rounded-2xl py-4 px-2"
+              className="flex flex-col items-center text-center rounded-2xl py-3 md:py-4 px-2"
               style={{ border: "1px solid rgba(78,41,197,0.15)", background: "rgba(78,41,197,0.03)" }}
             >
-              <s.Icon className="w-6 h-6 mb-1" style={{ color: "#9D8FEF" }} />
+              <s.Icon className="w-4 h-4 md:w-6 md:h-6 mb-1" style={{ color: "#9D8FEF" }} />
               <span
-                className="text-xl font-bold"
-                style={{ color: "#4e29c5", fontFamily: "'Playfair Display', Georgia, serif" }}
+                className="text-sm md:text-xl font-bold"
+                style={{ color: "#4e29c5", fontFamily: "'Inter', sans-serif" }}
               >
                 {s.value}
               </span>
               <span
-                className="text-[10px] font-semibold tracking-widest uppercase mt-0.5"
-                style={{ color: "rgba(78,41,197,0.5)", fontFamily: "'Playfair Display', Georgia, serif" }}
+                className="text-[8px] md:text-[10px] font-semibold tracking-widest uppercase mt-0.5"
+                style={{ color: "rgba(78,41,197,0.5)", fontFamily: "'Inter', sans-serif" }}
               >
                 {s.label}
               </span>
@@ -76,18 +76,18 @@ export const RetreatCardSection = () => {
 
         {/* ── Includes ── */}
         <p
-          className="text-xs font-bold uppercase tracking-widest mb-3"
-          style={{ color: "#4e29c5", fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "0.18em" }}
+          className="text-[8px] md:text-xs font-bold uppercase tracking-widest mb-2 md:mb-3"
+          style={{ color: "#4e29c5", fontFamily: "'Inter', sans-serif", letterSpacing: "0.18em" }}
         >
           {t("ÇFARË PËRFSHIN", "WHAT IT INCLUDES")}
         </p>
-        <div className="grid grid-cols-2 gap-x-6 gap-y-2.5 mb-8">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2 md:gap-x-6 md:gap-y-2.5 mb-5 md:mb-8">
           {INCLUDES.map((item, i) => (
-            <div key={i} className="flex items-center gap-2.5">
-              <item.Icon className="w-4 h-4 flex-shrink-0" style={{ color: "#9D8FEF" }} />
+            <div key={i} className="flex items-center gap-2">
+              <item.Icon className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" style={{ color: "#9D8FEF" }} />
               <span
-                className="text-sm"
-                style={{ color: "#3f1e92", fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 500 }}
+                className="text-xs md:text-sm"
+                style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontWeight: 500 }}
               >
                 {lang === "al" ? item.al : item.en}
               </span>
@@ -97,8 +97,8 @@ export const RetreatCardSection = () => {
 
         {/* ── Quote ── */}
         <p
-          className="text-sm italic leading-relaxed text-zinc-500 mb-8 text-center"
-          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+          className="text-xs md:text-base italic leading-relaxed text-zinc-500 mb-5 md:mb-8 text-center"
+          style={{ fontFamily: "'Inter', sans-serif" }}
         >
           {t(
             "Ky retreat është për ata që duan të dalin nga mbijetesa dhe të hyjnë në një gjendje më të lartë paqeje, fuqie dhe krijimi.",
@@ -109,10 +109,10 @@ export const RetreatCardSection = () => {
         {/* ── CTA Button ── */}
         <button
           onClick={() => navigate("/eventet/retreat")}
-          className="w-full py-4 rounded-2xl text-white font-semibold text-base flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] hover:opacity-90"
+          className="w-full py-3 md:py-4 rounded-2xl text-white font-semibold text-xs md:text-base flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] hover:opacity-90"
           style={{
             background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)",
-            fontFamily: "'Playfair Display', Georgia, serif",
+            fontFamily: "'Inter', sans-serif",
           }}
         >
           {t("Rezervo vendin tënd", "Reserve your spot")}
@@ -123,7 +123,7 @@ export const RetreatCardSection = () => {
       </div>
 
       {/* ── Image right ── */}
-      <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+      <div className="order-1 lg:order-2 relative rounded-3xl overflow-hidden shadow-2xl">
         <img
           src="/img/retreat-photo.png"
           alt="Retreat venue"
@@ -133,17 +133,6 @@ export const RetreatCardSection = () => {
           className="absolute inset-0 rounded-3xl"
           style={{ background: "linear-gradient(180deg, rgba(78,41,197,0.05) 0%, rgba(78,41,197,0.35) 100%)" }}
         />
-        <div
-          className="absolute bottom-0 left-0 right-0 text-center py-2.5 px-4 rounded-b-3xl"
-          style={{ background: "rgba(78,41,197,0.88)" }}
-        >
-          <p className="text-white font-bold text-xs tracking-wider" style={{ letterSpacing: "0.1em" }}>
-            {t(
-              "PUSHIME, SHËRIM, MANIFESTIM, & HAPJE ZEMRE, RIKTIM TE VETJA",
-              "REST, HEALING, MANIFESTATION, & HEART OPENING, RETURN TO SELF"
-            )}
-          </p>
-        </div>
       </div>
 
       </div>

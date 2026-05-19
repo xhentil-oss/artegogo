@@ -4,7 +4,7 @@ import { useLanguage } from "@/context/LanguageContext";
 const PILLARS = [
   {
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9D8FEF" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
         <path d="M6 12v5c3 3 9 3 12 0v-5" />
       </svg>
@@ -17,7 +17,7 @@ const PILLARS = [
   },
   {
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9D8FEF" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18" />
         <circle cx="12" cy="12" r="2" />
       </svg>
@@ -31,7 +31,7 @@ const PILLARS = [
   },
   {
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9D8FEF" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="5" r="2" />
         <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4" />
         <path d="M5 14c1.5-1 3.5-1.5 7-1.5s5.5.5 7 1.5" />
@@ -46,7 +46,7 @@ const PILLARS = [
   },
   {
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9D8FEF" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
       </svg>
     ),
@@ -58,7 +58,7 @@ const PILLARS = [
   },
   {
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9D8FEF" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
         <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
       </svg>
@@ -71,7 +71,7 @@ const PILLARS = [
   },
   {
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9D8FEF" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
         <circle cx="9" cy="7" r="4" />
         <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -101,12 +101,12 @@ export const FoundationSection = () => {
   }, []);
 
   return (
-    <section ref={ref} className="w-full py-12 overflow-hidden" style={{ backgroundColor: "#F9FAFB" }}>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+    <section ref={ref} className="w-full py-8 md:py-12 overflow-hidden" style={{ backgroundColor: "#F9FAFB" }}>
+      <div className="max-w-7xl mx-auto px-2 md:px-12 lg:px-20">
 
         {/* ── Header ── */}
         <div
-          className="text-center mb-14"
+          className="text-center mb-6 md:mb-14"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? "translateY(0)" : "translateY(20px)",
@@ -114,13 +114,13 @@ export const FoundationSection = () => {
           }}
         >
           <p
-            className="text-xs font-bold uppercase tracking-widest mb-5"
-            style={{ color: "#c9a84c", fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "0.2em" }}
+            className="text-[8px] font-bold uppercase tracking-widest mb-3 md:mb-5"
+            style={{ color: "#4e29c5", fontFamily: "'Inter', sans-serif", letterSpacing: "0.2em" }}
           >
             {t("I rrënjosur në shkencë. I udhëhequr nga përvoja.", "Rooted in science. Guided by experience.")}
           </p>
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-zinc-900 leading-snug max-w-3xl mx-auto"
+            className="text-lg md:text-3xl lg:text-4xl font-bold text-zinc-900 leading-snug max-w-3xl mx-auto"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             {t(
@@ -131,19 +131,7 @@ export const FoundationSection = () => {
         </div>
 
         {/* ── Pillars ── */}
-        <div className="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-4">
-
-          {/* Connecting line behind icons */}
-          <div
-            className="absolute hidden lg:block"
-            style={{
-              top: "28px",
-              left: "calc(100% / 12)",
-              right: "calc(100% / 12)",
-              height: "1px",
-              background: "linear-gradient(to right, rgba(157,143,239,0.15), rgba(157,143,239,0.5) 50%, rgba(157,143,239,0.15))",
-            }}
-          />
+        <div className="relative grid grid-cols-6 gap-1 md:gap-4">
 
           {PILLARS.map((p, i) => (
             <div
@@ -155,30 +143,19 @@ export const FoundationSection = () => {
                 transition: `opacity 0.5s ease ${i * 80}ms, transform 0.5s ease ${i * 80}ms`,
               }}
             >
-              {/* Arrow after column (between 2nd and 3rd) */}
-              {p.hasArrow && (
-                <div
-                  className="absolute hidden lg:flex items-center"
-                  style={{ top: "20px", right: "-22px", zIndex: 10 }}
-                >
-                  <svg width="36" height="16" viewBox="0 0 36 16" fill="none">
-                    <path d="M0 8h30M24 2l8 6-8 6" stroke="#3f1e92" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              )}
 
               {/* Icon circle */}
               <div
-                className="w-14 h-14 rounded-full flex items-center justify-center mb-4 relative z-10"
-                style={{ background: "#F3F0FF", border: "1px solid #DDD6FE" }}
+                className="w-8 h-8 md:w-14 md:h-14 rounded-full flex items-center justify-center mb-2 md:mb-4 relative z-10 overflow-hidden"
+                style={{ background: "#EDE8FA" }}
               >
-                {p.icon}
+                <div className="scale-[0.45] md:scale-100">{p.icon}</div>
               </div>
 
               {/* Title */}
               <h3
-                className="font-bold text-zinc-900 mb-2 leading-snug"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "14px" }}
+                className="text-[7px] md:text-base font-bold mb-2 leading-snug"
+                style={{ fontFamily: "'Inter', sans-serif", color: "#52525b" }}
               >
                 {lang === "al" ? p.title.al : p.title.en}
               </h3>

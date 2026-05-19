@@ -19,7 +19,7 @@ export const UniversityBanner = () => {
     <section
       ref={ref}
       className="w-full relative overflow-hidden"
-      style={{ minHeight: "180px" }}
+      style={{ minHeight: "120px" }}
     >
       {/* Background building image */}
       <div
@@ -43,7 +43,7 @@ export const UniversityBanner = () => {
 
       {/* Content */}
       <div
-        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between py-10 gap-8"
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between py-5 md:py-10 gap-8"
         style={{
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(16px)",
@@ -53,10 +53,10 @@ export const UniversityBanner = () => {
         {/* Left — text */}
         <div className="flex-1 max-w-xl">
           <p
-            className="text-xs font-bold uppercase tracking-widest mb-3"
+            className="text-[8px] md:text-xs font-bold uppercase tracking-widest mb-3"
             style={{
               color: "#a78bfa",
-              fontFamily: "'Playfair Display', Georgia, serif",
+              fontFamily: "'Inter', sans-serif",
               letterSpacing: "0.18em",
             }}
           >
@@ -64,7 +64,7 @@ export const UniversityBanner = () => {
           </p>
 
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight mb-3"
+            className="text-lg md:text-3xl lg:text-4xl font-bold text-white leading-tight mb-3"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             {t(
@@ -74,8 +74,8 @@ export const UniversityBanner = () => {
           </h2>
 
           <p
-            className="text-base text-white/60"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 300 }}
+            className="text-xs md:text-base text-white/60"
+            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300 }}
           >
             {t("Hulumtim. Inovacion. Ndikim global.", "Research. Innovation. Global impact.")}
           </p>

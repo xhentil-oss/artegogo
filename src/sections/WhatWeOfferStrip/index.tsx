@@ -7,7 +7,7 @@ const BRAND_BG = "#EDE8FA";
 const ITEMS = [
   {
     icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke={BRAND} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         {/* Meditation sitting figure */}
         <circle cx="12" cy="5" r="2" />
         <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4" />
@@ -21,7 +21,7 @@ const ITEMS = [
   },
   {
     icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke={BRAND} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         {/* Guidance — two people */}
         <circle cx="9" cy="5" r="2" />
         <circle cx="17" cy="6" r="2" />
@@ -35,7 +35,7 @@ const ITEMS = [
   },
   {
     icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke={BRAND} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         {/* Geometric mandala / retreat star */}
         <circle cx="12" cy="12" r="3" />
         <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
@@ -48,7 +48,7 @@ const ITEMS = [
   },
   {
     icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke={BRAND} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         {/* Music note double */}
         <path d="M9 18V5l12-2v13" />
         <circle cx="6" cy="18" r="3" />
@@ -60,7 +60,7 @@ const ITEMS = [
   },
   {
     icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke={BRAND} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         {/* Heart with person — connection */}
         <circle cx="12" cy="5" r="2" />
         <path d="M12 9v5" />
@@ -90,13 +90,13 @@ export const WhatWeOfferStrip = () => {
   }, []);
 
   return (
-    <section ref={ref} className="w-full bg-white pt-4 pb-8">
+    <section ref={ref} className="w-full bg-white pt-0 pb-3">
       {/* Title */}
       <h2
-        className="text-center text-2xl md:text-3xl font-bold mb-6"
+        className="text-center text-lg md:text-3xl font-bold mb-6"
         style={{
           fontFamily: "'Playfair Display', Georgia, serif",
-          color: BRAND,
+          color: "#18181b",
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(16px)",
           transition: "opacity 0.5s ease, transform 0.5s ease",
@@ -106,7 +106,7 @@ export const WhatWeOfferStrip = () => {
       </h2>
 
       {/* Items strip */}
-      <div className="max-w-6xl mx-auto px-4 md:px-10 flex flex-nowrap items-start justify-between gap-3 md:gap-10 overflow-x-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+      <div className="max-w-6xl mx-auto px-4 md:px-10 flex flex-nowrap items-start justify-between gap-3 md:gap-10 overflow-x-auto overflow-y-visible" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
         {ITEMS.map((item, i) => (
           <div
             key={i}
@@ -119,16 +119,16 @@ export const WhatWeOfferStrip = () => {
           >
             {/* Icon circle */}
             <div
-              className="w-9 h-9 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{ background: BRAND_BG }}
+              className="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0"
+              style={{ background: "#EDE8FA" }}
             >
-              <div className="scale-75 md:scale-100">{item.icon}</div>
+              <div className="scale-[0.4] md:scale-100">{item.icon}</div>
             </div>
 
             {/* Text */}
             <p
               className="text-[9px] md:text-base leading-snug"
-              style={{ fontWeight: 400, color: BRAND }}
+              style={{ fontWeight: 400, color: "#52525b", fontFamily: "'Inter', sans-serif" }}
             >
               {lang === "al" ? item.al : item.en}
             </p>

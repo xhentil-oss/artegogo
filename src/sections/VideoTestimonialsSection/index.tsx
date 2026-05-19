@@ -60,7 +60,7 @@ export const VideoTestimonialsSection = () => {
   ];
 
   return (
-    <section ref={ref} className="relative w-full overflow-hidden py-20 px-6"
+    <section ref={ref} className="relative w-full overflow-hidden py-8 md:py-20 px-6"
       style={{
         background: "#F9FAFB",
         opacity: visible ? 1 : 0,
@@ -71,17 +71,18 @@ export const VideoTestimonialsSection = () => {
 <div className="relative z-10 max-w-4xl mx-auto">
 
         {/* Badge + Title */}
-        <div className="text-center mb-10">
-          <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase rounded-full px-4 py-1.5 mb-5"
+        <div className="text-center mb-5 md:mb-10">
+          <span className="inline-block text-[8px] md:text-xs font-bold tracking-[0.2em] uppercase rounded-full px-4 py-1.5 mb-3 md:mb-5"
             style={{ background: "rgba(124,58,237,0.12)", color: "#7C3AED", border: "1px solid rgba(124,58,237,0.25)" }}>
             {t("TRANSFORMIME REALE", "REAL TRANSFORMATIONS")}
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-[2.6rem] font-bold text-zinc-900 mb-3 leading-tight"
+          <h2 className="text-lg md:text-4xl lg:text-[2.6rem] font-bold text-zinc-900 mb-3 leading-tight"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
             {t("Kur njerëzit rikthehen", "When people return")}{" "}
             <span style={{ color: "#4e29c5" }}>{t("tek vetja", "to themselves")}</span>
           </h2>
-          <p className="text-xl md:text-2xl leading-relaxed text-zinc-700 max-w-lg mx-auto">
+          <p className="text-xs md:text-base leading-relaxed max-w-lg mx-auto"
+            style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
             {t(
               "Momentet reale nga retreat-et ku pjesëmarrësit përjetuan çlirim emocional, qetësi të thellë dhe transformim.",
               "Real moments from retreats where participants experienced emotional release, deep peace and transformation."
@@ -90,12 +91,12 @@ export const VideoTestimonialsSection = () => {
         </div>
 
         {/* Featured video card */}
-        <div className="relative rounded-3xl overflow-hidden mb-10 shadow-2xl">
+        <div className="relative rounded-3xl overflow-hidden mb-5 md:mb-10 shadow-2xl">
           {/* Background image */}
           <img
             src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80"
             alt="Testimonial"
-            className="w-full h-80 md:h-96 object-cover"
+            className="w-full h-52 md:h-96 object-cover"
           />
           {/* Dark overlay */}
           <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.6) 100%)" }} />
@@ -104,7 +105,7 @@ export const VideoTestimonialsSection = () => {
           <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full px-3 py-1.5"
             style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", backdropFilter: "blur(8px)" }}>
             <Play className="w-3 h-3 text-white" fill="white" />
-            <span className="text-white text-xs font-semibold tracking-wide">{t("TESTIMONIAL REAL", "REAL TESTIMONIAL")}</span>
+            <span className="text-white text-[8px] md:text-xs font-semibold tracking-wide">{t("TESTIMONIAL REAL", "REAL TESTIMONIAL")}</span>
           </div>
 
           {/* Play button centered */}
@@ -118,23 +119,22 @@ export const VideoTestimonialsSection = () => {
           </button>
 
           {/* Quote + stats bottom overlay */}
-          <div className="absolute bottom-0 left-0 px-6 py-5 text-left" style={{ maxWidth: "30%" }}>
-            <p className="text-6xl font-serif leading-none mb-1" style={{ color: "#a78bfa" }}>&ldquo;</p>
-            <p className="text-white text-2xl md:text-3xl font-bold leading-snug mb-2"
+          <div className="absolute bottom-0 left-0 px-4 md:px-6 py-3 md:py-5 text-left" style={{ width: "40%" }}>
+            <p className="text-white text-sm md:text-3xl font-bold leading-snug mb-1 md:mb-2"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-              {t("Ndjeva zemrën time të hapej për herë të parë pas shumë vitesh.", "I felt my heart open for the first time in many years.")}
+              <span style={{ color: "#a78bfa" }}>&ldquo;</span>{t("Ndjeva zemrën time të hapej për herë të parë pas shumë vitesh.", "I felt my heart open for the first time in many years.")}
             </p>
-            <p className="text-white/60 text-xs font-bold tracking-widest uppercase mb-4">
+            <p className="text-white/60 text-[8px] md:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4">
               — {t("PJESËMARRËSE NE RETREAT", "RETREAT PARTICIPANT")}
             </p>
-            <div className="flex items-center gap-3 pt-3 border-t border-white/20">
-              <span className="text-white/70 text-xs flex items-center gap-1.5">
-                <Play className="w-3 h-3" fill="currentColor" /> 1:42
+            <div className="flex items-center gap-2 md:gap-3 pt-2 md:pt-3 border-t border-white/20">
+              <span className="text-white/70 text-[8px] md:text-xs flex items-center gap-1">
+                <Play className="w-2.5 h-2.5 md:w-3 md:h-3" fill="currentColor" /> 1:42
               </span>
-              <span className="text-white/40 text-xs">|</span>
-              <span className="text-white/70 text-xs">{t("VIDEO", "VIDEO")}</span>
-              <span className="text-white/40 text-xs">|</span>
-              <span className="text-white/70 text-xs">{t("ZË + PAMJE", "AUDIO + VIDEO")}</span>
+              <span className="text-white/40 text-[8px] md:text-xs">|</span>
+              <span className="text-white/70 text-[8px] md:text-xs">{t("VIDEO", "VIDEO")}</span>
+              <span className="text-white/40 text-[8px] md:text-xs">|</span>
+              <span className="text-white/70 text-[8px] md:text-xs">{t("ZË + PAMJE", "AUDIO + VIDEO")}</span>
             </div>
           </div>
         </div>
@@ -151,27 +151,28 @@ export const VideoTestimonialsSection = () => {
 
           {/* Cards */}
           <div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6"
+            className="grid grid-cols-3 gap-2 md:gap-4 px-2 md:px-6"
             style={{ opacity: animating ? 0 : 1, transform: animating ? "translateY(8px)" : "translateY(0)", transition: "opacity 0.3s ease, transform 0.3s ease" }}>
             {visibleQuotes.map((q, i) => (
               <div key={`${quoteIndex}-${i}`}
-                className="rounded-2xl p-6 bg-white flex flex-col justify-between"
-                style={{ boxShadow: "0 4px 24px rgba(124,58,237,0.08)", border: "1px solid #f3f0ff", minHeight: 200 }}>
+                className="rounded-2xl p-3 md:p-6 bg-white flex flex-col justify-between cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(0,0,0,0.13)]"
+                style={{ boxShadow: "0 4px 24px rgba(124,58,237,0.08)", border: "1px solid #f3f0ff" }}>
                 <div>
-                  <p className="text-7xl font-serif leading-none mb-1" style={{ color: "#a78bfa", lineHeight: "0.8" }}>&ldquo;</p>
-                  <p className="text-sm md:text-base leading-relaxed text-zinc-800 font-medium mb-5">
+                  <p className="text-3xl md:text-7xl font-serif leading-none mb-1" style={{ color: "#a78bfa", lineHeight: "0.8" }}>&ldquo;</p>
+                  <p className="text-[8px] md:text-base leading-relaxed font-medium mb-3 md:mb-5"
+                    style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                     {lang === "al" ? q.quoteAl : q.quoteEn}
                   </p>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5 md:gap-3">
                   <img
                     src={q.avatar}
                     alt={lang === "al" ? q.nameAl : q.nameEn}
-                    className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    className="w-6 h-6 md:w-10 md:h-10 rounded-full object-cover flex-shrink-0"
                   />
                   <div>
-                    <p className="text-sm font-semibold text-zinc-900">{lang === "al" ? q.nameAl : q.nameEn}</p>
-                    <p className="text-xs text-zinc-400">{lang === "al" ? q.locationAl : q.locationEn}</p>
+                    <p className="text-[8px] md:text-sm font-semibold text-zinc-900">{lang === "al" ? q.nameAl : q.nameEn}</p>
+                    <p className="text-[7px] md:text-xs text-zinc-400">{lang === "al" ? q.locationAl : q.locationEn}</p>
                   </div>
                 </div>
               </div>
@@ -188,7 +189,7 @@ export const VideoTestimonialsSection = () => {
         </div>
 
         {/* Dot indicators */}
-        <div className="flex items-center justify-center gap-2 mb-8">
+        <div className="flex items-center justify-center gap-2 mb-4 md:mb-8">
           {QUOTES.map((_, i) => (
             <button key={i} onClick={() => changeQuote(i)}
               className="rounded-full transition-all duration-300"
@@ -202,12 +203,13 @@ export const VideoTestimonialsSection = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <p className="text-xs font-bold tracking-[0.15em] uppercase text-zinc-500 mb-5">
+          <p className="text-[8px] md:text-base font-bold tracking-[0.15em] uppercase mb-3 md:mb-5"
+            style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
             {t("KËTO MUND TË JENË MOMENTET QE NDRYSHOJNË JETËN TËNDE", "THESE COULD BE THE MOMENTS THAT CHANGE YOUR LIFE")}
           </p>
           <button onClick={() => navigate("/rezultatet/testimonials")}
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-white font-semibold text-sm transition-all duration-300 hover:scale-105"
-            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)" }}>
+            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl text-xs md:text-lg transition-all duration-300 hover:scale-105 active:scale-100"
+            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}>
             <Play className="w-4 h-4" fill="white" />
             {t("Shiko më shumë video testimoniale", "Watch more video testimonials")}
           </button>

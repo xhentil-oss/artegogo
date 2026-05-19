@@ -4,7 +4,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { CalendarDays, CheckCircle2, Flower2, Brain, Atom, UserRound, ShieldCheck, type LucideIcon } from "lucide-react";
 
 const LungsIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
     {/* Trachea */}
     <path d="M12 3 L12 9" />
     {/* Left bronchus + lobe */}
@@ -70,10 +70,10 @@ export const TrajnimOnlineSection = () => {
     <section ref={ref} className="w-full bg-white overflow-hidden"
       style={{ opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}>
 
-      <div className="max-w-2xl mx-auto px-6 py-14">
+      <div className="max-w-2xl mx-auto px-6 pt-4 pb-4 md:py-14">
 
         {/* ── Title ── */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-3 md:mb-8">
           <h2 className="font-black leading-none mb-3"
             style={{ fontSize: "clamp(3rem, 10vw, 5rem)", color: "#5b21b6", fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "-0.02em" }}>
             {t("TRAJNIM", "ONLINE")}<br />
@@ -85,22 +85,26 @@ export const TrajnimOnlineSection = () => {
           <p className="text-xs font-bold tracking-[0.25em] uppercase mb-1" style={{ color: "#7c3aed" }}>
             {t("HARMONIZIM KUANTIK", "QUANTUM HARMONIZATION")}
           </p>
-          <p className="text-sm text-zinc-500">
+          <p className="text-xs md:text-base"
+            style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
             {t("Shkenca e transformimit me meditim", "The science of transformation through meditation")}
           </p>
         </div>
 
         {/* ── 3 icon columns — one card with dividers ── */}
-        <div className="flex rounded-2xl mb-10 overflow-hidden"
+        <div className="flex rounded-2xl mb-3 md:mb-10 overflow-hidden"
           style={{ background: "#ffffff", boxShadow: "0 4px 20px rgba(124,58,237,0.10)", border: "1px solid #ede9fe" }}>
           {PILLARS.map((p, i) => (
-            <div key={i} className="flex-1 flex flex-col items-center gap-3 text-center py-6 px-3"
+            <div key={i} className="flex-1 flex flex-col items-center gap-2 text-center py-4 md:py-6 px-2 md:px-3"
               style={{ borderRight: i < PILLARS.length - 1 ? "1px solid #ede9fe" : "none" }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
-                style={{ background: "linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%)" }}>
-                {p.Icon ? <p.Icon className="w-8 h-8" color="#ffffff" strokeWidth={1.5} /> : <LungsIcon />}
+              <div className="w-10 h-10 md:w-16 md:h-16 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden"
+                style={{ background: "#EDE8FA" }}>
+                <div className="scale-[0.6] md:scale-100">
+                  {p.Icon ? <p.Icon className="w-8 h-8" color="#4e29c5" strokeWidth={1.5} /> : <LungsIcon />}
+                </div>
               </div>
-              <p className="text-[10px] font-black tracking-widest uppercase leading-tight" style={{ color: "#374151" }}>
+              <p className="text-xs md:text-base font-bold leading-tight"
+                style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                 {lang === "al" ? p.titleAl : p.titleEn}
               </p>
             </div>
@@ -108,15 +112,18 @@ export const TrajnimOnlineSection = () => {
         </div>
 
         {/* ── 3 pillar rows ── */}
-        <div className="space-y-4 mb-10">
+        <div className="space-y-3 md:space-y-4 mb-3 md:mb-10">
           {PILLARS.map((p, i) => (
-            <div key={i} className="flex gap-0 items-stretch rounded-2xl overflow-hidden group cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
+            <div key={i}
               style={{
-                boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
-                border: "1px solid #f1f1f1",
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(20px)",
                 transition: `opacity 0.5s ease ${300 + i * 130}ms, transform 0.5s ease ${300 + i * 130}ms`,
+              }}>
+            <div className="flex gap-0 items-stretch rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(0,0,0,0.13)]"
+              style={{
+                boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
+                border: "1px solid #f1f1f1",
               }}>
               {/* Image full height */}
               <div className="flex-shrink-0 overflow-hidden relative self-stretch" style={{ width: 130 }}>
@@ -131,23 +138,25 @@ export const TrajnimOnlineSection = () => {
                 <p className="text-sm font-black tracking-wider uppercase mb-2" style={{ color: "#7c3aed" }}>
                   {lang === "al" ? p.titleAl : p.titleEn}
                 </p>
-                <p className="text-base leading-relaxed text-zinc-700">
+                <p className="text-xs md:text-base leading-relaxed"
+                  style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                   {lang === "al" ? p.descAl : p.descEn}
                 </p>
               </div>
+            </div>
             </div>
           ))}
         </div>
 
         {/* ── PROGRAMI 6 JAVË ── */}
-        <div className="rounded-2xl p-5 mb-5"
+        <div className="rounded-2xl p-4 md:p-5 mb-3 md:mb-5"
           style={{ background: "#ffffff", border: "1px solid #ede9fe", boxShadow: "0 2px 12px rgba(124,58,237,0.07)" }}>
-          <div className="flex items-center gap-4 mb-5">
+          <div className="flex items-center gap-4 mb-3 md:mb-5">
             <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
               style={{ background: "linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%)" }}>
               <CalendarDays className="w-7 h-7 text-white" strokeWidth={1.5} />
             </div>
-            <p className="font-black text-base tracking-widest uppercase" style={{ color: "#1e1b4b" }}>
+            <p className="font-black text-lg tracking-widest uppercase" style={{ color: "#1e1b4b" }}>
               {t("PROGRAMI 6 JAVË", "6-WEEK PROGRAM")}
             </p>
           </div>
@@ -155,7 +164,8 @@ export const TrajnimOnlineSection = () => {
             {PROGRAM_ITEMS.map((item, i) => (
               <div key={i} className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#7c3aed" }} />
-                <p className="text-sm leading-relaxed text-zinc-700">
+                <p className="text-xs md:text-base leading-relaxed"
+                  style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                   {lang === "al" ? item.al : item.en}
                 </p>
               </div>
@@ -166,7 +176,7 @@ export const TrajnimOnlineSection = () => {
         {/* ── CTA button ── */}
         <button
           onClick={() => navigate("/eventet/trajnime-online")}
-          className="w-full py-4 rounded-2xl text-white font-bold text-base tracking-widest uppercase flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] hover:opacity-90 mb-5"
+          className="w-full py-3 md:py-4 rounded-2xl text-white font-bold text-xs md:text-base tracking-widest uppercase flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] hover:opacity-90 mb-3 md:mb-5"
           style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)" }}>
           <UserRound className="w-5 h-5" />
           {t("REGJISTROHU TANI", "REGISTER NOW")}

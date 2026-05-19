@@ -96,7 +96,7 @@ export const HeroSection = () => {
 
   return (
     <div
-      className="relative w-full flex flex-col h-[450px] md:h-auto md:min-h-[92vh]"
+      className="relative w-full flex flex-col h-[450px] md:h-auto md:min-h-[80vh]"
       style={{ isolation: "isolate" }}
     >
       {/* Clip container for bg images only */}
@@ -326,15 +326,14 @@ export const HeroSection = () => {
               <div
                 className="w-6 h-6 md:w-14 md:h-14 rounded-full flex-shrink-0 flex items-center justify-center"
                 style={{
-                  background: "rgba(78,41,197,0.18)",
-                  border: "1.5px solid rgba(160,110,255,0.55)",
+                  background: "#EDE8FA",
                 }}
               >
                 <svg
                   className="w-3 h-3 md:w-6 md:h-6"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke="#c084fc"
+                  stroke="#4e29c5"
                   strokeWidth={1.5}
                   strokeLinecap="round"
                   strokeLinejoin="round"

@@ -95,12 +95,12 @@ export const PromiseSection = () => {
   }, []);
 
   return (
-    <section ref={ref} className="w-full bg-white py-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+    <section ref={ref} className="w-full bg-white py-8 md:py-20 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-3 md:px-12 lg:px-20 flex flex-row items-center gap-3 md:gap-16">
 
         {/* ── Left — text ── */}
         <div
-          className="flex-shrink-0 w-full lg:w-[45%]"
+          className="flex-shrink-0 w-[45%]"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? "translateY(0)" : "translateY(24px)",
@@ -108,20 +108,17 @@ export const PromiseSection = () => {
           }}
         >
           {/* Label */}
-          <p
-            className="text-xs font-bold uppercase tracking-widest mb-5"
-            style={{
-              color: "#c9a84c",
-              fontFamily: "'Playfair Display', Georgia, serif",
-              letterSpacing: "0.18em",
-            }}
-          >
-            {t("Premtimi Ynë", "Our Promise")}
-          </p>
+          <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5 mb-2 md:mb-5"
+            style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
+            <span className="text-[8px] md:text-xs font-bold tracking-widest uppercase"
+              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
+              {t("PREMTIMI YNË", "OUR PROMISE")}
+            </span>
+          </div>
 
           {/* Heading */}
           <h2
-            className="text-3xl md:text-4xl lg:text-[2.6rem] font-bold leading-tight mb-6 text-zinc-900"
+            className="text-lg md:text-4xl lg:text-[2.6rem] font-bold leading-tight mb-2 md:mb-6 text-zinc-900"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             {t("Kur sistemi nervor", "When the nervous system")}{" "}
@@ -134,8 +131,8 @@ export const PromiseSection = () => {
 
           {/* Description */}
           <p
-            className="text-base leading-relaxed mb-10"
-            style={{ color: "#3f1e92", fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 400 }}
+            className="text-[9px] md:text-base leading-relaxed mb-2 md:mb-10 hidden md:block"
+            style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontWeight: 400 }}
           >
             {t(
               "Përdorim një kombinim unik të shkencës dhe urtësisë së lashtë për t'ju ndihmuar të lironi emocionet e grumbulluara, të shëroni të kaluarën dhe të krijoni një të ardhme të re nga një gjendje koherence të brendshme.",
@@ -144,16 +141,16 @@ export const PromiseSection = () => {
           </p>
 
           {/* Steps as bullets */}
-          <ul className="flex flex-col gap-2.5">
+          <ul className="flex flex-col gap-1.5 md:gap-2.5">
             {STEPS.map((step, i) => (
-              <li key={i} className="flex items-center gap-3">
+              <li key={i} className="flex items-center gap-2 md:gap-3">
                 <span
                   className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                  style={{ background: "#c9a84c" }}
+                  style={{ background: "#4e29c5" }}
                 />
                 <span
-                  className="text-base leading-snug font-medium"
-                  style={{ color: "#3f1e92", fontFamily: "'Playfair Display', Georgia, serif" }}
+                  className="text-[9px] md:text-base leading-snug font-medium"
+                  style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}
                 >
                   {lang === "al" ? step.al : step.en}
                 </span>
@@ -164,7 +161,7 @@ export const PromiseSection = () => {
 
         {/* ── Right — images collage ── */}
         <div
-          className="flex-1 w-full flex gap-3"
+          className="flex-1 flex gap-1.5 md:gap-3 h-[180px] md:h-[340px]"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? "translateX(0)" : "translateX(30px)",
@@ -172,7 +169,7 @@ export const PromiseSection = () => {
           }}
         >
           {/* Tall center image */}
-          <div className="flex-shrink-0 w-[45%] rounded-2xl overflow-hidden" style={{ height: "340px" }}>
+          <div className="flex-shrink-0 w-[45%] rounded-xl md:rounded-2xl overflow-hidden h-full">
             <img
               src={IMAGES[0].src}
               alt={IMAGES[0].alt}
@@ -181,14 +178,13 @@ export const PromiseSection = () => {
           </div>
 
           {/* 2×2 grid */}
-          <div className="flex-1 grid grid-cols-2 gap-3" style={{ height: "340px" }}>
+          <div className="flex-1 grid grid-cols-2 gap-1.5 md:gap-3 h-full">
             {IMAGES.slice(1).map((img, i) => (
-              <div key={i} className="rounded-2xl overflow-hidden">
+              <div key={i} className="rounded-xl md:rounded-2xl overflow-hidden">
                 <img
                   src={img.src}
                   alt={img.alt}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  style={{ height: "100%" }}
                 />
               </div>
             ))}

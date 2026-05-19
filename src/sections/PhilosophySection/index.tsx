@@ -66,18 +66,21 @@ export const PhilosophySection = () => {
       style={{ opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}>
 
       {/* 6-column grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-zinc-100">
+      <div className="grid grid-cols-3 lg:grid-cols-6 divide-x divide-y md:divide-y-0 divide-zinc-100">
         {PILLARS.map((p, i) => (
-          <div key={i} className="flex flex-col items-center text-center px-5 py-10 gap-4">
-            <div className="w-14 h-14 rounded-full flex items-center justify-center"
-              style={{ background: "#F3F0FF", border: "1.5px solid #DDD6FE" }}>
-              <p.Icon className="w-6 h-6" style={{ color: "#9D8FEF" }} strokeWidth={1.5} />
+          <div key={i} className="flex flex-col items-center text-center px-2 md:px-5 py-5 md:py-10 gap-2 md:gap-4">
+            <div className="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0"
+              style={{ background: "#EDE8FA" }}>
+              <div className="scale-[0.65] md:scale-100">
+                <p.Icon className="w-6 h-6" style={{ color: "#4e29c5" }} strokeWidth={1.5} />
+              </div>
             </div>
-            <p className="text-xs font-bold tracking-widest leading-tight"
+            <p className="text-[8px] md:text-xs font-bold tracking-widest leading-tight"
               style={{ color: "#7C3AED" }}>
               {lang === "al" ? p.labelAl : p.labelEn}
             </p>
-            <p className="text-sm leading-relaxed text-zinc-700">
+            <p className="text-xs md:text-base leading-relaxed"
+              style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
               {lang === "al" ? p.descAl : p.descEn}
             </p>
           </div>
@@ -88,7 +91,8 @@ export const PhilosophySection = () => {
       <div className="border-t border-zinc-100 py-4 flex items-center justify-center gap-4 md:gap-8">
         {[t("SHKENCË", "SCIENCE"), t("NDËRGJEGJËSIM", "AWARENESS"), t("TRANSFORMIM", "TRANSFORMATION")].map((w, i, arr) => (
           <span key={i} className="flex items-center gap-4 md:gap-8">
-            <span className="text-xs font-bold tracking-[0.2em]" style={{ color: "#9D8FEF" }}>{w}</span>
+            <span className="text-[9px] md:text-base font-bold tracking-[0.2em]"
+              style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>{w}</span>
             {i < arr.length - 1 && (
               <span className="text-xs font-bold" style={{ color: "#C4B5FD" }}>+</span>
             )}

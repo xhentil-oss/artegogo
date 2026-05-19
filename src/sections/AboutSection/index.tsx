@@ -4,7 +4,7 @@ import { useLanguage } from '@/context/LanguageContext';
 const STATS = [
   {
     icon: (
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#b8a9e8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
         <circle cx="9" cy="7" r="4" />
         <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -20,7 +20,7 @@ const STATS = [
   },
   {
     icon: (
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#b8a9e8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2z" />
         <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2z" />
       </svg>
@@ -34,7 +34,7 @@ const STATS = [
   },
   {
     icon: (
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#b8a9e8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="3" />
         <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
         <path d="M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M19.07 4.93l-2.83 2.83M7.76 16.24l-2.83 2.83" />
@@ -49,7 +49,7 @@ const STATS = [
   },
   {
     icon: (
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#b8a9e8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
       </svg>
     ),
@@ -65,6 +65,7 @@ const STATS = [
 export function AboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const { t, lang } = useLanguage();
 
   useEffect(() => {
@@ -80,53 +81,29 @@ export function AboutSection() {
     <section ref={sectionRef} className="w-full bg-white overflow-hidden">
 
       {/* ── Hero split ── */}
-      <div className="relative w-full" style={{ minHeight: '600px' }}>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-6 md:py-14 min-h-0 md:min-h-[600px] flex items-stretch gap-8">
 
-        {/* Photo — right side, bleeds to edge */}
+        {/* Text — left */}
         <div
-          className="absolute right-0 top-0 bottom-0 flex"
-          style={{ width: '50%' }}
-        >
-          <img
-            src="/img/photo-rrethnesh.png"
-            alt="Dr. Marvin Bundo dhe Dr. Artemisa Gogellari"
-            className="w-full h-full object-cover object-center"
-          />
-          {/* Subtle blur on the left edge of the photo */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 6%, rgba(255,255,255,0) 16%)',
-            }}
-          />
-        </div>
-
-        {/* Text — left, above photo */}
-        <div
-          className="relative z-10 px-6 md:px-12 lg:px-20 py-14 flex flex-col justify-center"
+          className="w-1/2 flex flex-col justify-center"
           style={{
-            maxWidth: '50%',
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(20px)',
             transition: 'opacity 0.6s ease, transform 0.6s ease',
           }}
         >
           {/* Label */}
-          <p
-            className="text-xs font-bold uppercase tracking-widest mb-5"
-            style={{
-              color: '#c9a84c',
-              fontFamily: "'Playfair Display', Georgia, serif",
-              letterSpacing: '0.18em',
-            }}
-          >
-            {t('Kush jemi', 'Who we are')}
-          </p>
+          <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5 mb-5"
+            style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
+            <span className="text-[8px] md:text-xs font-bold tracking-widest uppercase"
+              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
+              {t('KUSH JEMI', 'WHO WE ARE')}
+            </span>
+          </div>
 
           {/* Heading */}
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-zinc-900 mb-1"
+            className="text-lg md:text-4xl lg:text-5xl font-bold leading-tight text-zinc-900 mb-1"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             {t('Ku shkenca takon', 'Where science meets')}
@@ -134,7 +111,7 @@ export function AboutSection() {
             {t('ndërgjegjën.', 'consciousness.')}
           </h2>
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6"
+            className="text-lg md:text-4xl lg:text-5xl font-bold leading-tight mb-6"
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
               color: '#4e29c5',
@@ -145,12 +122,13 @@ export function AboutSection() {
           </h2>
 
           {/* Gold divider */}
-          <div className="w-10 h-0.5 mb-6" style={{ background: '#c9a84c' }} />
+          <div className="w-10 h-0.5 mb-3 md:mb-6" style={{ background: '#4e29c5' }} />
 
           {/* Description */}
           <p
-            className="text-base text-zinc-500 leading-relaxed mb-5"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 400 }}
+            onClick={() => !expanded && setExpanded(true)}
+            className={`text-xs md:text-base text-zinc-500 leading-relaxed mb-3 md:mb-5 md:line-clamp-none md:cursor-auto ${expanded ? "" : "line-clamp-3 cursor-pointer"}`}
+            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400 }}
           >
             {t(
               'Jemi Dr. Marvin Bundo dhe Dr. Artemisa Gogellari. Prej më shumë se një dekade, kemi udhëhequr mijëra njerëz nëpër retreat-e imersive, trajnime dhe përvoja transformuese që kombinojnë neuroshkencën, shërimin emocional dhe praktika të avancuara meditimi.',
@@ -160,15 +138,43 @@ export function AboutSection() {
 
           {/* Mission bold */}
           <p
-            className="text-base text-zinc-800 leading-relaxed font-semibold"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            onClick={() => !expanded && setExpanded(true)}
+            className={`text-xs md:text-base text-zinc-800 leading-relaxed font-semibold md:line-clamp-none md:cursor-auto ${expanded ? "" : "line-clamp-3 cursor-pointer"}`}
+            style={{ fontFamily: "'Inter', sans-serif" }}
           >
             {t(
               "Misioni ynë është t'ju ndihmojmë të rregulloni sistemin nervor, të riktheheni tek vetja dhe të krijoni një jetë qartësie, koherence dhe fuqie të brendshme.",
               "Our mission is to help you regulate your nervous system, reconnect with yourself and create a life of clarity, coherence and inner power."
             )}
           </p>
+
+          {/* Collapse button — mobile only, shown after expand */}
+          {expanded && (
+            <button
+              onClick={() => setExpanded(false)}
+              className="md:hidden mt-1 text-xs font-semibold"
+              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}
+            >
+              {t("Mbyll ▲", "Show less ▲")}
+            </button>
+          )}
         </div>
+
+        {/* Photo — right */}
+        <div className="w-1/2 rounded-2xl overflow-hidden relative">
+          <img
+            src="/img/photo-rrethnesh.png"
+            alt="Dr. Marvin Bundo dhe Dr. Artemisa Gogellari"
+            className="w-full h-full object-cover object-center"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.5) 12%, rgba(255,255,255,0) 28%)',
+            }}
+          />
+        </div>
+
       </div>
 
       {/* ── Stats row ── */}
@@ -180,25 +186,29 @@ export function AboutSection() {
           transition: 'opacity 0.6s ease 0.35s',
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 grid grid-cols-2 md:grid-cols-4">
+        <div className="max-w-7xl mx-auto px-2 md:px-12 lg:px-20 grid grid-cols-4 md:grid-cols-4">
           {STATS.map((stat, i) => (
             <div
               key={i}
-              className="flex flex-col items-center text-center px-6 py-12"
+              className="flex flex-col items-center text-center px-1 md:px-6 py-5 md:py-12"
               style={{
                 borderRight: i < STATS.length - 1 ? '1px solid rgba(120,80,200,0.12)' : 'none',
               }}
             >
-              {/* Icon — no circle bg */}
-              <div className="mb-4">{stat.icon}</div>
+              {/* Icon circle */}
+              <div
+                className="w-8 h-8 md:w-14 md:h-14 rounded-full flex items-center justify-center mb-2 md:mb-4 overflow-hidden"
+                style={{ background: '#EDE8FA' }}
+              >
+                <div className="scale-[0.45] md:scale-100">{stat.icon}</div>
+              </div>
 
-              {/* Label — same size for all */}
+              {/* Label */}
               <p
-                className="font-bold mb-3 leading-snug"
+                className="text-[8px] md:text-lg font-bold mb-1 md:mb-3 leading-snug"
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
-                  color: '#2d1870',
-                  fontSize: '20px',
+                  fontFamily: "'Inter', sans-serif",
+                  color: '#4e29c5',
                 }}
               >
                 {stat.value ? `${stat.value} ${lang === 'al' ? stat.label.al : stat.label.en}` : (lang === 'al' ? stat.label.al : stat.label.en)}
@@ -206,11 +216,11 @@ export function AboutSection() {
 
               {/* Description */}
               <p
-                className="text-base leading-relaxed"
+                className="text-[7px] md:text-base leading-relaxed"
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontWeight: 400,
-                  color: 'rgba(60,30,130,0.6)',
+                  color: '#52525b',
                 }}
               >
                 {lang === 'al' ? stat.desc.al : stat.desc.en}
