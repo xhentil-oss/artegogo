@@ -56,7 +56,6 @@ export const VideoTestimonialsSection = () => {
   const visibleQuotes = [
     QUOTES[quoteIndex % QUOTES.length],
     QUOTES[(quoteIndex + 1) % QUOTES.length],
-    QUOTES[(quoteIndex + 2) % QUOTES.length],
   ];
 
   return (
@@ -151,7 +150,7 @@ export const VideoTestimonialsSection = () => {
 
           {/* Cards */}
           <div
-            className="grid grid-cols-3 gap-2 md:gap-4 px-2 md:px-6"
+            className="grid grid-cols-2 gap-2 md:gap-4 px-2 md:px-6"
             style={{ opacity: animating ? 0 : 1, transform: animating ? "translateY(8px)" : "translateY(0)", transition: "opacity 0.3s ease, transform 0.3s ease" }}>
             {visibleQuotes.map((q, i) => (
               <div key={`${quoteIndex}-${i}`}
@@ -159,7 +158,7 @@ export const VideoTestimonialsSection = () => {
                 style={{ boxShadow: "0 4px 24px rgba(124,58,237,0.08)", border: "1px solid #f3f0ff" }}>
                 <div>
                   <p className="text-3xl md:text-7xl font-serif leading-none mb-1" style={{ color: "#a78bfa", lineHeight: "0.8" }}>&ldquo;</p>
-                  <p className="text-[8px] md:text-base leading-relaxed font-medium mb-3 md:mb-5"
+                  <p className="text-[11px] md:text-base leading-relaxed font-medium mb-3 md:mb-5"
                     style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                     {lang === "al" ? q.quoteAl : q.quoteEn}
                   </p>
@@ -203,7 +202,7 @@ export const VideoTestimonialsSection = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <p className="text-[8px] md:text-base font-bold tracking-[0.15em] uppercase mb-3 md:mb-5"
+          <p className="text-[11px] md:text-base font-bold tracking-[0.15em] uppercase mb-3 md:mb-5"
             style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
             {t("KËTO MUND TË JENË MOMENTET QE NDRYSHOJNË JETËN TËNDE", "THESE COULD BE THE MOMENTS THAT CHANGE YOUR LIFE")}
           </p>

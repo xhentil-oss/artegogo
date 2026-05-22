@@ -131,7 +131,7 @@ export const FoundationSection = () => {
         </div>
 
         {/* ── Pillars ── */}
-        <div className="relative grid grid-cols-6 gap-1 md:gap-4">
+        <div className="relative grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
 
           {PILLARS.map((p, i) => (
             <div
@@ -154,7 +154,7 @@ export const FoundationSection = () => {
 
               {/* Title */}
               <h3
-                className="text-[7px] md:text-base font-bold mb-2 leading-snug"
+                className="text-[10px] md:text-base font-bold mb-2 leading-snug"
                 style={{ fontFamily: "'Inter', sans-serif", color: "#52525b" }}
               >
                 {lang === "al" ? p.title.al : p.title.en}

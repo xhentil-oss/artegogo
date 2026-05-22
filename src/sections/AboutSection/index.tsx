@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 
 const STATS = [
@@ -158,20 +159,23 @@ export function AboutSection() {
               {t("Mbyll ▲", "Show less ▲")}
             </button>
           )}
+
+          {/* CTA button */}
+          <Link
+            to="/rreth-nesh"
+            className="self-start inline-flex items-center gap-2 mt-4 text-xs md:text-base font-semibold px-4 py-2 md:px-6 md:py-3 rounded-xl text-white transition-all duration-300 hover:scale-105"
+            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}
+          >
+            {t("Mëso më shumë", "Learn more")} →
+          </Link>
         </div>
 
         {/* Photo — right */}
-        <div className="w-1/2 rounded-2xl overflow-hidden relative">
+        <div className="w-1/2 rounded-2xl overflow-hidden">
           <img
             src="/img/photo-rrethnesh.png"
             alt="Dr. Marvin Bundo dhe Dr. Artemisa Gogellari"
             className="w-full h-full object-cover object-center"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.5) 12%, rgba(255,255,255,0) 28%)',
-            }}
           />
         </div>
 
@@ -205,7 +209,7 @@ export function AboutSection() {
 
               {/* Label */}
               <p
-                className="text-[8px] md:text-lg font-bold mb-1 md:mb-3 leading-snug"
+                className="text-[10px] md:text-lg font-bold mb-1 md:mb-3 leading-snug"
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   color: '#4e29c5',
@@ -216,7 +220,7 @@ export function AboutSection() {
 
               {/* Description */}
               <p
-                className="text-[7px] md:text-base leading-relaxed"
+                className="text-[9px] md:text-base leading-relaxed"
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 400,

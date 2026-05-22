@@ -178,27 +178,10 @@ const LangToggle = () => {
   return (
     <button
       onClick={toggleLang}
-      className="flex items-center gap-0.5 text-xs font-bold rounded-full border border-zinc-300 overflow-hidden transition-all hover:border-zinc-500"
+      className="text-sm font-bold text-zinc-700 hover:text-black transition-colors"
       aria-label="Toggle language"
     >
-      <span
-        className={`px-2.5 py-1.5 transition-colors duration-200 ${
-          lang === "al"
-            ? "bg-black text-white"
-            : "bg-transparent text-zinc-500 hover:text-zinc-800"
-        }`}
-      >
-        AL
-      </span>
-      <span
-        className={`px-2.5 py-1.5 transition-colors duration-200 ${
-          lang === "en"
-            ? "bg-black text-white"
-            : "bg-transparent text-zinc-500 hover:text-zinc-800"
-        }`}
-      >
-        EN
-      </span>
+      {lang === "al" ? "EN" : "AL"}
     </button>
   );
 };
@@ -217,7 +200,7 @@ export const Navbar = () => {
       {/* ── Announcement banner ── */}
       {bannerVisible && (
         <div
-          className="w-full flex items-center justify-between gap-4 px-4 sm:px-6 py-2.5"
+          className="w-full flex items-center justify-between gap-2 px-3 sm:px-6 py-1.5"
           style={{ backgroundColor: "#4e29c5" }}
         >
           {/* Left sparkle (decorative spacer) */}
@@ -228,7 +211,7 @@ export const Navbar = () => {
           </span>
 
           {/* Center text */}
-          <p className="flex-1 text-center text-white text-xs sm:text-sm font-semibold tracking-widest uppercase">
+          <p className="flex-1 text-center text-white text-[9px] sm:text-xs font-semibold tracking-widest uppercase">
             {lang === "al"
               ? "Regjistrimet për retreatin e meditimit pranverë 2027 janë hapur"
               : "Registrations for the Spring 2027 Meditation Retreat are open"}
@@ -250,7 +233,7 @@ export const Navbar = () => {
         {/* Brand */}
         <Link to="/" className="flex items-center shrink-0 py-2">
           <img
-            src="/img/logo-artegogo2.png"
+            src="/img/Logo minimal black.png"
             alt="Arte Gogo Logo"
             className="h-14 w-auto object-contain"
             style={{ marginTop: 4, marginBottom: 4 }}
@@ -294,14 +277,29 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileOpen((o) => !o)}
-          className="xl:hidden p-2 rounded-lg text-zinc-600 hover:bg-gray-100"
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Mobile right actions */}
+        <div className="xl:hidden flex items-center gap-1">
+          <LangToggle />
+          <button
+            onClick={() => setCartOpen(true)}
+            className="relative flex items-center justify-center text-zinc-600 p-2 rounded-lg hover:bg-gray-100"
+            aria-label="Shporta"
+          >
+            <ShoppingCart size={20} />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 bg-yellow-400 text-purple-900 text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
+                {totalItems}
+              </span>
+            )}
+          </button>
+          <button
+            onClick={() => setMobileOpen((o) => !o)}
+            className="p-2 rounded-lg text-zinc-600 hover:bg-gray-100"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile drawer */}

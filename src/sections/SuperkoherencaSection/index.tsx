@@ -93,7 +93,7 @@ export const SuperkoherencaSection = () => {
 
           {/* CTA */}
           <button
-            onClick={() => navigate("/eventet/trajnime-online")}
+            onClick={() => navigate("/meditime")}
             className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl text-xs md:text-lg transition-all duration-300 hover:scale-105 active:scale-100 mb-3"
             style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}>
             <Play className="w-4 h-4" fill="white" />

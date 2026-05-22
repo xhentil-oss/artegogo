@@ -63,6 +63,7 @@ export const HeroSection = () => {
   const { t } = useLanguage();
   const fadingRef = useRef(false);
   const currentRef = useRef(0);
+  const touchStartX = useRef(0);
 
   useEffect(() => {
     const timer = setTimeout(() => setInitialVisible(true), 120);
@@ -94,10 +95,26 @@ export const HeroSection = () => {
 
   const contentVisible = initialVisible && !fading;
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      goTo(diff > 0
+        ? (currentRef.current + 1) % BG_IMAGES.length
+        : (currentRef.current - 1 + BG_IMAGES.length) % BG_IMAGES.length
+      );
+    }
+  };
+
   return (
     <div
       className="relative w-full flex flex-col h-[450px] md:h-auto md:min-h-[80vh]"
       style={{ isolation: "isolate" }}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {/* Clip container for bg images only */}
       <div className="absolute inset-0 overflow-hidden rounded-none z-0">
@@ -302,7 +319,26 @@ export const HeroSection = () => {
 
 
         </div>
+
       </section>
+
+      {/* ── Dot navigation — desktop only, centered ── */}
+      <div className="hidden md:flex absolute bottom-24 left-0 right-0 z-20 items-center justify-center gap-2">
+        {BG_IMAGES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            className="rounded-full transition-all duration-300"
+            style={{
+              width: i === current ? 24 : 8,
+              height: 8,
+              background: i === current ? "#ffffff" : "rgba(255,255,255,0.35)",
+              border: "none",
+              cursor: "pointer",
+            }}
+          />
+        ))}
+      </div>
 
       {/* ── Stats bar ── */}
       <div className="absolute bottom-[-48px] left-0 right-0 z-20 w-full px-4 md:px-10 lg:px-16">

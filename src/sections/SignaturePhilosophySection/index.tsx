@@ -61,9 +61,9 @@ export const SignaturePhilosophySection = () => {
           {ICONS.map((item, i) => (
             <div key={i} className="flex flex-col items-center gap-1 md:gap-2"
               style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(16px)", transition: `opacity 0.5s ease ${300 + i * 100}ms, transform 0.5s ease ${300 + i * 100}ms` }}>
-              <div className="w-9 h-9 md:w-14 md:h-14 rounded-full flex items-center justify-center"
+              <div className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center"
                 style={{ background: "#f5f3ff", border: "1.5px solid #ddd6fe" }}>
-                <item.Icon className="w-4 h-4 md:w-6 md:h-6" style={{ color: "#7c3aed" }} strokeWidth={1.5} />
+                <item.Icon className="w-6 h-6 md:w-6 md:h-6" style={{ color: "#7c3aed" }} strokeWidth={1.5} />
               </div>
               <span className="text-[9px] md:text-base font-medium text-zinc-700" style={{ fontFamily: "'Inter', sans-serif" }}>
                 {lang === "al" ? item.labelAl : item.labelEn}
@@ -81,7 +81,7 @@ export const SignaturePhilosophySection = () => {
                 style={item.highlight
                   ? { background: "linear-gradient(135deg, #5b21b6, #7c3aed)", color: "#fff" }
                   : { background: "#f5f3ff", border: "1px solid #ddd6fe", color: "#7c3aed" }}>
-                <item.Icon className="w-3.5 h-3.5" strokeWidth={1.8} />
+                <item.Icon className="w-4.5 h-4.5 w-[18px] h-[18px]" strokeWidth={1.8} />
                 <span className="text-[9px] md:text-xs font-semibold">
                   {lang === "al" ? item.labelAl : item.labelEn}
                 </span>

@@ -61,7 +61,7 @@ export const CommunitySection = () => {
             )}
           </p>
           <Link
-            to="/rezultatet/testimonials"
+            to="/signup"
             className="inline-flex items-center gap-1.5 text-xs md:text-lg font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl text-white transition-all duration-300 hover:scale-105 whitespace-nowrap"
             style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}
           >

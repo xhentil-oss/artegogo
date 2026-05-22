@@ -58,21 +58,6 @@ const ITEMS = [
     al: "Muzikë, kreativitet dhe harmonizim i brendshëm",
     en: "Music, creativity and inner harmonization",
   },
-  {
-    icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#4e29c5" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-        {/* Heart with person — connection */}
-        <circle cx="12" cy="5" r="2" />
-        <path d="M12 9v5" />
-        <path d="M9 21v-3a3 3 0 0 1 6 0v3" />
-        <path d="M7 13c-1.5.5-2 1.5-2 2.5 0 1.5 1 2.5 3 3" />
-        <path d="M17 13c1.5.5 2 1.5 2 2.5 0 1.5-1 2.5-3 3" />
-        <path d="M9.5 11.5C8 10 6 10 5 11.5s0 3.5 2 4.5" strokeDasharray="1 0" />
-      </svg>
-    ),
-    al: "Lidhje të vërteta dhe mbështetje në çdo përjetim",
-    en: "Genuine connections and support in every experience",
-  },
 ];
 
 export const WhatWeOfferStrip = () => {
@@ -127,7 +112,7 @@ export const WhatWeOfferStrip = () => {
 
             {/* Text */}
             <p
-              className="text-[9px] md:text-base leading-snug"
+              className="text-[11px] md:text-base leading-snug"
               style={{ fontWeight: 400, color: "#52525b", fontFamily: "'Inter', sans-serif" }}
             >
               {lang === "al" ? item.al : item.en}
