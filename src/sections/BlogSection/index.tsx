@@ -152,8 +152,7 @@ export const BlogSection = () => {
           <button
             onClick={() => navigate("/blog")}
             className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-7 md:py-3.5 rounded-xl text-xs md:text-lg transition-all duration-300 hover:scale-105 active:scale-100"
-            style={{ fontFamily: "'Inter', sans-serif" }}
-            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)" }}>
+            style={{ fontFamily: "'Inter', sans-serif", background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)" }}>
             <Sparkles className="w-4 h-4" />
             {t("Shiko të gjitha artikujt", "View all articles")}
             <ArrowRight className="w-4 h-4" />

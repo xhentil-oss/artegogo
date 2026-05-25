@@ -233,7 +233,7 @@ export const Navbar = () => {
         {/* Brand */}
         <Link to="/" className="flex items-center shrink-0 py-2">
           <img
-            src="/img/Logo minimal black.png"
+            src="/img/transparent-logo.png"
             alt="Arte Gogo Logo"
             className="h-14 w-auto object-contain"
             style={{ marginTop: 4, marginBottom: 4 }}

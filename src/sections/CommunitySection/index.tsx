@@ -34,7 +34,7 @@ export const CommunitySection = () => {
   const img2 = IMAGES[(startIndex + 1) % total];
 
   return (
-    <section ref={sectionRef} className="w-full bg-white pt-16 pb-6 md:pt-20 md:pb-12 overflow-hidden">
+    <section ref={sectionRef} className="w-full bg-white pt-20 pb-6 md:pt-24 md:pb-12 overflow-hidden" style={{ position: "relative", zIndex: 0 }}>
       <div
         className="max-w-6xl mx-auto px-6 flex flex-row items-start gap-6 md:gap-10"
         style={{ opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}
