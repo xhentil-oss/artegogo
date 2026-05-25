@@ -64,13 +64,24 @@ const STATS = [
   },
 ];
 
+// Infinite loop: clone last slide at front, clone first slide at end
+// Layout: [clone-last, slide0, slide1, slide2, clone-first]
+//          index  0       1      2      3        4
+const LOOP = [SLIDES[SLIDES.length - 1], ...SLIDES, SLIDES[0]];
+const FIRST_REAL = 1;
+const LAST_REAL = SLIDES.length; // = 3
+
 export const HeroSection = () => {
-  const [current, setCurrent] = useState(0);
+  // start at index 1 (first real slide)
+  const [current, setCurrent] = useState(FIRST_REAL);
   const [visible, setVisible] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [noTransition, setNoTransition] = useState(false);
   const navigate = useNavigate();
   const { t } = useLanguage();
   const slidingRef = useRef(false);
-  const currentRef = useRef(0);
+  const currentRef = useRef(FIRST_REAL);
   const touchStartX = useRef(0);
 
   useEffect(() => {
@@ -83,32 +94,56 @@ export const HeroSection = () => {
   const goTo = (idx: number) => {
     if (slidingRef.current) return;
     slidingRef.current = true;
+    setNoTransition(false);
     setCurrent(idx);
     currentRef.current = idx;
-    setTimeout(() => { slidingRef.current = false; }, 650);
+    setTimeout(() => {
+      // If we landed on a clone, silently jump to the real counterpart
+      if (idx === 0) {
+        setNoTransition(true);
+        setCurrent(LAST_REAL);
+        currentRef.current = LAST_REAL;
+        setTimeout(() => { setNoTransition(false); slidingRef.current = false; }, 30);
+      } else if (idx === LOOP.length - 1) {
+        setNoTransition(true);
+        setCurrent(FIRST_REAL);
+        currentRef.current = FIRST_REAL;
+        setTimeout(() => { setNoTransition(false); slidingRef.current = false; }, 30);
+      } else {
+        slidingRef.current = false;
+      }
+    }, 650);
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      goTo((currentRef.current + 1) % SLIDES.length);
+      if (!isDragging) goTo(currentRef.current + 1);
     }, 7000);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isDragging]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const diff = e.touches[0].clientX - touchStartX.current;
+    setDragOffset(diff);
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      goTo(diff > 0
-        ? (currentRef.current + 1) % SLIDES.length
-        : (currentRef.current - 1 + SLIDES.length) % SLIDES.length
-      );
+    setIsDragging(false);
+    setDragOffset(0);
+    if (Math.abs(diff) > 40) {
+      goTo(diff > 0 ? currentRef.current + 1 : currentRef.current - 1);
     }
   };
+
+  // dot index (0-based) for the 3 real slides
+  const dotIndex = (current - FIRST_REAL + SLIDES.length) % SLIDES.length;
 
   const StatsBar = () => (
     <div className="absolute bottom-[-48px] left-0 right-0 w-full px-4 md:px-10 lg:px-16" style={{ zIndex: 9999 }}>
@@ -144,23 +179,24 @@ export const HeroSection = () => {
       <div
         className="md:hidden relative w-full h-[450px] overflow-hidden"
         onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         <div
           style={{
             display: "flex",
             height: "100%",
-            width: `${SLIDES.length * 100}%`,
-            transform: `translateX(-${(current * 100) / SLIDES.length}%)`,
-            transition: "transform 0.6s cubic-bezier(0.4,0,0.2,1)",
+            width: `${LOOP.length * 100}%`,
+            transform: `translateX(calc(-${(current * 100) / LOOP.length}% + ${dragOffset}px))`,
+            transition: isDragging || noTransition ? "none" : "transform 0.6s cubic-bezier(0.4,0,0.2,1)",
           }}
         >
-          {SLIDES.map((slide, i) => (
+          {LOOP.map((slide, i) => (
             <div
               key={i}
               className="relative flex flex-col justify-center"
               style={{
-                flex: `0 0 ${100 / SLIDES.length}%`,
+                flex: `0 0 ${100 / LOOP.length}%`,
                 backgroundImage: `url('${slide.bg}')`,
                 backgroundSize: "cover",
                 backgroundPosition: slide.bgPos,
@@ -186,52 +222,57 @@ export const HeroSection = () => {
                     maxWidth: "65%",
                   }}
                 >
+                  {/* ri = real slide index (0-2), regardless of clone position */}
+                  {(() => { const ri = (i - FIRST_REAL + SLIDES.length) % SLIDES.length; return (
+                  <>
                   <div className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 rounded-full px-2.5 py-1 mb-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-violet-300 animate-pulse inline-block" />
                     <span className="text-white/90 text-xs font-semibold tracking-widest uppercase" style={{ letterSpacing: "0.15em" }}>
-                      {i === 0 && t("Harmonizim Kuantik", "Quantum Harmonization")}
-                      {i === 1 && t("Retreat Intensive", "Retreat Intensive")}
-                      {i === 2 && t("Trajnime Online", "Online Training")}
+                      {ri === 0 && t("Harmonizim Kuantik", "Quantum Harmonization")}
+                      {ri === 1 && t("Retreat Intensive", "Retreat Intensive")}
+                      {ri === 2 && t("Trajnime Online", "Online Training")}
                     </span>
                   </div>
                   <h1 className="leading-tight mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, lineHeight: 1.12 }}>
-                    {i === 0 && (<><span className="block text-2xl text-white mb-1">{t("Rikthehu në frekuencën tënde", "Return to your true")}</span><span className="block text-2xl text-white italic">{t("të vërtetë.", "frequency.")}</span></>)}
-                    {i === 1 && (<><span className="block text-2xl text-white mb-1">{t("Zbulo thellësinë e", "Discover the depth of")}</span><span className="block text-2xl text-white italic">{t("vetë-njohjes tënde.", "your self-knowledge.")}</span></>)}
-                    {i === 2 && (<><span className="block text-2xl text-white mb-1">{t("Mëso kudo,", "Learn anywhere,")}</span><span className="block text-2xl text-white italic">{t("transformohu gjithmonë.", "transform always.")}</span></>)}
+                    {ri === 0 && (<><span className="block text-2xl text-white mb-1">{t("Rikthehu në frekuencën tënde", "Return to your true")}</span><span className="block text-2xl text-white italic">{t("të vërtetë.", "frequency.")}</span></>)}
+                    {ri === 1 && (<><span className="block text-2xl text-white mb-1">{t("Zbulo thellësinë e", "Discover the depth of")}</span><span className="block text-2xl text-white italic">{t("vetë-njohjes tënde.", "your self-knowledge.")}</span></>)}
+                    {ri === 2 && (<><span className="block text-2xl text-white mb-1">{t("Mëso kudo,", "Learn anywhere,")}</span><span className="block text-2xl text-white italic">{t("transformohu gjithmonë.", "transform always.")}</span></>)}
                   </h1>
                   <p className="text-sm text-white/80 mb-2 leading-relaxed line-clamp-2" style={{ fontWeight: 400 }}>
-                    {i === 0 && (<>{t("Kur", "When")} <HL>{t("zemra", "heart")}</HL>, <HL>{t("truri", "mind")}</HL> {t("dhe", "and")} <HL>{t("trupi", "body")}</HL> {t("harmonizohen... fillon", "align... begins the")} <HL>{t("transformimi", "transformation")}</HL>.</>)}
-                    {i === 1 && (<>{t("5 ditë transformim i plotë —", "5 days of complete transformation —")} <HL>{t("shpirtëror", "spiritual")}</HL>, <HL>{t("mendor", "mental")}</HL> {t("dhe", "and")} <HL>{t("fizik", "physical")}</HL>.</>)}
-                    {i === 2 && (<>{t("Mbi", "Over")} <HL>1000+</HL> {t("trajnime online në dispozicion tënde", "online trainings at your disposal")} <HL>24/7</HL>.</>)}
+                    {ri === 0 && (<>{t("Kur", "When")} <HL>{t("zemra", "heart")}</HL>, <HL>{t("truri", "mind")}</HL> {t("dhe", "and")} <HL>{t("trupi", "body")}</HL> {t("harmonizohen... fillon", "align... begins the")} <HL>{t("transformimi", "transformation")}</HL>.</>)}
+                    {ri === 1 && (<>{t("5 ditë transformim i plotë —", "5 days of complete transformation —")} <HL>{t("shpirtëror", "spiritual")}</HL>, <HL>{t("mendor", "mental")}</HL> {t("dhe", "and")} <HL>{t("fizik", "physical")}</HL>.</>)}
+                    {ri === 2 && (<>{t("Mbi", "Over")} <HL>1000+</HL> {t("trajnime online në dispozicion tënde", "online trainings at your disposal")} <HL>24/7</HL>.</>)}
                   </p>
                   <p className="text-xs text-white mb-4 leading-relaxed line-clamp-2" style={{ fontWeight: 300 }}>
-                    {i === 0 && t("Një udhëtim transformues drejt qetësisë, vetëdijes dhe jetës në harmoni me ritmin tënd të brendshëm.", "A transformative journey toward inner peace, awareness and life in harmony with your inner rhythm.")}
-                    {i === 1 && t("Retreat me natyrë, heshtje dhe udhëzues të certifikuar. Largohesh ndryshe nga kush je sot.", "A retreat in nature, silence and certified guides. You leave different from who you are today.")}
-                    {i === 2 && t("Akses i plotë ndaj bibliotekës sonë: meditim, vetëdije, teknika kuantike dhe shumë më tepër.", "Full access to our library: meditation, mindfulness, quantum techniques and much more.")}
+                    {ri === 0 && t("Një udhëtim transformues drejt qetësisë, vetëdijes dhe jetës në harmoni me ritmin tënd të brendshëm.", "A transformative journey toward inner peace, awareness and life in harmony with your inner rhythm.")}
+                    {ri === 1 && t("Retreat me natyrë, heshtje dhe udhëzues të certifikuar. Largohesh ndryshe nga kush je sot.", "A retreat in nature, silence and certified guides. You leave different from who you are today.")}
+                    {ri === 2 && t("Akses i plotë ndaj bibliotekës sonë: meditim, vetëdije, teknika kuantike dhe shumë më tepër.", "Full access to our library: meditation, mindfulness, quantum techniques and much more.")}
                   </p>
                   <div className="flex flex-col items-start gap-2">
                     <button
-                      onClick={() => navigate(i === 2 ? "/eventet/trajnime-online" : "/eventet/retreat")}
+                      onClick={() => navigate(ri === 2 ? "/eventet/trajnime-online" : "/eventet/retreat")}
                       className="inline-flex items-center gap-1.5 text-white px-3 py-1.5 rounded-xl text-xs transition-all duration-300 hover:scale-105 active:scale-100"
                       style={{ backgroundColor: "#4e29c5", fontWeight: 600 }}
                     >
-                      {i === 2 ? <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" /></svg>
+                      {ri === 2 ? <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" /></svg>
                         : <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" /></svg>}
-                      {i === 0 && t("Rezervo Retreat-in", "Book the Retreat")}
-                      {i === 1 && t("Rezervo Retreat-in", "Book the Retreat")}
-                      {i === 2 && t("Shiko Trajnimet", "View Trainings")}
+                      {ri === 0 && t("Rezervo Retreat-in", "Book the Retreat")}
+                      {ri === 1 && t("Rezervo Retreat-in", "Book the Retreat")}
+                      {ri === 2 && t("Shiko Trajnimet", "View Trainings")}
                     </button>
                     <button
-                      onClick={() => navigate(i === 2 ? "/signup" : i === 1 ? "/eventet/retreat" : "/eventet/trajnime-online")}
+                      onClick={() => navigate(ri === 2 ? "/signup" : ri === 1 ? "/eventet/retreat" : "/eventet/trajnime-online")}
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs transition-all duration-300 hover:scale-105 active:scale-100"
                       style={{ fontWeight: 600, backgroundColor: "rgba(255,255,255,0.08)", border: "1.5px solid rgba(255,255,255,0.75)", color: "white" }}
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" /></svg>
-                      {i === 0 && t("Shiko Trajnimet Online", "View Online Trainings")}
-                      {i === 1 && t("Shiko Datat", "View Dates")}
-                      {i === 2 && t("Regjistrohu Falas", "Register Free")}
+                      {ri === 0 && t("Shiko Trajnimet Online", "View Online Trainings")}
+                      {ri === 1 && t("Shiko Datat", "View Dates")}
+                      {ri === 2 && t("Regjistrohu Falas", "Register Free")}
                     </button>
                   </div>
+                  </>
+                  ); })()}
                 </div>
               </div>
             </div>

@@ -32,6 +32,7 @@ export const VideoTestimonialsSection = () => {
   const [visible, setVisible] = useState(false);
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const [videoOpen, setVideoOpen] = useState(false);
   const navigate = useNavigate();
   const { t, lang } = useLanguage();
 
@@ -91,51 +92,73 @@ export const VideoTestimonialsSection = () => {
 
         {/* Featured video card */}
         <div className="relative rounded-3xl overflow-hidden mb-5 md:mb-10 shadow-2xl">
-          {/* Background image */}
-          <img
-            src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80"
-            alt="Testimonial"
-            className="w-full h-52 md:h-96 object-cover"
-          />
-          {/* Dark overlay */}
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.6) 100%)" }} />
-
-          {/* Testimonial badge top-left */}
-          <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full px-3 py-1.5"
-            style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", backdropFilter: "blur(8px)" }}>
-            <Play className="w-3 h-3 text-white" fill="white" />
-            <span className="text-white text-[8px] md:text-xs font-semibold tracking-wide">{t("TESTIMONIAL REAL", "REAL TESTIMONIAL")}</span>
-          </div>
-
-          {/* Play button centered */}
-          <button
-            onClick={() => navigate("/rezultatet/testimonials")}
-            className="absolute inset-0 flex items-center justify-center group">
-            <div className="w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-transform duration-300 group-hover:scale-110"
-              style={{ background: "rgba(78,41,197,0.9)" }}>
-              <Play className="w-6 h-6 ml-1 text-white" fill="white" />
+          {videoOpen ? (
+            /* Inline YouTube player */
+            <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
+              <iframe
+                src="https://www.youtube.com/embed/Dh_LXdkriZs?autoplay=1"
+                title="Testimonial Video"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+              <button
+                onClick={() => setVideoOpen(false)}
+                className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold transition-opacity hover:opacity-80"
+                style={{ background: "rgba(0,0,0,0.6)" }}
+              >
+                ✕
+              </button>
             </div>
-          </button>
+          ) : (
+            <>
+              {/* Thumbnail */}
+              <img
+                src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80"
+                alt="Testimonial"
+                className="w-full h-52 md:h-96 object-cover"
+              />
+              {/* Dark overlay */}
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.6) 100%)" }} />
 
-          {/* Quote + stats bottom overlay */}
-          <div className="absolute bottom-0 left-0 px-4 md:px-6 py-3 md:py-5 text-left" style={{ width: "40%" }}>
-            <p className="text-white text-sm md:text-3xl font-bold leading-snug mb-1 md:mb-2"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-              <span style={{ color: "#a78bfa" }}>&ldquo;</span>{t("Ndjeva zemrën time të hapej për herë të parë pas shumë vitesh.", "I felt my heart open for the first time in many years.")}
-            </p>
-            <p className="text-white/60 text-[8px] md:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4">
-              — {t("PJESËMARRËSE NE RETREAT", "RETREAT PARTICIPANT")}
-            </p>
-            <div className="flex items-center gap-2 md:gap-3 pt-2 md:pt-3 border-t border-white/20">
-              <span className="text-white/70 text-[8px] md:text-xs flex items-center gap-1">
-                <Play className="w-2.5 h-2.5 md:w-3 md:h-3" fill="currentColor" /> 1:42
-              </span>
-              <span className="text-white/40 text-[8px] md:text-xs">|</span>
-              <span className="text-white/70 text-[8px] md:text-xs">{t("VIDEO", "VIDEO")}</span>
-              <span className="text-white/40 text-[8px] md:text-xs">|</span>
-              <span className="text-white/70 text-[8px] md:text-xs">{t("ZË + PAMJE", "AUDIO + VIDEO")}</span>
-            </div>
-          </div>
+              {/* Testimonial badge top-left */}
+              <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full px-3 py-1.5"
+                style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", backdropFilter: "blur(8px)" }}>
+                <Play className="w-3 h-3 text-white" fill="white" />
+                <span className="text-white text-[8px] md:text-xs font-semibold tracking-wide">{t("TESTIMONIAL REAL", "REAL TESTIMONIAL")}</span>
+              </div>
+
+              {/* Play button centered */}
+              <button
+                onClick={() => setVideoOpen(true)}
+                className="absolute inset-0 flex items-center justify-center group">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-transform duration-300 group-hover:scale-110"
+                  style={{ background: "rgba(78,41,197,0.9)" }}>
+                  <Play className="w-6 h-6 ml-1 text-white" fill="white" />
+                </div>
+              </button>
+
+              {/* Quote + stats bottom overlay */}
+              <div className="absolute bottom-0 left-0 px-4 md:px-6 py-3 md:py-5 text-left" style={{ width: "40%" }}>
+                <p className="text-white text-sm md:text-3xl font-bold leading-snug mb-1 md:mb-2"
+                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                  <span style={{ color: "#a78bfa" }}>&ldquo;</span>{t("Ndjeva zemrën time të hapej për herë të parë pas shumë vitesh.", "I felt my heart open for the first time in many years.")}
+                </p>
+                <p className="text-white/60 text-[8px] md:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4">
+                  — {t("PJESËMARRËSE NE RETREAT", "RETREAT PARTICIPANT")}
+                </p>
+                <div className="flex items-center gap-2 md:gap-3 pt-2 md:pt-3 border-t border-white/20">
+                  <span className="text-white/70 text-[8px] md:text-xs flex items-center gap-1">
+                    <Play className="w-2.5 h-2.5 md:w-3 md:h-3" fill="currentColor" /> 1:42
+                  </span>
+                  <span className="text-white/40 text-[8px] md:text-xs">|</span>
+                  <span className="text-white/70 text-[8px] md:text-xs">{t("VIDEO", "VIDEO")}</span>
+                  <span className="text-white/40 text-[8px] md:text-xs">|</span>
+                  <span className="text-white/70 text-[8px] md:text-xs">{t("ZË + PAMJE", "AUDIO + VIDEO")}</span>
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Quote carousel */}
@@ -214,6 +237,8 @@ export const VideoTestimonialsSection = () => {
           </button>
         </div>
       </div>
+
+
     </section>
   );
 };
