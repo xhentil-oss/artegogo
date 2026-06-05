@@ -140,11 +140,11 @@ export const VideoTestimonialsSection = () => {
 
               {/* Quote + stats bottom overlay */}
               <div className="absolute bottom-0 left-0 px-4 md:px-6 py-3 md:py-5 text-left" style={{ width: "40%" }}>
-                <p className="text-white text-sm md:text-3xl font-bold leading-snug mb-1 md:mb-2"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                <p className="text-white text-sm md:text-base font-semibold leading-relaxed mb-1 md:mb-2"
+                  style={{ fontFamily: "'Inter', sans-serif" }}>
                   <span style={{ color: "#a78bfa" }}>&ldquo;</span>{t("Ndjeva zemrën time të hapej për herë të parë pas shumë vitesh.", "I felt my heart open for the first time in many years.")}
                 </p>
-                <p className="text-white/60 text-[8px] md:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4">
+                <p className="text-white/60 text-[8px] md:text-base font-bold tracking-widest uppercase mb-2 md:mb-4">
                   — {t("PJESËMARRËSE NE RETREAT", "RETREAT PARTICIPANT")}
                 </p>
                 <div className="flex items-center gap-2 md:gap-3 pt-2 md:pt-3 border-t border-white/20">
@@ -193,8 +193,8 @@ export const VideoTestimonialsSection = () => {
                     className="w-6 h-6 md:w-10 md:h-10 rounded-full object-cover flex-shrink-0"
                   />
                   <div>
-                    <p className="text-[8px] md:text-sm font-semibold text-zinc-900">{lang === "al" ? q.nameAl : q.nameEn}</p>
-                    <p className="text-[7px] md:text-xs text-zinc-400">{lang === "al" ? q.locationAl : q.locationEn}</p>
+                    <p className="text-[8px] md:text-base font-semibold text-zinc-900">{lang === "al" ? q.nameAl : q.nameEn}</p>
+                    <p className="text-[7px] md:text-base text-zinc-400">{lang === "al" ? q.locationAl : q.locationEn}</p>
                   </div>
                 </div>
               </div>

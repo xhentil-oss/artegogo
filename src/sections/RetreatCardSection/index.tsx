@@ -65,7 +65,7 @@ export const RetreatCardSection = () => {
                 {s.value}
               </span>
               <span
-                className="text-[8px] md:text-[10px] font-semibold tracking-widest uppercase mt-0.5"
+                className="text-[8px] md:text-xs font-semibold tracking-widest uppercase mt-0.5"
                 style={{ color: "rgba(78,41,197,0.5)", fontFamily: "'Inter', sans-serif" }}
               >
                 {s.label}
@@ -86,7 +86,7 @@ export const RetreatCardSection = () => {
             <div key={i} className="flex items-center gap-2">
               <item.Icon className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" style={{ color: "#9D8FEF" }} />
               <span
-                className="text-xs md:text-sm"
+                className="text-xs md:text-base"
                 style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontWeight: 500 }}
               >
                 {lang === "al" ? item.al : item.en}
@@ -109,7 +109,7 @@ export const RetreatCardSection = () => {
         {/* ── CTA Button ── */}
         <button
           onClick={() => navigate("/eventet/retreat")}
-          className="w-full py-3 md:py-4 rounded-2xl text-white font-semibold text-xs md:text-base flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] hover:opacity-90"
+          className="w-full py-3 md:py-4 rounded-2xl text-white font-semibold text-xs md:text-[16px] flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] hover:opacity-90"
           style={{
             background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)",
             fontFamily: "'Inter', sans-serif",

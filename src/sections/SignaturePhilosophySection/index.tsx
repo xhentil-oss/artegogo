@@ -82,7 +82,7 @@ export const SignaturePhilosophySection = () => {
                   ? { background: "linear-gradient(135deg, #5b21b6, #7c3aed)", color: "#fff" }
                   : { background: "#f5f3ff", border: "1px solid #ddd6fe", color: "#7c3aed" }}>
                 <item.Icon className="w-4.5 h-4.5 w-[18px] h-[18px]" strokeWidth={1.8} />
-                <span className="text-[9px] md:text-xs font-semibold">
+                <span className="text-[9px] md:text-base font-semibold">
                   {lang === "al" ? item.labelAl : item.labelEn}
                 </span>
               </div>

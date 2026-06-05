@@ -74,8 +74,8 @@ export const TrajnimOnlineSection = () => {
 
         {/* ── Title ── */}
         <div className="text-center mb-3 md:mb-8">
-          <h2 className="font-black leading-none mb-3"
-            style={{ fontSize: "clamp(3rem, 10vw, 5rem)", color: "#5b21b6", fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "-0.02em" }}>
+          <h2 className="trajnim-title font-black leading-none mb-3"
+            style={{ color: "#5b21b6", fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "-0.02em" }}>
             {t("TRAJNIM", "ONLINE")}<br />
             <span style={{ color: "#4e29c5" }}>{t("ONLINE", "TRAINING")}</span>
           </h2>
@@ -135,7 +135,7 @@ export const TrajnimOnlineSection = () => {
               </div>
               {/* Text */}
               <div className="flex-1 bg-white px-5 py-4 flex flex-col justify-center">
-                <p className="text-sm font-black tracking-wider uppercase mb-2" style={{ color: "#7c3aed" }}>
+                <p className="text-sm md:text-base font-black tracking-wider uppercase mb-2" style={{ color: "#7c3aed" }}>
                   {lang === "al" ? p.titleAl : p.titleEn}
                 </p>
                 <p className="text-xs md:text-base leading-relaxed"
@@ -189,7 +189,7 @@ export const TrajnimOnlineSection = () => {
             style={{ background: "#ede9fe" }}>
             <ShieldCheck className="w-4 h-4" style={{ color: "#7c3aed" }} />
           </div>
-          <p className="text-xs leading-relaxed text-zinc-500">
+          <p className="text-xs md:text-base leading-relaxed text-zinc-500">
             {t(
               "Çdo ditë do të marrësh ushtrime të reja, të ndara në një grup privat në Telegram, ku do të jesh në kontakt të vazhdueshëm me Dr. Artemisën dhe Dr. Marvinin personalisht.",
               "Every day you will receive new exercises, shared in a private Telegram group, staying in continuous contact with Dr. Artemisa and Dr. Marvin personally."

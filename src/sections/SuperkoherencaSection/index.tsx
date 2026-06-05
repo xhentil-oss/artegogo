@@ -84,7 +84,7 @@ export const SuperkoherencaSection = () => {
                   style={{ background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.3)" }}>
                   <f.Icon className="w-3 h-3 md:w-3.5 md:h-3.5 text-white" strokeWidth={1.8} />
                 </div>
-                <span className="text-xs md:text-base font-medium text-white" style={{ fontFamily: "'Inter', sans-serif" }}>
+                <span className="text-xs md:text-[16px] font-medium text-white" style={{ fontFamily: "'Inter', sans-serif" }}>
                   {lang === "al" ? f.al : f.en}
                 </span>
               </li>
@@ -94,7 +94,7 @@ export const SuperkoherencaSection = () => {
           {/* CTA */}
           <button
             onClick={() => navigate("/meditime")}
-            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl text-xs md:text-lg transition-all duration-300 hover:scale-105 active:scale-100 mb-3"
+            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl text-xs md:text-[16px] transition-all duration-300 hover:scale-105 active:scale-100 mb-3"
             style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}>
             <Play className="w-4 h-4" fill="white" />
             {t("Fillo meditimin", "Start meditation")}
@@ -103,7 +103,7 @@ export const SuperkoherencaSection = () => {
           {/* Headphones note */}
           <div className="flex items-center gap-2">
             <Headphones className="w-3.5 h-3.5" style={{ color: "rgba(255,255,255,0.6)" }} />
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>
+            <span className="text-xs md:text-[16px]" style={{ color: "rgba(255,255,255,0.6)" }}>
               {t("Rekomandohen kufje", "Headphones recommended")}
             </span>
           </div>

@@ -119,7 +119,7 @@ export const BlogSection = () => {
                     style={{ fontFamily: "'Inter', sans-serif" }}>
                     {lang === "al" ? post.quoteAl : post.quoteEn}
                   </p>
-                  <p className="text-white/60 text-[10px] font-bold tracking-wider">— {post.author}</p>
+                  <p className="text-white/60 text-[10px] md:text-base font-bold tracking-wider">— {post.author}</p>
                 </div>
               </div>
 

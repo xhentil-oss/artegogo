@@ -13,7 +13,7 @@ function FAQItem({ item, index, open, onToggle, visible }: {
         className="w-full text-center flex items-center justify-between gap-4 py-3 md:py-5 px-4 md:px-6 rounded-2xl group transition-all duration-300"
         style={{ background: open ? "rgba(157,143,239,0.08)" : "rgba(255,255,255,0.6)", boxShadow: open ? "0 4px 24px rgba(157,143,239,0.15)" : "0 1px 4px rgba(0,0,0,0.06)", border: open ? "1.5px solid rgba(157,143,239,0.4)" : "1.5px solid rgba(0,0,0,0.06)" }}>
         <div className="flex items-start gap-4">
-          <span className="mt-0.5 min-w-[28px] h-7 w-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors duration-300"
+          <span className="mt-0.5 min-w-[28px] h-7 w-7 rounded-full flex items-center justify-center text-xs md:text-base font-bold transition-colors duration-300"
             style={{ background: open ? "#9D8FEF" : "rgba(157,143,239,0.12)", color: open ? "#fff" : "#9D8FEF" }}>
             {String(index + 1).padStart(2, "0")}
           </span>
@@ -359,7 +359,7 @@ export const FAQSection = () => {
               {t("PYETJE TË SHPESHTA", "FREQUENTLY ASKED QUESTIONS")}
             </span>
           </div>
-          <h2 className="text-lg md:text-3xl font-bold text-zinc-900 mb-2 md:mb-4 leading-tight">
+          <h2 className="text-lg md:text-3xl font-bold text-zinc-900 mb-2 md:mb-4 leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
             {t("Gjithçka Që Doni", "Everything You Want")}{" "}
             <span style={{ color: "#4e29c5" }}>
               {t("të Dini", "to Know")}

@@ -154,7 +154,7 @@ export const FoundationSection = () => {
 
               {/* Title */}
               <h3
-                className="text-[10px] md:text-base font-bold mb-2 leading-snug"
+                className="text-[10px] md:text-base font-semibold mb-2 leading-snug"
                 style={{ fontFamily: "'Inter', sans-serif", color: "#52525b" }}
               >
                 {lang === "al" ? p.title.al : p.title.en}
