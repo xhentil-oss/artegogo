@@ -42,7 +42,7 @@ export const CommunitySection = () => {
         {/* Left — text */}
         <div className="flex-shrink-0 w-[42%] md:w-[40%] pr-3 md:pr-0">
           <p className="text-[8px] md:text-xs font-bold tracking-[0.15em] uppercase mb-3" style={{ color: "#4e29c5" }}>
-            {t("BËHU PJESË E DICKAS MË TË MADHE", "BE PART OF SOMETHING GREATER")}
+            {t("BËHU PJESË E DIÇKAJE MË TË MADHE", "BE PART OF SOMETHING GREATER")}
           </p>
           <h2
             className="text-lg md:text-3xl lg:text-4xl font-bold text-zinc-900 leading-snug mb-3"

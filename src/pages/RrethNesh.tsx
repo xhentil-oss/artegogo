@@ -119,7 +119,7 @@ export const RrethNeshPage = () => {
           <h1 className="hero-title-lg font-bold text-white"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
             {t("Kush jemi", "Who we are")}{" "}
-            <span style={{ color: "#C4B5FD" }}>{t("ne", "we")}</span>
+            <span style={{ color: "#C4B5FD", fontSize: "inherit" }}>{t("ne", "we")}</span>
           </h1>
         </div>
       </section>

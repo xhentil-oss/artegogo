@@ -166,6 +166,26 @@
   }
 }
 
+/* ── Misioni mobile 12px ── */
+@media (max-width: 767px) {
+  .misioni p {
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+  }
+  .misioni h2 {
+    font-size: 18px !important;
+  }
+}
+@media (min-width: 768px) {
+  .misioni p {
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+  }
+  .misioni h2 {
+    font-size: 28px !important;
+  }
+}
+
 /* ── Global text color — dark on all screens ── */
 p, li, span:not([style*="color"]) {
   color: #3f3f46;

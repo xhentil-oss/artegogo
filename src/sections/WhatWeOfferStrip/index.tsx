@@ -16,7 +16,7 @@ const ITEMS = [
         <path d="M10 12l-3 2M14 12l3 2" />
       </svg>
     ),
-    al: "Medittime të thella dhe praktika transformuese",
+    al: "Meditime të thella dhe praktika transformuese",
     en: "Deep meditations and transformative practices",
   },
   {
@@ -112,8 +112,8 @@ export const WhatWeOfferStrip = () => {
 
             {/* Text */}
             <p
-              className="text-[11px] md:text-base leading-snug"
-              style={{ fontWeight: 400, color: "#52525b", fontFamily: "'Inter', sans-serif" }}
+              className="leading-snug"
+              style={{ fontWeight: 400, color: "#52525b", fontFamily: "'Inter', sans-serif", fontSize: 16 }}
             >
               {lang === "al" ? item.al : item.en}
             </p>
