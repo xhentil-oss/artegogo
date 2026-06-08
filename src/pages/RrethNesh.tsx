@@ -110,7 +110,7 @@ export const RrethNeshPage = () => {
     <div className="bg-white text-zinc-800 min-h-screen rreth-nesh">
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden min-h-[52vh] flex items-center justify-center">
+      <section className="relative overflow-hidden min-h-[35vh] md:min-h-[52vh] flex items-center justify-center">
         <div className="absolute inset-0 bg-cover bg-no-repeat"
           style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776841953356-0.jpeg')", backgroundPosition: "center 30%" }} />
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.38)" }} />
@@ -126,7 +126,7 @@ export const RrethNeshPage = () => {
 
       {/* ── Kush jemi ne ── */}
       <section style={{ background: "linear-gradient(180deg, #faf7ff 0%, #ffffff 100%)" }}>
-        <div className="max-w-3xl mx-auto px-6 md:px-12 py-16 md:py-24">
+        <div className="max-w-3xl mx-auto px-6 md:px-12 py-8 md:py-24">
           <FadeIn>
             <h2 className="text-2xl md:text-5xl font-bold text-zinc-900 mb-6 leading-tight"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
@@ -152,19 +152,23 @@ export const RrethNeshPage = () => {
               {t(" dhe të qëndrueshëm.", " and lasting.")}
             </p>
 
-            {/* 3 Pillars */}
-            <div className="grid grid-cols-3 gap-4 md:gap-8">
+            {/* 3 Pillars — inside a single bordered card */}
+            <div className="flex rounded-2xl overflow-hidden"
+              style={{ background: "#ffffff", boxShadow: "0 4px 20px rgba(124,58,237,0.08)", border: "1px solid #ede9fe" }}>
               {PILLARS.map((p, i) => (
-                <div key={i} className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
+                <div key={i} className="flex-1 flex flex-col items-center text-center px-1 md:px-4 py-3 md:py-7"
+                  style={{ borderRight: i < PILLARS.length - 1 ? "1px solid #ede9fe" : "none" }}>
+                  <div className="w-9 h-9 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-2"
                     style={{ background: "#ede9fe" }}>
-                    {p.icon}
+                    <div className="scale-75 md:scale-100">{p.icon}</div>
                   </div>
-                  <p className="font-bold text-zinc-800 mb-2 leading-snug flex items-center justify-center" style={{ fontFamily: "'Inter', sans-serif", minHeight: "2.4rem" }}>
-                    {t(p.titleAl, p.titleEn)}
-                  </p>
-                  <div className="w-8 h-px mb-2" style={{ background: "#ddd6fe" }} />
-                  <p className="text-base leading-relaxed text-zinc-500" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <div className="flex items-center justify-center mb-1" style={{ minHeight: "3.2rem" }}>
+                    <p className="font-bold text-zinc-800 leading-snug text-center" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12 }}>
+                      {t(p.titleAl, p.titleEn)}
+                    </p>
+                  </div>
+                  <div className="w-5 h-px mb-1" style={{ background: "#ddd6fe" }} />
+                  <p className="leading-relaxed text-zinc-500" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12 }}>
                     {t(p.descAl, p.descEn)}
                   </p>
                 </div>
@@ -177,18 +181,18 @@ export const RrethNeshPage = () => {
 
       {/* ── Çfarë bëjmë ── */}
       <section style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-3xl mx-auto px-6 md:px-12 py-16 md:py-24">
+        <div className="max-w-3xl mx-auto px-6 md:px-12 py-8 md:py-24">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4 leading-tight"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
               {t("Çfarë bëjmë", "What we do")}
             </h2>
-            <p className="text-base leading-relaxed text-zinc-500 mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-base leading-relaxed mb-4 md:mb-8" style={{ fontFamily: "'Inter', sans-serif", color: "#3f3f46" }}>
               {t("Në trajnimet dhe retreat-et tona, ju ndihmojmë të:", "In our trainings and retreats, we help you to:")}
             </p>
 
             {/* Checklist */}
-            <ul className="flex flex-col gap-4 mb-4 md:mb-10">
+            <ul className="flex flex-col gap-2 md:gap-4 mb-4 md:mb-10">
               {[
                 t("Shërojnë emocionet e bllokuara dhe traumat e së shkuarës", "Heal blocked emotions and past traumas"),
                 t("Aktivizoni energjinë dhe potencialin tuaj të plotë", "Activate your full energy and potential"),
@@ -203,7 +207,7 @@ export const RrethNeshPage = () => {
                       <path d="M2 6l3 3 5-5" stroke="#7c3aed" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
-                  <span className="text-base leading-relaxed text-zinc-700" style={{ fontFamily: "'Inter', sans-serif" }}>{text}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", color: "#3f3f46", lineHeight: 1.6 }}>{text}</span>
                 </li>
               ))}
             </ul>
@@ -235,7 +239,7 @@ export const RrethNeshPage = () => {
 
       {/* ── Çfarë na bën ndryshe ── */}
       <section className="bg-white">
-        <div className="max-w-3xl mx-auto px-6 md:px-12 py-16 md:py-24">
+        <div className="max-w-3xl mx-auto px-6 md:px-12 py-8 md:py-24">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4 leading-tight"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
@@ -284,16 +288,16 @@ export const RrethNeshPage = () => {
                   descEn: "Return to authentic self and inner peace.",
                 },
               ].map((item, i) => (
-                <div key={i} className="rounded-2xl p-5 flex flex-col items-center text-center"
+                <div key={i} className="rounded-2xl p-3 md:p-5 flex flex-col items-center text-center"
                   style={{ background: "#faf7ff", border: "1px solid #ede9fe" }}>
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ background: "#ede9fe" }}>
-                    {item.icon}
+                  <div className="w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-2" style={{ background: "#ede9fe" }}>
+                    <div className="scale-75 md:scale-100">{item.icon}</div>
                   </div>
-                  <p className="font-bold mb-3 leading-snug" style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "#7c3aed" }}>
+                  <p className="font-bold mb-1 leading-snug" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "#7c3aed" }}>
                     {t(item.titleAl, item.titleEn)}
                   </p>
-                  <div className="w-8 h-px mb-3 mx-auto" style={{ background: "#ddd6fe" }} />
-                  <p className="text-sm leading-relaxed text-zinc-500" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <div className="w-6 h-px mb-1 mx-auto" style={{ background: "#ddd6fe" }} />
+                  <p className="leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "#3f3f46" }}>
                     {t(item.descAl, item.descEn)}
                   </p>
                 </div>
@@ -305,32 +309,33 @@ export const RrethNeshPage = () => {
 
       {/* ── Eksperienca & Kërkimi ── */}
       <section style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-3xl mx-auto px-6 md:px-12 py-16 md:py-24">
+        <div className="max-w-3xl mx-auto px-6 md:px-12 py-8 md:py-24">
           <FadeIn>
             {/* Top: text left + image right */}
-            <div className="grid grid-cols-2 gap-4 md:gap-10 items-start mb-6 md:mb-10">
+            <div className="grid grid-cols-2 gap-3 md:gap-10 items-stretch mb-4 md:mb-10">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-5 leading-tight"
+                <h2 className="font-bold text-zinc-900 mb-2 md:mb-5 leading-tight"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                   {t("Eksperienca dhe kërkimi shkencor", "Experience and scientific research")}
                 </h2>
-                <p className="text-base leading-relaxed text-zinc-600 mb-4" style={{ fontFamily: "'Inter', sans-serif" }}>
+                <p className="leading-relaxed mb-2 md:mb-4" style={{ fontFamily: "'Inter', sans-serif", color: "#3f3f46" }}>
                   {t(
                     "Ne jemi mjekë dhe studiues shkencorë në Zvicër, me fokus në edukimin mjekësor, mjekësinë parandaluese dhe shëndetin mendor.",
                     "We are doctors and scientific researchers in Switzerland, focusing on medical education, preventive medicine and mental health."
                   )}
                 </p>
-                <p className="text-base leading-relaxed text-zinc-600" style={{ fontFamily: "'Inter', sans-serif" }}>
+                <p className="leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", color: "#3f3f46" }}>
                   {t("Kemi zhvilluar karrierën tonë kërkimore në Austri dhe Zvicër, duke fituar ", "We have developed our research careers in Austria and Switzerland, having won ")}
                   <span style={{ color: "#7c3aed", fontWeight: 600 }}>{t("grante prestigjioze", "prestigious grants")}</span>
                   {t(" ndërkombëtare si:", " internationally such as:")}
                 </p>
               </div>
-              <div className="rounded-2xl overflow-hidden shadow-lg">
+              <div className="rounded-xl overflow-hidden shadow-md h-full">
                 <img
                   src="https://images.unsplash.com/photo-1599982890963-3aabd60064d2?w=600&q=80"
                   alt="Zvicër - Kërkimi shkencor"
-                  className="w-full h-52 object-cover"
+                  className="w-full h-full object-cover"
+                  style={{ minHeight: "200px" }}
                 />
               </div>
             </div>
@@ -369,14 +374,14 @@ export const RrethNeshPage = () => {
 
       {/* ── Fushat e kërkimit ── */}
       <section className="bg-white">
-        <div className="max-w-3xl mx-auto px-6 md:px-12 pt-16 md:pt-24 pb-0">
+        <div className="max-w-3xl mx-auto px-6 md:px-12 py-8 md:py-24">
           <FadeIn>
             <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-10 text-center"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
               {t("Kërkimi ynë fokusohet në:", "Our research focuses on:")}
             </h2>
 
-            <div className="grid grid-cols-3 gap-2 md:gap-5 mb-12">
+            <div className="grid grid-cols-3 gap-2 md:gap-5 mb-3 md:mb-12">
               {[
                 {
                   icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>,
@@ -400,16 +405,16 @@ export const RrethNeshPage = () => {
                   descEn: "The impact of environment, stress and social factors on mental health.",
                 },
               ].map((item, i) => (
-                <div key={i} className="rounded-2xl p-3 md:p-5 text-center flex flex-col items-center"
+                <div key={i} className="rounded-xl p-2 md:p-5 text-center flex flex-col items-center"
                   style={{ background: "#faf7ff", border: "1px solid #ede9fe" }}>
-                  <div className="w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center mb-2 md:mb-4" style={{ background: "#ede9fe" }}>
-                    <div className="scale-75 md:scale-100">{item.icon}</div>
+                  <div className="w-8 h-8 md:w-11 md:h-11 rounded-full flex items-center justify-center mb-1.5 md:mb-4" style={{ background: "#ede9fe" }}>
+                    <div className="scale-[0.65] md:scale-100">{item.icon}</div>
                   </div>
-                  <p className="font-bold mb-1 md:mb-2 leading-snug" style={{ fontFamily: "'Inter', sans-serif", color: "#7c3aed" }}>
+                  <p className="font-bold mb-1 leading-snug flex items-center justify-center" style={{ fontFamily: "'Inter', sans-serif", color: "#7c3aed", fontSize: 12, minHeight: "3.5rem" }}>
                     {t(item.titleAl, item.titleEn)}
                   </p>
-                  <div className="w-6 h-px mb-1 md:mb-3" style={{ background: "#ddd6fe" }} />
-                  <p className="leading-relaxed text-zinc-500 hidden md:block" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <div className="w-5 h-px mb-1" style={{ background: "#ddd6fe" }} />
+                  <p className="leading-relaxed text-zinc-500" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12 }}>
                     {t(item.descAl, item.descEn)}
                   </p>
                 </div>
@@ -426,7 +431,7 @@ export const RrethNeshPage = () => {
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0" style={{ background: "rgba(30,20,60,0.72)" }} />
-          <div className="relative z-10 max-w-3xl mx-auto px-6 md:px-12 py-16 text-center">
+          <div className="relative z-10 max-w-3xl mx-auto px-6 md:px-12 py-6 md:py-16 text-center">
             <p className="text-4xl font-serif mb-4" style={{ color: "#a78bfa" }}>&ldquo;</p>
             <p className="text-base md:text-lg leading-relaxed text-white font-light" style={{ fontFamily: "'Inter', sans-serif" }}>
               {t(
@@ -440,7 +445,7 @@ export const RrethNeshPage = () => {
 
       {/* ── Metoda jonë + CTA final ── */}
       <section style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-5xl mx-auto px-6 md:px-12 py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 py-8 md:py-24">
           <FadeIn>
             {/* Main card: list left + photo right */}
             <div className="rounded-3xl overflow-hidden mb-6"
@@ -464,12 +469,12 @@ export const RrethNeshPage = () => {
                       { svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>, text: t("Shërimin emocional dhe punën me nënndërgjegjen", "Emotional healing and subconscious work") },
                       { svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>, text: t("Aktivizimin dhe lirimin e fashave", "Activation and release of fascia") },
                     ].map((item, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
+                      <li key={i} className="flex items-start gap-3">
+                        <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                           style={{ background: "rgba(255,255,255,0.6)" }}>
                           {item.svg}
                         </div>
-                        <span className="text-xs md:text-base text-zinc-700" style={{ fontFamily: "'Inter', sans-serif" }}>{item.text}</span>
+                        <span className="text-base text-zinc-700" style={{ fontFamily: "'Inter', sans-serif", lineHeight: 1.6 }}>{item.text}</span>
                       </li>
                     ))}
                   </ul>
@@ -488,10 +493,10 @@ export const RrethNeshPage = () => {
             </div>
 
             {/* Quote card */}
-            <div className="rounded-2xl p-5 mb-5 flex items-start gap-4"
+            <div className="rounded-2xl p-6 mb-5 text-center"
               style={{ background: "#ffffff", border: "1px solid #ede9fe" }}>
-              <span className="text-4xl font-serif leading-none flex-shrink-0" style={{ color: "#a78bfa" }}>&ldquo;</span>
-              <p className="text-base leading-relaxed text-zinc-600 flex-1" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <p className="text-4xl font-serif leading-none mb-3" style={{ color: "#a78bfa" }}>&ldquo;</p>
+              <p className="text-base leading-relaxed text-zinc-600 italic" style={{ fontFamily: "'Inter', sans-serif" }}>
                 {t(
                   "Kjo qasje krijon një transformim që nuk është vetëm mendor, por i ndjerë në trup, zemër dhe i reflektuar në jetën reale.",
                   "This approach creates a transformation that is not only mental, but felt in the body, heart and reflected in real life."
@@ -519,7 +524,7 @@ export const RrethNeshPage = () => {
                       {t(" të transformojnë jetën e tyre.", " transform their lives.")}
                     </p>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
                       style={{ background: "rgba(255,255,255,0.6)" }}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="#7c3aed" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -531,7 +536,7 @@ export const RrethNeshPage = () => {
                       <strong style={{ color: "#5b21b6" }}>{t("jetën tuaj të re", "your new life")}</strong>.
                     </p>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
                       style={{ background: "rgba(255,255,255,0.6)" }}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="#7c3aed" stroke="#7c3aed" strokeWidth="1.5">

@@ -124,6 +124,14 @@
   100% { opacity: 0; transform: translateY(-80px) scale(1.2); }
 }
 
+/* ── Mobile typography — all pages ── */
+@media (max-width: 767px) {
+  p, li, span:not(.badge):not(.inline-block) {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+}
+
 /* ── RrethNesh mobile only ── */
 @media (max-width: 767px) {
   .rreth-nesh section > div {
@@ -144,7 +152,9 @@
   margin-bottom: 0.75rem;
 }
 @media (min-width: 768px) {
-  .rreth-nesh p {
+  .rreth-nesh p,
+  .rreth-nesh li span,
+  .rreth-nesh ul span {
     font-size: 16px !important;
     line-height: 1.7 !important;
     margin-bottom: 1.25rem;
@@ -156,12 +166,37 @@
   }
 }
 
-/* ── Desktop typography: section titles 28px, paragraphs 16px ── */
+/* ── Global text color — dark on all screens ── */
+p, li, span:not([style*="color"]) {
+  color: #3f3f46;
+}
+
+/* ── Button spans inherit parent color ── */
+button span {
+  color: inherit !important;
+}
+a span {
+  color: inherit !important;
+}
+
+/* ── Hero & title spans — keep white text ── */
+h1 span.text-white,
+span.text-white\/90,
+span.text-white {
+  color: #ffffff !important;
+}
+
+/* ── Desktop typography: all text 16px, titles 28px ── */
 @media (min-width: 768px) {
   section h1,
   section h2 {
     font-size: 28px !important;
     line-height: 1.3 !important;
+  }
+
+  p, li, td, label, span.text-content {
+    font-size: 16px !important;
+    line-height: 1.7 !important;
   }
 
   p {
