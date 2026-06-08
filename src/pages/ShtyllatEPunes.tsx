@@ -24,6 +24,16 @@ export const ShtyllatEPunesPage = () => {
   const { t } = useLanguage();
   useEffect(() => { const timer = setTimeout(() => setHeroVisible(true), 80); return () => clearTimeout(timer); }, []);
 
+  const PILLAR_IMAGES = [
+    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80",
+    "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?w=700&q=80",
+    "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=700&q=80",
+    "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=700&q=80",
+    "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=700&q=80",
+    "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&q=80",
+    "https://images.unsplash.com/photo-1602192509154-0b900ee1f851?w=700&q=80",
+  ];
+
   const pillars = [
     {
       number: "01",
@@ -107,60 +117,67 @@ export const ShtyllatEPunesPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      <section className="relative overflow-hidden min-h-[52vh] flex items-center justify-center">
+    <div className="shtyllat-e-punes min-h-screen bg-white">
+      <section className="relative overflow-hidden min-h-[35vh] md:min-h-[52vh] flex items-center justify-center">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776844664912-0.jpeg')" }} />
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.35)" }} />
         <div className="relative w-full max-w-3xl mx-auto px-6 py-24 text-center"
           style={{ opacity: heroVisible ? 1 : 0, transform: heroVisible ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
-          <span className="inline-block text-[11px] uppercase tracking-[0.22em] font-semibold mb-6 px-5 py-1.5 rounded-full"
-            style={{ background: "rgba(255,255,255,0.15)", color: "#ffffff", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.25)" }}>
-            {t("Shtyllat e Punës", "Pillars of Our Work")}
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-            {t("Shtyllat e punës", "The pillars of our")}{" "}
-            <span style={{ color: "#C4B5FD" }}>{t("sonë", "work")}</span>
+          <h1 className="hero-title-lg font-bold text-white leading-tight"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+            {t("Shtyllat e punës", "Pillars of our")}{" "}
+            <span style={{ color: "#C4B5FD", fontSize: "inherit" }}>{t("sonë", "work")}</span>
           </h1>
-          <p className="text-lg md:text-xl leading-relaxed max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.82)" }}>
-            {t("Meditimet dhe teknikat e avancuara që përdorim në retreatet dhe trajnimet tona bazohen ekskluzivisht në evidencë shkencore nga neuroshkenca, epigenetika, mjekësia integruese dhe studimet mbi biofield-in.", "The meditations and advanced techniques we use in our retreats and trainings are based exclusively on scientific evidence from neuroscience, epigenetics, integrative medicine and biofield studies.")}
-          </p>
         </div>
       </section>
 
-      <section className="bg-gray-50 border-y border-gray-100">
-        <div className="max-w-5xl mx-auto px-6 py-10 text-center">
-          <p className="text-sm leading-relaxed text-zinc-700 md:text-base">
-            {t("Këto janë", "These are the")}{" "}
-            <span className="font-bold" style={{ color: "#C3B1E1" }}>
-              {t("7 shtyllat kryesore të punës sonë", "7 main pillars of our work")}
-            </span>{" "}
-            — {t("çdo shtyllë është e ndërtuar mbi baza shkencore dhe ofron benefite konkrete, të matshme dhe reale.", "every pillar is built on scientific foundations and offers concrete, measurable and real benefits.")}
-          </p>
-        </div>
-      </section>
 
-      <section className="max-w-5xl mx-auto px-6 py-20 space-y-8">
+      <section className="max-w-2xl mx-auto px-4 md:px-6 py-10 md:py-16 space-y-10 md:space-y-14">
         {pillars.map((pillar, i) => (
           <FadeIn key={pillar.number} delay={(i % 3) * 80}>
-            <div className="rounded-2xl border border-gray-100 bg-white overflow-hidden">
-              <div className="px-8 py-5 flex items-center gap-5 border-b border-gray-100" style={{ background: "#F9FAFB" }}>
-                <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold text-sm text-white" style={{ background: "#C3B1E1" }}>
-                  {pillar.number}
-                </div>
-                <div>
-                  <span className="text-xs font-semibold uppercase tracking-widest text-gray-400">{t("Shtylla", "Pillar")} {pillar.number}</span>
-                  <h2 className="text-zinc-800 text-2xl md:text-3xl font-bold leading-snug">{pillar.title}</h2>
-                </div>
+            <div className="rounded-3xl overflow-hidden shadow-sm border border-violet-100">
+              {/* Image */}
+              <div className="relative h-48 md:h-64 overflow-hidden">
+                <img src={PILLAR_IMAGES[i]} alt={pillar.title} className="w-full h-full object-cover" />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(91,33,182,0.25) 0%, rgba(91,33,182,0.65) 100%)" }} />
               </div>
-              <div className="px-8 py-7 grid md:grid-cols-2 gap-8">
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{pillar.description}</p>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">{t("Benefitet", "Benefits")}</p>
+
+              {/* Content */}
+              <div className="bg-white px-6 py-6">
+                {/* Decorated number */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex-1 h-px" style={{ background: "#ddd6fe" }} />
+                  <span className="font-bold text-xl" style={{ color: "#a78bfa", fontFamily: "'Playfair Display', Georgia, serif" }}>
+                    {parseInt(pillar.number)}.
+                  </span>
+                  <div className="flex-1 h-px" style={{ background: "#ddd6fe" }} />
+                </div>
+
+                {/* Title */}
+                <h2 className="text-xl md:text-2xl font-bold leading-snug mb-3 text-zinc-800"
+                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                  {pillar.title}
+                </h2>
+
+                {/* Description */}
+                <p className="leading-relaxed text-zinc-600 mb-5" style={{ fontSize: 16 }}>
+                  {pillar.description}
+                </p>
+
+                {/* Benefits box */}
+                <div className="rounded-2xl px-4 py-4" style={{ background: "#f5f0ff" }}>
+                  <p className="font-bold mb-3" style={{ color: "#7c3aed", fontSize: 16 }}>
+                    {t("Benefitet:", "Benefits:")}
+                  </p>
                   <ul className="space-y-2">
                     {pillar.benefits.map((b, bi) => (
-                      <li key={bi} className="flex items-start gap-2.5 text-sm leading-relaxed text-zinc-700 md:text-base">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#C3B1E1" }} />
+                      <li key={bi} className="flex items-start gap-3 leading-relaxed text-zinc-700" style={{ fontSize: 16 }}>
+                        <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "#ede9fe" }}>
+                          <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 6l3 3 5-5" stroke="#7c3aed" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </span>
                         {b}
                       </li>
                     ))}
@@ -170,6 +187,72 @@ export const ShtyllatEPunesPage = () => {
             </div>
           </FadeIn>
         ))}
+      </section>
+
+      {/* ── CTA final ── */}
+      <section className="max-w-2xl mx-auto px-4 md:px-6 pb-16 md:pb-24">
+        <FadeIn>
+          <div className="rounded-3xl overflow-hidden shadow-sm border border-violet-100">
+            {/* Image */}
+            <div className="relative h-52 md:h-72 overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+                alt="CTA"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(91,33,182,0.2) 0%, rgba(91,33,182,0.6) 100%)" }} />
+            </div>
+
+            {/* Content */}
+            <div className="bg-white px-6 py-7 text-center">
+              {/* Star icon */}
+              <div className="flex justify-center mb-3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#a78bfa" stroke="none">
+                  <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+                </svg>
+              </div>
+
+              <h2 className="font-bold leading-snug mb-3 text-zinc-800"
+                style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22 }}>
+                {t("Gati të ndryshosh jetën tënde nga brenda?", "Ready to change your life from within?")}
+              </h2>
+
+              <p className="leading-relaxed text-zinc-500 mb-6" style={{ fontSize: 14 }}>
+                {t(
+                  "Rezervo vendin tënd në trajnimin e radhës dhe përjeto këto metoda të fuqishme në veprim.",
+                  "Reserve your spot in the next training and experience these powerful methods in action."
+                )}
+              </p>
+
+              {/* Buttons */}
+              <div className="space-y-3">
+                <Link to="/signup"
+                  className="flex items-center justify-between px-5 py-3.5 rounded-2xl text-white font-semibold w-full"
+                  style={{ background: "linear-gradient(135deg, #6d28d9 0%, #4e29c5 100%)", fontSize: 15 }}>
+                  <div className="flex items-center gap-3">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    {t("Rezervo vendin tënd", "Reserve your spot")}
+                  </div>
+                  <span>›</span>
+                </Link>
+
+                <Link to="/misioni"
+                  className="flex items-center justify-between px-5 py-3.5 rounded-2xl font-semibold w-full border"
+                  style={{ borderColor: "#ddd6fe", color: "#6d28d9", fontSize: 15, background: "#faf7ff" }}>
+                  <div className="flex items-center gap-3">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    {t("Mëso më shumë", "Learn more")}
+                  </div>
+                  <span>›</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </FadeIn>
       </section>
     </div>
   );
