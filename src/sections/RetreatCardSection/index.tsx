@@ -46,7 +46,7 @@ export const RetreatCardSection = () => {
         </p>
 
         {/* ── Stats ── */}
-        <div className="grid grid-cols-3 gap-2 md:gap-4 mb-4 md:mb-6">
+        <div className="stats-bar grid grid-cols-3 gap-2 md:gap-4 mb-4 md:mb-6">
           {[
             { Icon: Flower2, value: t("7 Ditë", "7 Days"), label: t("KOHËZGJATJA", "DURATION") },
             { Icon: Users, value: "20+", label: t("SEANCA", "SESSIONS") },
@@ -59,13 +59,13 @@ export const RetreatCardSection = () => {
             >
               <s.Icon className="w-4 h-4 md:w-6 md:h-6 mb-1" style={{ color: "#9D8FEF" }} />
               <span
-                className="text-sm md:text-xl font-bold"
+                className="stat-value font-bold"
                 style={{ color: "#4e29c5", fontFamily: "'Inter', sans-serif" }}
               >
                 {s.value}
               </span>
               <span
-                className="text-[8px] md:text-xs font-semibold tracking-widest uppercase mt-0.5"
+                className="stat-label font-semibold tracking-widest uppercase mt-0.5"
                 style={{ color: "rgba(78,41,197,0.5)", fontFamily: "'Inter', sans-serif" }}
               >
                 {s.label}

@@ -131,7 +131,7 @@ export const PromiseSection = () => {
 
           {/* Description */}
           <p
-            className="text-[9px] md:text-base leading-relaxed mb-2 md:mb-10 hidden md:block"
+            className="text-xs md:text-base leading-relaxed mb-2 md:mb-10 hidden md:block"
             style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontWeight: 400 }}
           >
             {t(
@@ -149,7 +149,7 @@ export const PromiseSection = () => {
                   style={{ background: "#4e29c5" }}
                 />
                 <span
-                  className="text-[9px] md:text-base leading-snug font-medium"
+                  className="text-xs md:text-base leading-snug font-medium"
                   style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}
                 >
                   {lang === "al" ? step.al : step.en}

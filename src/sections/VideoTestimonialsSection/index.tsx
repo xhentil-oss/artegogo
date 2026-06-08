@@ -139,12 +139,12 @@ export const VideoTestimonialsSection = () => {
               </button>
 
               {/* Quote + stats bottom overlay */}
-              <div className="absolute bottom-0 left-0 px-4 md:px-6 py-3 md:py-5 text-left" style={{ width: "40%" }}>
-                <p className="text-white text-sm md:text-base font-semibold leading-relaxed mb-1 md:mb-2"
-                  style={{ fontFamily: "'Inter', sans-serif" }}>
+              <div className="absolute bottom-0 left-0 px-4 md:px-6 pb-2 pt-0 md:py-5 text-left" style={{ width: "58%", maxWidth: "58%" }}>
+                <p className="text-white font-semibold leading-relaxed mb-1 md:mb-2"
+                  style={{ fontFamily: "'Inter', sans-serif", fontSize: 12 }}>
                   <span style={{ color: "#a78bfa" }}>&ldquo;</span>{t("Ndjeva zemrën time të hapej për herë të parë pas shumë vitesh.", "I felt my heart open for the first time in many years.")}
                 </p>
-                <p className="text-white/60 text-[8px] md:text-base font-bold tracking-widest uppercase mb-2 md:mb-4">
+                <p className="text-white/60 font-bold tracking-widest uppercase mb-2 md:mb-4" style={{ fontSize: 10 }}>
                   — {t("PJESËMARRËSE NE RETREAT", "RETREAT PARTICIPANT")}
                 </p>
                 <div className="flex items-center gap-2 md:gap-3 pt-2 md:pt-3 border-t border-white/20">

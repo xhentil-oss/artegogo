@@ -127,8 +127,8 @@
 /* ── Mobile typography — all pages ── */
 @media (max-width: 767px) {
   p, li, span:not(.badge):not(.inline-block) {
-    font-size: 12px;
-    line-height: 1.6;
+    font-size: 12px !important;
+    line-height: 1.6 !important;
   }
 }
 
@@ -264,6 +264,11 @@ span.text-white {
   .stats-bar .stat-value { font-size: 20px !important; line-height: 1 !important; }
   .stats-bar .stat-label { font-size: 11px !important; line-height: 1.2 !important; }
   .stats-bar .stat-sub   { font-size: 12px !important; line-height: 1.2 !important; }
+}
+
+@media (max-width: 767px) {
+  .stats-bar .stat-value { font-size: 12px !important; line-height: 1.3 !important; }
+  .stats-bar .stat-label { font-size: 10px !important; line-height: 1.2 !important; }
 }
 
 @layer utilities {
