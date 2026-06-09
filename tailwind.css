@@ -215,6 +215,18 @@ p, li, span:not([style*="color"]) {
   color: #3f3f46;
 }
 
+/* ── Navbar announcement — always 12px ── */
+.navbar-announce {
+  font-size: 12px !important;
+}
+@media (max-width: 767px) {
+  .navbar-announce {
+    font-size: 11px !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.4 !important;
+  }
+}
+
 /* ── Button spans inherit parent color ── */
 button span {
   color: inherit !important;
@@ -228,6 +240,13 @@ h1 span.text-white,
 span.text-white\/90,
 span.text-white {
   color: #ffffff !important;
+}
+
+/* ── Spans inside headings inherit size — prevent global 12px override ── */
+h1 span:not(.badge):not(.inline-block),
+h2 span:not(.badge):not(.inline-block) {
+  font-size: inherit !important;
+  line-height: inherit !important;
 }
 
 /* ── Desktop typography: all text 16px, titles 28px ── */

@@ -211,7 +211,7 @@ export const Navbar = () => {
           </span>
 
           {/* Center text */}
-          <p className="flex-1 text-center text-white text-[9px] sm:text-xs font-semibold tracking-widest uppercase">
+          <p className="navbar-announce flex-1 text-center text-white font-semibold tracking-wide md:tracking-widest uppercase" style={{ lineHeight: 1.4 }}>
             {lang === "al"
               ? "Regjistrimet për retreatin e meditimit pranverë 2027 janë hapur"
               : "Registrations for the Spring 2027 Meditation Retreat are open"}

@@ -228,7 +228,7 @@ export const ShtyllatEPunesPage = () => {
               <div className="space-y-3">
                 <Link to="/signup"
                   className="flex items-center justify-between px-5 py-3.5 rounded-2xl text-white font-semibold w-full"
-                  style={{ background: "linear-gradient(135deg, #6d28d9 0%, #4e29c5 100%)", fontSize: 15 }}>
+                  style={{ background: "linear-gradient(135deg, #6d28d9 0%, #4e29c5 100%)", fontSize: 12 }}>
                   <div className="flex items-center gap-3">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
@@ -240,7 +240,7 @@ export const ShtyllatEPunesPage = () => {
 
                 <Link to="/misioni"
                   className="flex items-center justify-between px-5 py-3.5 rounded-2xl font-semibold w-full border"
-                  style={{ borderColor: "#ddd6fe", color: "#6d28d9", fontSize: 15, background: "#faf7ff" }}>
+                  style={{ borderColor: "#ddd6fe", color: "#6d28d9", fontSize: 12, background: "#faf7ff" }}>
                   <div className="flex items-center gap-3">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>

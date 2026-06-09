@@ -2,35 +2,9 @@ import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const RetreatPage = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const stats = [
-    { value: t("8 Ditë", "8 Days"), label: t("Kohëzgjatja", "Duration") },
-    { value: t("Hotel 5★", "5★ Hotel"), label: t("Vendndodhja", "Location") },
-    { value: t("All Inclusive", "All Inclusive"), label: t("Paketa", "Package") },
-    { value: t("Bregdeti Shqiptar", "Albanian Riviera"), label: t("Lokacioni", "Location") },
-  ];
-
-  const reasons = [
-    t("Të shërohesh dhe të lirohesh nga blloqet emocionale", "To heal and release emotional blockages"),
-    t("Të rifitosh paqen dhe harmoninë e brendshme", "To regain inner peace and harmony"),
-    t("Të tërheqësh pasuri, bollëk dhe liri financiare", "To attract wealth, abundance and financial freedom"),
-    t("Të rifitosh fuqinë tënde dhe besimin tek vetja", "To reclaim your power and self-belief"),
-    t("Të transformosh rrënjësisht jetën tënde", "To radically transform your life"),
-    t("Të zbulosh gjallërinë dhe fuqinë e trupit tënd", "To discover the vitality and power of your body"),
-  ];
-
-  const included = [
-    t("Meditime të thella çdo ditë — mëngjes, pasdite dhe mbrëmje", "Deep meditations every day — morning, afternoon and evening"),
-    t("Leksione teorike dhe teknika shkencore", "Theoretical lectures and scientific techniques"),
-    t("Shpjegime të teknikave dhe ushtrime të ndryshme", "Technique explanations and various exercises"),
-    t("Shërim dhe çlirim emocional", "Healing and emotional release"),
-    t("Fokus tek vetja dhe rifitimi i energjisë", "Focus on self and energy restoration"),
-    t("Hotel 5 yje ALL inclusive — 7 netë bregdet shqiptar", "5-star hotel ALL inclusive — 7 nights Albanian Riviera"),
-    t("Materiale dhe audio pas retreat-it", "Materials and audio after the retreat"),
-    t("Mbështetje personale pas retreat-it", "Personal support after the retreat"),
-  ];
 
   const pricingVariants = [
     {
@@ -92,133 +66,276 @@ export const RetreatPage = () => {
     <div className="min-h-screen bg-white">
 
       {/* Hero */}
-      <div className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776945645841-0.jpeg')" }}
+      <div className="relative overflow-hidden min-h-[280px] md:min-h-[520px] flex items-center justify-center">
+        <img
+          src="/img/retreat-photo.png"
+          alt="Retreat"
+          className="w-full h-full object-cover object-center absolute inset-0"
         />
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.35)" }} />
-        <div className="relative max-w-4xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-6 bg-white/15 text-white border border-white/20">
-            Retreat
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.38)" }} />
+        <div className="relative w-full max-w-5xl mx-auto px-6 text-center">
+          <h1 className="hero-title-lg font-bold text-white"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
             {t("Retreat", "Meditation")}{" "}
-            <span style={{ color: "#C4B5FD" }}>
-              {t("Meditimi", "Retreat")}
-            </span>
+            <span style={{ color: "#C4B5FD", fontSize: "inherit" }}>{t("Meditimi", "Retreat")}</span>
           </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto leading-relaxed mb-10">
-            {t(
-              "Jeni të ftuar për të përjetuar eksperiencën më të paharruar të jetës suaj. 8 ditë transformimi i thellë në bregdetin shqiptar — hotel 5 yje, ALL inclusive.",
-              "You are invited to experience the most unforgettable experience of your life. 8 days of deep transformation on the Albanian Riviera — 5-star hotel, ALL inclusive."
-            )}
-          </p>
         </div>
       </div>
 
-      {/* Stats bar */}
-      <section className="border-y border-zinc-100 py-10 px-6" style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          {stats.map((s) => (
-            <div key={s.label} className="bg-white rounded-xl border border-violet-100 p-4">
-              <div className="text-sm leading-relaxed font-extrabold text-zinc-700 mb-1 md:text-base" style={{ color: "#9D8FEF" }}>{s.value}</div>
-              <div className="text-sm leading-relaxed text-zinc-700 md:text-base">{s.label}</div>
+      {/* Intro text section */}
+      <section className="max-w-5xl mx-auto px-6 py-10 md:py-16">
+        <div className="space-y-4 text-zinc-700 [&_strong]:text-violet-600" style={{ fontSize: 12, lineHeight: 1.8 }}>
+          {lang === "al" ? (
+            <>
+              <p>Retreati ynë është i veçantë pasi është i pari i këtij lloji në Shqipëri. Sjellim eksperiencën <strong>ndërkombëtare</strong> në një <strong>event 8 ditor</strong> i cili do mbahet në <strong>bregetin Shqiptar</strong>.</p>
+              <p>Në këtë event çdo ditë duke nisur nga orët e para të mëngjesit deri mbasdite do mbahen meditime dhe leksione teorike, shpjegime të teknikave dhe ushtrime të ndryshme <strong>për të krijuar një jetë të re, shërim dhe çlirim emocional</strong>.</p>
+              <p>Fokusi është tek <strong>vetja jote</strong>, dhe <strong>rifitimi i energjisë tënde</strong>.</p>
+              <p>Është një javë transformuese për <strong>trupin, mendjen dhe shpirtin</strong>, në një ambient luksoz 5 yjesh, ku takon veten tënde të re dhe hap dyert drejt <strong>mundësive të reja</strong>.</p>
+            </>
+          ) : (
+            <>
+              <p>Our retreat is special as it is among the first of its kind in Albania. We bring <strong>international experience</strong> to an <strong>8-day event</strong> which will be held on the <strong>Albanian Riviera</strong>.</p>
+              <p>Every day — from early morning until afternoon — meditations and theoretical lectures will be held, technique explanations and various exercises <strong>to create a new life, healing and emotional release</strong>.</p>
+              <p>The focus is on <strong>you</strong>, and <strong>restoring your energy</strong>.</p>
+              <p>It is a transformative week for <strong>body, mind and spirit</strong>, in a luxurious 5-star setting, where you meet your renewed self and open the doors to <strong>new possibilities</strong>.</p>
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* What is retreat section */}
+      <section className="pb-12 pt-12" style={{ backgroundColor: "#F9FAFB" }}>
+      <div className="max-w-5xl mx-auto px-6">
+        <h2 className="font-bold mb-4 leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.6rem, 4vw, 2.8rem)", color: "#18181b" }}>
+          {lang === "al" ? (
+            <>Çfarë është <span style={{ color: "#7C3AED" }}>retreati jonë</span> i meditimit?</>
+          ) : (
+            <>What is <span style={{ color: "#7C3AED" }}>our retreat</span> of meditation?</>
+          )}
+        </h2>
+        <p className="text-zinc-600 mb-6" style={{ fontSize: 16, lineHeight: 1.7 }}>
+          {t(
+            "Retreati ynë është i veçantë pasi është i pari i këtij lloji në Shqipëri. Sjellim një përvojë transformuese në një event 8 ditor në bregdetin e mrekullueshëm Shqiptar.",
+            "Our retreat is special as it is among the first of its kind in Albania. We bring a transformative experience to an 8-day event on the magnificent Albanian Riviera."
+          )}
+        </p>
+
+        {/* Main image with overlay text */}
+        <div className="relative rounded-2xl overflow-hidden mb-3" style={{ minHeight: 220 }}>
+          <img
+            src="/img/TONI1692.JPG"
+            alt="Retreat"
+            className="w-full h-full object-cover absolute inset-0"
+            style={{ minHeight: 220 }}
+          />
+          <div className="absolute inset-0" style={{ background: "rgba(20,5,50,0.58)" }} />
+          <div className="relative p-6 flex flex-col justify-end" style={{ minHeight: 220 }}>
+            <h3 className="font-bold text-white" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1rem, 2.5vw, 1.5rem)", lineHeight: 1.35 }}>
+              {lang === "al" ? (
+                <>8 ditë për t'u rikthyer tek vetja dhe për të krijuar <span style={{ color: "#C4B5FD" }}>një jetë më të re.</span></>
+              ) : (
+                <>8 days to return to yourself and create <span style={{ color: "#C4B5FD" }}>a new life.</span></>
+              )}
+            </h3>
+          </div>
+        </div>
+
+        {/* Image grid 3x2 */}
+        <div className="grid grid-cols-3 gap-2 mb-8">
+          {[
+            "/img/TONI0886.JPG",
+            "/img/TONI0935.JPG",
+            "/img/TONI0877.JPG",
+            "/img/TONI2462.JPG",
+            "/img/TONI2743.JPG",
+            "/img/TONI2719.JPG",
+          ].map((src, i) => (
+            <div key={i} className="rounded-xl overflow-hidden" style={{ height: 110 }}>
+              <img src={src} alt="" className="w-full h-full object-cover" />
             </div>
           ))}
         </div>
-      </section>
 
-      {/* Intro: Invitation */}
-      <section className="max-w-4xl mx-auto px-6 py-20">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-3 border" style={{ backgroundColor: "#EDE9FD", color: "#9D8FEF", borderColor: "#C4B5FD" }}>
-              {t("Ftesa jonë", "Our Invitation")}
-            </span>
-            <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-6 leading-snug">
-              {t("Zbuloni gjallërinë dhe fuqinë e trupit tuaj", "Discover the vitality and power of your body")}
-            </h2>
-            <div className="space-y-4 text-sm leading-relaxed text-zinc-700 md:text-base">
-              <p>
-                {t(
-                  "Jeni të ftuar për të përjetuar eksperiencën më të paharruar të jetës tuaj. Të zhyteni thellë brenda vetes, të harmonizoni trupin, biologjinë dhe fiziologjinë tuaj. Studimet kanë treguar se gjenet mund të ndryshojnë brenda 4 ditëve me meditim intensiv.",
-                  "You are invited to experience the most unforgettable experience of your life. To dive deep within yourself, to harmonize your body, biology and physiology. Studies have shown that genes can change within 4 days of intensive meditation."
-                )}
-              </p>
-              <p>
-                {t(
-                  "Ne do të jemi bashkë për 8 ditë — një javë për t'u mbajtur mend në një hotel me 5 yje në bregdetin shqiptar. Shkëputuni për një moment nga zhurma e jetës tuaj të përditshme, futuni thellë brenda vetes, rikrijojeni dhe ngrijeni veten sërish.",
-                  "We will be together for 8 days — a week to remember in a 5-star hotel on the Albanian coast. Disconnect from the noise of your everyday life, dive deep within yourself, recreate and elevate yourself again."
-                )}
-              </p>
-              <p>
-                {t(
-                  "Energjia e jashtëzakonshme në retreat-et tona transmetohet në çdo aspekt të jetës tuaj. Jo vetëm trupi, zemra dhe shpirti juaj do të ndihen më të lirë — e gjithë jeta fillon të ndryshojë. Sepse kur besoni tek vetja, besoni tek mundësitë — dhe mundësitë nuk vonojnë të vijnë.",
-                  "The extraordinary energy in our retreats is transmitted to every aspect of your life. Not only your body, heart and soul will feel freer — your entire life begins to change. Because when you believe in yourself, you believe in possibilities — and possibilities don't take long to come."
-                )}
-              </p>
-            </div>
-          </div>
-          <div className="rounded-3xl border border-violet-100 p-8" style={{ backgroundColor: "#F9FAFB" }}>
-            <h3 className="text-base font-bold text-zinc-800 mb-6 flex items-center gap-2">
-              <span className="w-7 h-7 rounded-full bg-violet-600 text-white text-xs flex items-center justify-center">?</span>
-              {t("Çfarë është retreat-i ynë?", "What is our retreat?")}
-            </h3>
-            <div className="space-y-3 text-sm leading-relaxed text-zinc-700 md:text-base">
-              <p>
-                {t(
-                  "Retreat-i ynë është i veçantë, pasi është ndër të parët e këtij lloji në Shqipëri. Sjellim eksperiencën ndërkombëtare në një event 8-ditor, i cili do të mbahet në bregdetin shqiptar.",
-                  "Our retreat is special, as it is among the first of its kind in Albania. We bring international experience to an 8-day event, which will be held on the Albanian coast."
-                )}
-              </p>
-              <p>
-                {t(
-                  "Çdo ditë — duke nisur nga orët e para të mëngjesit deri në mbrëmje — do të mbahen meditime dhe leksione teorike, shpjegime të teknikave dhe ushtrime të ndryshme për të krijuar një jetë të re, për shërim dhe çlirim emocional.",
-                  "Every day — from the early morning hours until evening — meditations and theoretical lectures will be held, technique explanations and various exercises to create a new life, for healing and emotional release."
-                )}
-              </p>
-              <p className="font-medium" style={{ color: "#9D8FEF" }}>
-                {t("Fokusi është tek vetja jote dhe rifitimi i energjisë tënde.", "The focus is on you and the recovery of your energy.")}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Reasons to come */}
-      <section className="border-y border-zinc-100 py-16 px-6" style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-4xl mx-auto">
-          <span className="inline-flex justify-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-3 border mx-auto block text-center" style={{ backgroundColor: "#EDE9FD", color: "#9D8FEF", borderColor: "#C4B5FD" }}>
-            {t("Pse të vish", "Why to come")}
-          </span>
-          <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-10 text-center">
-            {t("Për çfarë arsye mund të vish?", "For what reason can you come?")}
-          </h2>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {reasons.map((reason, i) => (
-              <div key={i} className="flex items-start gap-3 bg-white rounded-xl border border-violet-100 p-5">
-                <span className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: "#9D8FEF" }}>{i + 1}</span>
-                <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{reason}</p>
+        {/* Stats 2x2 */}
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            { icon: <svg width="22" height="22" fill="none" stroke="#7C3AED" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, value: "1,800+", label: t("Pjesëmarrës nga e gjithë bota", "Participants from around the world") },
+            { icon: <svg width="22" height="22" fill="none" stroke="#7C3AED" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>, value: "100+", label: t("Sessions transformuese", "Transformative sessions") },
+            { icon: <svg width="22" height="22" fill="none" stroke="#7C3AED" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>, value: "100+", label: t("Vende të përfaqësuara", "Countries represented") },
+            { icon: <svg width="22" height="22" fill="none" stroke="#7C3AED" strokeWidth="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>, value: null, label: t("Një tribu. Një mision. Jetë të re.", "One tribe. One mission. New life.") },
+          ].map((stat, i) => (
+            <div key={i} className="flex items-center gap-3">
+              <div className="shrink-0">{stat.icon}</div>
+              <div className="flex items-baseline gap-2">
+                {stat.value && <span className="font-extrabold text-zinc-900" style={{ fontSize: 16 }}>{stat.value}</span>}
+                <span className="text-zinc-700" style={{ fontSize: 16, lineHeight: 1.7 }}>{stat.label}</span>
               </div>
-            ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      </section>
+
+
+
+      {/* Për çfarë arsye mund të vish */}
+      <section className="max-w-5xl mx-auto px-6 py-8 md:py-12">
+        <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
+
+          {/* Left: text */}
+          <div className="flex-1">
+            <h2 className="font-bold mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)", color: "#18181b" }}>
+              {lang === "al" ? (
+                <>Për çfarë arsye <span style={{ color: "#7C3AED" }}>mund të vish?</span></>
+              ) : (
+                <>For what reason <span style={{ color: "#7C3AED" }}>can you come?</span></>
+              )}
+            </h2>
+            <div className="space-y-4 text-zinc-600 [&_strong]:text-violet-600" style={{ fontSize: 16, lineHeight: 1.8 }}>
+              {lang === "al" ? (
+                <>
+                  <p>Ti mund të vish për arsye të ndryshme: të shërohesh, të rifitosh <strong>paqen, harmoninë</strong>, të tërheqesh <strong>pasuri, bollëk, liri financiare</strong>, të rifitosh <strong>fuqinë tënde</strong> dhe në këtë mënyrë të <strong>transformosh rrënjësisht jetën tënde</strong>.</p>
+                  <p>Për tu <strong>zhvilluar mentalisht dhe emocionalisht</strong>, gjë që është e vështirë në jetën e përditshme ku jemi të mbingarkuar nga punë dhe përgjegjësi të shumta.</p>
+                  <p>Do ju mësojmë si të futeni thellë në meditim dhe të qëndroni gjatë të shijoni mrekullinë në trupin tuaj, të përjetoni <strong>jetën dhe energjinë që rrjedh në trup</strong> duke i dhënë jetë sërish.</p>
+                </>
+              ) : (
+                <>
+                  <p>You can come for various reasons: to heal, to regain <strong>peace, harmony</strong>, to attract <strong>wealth, abundance, financial freedom</strong>, to reclaim <strong>your power</strong> and in this way to <strong>radically transform your life</strong>.</p>
+                  <p>To <strong>develop mentally and emotionally</strong>, something that is difficult in everyday life where we are overwhelmed by work and many responsibilities.</p>
+                  <p>We will teach you how to enter deep meditation and stay long to enjoy the wonder in your body, to experience <strong>the life and energy that flows through the body</strong>, bringing it back to life.</p>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Right: image */}
+          <div className="flex-1 rounded-2xl overflow-hidden shadow-lg" style={{ minHeight: 380 }}>
+            <img
+              src="/img/TONI1503.JPG"
+              alt="Retreat participants"
+              className="w-full h-full object-cover"
+              style={{ minHeight: 380 }}
+            />
           </div>
         </div>
       </section>
 
-      {/* What's included */}
-      <section className="max-w-4xl mx-auto px-6 py-16">
-        <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-3 border" style={{ backgroundColor: "#EDE9FD", color: "#9D8FEF", borderColor: "#C4B5FD" }}>
-          {t("Çfarë përfshin", "What's included")}
-        </span>
-        <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-10 text-center">
-          {t("Çfarë përfshin retreat-i", "What the retreat includes")}
+      {/* Çfarë do bëjmë */}
+      <section className="pt-8 pb-14" style={{ backgroundColor: "#F9FAFB" }}>
+      <div className="max-w-5xl mx-auto px-6">
+        <h2 className="font-bold mb-8 leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)", color: "#18181b" }}>
+          {lang === "al" ? (
+            <>Çfarë do <span style={{ color: "#7C3AED" }}>bëjmë?</span></>
+          ) : (
+            <>What will we <span style={{ color: "#7C3AED" }}>do?</span></>
+          )}
         </h2>
-        <div className="grid sm:grid-cols-2 gap-4">
-          {included.map((item, i) => (
-            <div key={i} className="flex items-start gap-3 rounded-xl border border-violet-100 p-4" style={{ backgroundColor: "#F9FAFB" }}>
-              <span className="mt-0.5 w-5 h-5 rounded-full text-white text-[10px] font-bold flex items-center justify-center shrink-0" style={{ backgroundColor: "#9D8FEF" }}>✓</span>
-              <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{item}</p>
+        <div className="space-y-4 text-zinc-600 [&_strong]:text-violet-600" style={{ fontSize: 16, lineHeight: 1.85 }}>
+          {lang === "al" ? (
+            <>
+              <p>Koha do kalojë duke medituar, mësuar gjëra të reja, njohur njerëz të rinj, po më së shumti duke <strong>rinjoftuar veten</strong>.</p>
+              <p>Do kalonit kohë duke u lidhur me veten në një nivel më të thellë që do ju mundësojë të <strong>shëroni veten dhe jetën tuaj</strong>.</p>
+              <p>Nuk do keni asnjë përgjegjësi, as pastrim, as gatim – çdo gjë është <strong>gatë për ju</strong>.</p>
+              <p>Do ju japim mundësi pafund për të tërhequr dhe rikrijuar veten, për të <strong>hapur zemrën</strong> dhe për tu ndjerë të plotë sërish.</p>
+              <p>Në një ambient të qetë, privat dhe me hapësira të mëdha, ju do mund të relaksoheni dhe të shijoni të plotë eksperiencën.</p>
+              <p>Në sallën e konferencave do organizohen <strong>medititmimet dhe seminaret</strong>.</p>
+              <p>Do përjetojmë bashkë meditimeve të thella ku do zhvillojmë një botë të re, një univers dhe një krijim brënda trupit tonë.</p>
+              <p>Muzika e zgjedhur, fjalët e meditimit dhe tingujt e zërit, çdo gjë e studiuar për të harmonizuar valët e trurit dhe për t'ju ndihmuar të <strong>bëheni me veten dhe burimin e gjithçkaje</strong>.</p>
+            </>
+          ) : (
+            <>
+              <p>Time will pass meditating, learning new things, meeting new people, but most of all <strong>rediscovering yourself</strong>.</p>
+              <p>You will spend time connecting with yourself at a deeper level that will enable you to <strong>heal yourself and your life</strong>.</p>
+              <p>You will have no responsibilities, no cleaning, no cooking – everything is <strong>ready for you</strong>.</p>
+              <p>We will give you endless opportunities to attract and recreate yourself, to <strong>open your heart</strong> and feel complete again.</p>
+              <p>In a quiet, private environment with large spaces, you will be able to relax and fully enjoy the experience.</p>
+              <p>In the conference hall, <strong>meditations and seminars</strong> will be organized.</p>
+              <p>Together we will experience deep meditations where we will develop a new world, a universe and a creation within our body.</p>
+              <p>Carefully chosen music, meditation words and vocal sounds, everything studied to harmonize brainwaves and help you <strong>become one with yourself and the source of everything</strong>.</p>
+            </>
+          )}
+        </div>
+      </div>
+      </section>
+
+      {/* Çfarë do mësojmë */}
+      <section className="relative overflow-hidden" style={{ minHeight: 420 }}>
+        {/* Background image */}
+        <img
+          src="/img/TONI1042.JPG"
+          alt="Retreat seminar"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "center top" }}
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(12,9,38,0.72) 0%, rgba(12,9,38,0.45) 50%, rgba(12,9,38,0.10) 100%)" }} />
+        {/* Content */}
+        <div className="relative max-w-5xl mx-auto px-6 py-16 flex items-center w-full" style={{ minHeight: 420 }}>
+          <div className="text-left">
+            <h2 className="font-bold leading-tight text-white mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)" }}>
+              {lang === "al" ? (
+                <>Çfarë do <span style={{ color: "#8B5CF6" }}>mësojmë?</span></>
+              ) : (
+                <>What will we <span style={{ color: "#8B5CF6" }}>learn?</span></>
+              )}
+            </h2>
+            <p className="text-white/50 uppercase tracking-widest font-semibold" style={{ fontSize: 11 }}>
+              {t("Një udhëtim transformues ne 5 dimensione", "A transformative journey in 5 dimensions")}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Çfarë do mësojmë — lista */}
+      <section className="max-w-5xl mx-auto px-6 py-12 md:py-16">
+        <div className="divide-y divide-zinc-100">
+          {[
+            {
+              title: lang === "al" ? "Përfshirje e thellë në meditim" : "Deep immersion in meditation",
+              body: lang === "al" ? (
+                <p>Si të përfshihemi 100% në <strong>meditim</strong>, të gjejmë çastin e <strong>tanishëm</strong> ku ndodh ndryshimi dhe të arrijmë <strong>harmonizim zemër-tru</strong> me metoda shkencore. Ambienti, muzika, zëri dhe komuniteti e bëjnë që një orë të të duket si <strong>10 min</strong>.</p>
+              ) : (
+                <p>How to be 100% immersed in <strong>meditation</strong>, to find the <strong>present moment</strong> where change happens and achieve <strong>heart-brain harmony</strong> through scientific methods. The environment, music, sound and community make one hour feel like <strong>10 min</strong>.</p>
+              ),
+            },
+            {
+              title: lang === "al" ? "Ligjet e realitetit sipas fizikës kuantike" : "Laws of reality according to quantum physics",
+              body: lang === "al" ? (
+                <p>Si funksionon çdo gjë. Me këto çelësa në dorë, ne do mund të <strong>hapim çdo derë</strong>.</p>
+              ) : (
+                <p>How everything works. With these keys in hand, we will be able to <strong>open every door</strong>.</p>
+              ),
+            },
+            {
+              title: lang === "al" ? "Zgjidhja e problemeve & manifestimi" : "Problem solving & manifestation",
+              body: lang === "al" ? (
+                <p>Si të <strong>zgjidhim problemet</strong> dhe si të <strong>manifestojmë</strong> jetën që <strong>duam</strong>.</p>
+              ) : (
+                <p>How to <strong>solve problems</strong> and how to <strong>manifest</strong> the life we <strong>want</strong>.</p>
+              ),
+            },
+            {
+              title: lang === "al" ? "Shërimi me meditim" : "Healing through meditation",
+              body: lang === "al" ? (
+                <p>Si të <strong>shërojmë</strong> veten ose dikë tjetër me <strong>meditim</strong>.</p>
+              ) : (
+                <p>How to <strong>heal</strong> yourself or someone else through <strong>meditation</strong>.</p>
+              ),
+            },
+            {
+              title: lang === "al" ? "Hapja e zemrës & ndjenja e plotësisë" : "Opening the heart & feeling of wholeness",
+              body: lang === "al" ? (
+                <p>Si të arrijmë hapjen e zemrës dhe ndjenjën e <strong>plotësisë</strong> të pavarur nga mjedisi i jashtëm.</p>
+              ) : (
+                <p>How to achieve heart opening and the feeling of <strong>wholeness</strong> independent of the external environment.</p>
+              ),
+            },
+          ].map((item, i) => (
+            <div key={i} className="py-8 [&_strong]:text-violet-600 [&_p]:text-zinc-600" style={{ fontSize: 16, lineHeight: 1.7 }}>
+              <h3 className="font-bold mb-2 text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.1rem, 2.5vw, 1.45rem)" }}>
+                {item.title}
+              </h3>
+              {item.body}
             </div>
           ))}
         </div>
@@ -232,7 +349,7 @@ export const RetreatPage = () => {
         <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-4 text-center">
           {t("Hotel Resort 5★ — Bregdeti Shqiptar", "5★ Resort Hotel — Albanian Riviera")}
         </h2>
-        <p className="text-sm leading-relaxed text-zinc-700 md:text-base text-center max-w-2xl mx-auto mb-12">
+        <p className="text-sm leading-relaxed text-zinc-700 md:text-base text-center max-w-5xl mx-auto mb-12">
           {t(
             "Çmimet e hotelit janë të negociuara posaçërisht me hotelin në mënyrë që të merrni një ofertë më të ulët se zakonisht për sezonin kur zhvillohet aktiviteti.",
             "Hotel prices are specially negotiated to give you a lower rate than usual for the season when the event takes place."
@@ -364,7 +481,7 @@ export const RetreatPage = () => {
 
       {/* Pricing */}
       <section id="cmimi" className="py-20 px-6" style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-3 border" style={{ backgroundColor: "#EDE9FD", color: "#9D8FEF", borderColor: "#C4B5FD" }}>
             {t("Çmimi", "Pricing")}
           </span>
@@ -424,7 +541,7 @@ export const RetreatPage = () => {
       </section>
 
       {/* FAQ */}
-      <section className="max-w-3xl mx-auto px-6 py-16">
+      <section className="max-w-5xl mx-auto px-6 py-16">
         <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-3 border" style={{ backgroundColor: "#EDE9FD", color: "#9D8FEF", borderColor: "#C4B5FD" }}>FAQ</span>
         <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-10 text-center">
           {t("Pyetje të shpeshta", "Frequently asked questions")}
@@ -451,7 +568,7 @@ export const RetreatPage = () => {
 
       {/* Testimonial — Përshtypje nga eventi */}
       <section className="border-y border-zinc-100 py-20 px-6" style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-3 border" style={{ backgroundColor: "#EDE9FD", color: "#9D8FEF", borderColor: "#C4B5FD" }}>
             {t("Përshtypje nga eventi", "Event Impressions")}
           </span>
@@ -529,7 +646,7 @@ export const RetreatPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="max-w-2xl mx-auto px-6 py-16 text-center">
+      <section className="max-w-5xl mx-auto px-6 py-16 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-4">{t("Gati të rezervosh?", "Ready to book?")}</h2>
         <p className="text-sm leading-relaxed text-zinc-700 md:text-base mb-8">
           {t(

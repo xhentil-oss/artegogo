@@ -211,7 +211,7 @@ export const MisioniPage = () => {
             </div>
 
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-10 leading-snug"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#3b0764" }}>
+              style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#18181b" }}>
               {t("Pjesëmarrësit e trajnimeve tanë përjetojnë:", "Participants of our trainings experience:")}
             </h2>
 
