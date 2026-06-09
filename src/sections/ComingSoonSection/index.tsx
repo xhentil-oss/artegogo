@@ -63,14 +63,14 @@ export const ComingSoonSection = () => {
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
             {t("Do të vijne", "Coming")} <span style={{ color: "#4e29c5" }}>{t("së shpejti", "soon")}</span>
           </h2>
-          <p className="text-xs md:text-base"
-            style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
+          <p className="md:text-base"
+            style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
             {t("Meditime të reja për çdo aspekt të jetës tënde.", "New meditations for every aspect of your life.")}
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-4 gap-2 md:gap-4 mb-3 md:mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mb-3 md:mb-12">
           {CARDS.map((card, i) => (
             <div key={i}
               style={{
@@ -98,8 +98,8 @@ export const ComingSoonSection = () => {
                   style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)" }}>
                   <card.Icon className="w-3 h-3 md:w-4 md:h-4 text-white" strokeWidth={1.5} />
                 </div>
-                <p className="text-white font-semibold text-xs md:text-base leading-tight mb-1 md:mb-2"
-                  style={{ fontFamily: "'Inter', sans-serif" }}>
+                <p className="text-white font-semibold md:text-base leading-tight mb-1 md:mb-2"
+                  style={{ fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
                   {lang === "al" ? card.titleAl : card.titleEn}
                 </p>
                 <span className="inline-block px-1.5 py-0.5 rounded-full text-white text-[6px] md:text-xs font-bold tracking-widest uppercase"
@@ -113,16 +113,16 @@ export const ComingSoonSection = () => {
         </div>
 
         {/* Features row */}
-        <div className="grid grid-cols-4 gap-2 md:gap-6 pt-4 md:pt-8 border-t border-zinc-100">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-6 pt-4 md:pt-8 border-t border-zinc-100">
           {FEATURES.map((f, i) => (
             <div key={i} className="flex flex-col items-center text-center gap-1 md:gap-2">
               <f.Icon className="w-5 h-5 md:w-9 md:h-9" style={{ color: "#4e29c5" }} strokeWidth={1.5} />
-              <p className="text-xs md:text-base font-semibold"
+              <p className="md:text-base font-semibold"
                 style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                 {lang === "al" ? f.titleAl : f.titleEn}
               </p>
-              <p className="text-xs md:text-base"
-                style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
+              <p className="md:text-base"
+                style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
                 {lang === "al" ? f.descAl : f.descEn}
               </p>
             </div>

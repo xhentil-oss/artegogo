@@ -112,7 +112,7 @@ export const WhatWeOfferStrip = () => {
 
             {/* Text */}
             <p
-              className="leading-snug text-xs md:text-base"
+              className="leading-snug text-16 md:text-base"
               style={{ fontWeight: 400, color: "#52525b", fontFamily: "'Inter', sans-serif" }}
             >
               {lang === "al" ? item.al : item.en}

@@ -75,7 +75,7 @@ export const TrajnimOnlineSection = () => {
         {/* ── Title ── */}
         <div className="text-center mb-3 md:mb-8">
           <h2 className="trajnim-title font-black leading-none mb-3"
-            style={{ color: "#5b21b6", fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "-0.02em" }}>
+            style={{ color: "#5b21b6", fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "-0.02em", fontSize: 30 }}>
             {t("TRAJNIM", "ONLINE")}<br />
             <span style={{ color: "#4e29c5" }}>{t("ONLINE", "TRAINING")}</span>
           </h2>
@@ -103,10 +103,10 @@ export const TrajnimOnlineSection = () => {
                   {p.Icon ? <p.Icon className="w-8 h-8" color="#4e29c5" strokeWidth={1.5} /> : <LungsIcon />}
                 </div>
               </div>
-              <p className="text-xs md:text-base font-bold leading-tight"
-                style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
+              <div className="md:text-base font-bold leading-tight text-center"
+                style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontSize: 11 }}>
                 {lang === "al" ? p.titleAl : p.titleEn}
-              </p>
+              </div>
             </div>
           ))}
         </div>

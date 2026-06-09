@@ -331,8 +331,8 @@ export const RetreatPage = () => {
               ),
             },
           ].map((item, i) => (
-            <div key={i} className="py-8 [&_strong]:text-violet-600 [&_p]:text-zinc-600" style={{ fontSize: 16, lineHeight: 1.7 }}>
-              <h3 className="font-bold mb-2 text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.1rem, 2.5vw, 1.45rem)" }}>
+            <div key={i} className="py-4 [&_strong]:text-violet-600 [&_p]:text-zinc-600" style={{ fontSize: 16, lineHeight: 1.7 }}>
+              <h3 className="font-bold mb-2 text-zinc-900" style={{ fontSize: 16, lineHeight: 1.7 }}>
                 {item.title}
               </h3>
               {item.body}

@@ -227,16 +227,16 @@ export const HeroSection = () => {
                   <>
                   <div className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 rounded-full px-2.5 py-1 mb-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-violet-300 animate-pulse inline-block" />
-                    <span className="text-white/90 text-xs font-semibold tracking-widest uppercase" style={{ letterSpacing: "0.15em" }}>
+                    <span className="badge text-white/90 font-semibold tracking-widest uppercase" style={{ letterSpacing: "0.15em", fontSize: 8 }}>
                       {ri === 0 && t("Harmonizim Kuantik", "Quantum Harmonization")}
                       {ri === 1 && t("Retreat Intensive", "Retreat Intensive")}
                       {ri === 2 && t("Trajnime Online", "Online Training")}
                     </span>
                   </div>
                   <h1 className="leading-tight mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, lineHeight: 1.12 }}>
-                    {ri === 0 && (<><span className="block text-2xl text-white mb-1">{t("Rikthehu në frekuencën tënde", "Return to your true")}</span><span className="block text-2xl text-white italic">{t("të vërtetë.", "frequency.")}</span></>)}
-                    {ri === 1 && (<><span className="block text-2xl text-white mb-1">{t("Zbulo thellësinë e", "Discover the depth of")}</span><span className="block text-2xl text-white italic">{t("vetë-njohjes tënde.", "your self-knowledge.")}</span></>)}
-                    {ri === 2 && (<><span className="block text-2xl text-white mb-1">{t("Mëso kudo,", "Learn anywhere,")}</span><span className="block text-2xl text-white italic">{t("transformohu gjithmonë.", "transform always.")}</span></>)}
+                    {ri === 0 && (<><span className="block text-4xl text-white mb-1">{t("Rikthehu në frekuencën tënde", "Return to your true")}</span><span className="block text-4xl text-white italic">{t("të vërtetë.", "frequency.")}</span></>)}
+                    {ri === 1 && (<><span className="block text-4xl text-white mb-1">{t("Zbulo thellësinë e", "Discover the depth of")}</span><span className="block text-4xl text-white italic">{t("vetë-njohjes tënde.", "your self-knowledge.")}</span></>)}
+                    {ri === 2 && (<><span className="block text-4xl text-white mb-1">{t("Mëso kudo,", "Learn anywhere,")}</span><span className="block text-4xl text-white italic">{t("transformohu gjithmonë.", "transform always.")}</span></>)}
                   </h1>
                   <p className="text-sm text-white/80 mb-2 leading-relaxed line-clamp-2" style={{ fontWeight: 400 }}>
                     {ri === 0 && (<>{t("Kur", "When")} <HL>{t("zemra", "heart")}</HL>, <HL>{t("truri", "mind")}</HL> {t("dhe", "and")} <HL>{t("trupi", "body")}</HL> {t("harmonizohen... fillon", "align... begins the")} <HL>{t("transformimi", "transformation")}</HL>.</>)}
@@ -315,13 +315,13 @@ export const HeroSection = () => {
                   <div style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(14px)", transition: "opacity 0.6s ease, transform 0.6s ease", maxWidth: "52%" }}>
                     <div className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 rounded-full px-5 py-2 mb-8">
                       <span className="w-2 h-2 rounded-full bg-violet-300 animate-pulse inline-block" />
-                      <span className="text-white/90 text-sm font-semibold tracking-widest uppercase" style={{ letterSpacing: "0.15em" }}>
+                      <span className="text-white/90 font-semibold tracking-widest uppercase" style={{ letterSpacing: "0.15em", fontSize: 16 }}>
                         {ri === 0 && t("Harmonizim Kuantik", "Quantum Harmonization")}
                         {ri === 1 && t("Retreat Intensive", "Retreat Intensive")}
                         {ri === 2 && t("Trajnime Online", "Online Training")}
                       </span>
                     </div>
-                    <h1 className="leading-tight mb-5" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, lineHeight: 1.12 }}>
+                    <h1 className="hero-title-lg leading-tight mb-5" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, lineHeight: 1.12 }}>
                       {ri === 0 && (<><span className="block text-5xl lg:text-[4rem] text-white mb-1">{t("Rikthehu në frekuencën tënde", "Return to your true")}</span><span className="block text-5xl lg:text-[4rem] text-white italic">{t("të vërtetë.", "frequency.")}</span></>)}
                       {ri === 1 && (<><span className="block text-5xl lg:text-[4rem] text-white mb-1">{t("Zbulo thellësinë e", "Discover the depth of")}</span><span className="block text-5xl lg:text-[4rem] text-white italic">{t("vetë-njohjes tënde.", "your self-knowledge.")}</span></>)}
                       {ri === 2 && (<><span className="block text-5xl lg:text-[4rem] text-white mb-1">{t("Mëso kudo,", "Learn anywhere,")}</span><span className="block text-5xl lg:text-[4rem] text-white italic">{t("transformohu gjithmonë.", "transform always.")}</span></>)}

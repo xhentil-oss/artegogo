@@ -52,16 +52,17 @@ export const UniversityBanner = () => {
       >
         {/* Left — text */}
         <div className="flex-1 max-w-xl">
-          <p
-            className="text-[8px] md:text-xs font-bold uppercase tracking-widest mb-3"
+          <div
+            className="font-bold uppercase tracking-widest mb-3"
             style={{
               color: "#a78bfa",
               fontFamily: "'Inter', sans-serif",
               letterSpacing: "0.18em",
+              fontSize: 14,
             }}
           >
             {t("Shkëncë. Ndërgjegjë. Transformim.", "Science. Awareness. Transformation.")}
-          </p>
+          </div>
 
           <h2
             className="text-lg md:text-3xl lg:text-4xl font-bold text-white leading-tight mb-3"
@@ -74,8 +75,8 @@ export const UniversityBanner = () => {
           </h2>
 
           <p
-            className="text-xs md:text-base text-white/60"
-            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300 }}
+            className="text-white/60"
+            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 16 }}
           >
             {t("Hulumtim. Inovacion. Ndikim global.", "Research. Innovation. Global impact.")}
           </p>

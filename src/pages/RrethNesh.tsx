@@ -163,12 +163,12 @@ export const RrethNeshPage = () => {
                     <div className="scale-75 md:scale-100">{p.icon}</div>
                   </div>
                   <div className="flex items-center justify-center mb-1" style={{ minHeight: "3.2rem" }}>
-                    <p className="font-bold text-zinc-800 leading-snug text-center" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12 }}>
+                    <p className="pillar-card-text font-bold text-zinc-800 leading-snug text-center" style={{ fontFamily: "'Inter', sans-serif" }}>
                       {t(p.titleAl, p.titleEn)}
                     </p>
                   </div>
                   <div className="w-5 h-px mb-1" style={{ background: "#ddd6fe" }} />
-                  <p className="leading-relaxed text-zinc-500" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12 }}>
+                  <p className="pillar-card-text leading-relaxed text-zinc-500" style={{ fontFamily: "'Inter', sans-serif" }}>
                     {t(p.descAl, p.descEn)}
                   </p>
                 </div>
@@ -293,11 +293,11 @@ export const RrethNeshPage = () => {
                   <div className="w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-2" style={{ background: "#ede9fe" }}>
                     <div className="scale-75 md:scale-100">{item.icon}</div>
                   </div>
-                  <p className="font-bold mb-1 leading-snug" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "#7c3aed" }}>
+                  <p className="result-card-text font-bold mb-1 leading-snug" style={{ fontFamily: "'Inter', sans-serif", color: "#7c3aed" }}>
                     {t(item.titleAl, item.titleEn)}
                   </p>
                   <div className="w-6 h-px mb-1 mx-auto" style={{ background: "#ddd6fe" }} />
-                  <p className="leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "#3f3f46" }}>
+                  <p className="result-card-text leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", color: "#3f3f46" }}>
                     {t(item.descAl, item.descEn)}
                   </p>
                 </div>

@@ -27,7 +27,7 @@ export const RetreatVideoSection = () => {
   };
 
   return (
-    <section ref={ref} className="w-full bg-white pt-2 pb-4 md:py-16 overflow-hidden">
+    <section ref={ref} className="w-full bg-white pt-2 pb-8 md:py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-20 flex flex-row items-start md:items-center gap-4 md:gap-16">
 
         {/* ── Left — text ── */}
@@ -41,7 +41,7 @@ export const RetreatVideoSection = () => {
         >
           {/* Label */}
           <p
-            className="text-[8px] md:text-xs font-bold uppercase tracking-[0.15em] mb-2 md:mb-4 whitespace-nowrap overflow-hidden text-ellipsis"
+            className="section-badge font-bold uppercase tracking-[0.15em] mb-2 md:mb-4 whitespace-nowrap overflow-hidden text-ellipsis"
             style={{
               color: "#4e29c5",
               fontFamily: "'Inter', sans-serif",
@@ -66,7 +66,7 @@ export const RetreatVideoSection = () => {
 
           {/* Description */}
           <p
-            className="text-xs md:text-base text-zinc-500 leading-relaxed mb-3 md:mb-8 line-clamp-3 md:line-clamp-none"
+            className="text-16 md:text-base text-zinc-500 leading-relaxed mb-3 md:mb-8 line-clamp-3 md:line-clamp-none"
             style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400 }}
           >
             {t(
@@ -78,13 +78,14 @@ export const RetreatVideoSection = () => {
           {/* Button */}
           <button
             onClick={() => navigate("/eventet/retreat")}
-            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl text-xs md:text-lg transition-all duration-300 hover:scale-105 active:scale-100 whitespace-nowrap mt-4 md:mt-0"
+            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-100 whitespace-nowrap mt-4 md:mt-0"
             style={{
               backgroundColor: "#4e29c5",
               fontFamily: "'Inter', sans-serif",
+              fontSize: 16,
             }}
           >
-            {t("Shiko Retreat-et tona", "View our Retreats")}
+            {t("Shiko Retreat", "View Retreat")}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>

@@ -82,11 +82,11 @@ export function AboutSection() {
     <section ref={sectionRef} className="w-full bg-white overflow-hidden">
 
       {/* ── Hero split ── */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-6 md:py-14 min-h-0 md:min-h-[600px] flex items-stretch gap-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-6 md:py-14 min-h-0 md:min-h-[600px] flex flex-col md:flex-row items-stretch gap-6 md:gap-8">
 
         {/* Text — left */}
         <div
-          className="w-1/2 flex flex-col justify-center"
+          className="w-full md:w-1/2 flex flex-col justify-center"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(20px)',
@@ -96,8 +96,8 @@ export function AboutSection() {
           {/* Label */}
           <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5 mb-5"
             style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
-            <span className="text-[8px] md:text-xs font-bold tracking-widest uppercase"
-              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
+            <span className="badge font-bold tracking-widest uppercase"
+              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif", fontSize: 10 }}>
               {t('KUSH JEMI', 'WHO WE ARE')}
             </span>
           </div>
@@ -128,8 +128,8 @@ export function AboutSection() {
           {/* Description */}
           <p
             onClick={() => !expanded && setExpanded(true)}
-            className={`text-xs md:text-base text-zinc-500 leading-relaxed mb-3 md:mb-5 md:line-clamp-none md:cursor-auto ${expanded ? "" : "line-clamp-3 cursor-pointer"}`}
-            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400 }}
+            className={`md:text-base text-zinc-500 leading-relaxed mb-3 md:mb-5 md:line-clamp-none md:cursor-auto ${expanded ? "" : "line-clamp-3 cursor-pointer"}`}
+            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: 14 }}
           >
             {t(
               'Jemi Dr. Marvin Bundo dhe Dr. Artemisa Gogellari. Prej më shumë se një dekade, kemi udhëhequr mijëra njerëz nëpër retreat-e imersive, trajnime dhe përvoja transformuese që kombinojnë neuroshkencën, shërimin emocional dhe praktika të avancuara meditimi.',
@@ -140,8 +140,8 @@ export function AboutSection() {
           {/* Mission bold */}
           <p
             onClick={() => !expanded && setExpanded(true)}
-            className={`text-xs md:text-base text-zinc-800 leading-relaxed font-semibold md:line-clamp-none md:cursor-auto ${expanded ? "" : "line-clamp-3 cursor-pointer"}`}
-            style={{ fontFamily: "'Inter', sans-serif" }}
+            className={`md:text-base text-zinc-800 leading-relaxed font-semibold md:line-clamp-none md:cursor-auto ${expanded ? "" : "line-clamp-3 cursor-pointer"}`}
+            style={{ fontFamily: "'Inter', sans-serif", fontSize: 14 }}
           >
             {t(
               "Misioni ynë është t'ju ndihmojmë të rregulloni sistemin nervor, të riktheheni tek vetja dhe të krijoni një jetë qartësie, koherence dhe fuqie të brendshme.",
@@ -163,15 +163,15 @@ export function AboutSection() {
           {/* CTA button */}
           <Link
             to="/rreth-nesh"
-            className="self-start inline-flex items-center gap-2 mt-4 text-xs md:text-base font-semibold px-4 py-2 md:px-6 md:py-3 rounded-xl text-white transition-all duration-300 hover:scale-105"
-            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}
+            className="self-start inline-flex items-center gap-2 mt-4 md:text-base font-semibold px-4 py-2 md:px-6 md:py-3 rounded-xl text-white transition-all duration-300 hover:scale-105"
+            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif", fontSize: 14 }}
           >
             {t("Mëso më shumë", "Learn more")} →
           </Link>
         </div>
 
         {/* Photo — right */}
-        <div className="w-1/2 rounded-2xl overflow-hidden">
+        <div className="w-full md:w-1/2 rounded-2xl overflow-hidden" style={{ height: "240px", minHeight: "200px" }}>
           <img
             src="/img/photo-rrethnesh.png"
             alt="Dr. Marvin Bundo dhe Dr. Artemisa Gogellari"
@@ -190,7 +190,7 @@ export function AboutSection() {
           transition: 'opacity 0.6s ease 0.35s',
         }}
       >
-        <div className="max-w-7xl mx-auto px-2 md:px-12 lg:px-20 grid grid-cols-4 md:grid-cols-4">
+        <div className="max-w-7xl mx-auto px-2 md:px-12 lg:px-20 grid grid-cols-2 md:grid-cols-4">
           {STATS.map((stat, i) => (
             <div
               key={i}
@@ -209,10 +209,11 @@ export function AboutSection() {
 
               {/* Label */}
               <p
-                className="text-[10px] md:text-lg font-bold mb-1 md:mb-3 leading-snug"
+                className="md:text-lg font-bold mb-1 md:mb-3 leading-snug"
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   color: '#4e29c5',
+                  fontSize: 14,
                 }}
               >
                 {stat.value ? `${stat.value} ${lang === 'al' ? stat.label.al : stat.label.en}` : (lang === 'al' ? stat.label.al : stat.label.en)}
@@ -220,11 +221,12 @@ export function AboutSection() {
 
               {/* Description */}
               <p
-                className="text-[9px] md:text-base leading-relaxed"
+                className={`md:text-base leading-relaxed ${i === 0 ? "mt-6" : ""}`}
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 400,
                   color: '#52525b',
+                  fontSize: 14,
                 }}
               >
                 {lang === 'al' ? stat.desc.al : stat.desc.en}

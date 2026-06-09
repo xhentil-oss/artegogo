@@ -115,11 +115,11 @@ export const BlogSection = () => {
                 {/* Quote overlay right side */}
                 <div className="absolute bottom-4 right-4 left-1/3 text-right">
                   <p className="text-4xl font-serif leading-none mb-1" style={{ color: "#c4b5fd" }}>&ldquo;</p>
-                  <p className="text-white text-[9px] md:text-base leading-relaxed font-medium mb-2"
-                    style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <div className="text-white md:text-base leading-snug font-medium mb-2 line-clamp-3"
+                    style={{ fontFamily: "'Inter', sans-serif", fontSize: 9 }}>
                     {lang === "al" ? post.quoteAl : post.quoteEn}
-                  </p>
-                  <p className="text-white/60 text-[10px] md:text-base font-bold tracking-wider">— {post.author}</p>
+                  </div>
+                  <div className="text-white/60 md:text-base font-bold tracking-wider" style={{ fontSize: 9 }}>— {post.author}</div>
                 </div>
               </div>
 

@@ -39,7 +39,7 @@ export const SignaturePhilosophySection = () => {
         <div className="flex justify-center mb-3 md:mb-6">
           <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5"
             style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
-            <span className="text-[8px] md:text-xs font-bold tracking-widest uppercase"
+            <span className="badge text-[8px] md:text-xs font-bold tracking-widest uppercase"
               style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
               {t("FILOZOFIA JONË", "SIGNATURE PHILOSOPHY")}
             </span>
@@ -65,7 +65,7 @@ export const SignaturePhilosophySection = () => {
                 style={{ background: "#f5f3ff", border: "1.5px solid #ddd6fe" }}>
                 <item.Icon className="w-6 h-6 md:w-6 md:h-6" style={{ color: "#7c3aed" }} strokeWidth={1.5} />
               </div>
-              <span className="text-[9px] md:text-base font-medium text-zinc-700" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <span className="badge text-[9px] md:text-base font-medium text-zinc-700" style={{ fontFamily: "'Inter', sans-serif" }}>
                 {lang === "al" ? item.labelAl : item.labelEn}
               </span>
             </div>
@@ -73,7 +73,7 @@ export const SignaturePhilosophySection = () => {
         </div>
 
         {/* Flow pills */}
-        <div className="flex items-center justify-center flex-nowrap gap-1 md:gap-2 mb-4 md:mb-8"
+        <div className="flex items-center justify-center flex-wrap gap-1 md:gap-2 mb-4 md:mb-8"
           style={{ opacity: visible ? 1 : 0, transition: "opacity 0.6s ease 0.5s" }}>
           {FLOW.map((item, i) => (
             <div key={i} className="flex items-center gap-2">
@@ -82,7 +82,7 @@ export const SignaturePhilosophySection = () => {
                   ? { background: "linear-gradient(135deg, #5b21b6, #7c3aed)", color: "#fff" }
                   : { background: "#f5f3ff", border: "1px solid #ddd6fe", color: "#7c3aed" }}>
                 <item.Icon className="w-4.5 h-4.5 w-[18px] h-[18px]" strokeWidth={1.8} />
-                <span className="text-[9px] md:text-base font-semibold">
+                <span className="badge text-[9px] md:text-base font-semibold">
                   {lang === "al" ? item.labelAl : item.labelEn}
                 </span>
               </div>

@@ -36,12 +36,12 @@ export const CommunitySection = () => {
   return (
     <section ref={sectionRef} className="w-full bg-white pt-20 pb-6 md:pt-24 md:pb-12 overflow-hidden" style={{ position: "relative", zIndex: 0 }}>
       <div
-        className="max-w-6xl mx-auto px-6 flex flex-row items-start gap-6 md:gap-10"
+        className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-start gap-6 md:gap-10"
         style={{ opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}
       >
         {/* Left — text */}
-        <div className="flex-shrink-0 w-[42%] md:w-[40%] pr-3 md:pr-0">
-          <p className="text-[8px] md:text-xs font-bold tracking-[0.15em] uppercase mb-3" style={{ color: "#4e29c5" }}>
+        <div className="w-full md:flex-shrink-0 md:w-[40%] md:pr-0">
+          <p className="section-badge font-bold tracking-[0.15em] uppercase mb-3" style={{ color: "#4e29c5" }}>
             {t("BËHU PJESË E DIÇKAJE MË TË MADHE", "BE PART OF SOMETHING GREATER")}
           </p>
           <h2
@@ -53,7 +53,7 @@ export const CommunitySection = () => {
             {t("dhe", "and")}{" "}
             <span style={{ color: "#4e29c5", fontStyle: "italic" }}>{t("të frymëzon.", "inspires you.")}</span>
           </h2>
-          <p className="text-xs md:text-base leading-relaxed mb-5"
+          <p className="text-16 leading-relaxed mb-5"
             style={{ fontFamily: "'Inter', sans-serif", color: "#52525b" }}>
             {t(
               "Lidhu me njerëz që ndajnë të njëjtat vlera, rritet vetëdijën dhe krijoni jetën që doni.",
@@ -62,8 +62,8 @@ export const CommunitySection = () => {
           </p>
           <Link
             to="/signup"
-            className="inline-flex items-center gap-1.5 text-xs md:text-lg font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl text-white transition-all duration-300 hover:scale-105 whitespace-nowrap"
-            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}
+            className="inline-flex items-center gap-1.5 font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl text-white transition-all duration-300 hover:scale-105 whitespace-nowrap"
+            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif", fontSize: 14 }}
           >
             {t("Bëhu pjesë e komunitetit", "Join the community")} →
           </Link>

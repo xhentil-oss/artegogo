@@ -75,12 +75,12 @@ export const PhilosophySection = () => {
                 <p.Icon className="w-6 h-6" style={{ color: "#4e29c5" }} strokeWidth={1.5} />
               </div>
             </div>
-            <p className="text-[8px] md:text-xs font-bold tracking-widest leading-tight"
-              style={{ color: "#7C3AED" }}>
+            <p className="md:text-xs font-bold tracking-widest leading-tight"
+              style={{ color: "#7C3AED", fontSize: 14 }}>
               {lang === "al" ? p.labelAl : p.labelEn}
             </p>
-            <p className="text-xs md:text-base leading-relaxed"
-              style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
+            <p className="md:text-base leading-relaxed"
+              style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
               {lang === "al" ? p.descAl : p.descEn}
             </p>
           </div>

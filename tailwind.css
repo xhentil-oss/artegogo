@@ -127,7 +127,7 @@
 /* ── Mobile typography — all pages ── */
 @media (max-width: 767px) {
   p, li, span:not(.badge):not(.inline-block) {
-    font-size: 12px !important;
+    font-size: 14px !important;
     line-height: 1.6 !important;
   }
 }
@@ -227,6 +227,49 @@ p, li, span:not([style*="color"]) {
   }
 }
 
+/* ── Section badge labels — small uppercase ── */
+.section-badge {
+  font-size: 10px !important;
+  line-height: 1.4 !important;
+}
+@media (min-width: 768px) {
+  .section-badge {
+    font-size: 12px !important;
+  }
+}
+
+/* ── Pillar cards 14px — fixed on all screens ── */
+.pillar-card-text {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+/* ── Result cards 14px — fixed on all screens ── */
+.result-card-text {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+/* ── Text 16px desktop, 14px mobile ── */
+.text-16 {
+  font-size: 16px !important;
+}
+@media (max-width: 767px) {
+  .text-16 {
+    font-size: 14px !important;
+  }
+}
+
+/* ── All buttons 16px desktop, 14px mobile ── */
+button {
+  font-size: 16px !important;
+}
+@media (max-width: 767px) {
+  button {
+    font-size: 14px !important;
+  }
+}
+
 /* ── Button spans inherit parent color ── */
 button span {
   color: inherit !important;
@@ -286,8 +329,8 @@ h2 span:not(.badge):not(.inline-block) {
 }
 
 @media (max-width: 767px) {
-  .stats-bar .stat-value { font-size: 12px !important; line-height: 1.3 !important; }
-  .stats-bar .stat-label { font-size: 10px !important; line-height: 1.2 !important; }
+  .stats-bar .stat-value { font-size: 10px !important; line-height: 1.3 !important; }
+  .stats-bar .stat-label { font-size: 8px !important; line-height: 1.2 !important; }
 }
 
 @layer utilities {
