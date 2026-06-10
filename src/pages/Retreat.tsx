@@ -63,7 +63,7 @@ export const RetreatPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="retreat-page min-h-screen bg-white">
 
       {/* Hero */}
       <div className="relative overflow-hidden min-h-[280px] md:min-h-[520px] flex items-center justify-center">
@@ -84,7 +84,7 @@ export const RetreatPage = () => {
 
       {/* Intro text section */}
       <section className="max-w-5xl mx-auto px-6 py-10 md:py-16">
-        <div className="space-y-4 text-zinc-700 [&_strong]:text-violet-600" style={{ fontSize: 12, lineHeight: 1.8 }}>
+        <div className="space-y-4 text-zinc-700 [&_strong]:text-violet-600" style={{ lineHeight: 1.8 }}>
           {lang === "al" ? (
             <>
               <p>Retreati ynë është i veçantë pasi është i pari i këtij lloji në Shqipëri. Sjellim eksperiencën <strong>ndërkombëtare</strong> në një <strong>event 8 ditor</strong> i cili do mbahet në <strong>bregetin Shqiptar</strong>.</p>
@@ -128,7 +128,7 @@ export const RetreatPage = () => {
             className="w-full h-full object-cover absolute inset-0"
             style={{ minHeight: 220 }}
           />
-          <div className="absolute inset-0" style={{ background: "rgba(20,5,50,0.58)" }} />
+          <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.45)" }} />
           <div className="relative p-6 flex flex-col justify-end" style={{ minHeight: 220 }}>
             <h3 className="font-bold text-white" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1rem, 2.5vw, 1.5rem)", lineHeight: 1.35 }}>
               {lang === "al" ? (
@@ -150,7 +150,7 @@ export const RetreatPage = () => {
             "/img/TONI2743.JPG",
             "/img/TONI2719.JPG",
           ].map((src, i) => (
-            <div key={i} className="rounded-xl overflow-hidden" style={{ height: 110 }}>
+            <div key={i} className="rounded-xl overflow-hidden" style={{ height: 180 }}>
               <img src={src} alt="" className="w-full h-full object-cover" />
             </div>
           ))}
@@ -332,7 +332,7 @@ export const RetreatPage = () => {
             },
           ].map((item, i) => (
             <div key={i} className="py-4 [&_strong]:text-violet-600 [&_p]:text-zinc-600" style={{ fontSize: 16, lineHeight: 1.7 }}>
-              <h3 className="font-bold mb-2 text-zinc-900" style={{ fontSize: 16, lineHeight: 1.7 }}>
+              <h3 className="font-bold mb-2 text-zinc-900" style={{ fontSize: 16, lineHeight: 1.5 }}>
                 {item.title}
               </h3>
               {item.body}

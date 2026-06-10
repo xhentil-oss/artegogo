@@ -25,13 +25,13 @@ export const ShtyllatEPunesPage = () => {
   useEffect(() => { const timer = setTimeout(() => setHeroVisible(true), 80); return () => clearTimeout(timer); }, []);
 
   const PILLAR_IMAGES = [
-    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80",
-    "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?w=700&q=80",
-    "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=700&q=80",
-    "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=700&q=80",
-    "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=700&q=80",
-    "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&q=80",
-    "https://images.unsplash.com/photo-1602192509154-0b900ee1f851?w=700&q=80",
+    "/img/TONI0877.JPG",
+    "/img/TONI0886.JPG",
+    "/img/TONI0935.JPG",
+    "/img/TONI1042.JPG",
+    "/img/TONI1379.JPG",
+    "/img/TONI1503.JPG",
+    "/img/TONI1666.JPG",
   ];
 
   const pillars = [
@@ -122,7 +122,7 @@ export const ShtyllatEPunesPage = () => {
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776844664912-0.jpeg')" }} />
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.35)" }} />
-        <div className="relative w-full max-w-3xl mx-auto px-6 py-24 text-center"
+        <div className="relative w-full max-w-5xl mx-auto px-6 py-24 text-center"
           style={{ opacity: heroVisible ? 1 : 0, transform: heroVisible ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
           <h1 className="hero-title-lg font-bold text-white leading-tight"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
@@ -133,14 +133,13 @@ export const ShtyllatEPunesPage = () => {
       </section>
 
 
-      <section className="max-w-2xl mx-auto px-4 md:px-6 py-10 md:py-16 space-y-10 md:space-y-14">
+      <section className="max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-16 space-y-10 md:space-y-14">
         {pillars.map((pillar, i) => (
           <FadeIn key={pillar.number} delay={(i % 3) * 80}>
             <div className="rounded-3xl overflow-hidden shadow-sm border border-violet-100">
               {/* Image */}
               <div className="relative h-48 md:h-64 overflow-hidden">
-                <img src={PILLAR_IMAGES[i]} alt={pillar.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(91,33,182,0.25) 0%, rgba(91,33,182,0.65) 100%)" }} />
+                <img src={PILLAR_IMAGES[i]} alt={pillar.title} className="w-full h-full object-cover object-center" />
               </div>
 
               {/* Content */}
@@ -190,13 +189,13 @@ export const ShtyllatEPunesPage = () => {
       </section>
 
       {/* ── CTA final ── */}
-      <section className="max-w-2xl mx-auto px-4 md:px-6 pb-16 md:pb-24">
+      <section className="max-w-5xl mx-auto px-4 md:px-6 pb-16 md:pb-24">
         <FadeIn>
           <div className="rounded-3xl overflow-hidden shadow-sm border border-violet-100">
             {/* Image */}
             <div className="relative h-52 md:h-72 overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+                src="/img/TONI1692.JPG"
                 alt="CTA"
                 className="w-full h-full object-cover"
               />
@@ -217,7 +216,7 @@ export const ShtyllatEPunesPage = () => {
                 {t("Gati të ndryshosh jetën tënde nga brenda?", "Ready to change your life from within?")}
               </h2>
 
-              <p className="leading-relaxed text-zinc-500 mb-6" style={{ fontSize: 14 }}>
+              <p className="leading-relaxed text-zinc-500 mb-6">
                 {t(
                   "Rezervo vendin tënd në trajnimin e radhës dhe përjeto këto metoda të fuqishme në veprim.",
                   "Reserve your spot in the next training and experience these powerful methods in action."
@@ -225,29 +224,23 @@ export const ShtyllatEPunesPage = () => {
               </p>
 
               {/* Buttons */}
-              <div className="space-y-3">
+              <div className="flex flex-col items-center gap-3 w-full max-w-xs mx-auto">
                 <Link to="/signup"
-                  className="flex items-center justify-between px-5 py-3.5 rounded-2xl text-white font-semibold w-full"
-                  style={{ background: "linear-gradient(135deg, #6d28d9 0%, #4e29c5 100%)", fontSize: 12 }}>
-                  <div className="flex items-center gap-3">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-                    </svg>
-                    {t("Rezervo vendin tënd", "Reserve your spot")}
-                  </div>
-                  <span>›</span>
+                  className="flex items-center justify-center gap-3 px-8 py-3.5 rounded-2xl text-white font-semibold w-full"
+                  style={{ background: "linear-gradient(135deg, #6d28d9 0%, #4e29c5 100%)" }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                  </svg>
+                  {t("Rezervo vendin tënd", "Reserve your spot")}
                 </Link>
 
-                <Link to="/misioni"
-                  className="flex items-center justify-between px-5 py-3.5 rounded-2xl font-semibold w-full border"
-                  style={{ borderColor: "#ddd6fe", color: "#6d28d9", fontSize: 12, background: "#faf7ff" }}>
-                  <div className="flex items-center gap-3">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-                    </svg>
-                    {t("Mëso më shumë", "Learn more")}
-                  </div>
-                  <span>›</span>
+                <Link to="/eventet/retreat"
+                  className="flex items-center justify-center gap-3 px-8 py-3.5 rounded-2xl font-semibold border w-full"
+                  style={{ borderColor: "#ddd6fe", color: "#6d28d9", background: "#faf7ff" }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                  {t("Mëso më shumë", "Learn more")}
                 </Link>
               </div>
             </div>

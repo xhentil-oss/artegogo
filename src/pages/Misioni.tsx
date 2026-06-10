@@ -45,7 +45,7 @@ export const MisioniPage = () => {
 
       {/* ── Mission pillars ── */}
       <section style={{ background: "linear-gradient(180deg, #faf7ff 0%, #ffffff 100%)" }}>
-        <div className="max-w-5xl mx-auto px-6 md:px-12 py-6 md:py-24">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 py-2 md:py-12">
           <FadeIn>
             <div className="flex flex-col md:flex-row md:gap-0 md:divide-x md:divide-violet-100">
 
@@ -103,7 +103,7 @@ export const MisioniPage = () => {
 
       {/* ── Metodologjia ── */}
       <section style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-5xl mx-auto px-6 md:px-12 pt-6 pb-8 md:py-24">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 pt-2 pb-2 md:py-12">
           <FadeIn>
             <div className="grid md:grid-cols-2 gap-3 md:gap-16 items-center">
 
@@ -147,7 +147,7 @@ export const MisioniPage = () => {
 
       {/* ── 4 pillars ── */}
       <section className="bg-white">
-        <div className="max-w-5xl mx-auto px-6 md:px-12 py-10 md:py-20">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 py-2 md:py-10">
           <FadeIn>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 items-stretch">
               {[
@@ -200,7 +200,7 @@ export const MisioniPage = () => {
 
       {/* ── Pjesëmarrësit përjetojnë ── */}
       <section style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-3xl mx-auto px-6 md:px-12 py-6 md:py-20">
+        <div className="max-w-3xl mx-auto px-6 md:px-12 py-2 md:py-10">
           <FadeIn>
             {/* Lotus top */}
             <div className="flex justify-center mb-3 md:mb-6">
@@ -251,7 +251,7 @@ export const MisioniPage = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0" style={{ background: "rgba(30,10,60,0.68)" }} />
-        <div className="relative z-10 max-w-2xl mx-auto px-6 md:px-12 py-16 md:py-28 text-center">
+        <div className="relative z-10 max-w-2xl mx-auto px-6 md:px-12 py-8 md:py-14 text-center">
           <FadeIn>
             <p className="mb-2" style={{ fontSize: 16, color: "rgba(255,255,255,0.85)", fontFamily: "'Inter', sans-serif", lineHeight: 1.8 }}>
               {t("Qëllimi ynë nuk është vetëm t'ju ndihmojmë të ndiheni më mirë… por t'ju ndihmojmë të transformoheni në mënyrë të qëndrueshme.", "Our goal is not just to help you feel better… but to help you transform in a lasting way.")}

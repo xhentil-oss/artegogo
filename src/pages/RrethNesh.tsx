@@ -114,7 +114,7 @@ export const RrethNeshPage = () => {
         <div className="absolute inset-0 bg-cover bg-no-repeat"
           style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776841953356-0.jpeg')", backgroundPosition: "center 30%" }} />
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.38)" }} />
-        <div className="relative w-full max-w-3xl mx-auto px-6 py-24 text-center"
+        <div className="relative w-full max-w-5xl mx-auto px-6 py-24 text-center"
           style={{ opacity: heroVisible ? 1 : 0, transform: heroVisible ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
           <h1 className="hero-title-lg font-bold text-white"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
@@ -126,9 +126,9 @@ export const RrethNeshPage = () => {
 
       {/* ── Kush jemi ne ── */}
       <section style={{ background: "linear-gradient(180deg, #faf7ff 0%, #ffffff 100%)" }}>
-        <div className="max-w-3xl mx-auto px-6 md:px-12 py-8 md:py-24">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 py-4 md:py-12">
           <FadeIn>
-            <h2 className="text-2xl md:text-5xl font-bold text-zinc-900 mb-6 leading-tight"
+            <h2 className="hero-title-lg font-bold text-zinc-900 mb-6 leading-tight"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
               {t("Kush jemi ne", "Who we are")}
             </h2>
@@ -181,7 +181,7 @@ export const RrethNeshPage = () => {
 
       {/* ── Çfarë bëjmë ── */}
       <section style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-3xl mx-auto px-6 md:px-12 py-8 md:py-24">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 py-4 md:py-12">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4 leading-tight"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
@@ -192,7 +192,7 @@ export const RrethNeshPage = () => {
             </p>
 
             {/* Checklist */}
-            <ul className="flex flex-col gap-2 md:gap-4 mb-4 md:mb-10">
+            <ul className="flex flex-col gap-1 md:gap-2 mb-4 md:mb-10">
               {[
                 t("Shërojnë emocionet e bllokuara dhe traumat e së shkuarës", "Heal blocked emotions and past traumas"),
                 t("Aktivizoni energjinë dhe potencialin tuaj të plotë", "Activate your full energy and potential"),
@@ -239,7 +239,7 @@ export const RrethNeshPage = () => {
 
       {/* ── Çfarë na bën ndryshe ── */}
       <section className="bg-white">
-        <div className="max-w-3xl mx-auto px-6 md:px-12 py-8 md:py-24">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 py-4 md:py-12">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4 leading-tight"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
@@ -296,7 +296,7 @@ export const RrethNeshPage = () => {
                   <p className="result-card-text font-bold mb-1 leading-snug" style={{ fontFamily: "'Inter', sans-serif", color: "#7c3aed" }}>
                     {t(item.titleAl, item.titleEn)}
                   </p>
-                  <div className="w-6 h-px mb-1 mx-auto" style={{ background: "#ddd6fe" }} />
+                  <div className={`w-6 h-px mb-1 mx-auto${i === 3 ? " result-4th-divider" : ""}`} style={{ background: "#ddd6fe", ...(i === 3 ? { marginTop: 28 } : {}) }} />
                   <p className="result-card-text leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", color: "#3f3f46" }}>
                     {t(item.descAl, item.descEn)}
                   </p>
@@ -309,7 +309,7 @@ export const RrethNeshPage = () => {
 
       {/* ── Eksperienca & Kërkimi ── */}
       <section style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-3xl mx-auto px-6 md:px-12 py-8 md:py-24">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 py-4 md:py-12">
           <FadeIn>
             {/* Top: text left + image right */}
             <div className="grid grid-cols-2 gap-3 md:gap-10 items-stretch mb-4 md:mb-10">
@@ -374,7 +374,7 @@ export const RrethNeshPage = () => {
 
       {/* ── Fushat e kërkimit ── */}
       <section className="bg-white">
-        <div className="max-w-3xl mx-auto px-6 md:px-12 py-8 md:py-24">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 py-4 md:py-12">
           <FadeIn>
             <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-10 text-center"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
@@ -413,7 +413,7 @@ export const RrethNeshPage = () => {
                   <p className="font-bold mb-1 leading-snug flex items-center justify-center" style={{ fontFamily: "'Inter', sans-serif", color: "#7c3aed", fontSize: 12, minHeight: "3.5rem" }}>
                     {t(item.titleAl, item.titleEn)}
                   </p>
-                  <div className="w-5 h-px mb-1" style={{ background: "#ddd6fe" }} />
+                  <div className={`w-5 h-px mb-1${i === 1 ? " research-mid-divider" : ""}`} style={{ background: "#ddd6fe", ...(i === 2 ? { marginTop: 26 } : {}) }} />
                   <p className="leading-relaxed text-zinc-500" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12 }}>
                     {t(item.descAl, item.descEn)}
                   </p>
@@ -431,7 +431,7 @@ export const RrethNeshPage = () => {
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0" style={{ background: "rgba(30,20,60,0.72)" }} />
-          <div className="relative z-10 max-w-3xl mx-auto px-6 md:px-12 py-6 md:py-16 text-center">
+          <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 py-6 md:py-16 text-center">
             <p className="text-4xl font-serif mb-4" style={{ color: "#a78bfa" }}>&ldquo;</p>
             <p className="text-base md:text-lg leading-relaxed text-white font-light" style={{ fontFamily: "'Inter', sans-serif" }}>
               {t(
@@ -445,7 +445,7 @@ export const RrethNeshPage = () => {
 
       {/* ── Metoda jonë + CTA final ── */}
       <section style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-5xl mx-auto px-6 md:px-12 py-8 md:py-24">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 py-4 md:py-12">
           <FadeIn>
             {/* Main card: list left + photo right */}
             <div className="rounded-3xl overflow-hidden mb-6"
@@ -459,7 +459,7 @@ export const RrethNeshPage = () => {
                   </h2>
                   <div className="w-6 h-0.5 mb-4" style={{ background: "#7c3aed" }} />
                   <p className="text-base text-zinc-600 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
-                    {t("Metoda jonë ndërthet:", "Our method includes:")}
+                    {t("Metoda jonë ndërthur:", "Our method includes:")}
                   </p>
                   <ul className="flex flex-col gap-3">
                     {[
@@ -470,7 +470,7 @@ export const RrethNeshPage = () => {
                       { svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>, text: t("Aktivizimin dhe lirimin e fashave", "Activation and release of fascia") },
                     ].map((item, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                        <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
                           style={{ background: "rgba(255,255,255,0.6)" }}>
                           {item.svg}
                         </div>
