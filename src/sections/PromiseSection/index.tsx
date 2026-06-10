@@ -161,7 +161,7 @@ export const PromiseSection = () => {
 
         {/* ── Right — images collage ── */}
         <div
-          className="flex-1 flex gap-1.5 md:gap-3 h-[180px] md:h-[340px] mt-6 md:mt-0"
+          className="flex-1 flex flex-col md:flex-row gap-1.5 md:gap-3 md:h-[340px] mt-6 md:mt-0"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? "translateX(0)" : "translateX(30px)",
@@ -169,7 +169,7 @@ export const PromiseSection = () => {
           }}
         >
           {/* Tall center image */}
-          <div className="flex-shrink-0 w-[45%] rounded-xl md:rounded-2xl overflow-hidden h-full">
+          <div className="w-full h-[140px] md:w-[45%] md:h-full flex-shrink-0 rounded-xl md:rounded-2xl overflow-hidden">
             <img
               src={IMAGES[0].src}
               alt={IMAGES[0].alt}
@@ -178,7 +178,7 @@ export const PromiseSection = () => {
           </div>
 
           {/* 2×2 grid */}
-          <div className="flex-1 grid grid-cols-2 gap-1.5 md:gap-3 h-full">
+          <div className="grid grid-cols-2 gap-1.5 md:gap-3 md:flex-1 md:h-full promise-grid">
             {IMAGES.slice(1).map((img, i) => (
               <div key={i} className="rounded-xl md:rounded-2xl overflow-hidden">
                 <img

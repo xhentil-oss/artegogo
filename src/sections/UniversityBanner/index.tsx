@@ -73,20 +73,20 @@ export const UniversityBanner = () => {
         {/* Right — University of Bern logo badge */}
         <div className="flex-shrink-0">
           <div
-            className="w-24 h-24 rounded-full flex flex-col items-center justify-center"
+            className="w-16 h-16 rounded-full flex flex-col items-center justify-center"
             style={{
               background: "rgba(255,255,255,0.95)",
               boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
             }}
           >
             <span
-              className="text-2xl font-black leading-none"
+              className="badge text-xs md:text-lg font-black leading-none"
               style={{ color: "#1a1a2e", fontFamily: "'Playfair Display', Georgia, serif" }}
             >
               u<sup style={{ fontSize: "0.6em", verticalAlign: "super" }}>b</sup>
             </span>
             <span
-              className="text-[7px] font-semibold uppercase tracking-wider text-center leading-tight mt-1 px-2"
+              className="badge text-[5px] md:text-[7px] font-semibold uppercase tracking-wider text-center leading-tight mt-0.5 md:mt-1 px-1 md:px-2"
               style={{ color: "#444", fontFamily: "'Playfair Display', Georgia, serif" }}
             >
               Universität<br />Bern

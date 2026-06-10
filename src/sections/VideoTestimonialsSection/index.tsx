@@ -16,7 +16,7 @@ const QUOTES = [
     quoteEn: "I slept peacefully for the first time in many years. It was magical.",
     nameAl: "Elira", nameEn: "Elira",
     locationAl: "Prishtinë, Kosovë", locationEn: "Pristina, Kosovo",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&q=80",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80",
   },
   {
     quoteAl: "Ndjeva trupin tim të rilindej me zemrën dhe frymën. Pa fjalë.",
@@ -62,7 +62,7 @@ export const VideoTestimonialsSection = () => {
   return (
     <section ref={ref} className="relative w-full overflow-hidden py-8 md:py-20 px-6"
       style={{
-        background: "#F9FAFB",
+        background: "#F4F4F5",
         opacity: visible ? 1 : 0,
         transition: "opacity 0.7s ease",
       }}>
@@ -124,7 +124,7 @@ export const VideoTestimonialsSection = () => {
               {/* Play button right-center */}
               <button
                 onClick={() => setVideoOpen(true)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 group">
+                className="absolute right-4 md:right-36 top-1/2 -translate-y-1/2 z-10 group">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-transform duration-300 group-hover:scale-110"
                   style={{ background: "rgba(78,41,197,0.9)" }}>
                   <Play className="w-6 h-6 ml-1 text-white" fill="white" />
@@ -137,17 +137,17 @@ export const VideoTestimonialsSection = () => {
                   style={{ fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
                   <span style={{ color: "#a78bfa" }}>&ldquo;</span>{t("Ndjeva zemrën time të hapej për herë të parë pas shumë vitesh.", "I felt my heart open for the first time in many years.")}
                 </p>
-                <p className="text-white/60 font-bold tracking-widest uppercase mb-2 md:mb-4" style={{ fontSize: 14 }}>
+                <p className="text-white/60 font-bold tracking-widest uppercase mb-2 md:mb-4 text-14-fixed" style={{ fontSize: 14 }}>
                   — {t("PJESËMARRËSE NE RETREAT", "RETREAT PARTICIPANT")}
                 </p>
-                <div className="flex items-center gap-2 md:gap-3 pt-2 md:pt-3 border-t border-white/20">
-                  <span className="text-white/70 text-[8px] md:text-xs flex items-center gap-1">
+                <div className="flex items-center gap-2 md:gap-3 pt-2 md:pt-3 border-t border-white/30">
+                  <span className="text-white text-[8px] md:text-xs flex items-center gap-1">
                     <Play className="w-2.5 h-2.5 md:w-3 md:h-3" fill="currentColor" /> 1:42
                   </span>
-                  <span className="text-white/40 text-[8px] md:text-xs">|</span>
-                  <span className="text-white/70 text-[8px] md:text-xs">{t("VIDEO", "VIDEO")}</span>
-                  <span className="text-white/40 text-[8px] md:text-xs">|</span>
-                  <span className="text-white/70 text-[8px] md:text-xs">{t("ZË + PAMJE", "AUDIO + VIDEO")}</span>
+                  <span className="text-white/60 text-[8px] md:text-xs">|</span>
+                  <span className="text-white text-[8px] md:text-xs">{t("VIDEO", "VIDEO")}</span>
+                  <span className="text-white/60 text-[8px] md:text-xs">|</span>
+                  <span className="text-white text-[8px] md:text-xs">{t("ZË + PAMJE", "AUDIO + VIDEO")}</span>
                 </div>
               </div>
             </>

@@ -41,7 +41,7 @@ export const RetreatVideoSection = () => {
         >
           {/* Label */}
           <p
-            className="section-badge font-bold uppercase tracking-[0.15em] mb-2 md:mb-4 whitespace-nowrap overflow-hidden text-ellipsis"
+            className="section-badge font-bold uppercase tracking-[0.15em] mb-2 md:mb-4"
             style={{
               color: "#4e29c5",
               fontFamily: "'Inter', sans-serif",

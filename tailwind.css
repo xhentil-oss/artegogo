@@ -276,6 +276,23 @@ p, li, span:not([style*="color"]) {
   }
 }
 
+/* ── Fixed 14px on all screens ── */
+.text-14-fixed {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+/* ── PromiseSection 2x2 grid rows ── */
+.promise-grid {
+  grid-auto-rows: 70px;
+}
+@media (min-width: 768px) {
+  .promise-grid {
+    grid-auto-rows: minmax(0, 1fr);
+    height: 100%;
+  }
+}
+
 /* ── All buttons 16px desktop, 14px mobile ── */
 button {
   font-size: 16px !important;

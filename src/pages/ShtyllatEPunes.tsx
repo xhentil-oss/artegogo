@@ -122,14 +122,7 @@ export const ShtyllatEPunesPage = () => {
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776844664912-0.jpeg')" }} />
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.35)" }} />
-        <div className="relative w-full max-w-5xl mx-auto px-6 py-24 text-center"
-          style={{ opacity: heroVisible ? 1 : 0, transform: heroVisible ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
-          <h1 className="hero-title-lg font-bold text-white leading-tight"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-            {t("Shtyllat e punës", "Pillars of our")}{" "}
-            <span style={{ color: "#C4B5FD", fontSize: "inherit" }}>{t("sonë", "work")}</span>
-          </h1>
-        </div>
+        <div className="relative w-full max-w-5xl mx-auto px-6 py-24 text-center" />
       </section>
 
 

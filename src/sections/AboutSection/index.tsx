@@ -79,7 +79,7 @@ export function AboutSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full bg-white overflow-hidden">
+    <section ref={sectionRef} className="w-full overflow-hidden" style={{ backgroundColor: "#F9FAFB" }}>
 
       {/* ── Hero split ── */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-6 md:py-14 min-h-0 md:min-h-[600px] flex flex-col md:flex-row items-stretch gap-6 md:gap-8">
@@ -171,7 +171,7 @@ export function AboutSection() {
         </div>
 
         {/* Photo — right */}
-        <div className="w-full md:w-1/2 rounded-2xl overflow-hidden" style={{ height: "240px", minHeight: "200px" }}>
+        <div className="w-full md:w-1/2 rounded-2xl overflow-hidden h-60 md:h-auto">
           <img
             src="/img/photo-rrethnesh.png"
             alt="Dr. Marvin Bundo dhe Dr. Artemisa Gogellari"
@@ -185,7 +185,7 @@ export function AboutSection() {
       <div
         className="w-full"
         style={{
-          background: '#ffffff',
+          background: '#F9FAFB',
           opacity: visible ? 1 : 0,
           transition: 'opacity 0.6s ease 0.35s',
         }}
