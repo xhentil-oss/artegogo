@@ -103,8 +103,8 @@ export const TrajnimOnlineSection = () => {
                   {p.Icon ? <p.Icon className="w-8 h-8" color="#4e29c5" strokeWidth={1.5} /> : <LungsIcon />}
                 </div>
               </div>
-              <div className="md:text-base font-bold leading-tight text-center"
-                style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontSize: 11 }}>
+              <div className="text-[11px] md:text-base font-bold leading-tight text-center"
+                style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                 {lang === "al" ? p.titleAl : p.titleEn}
               </div>
             </div>
@@ -189,7 +189,7 @@ export const TrajnimOnlineSection = () => {
             style={{ background: "#ede9fe" }}>
             <ShieldCheck className="w-4 h-4" style={{ color: "#7c3aed" }} />
           </div>
-          <p className="text-xs md:text-base leading-relaxed text-zinc-500">
+          <p className="text-16 leading-relaxed text-zinc-500">
             {t(
               "Çdo ditë do të marrësh ushtrime të reja, të ndara në një grup privat në Telegram, ku do të jesh në kontakt të vazhdueshëm me Dr. Artemisën dhe Dr. Marvinin personalisht.",
               "Every day you will receive new exercises, shared in a private Telegram group, staying in continuous contact with Dr. Artemisa and Dr. Marvin personally."

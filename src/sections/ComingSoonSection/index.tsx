@@ -102,7 +102,7 @@ export const ComingSoonSection = () => {
                   style={{ fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
                   {lang === "al" ? card.titleAl : card.titleEn}
                 </p>
-                <span className="inline-block px-1.5 py-0.5 rounded-full text-white text-[6px] md:text-xs font-bold tracking-widest uppercase"
+                <span className="inline-block px-2 py-1 rounded-full text-white text-[12px] md:text-xs font-bold tracking-widest uppercase"
                   style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.3)", fontFamily: "'Inter', sans-serif" }}>
                   {t("SË SHPEJTI", "COMING SOON")}
                 </span>

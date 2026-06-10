@@ -13,11 +13,11 @@ function FAQItem({ item, index, open, onToggle, visible }: {
         className="w-full text-center flex items-center justify-between gap-4 py-3 md:py-5 px-4 md:px-6 rounded-2xl group transition-all duration-300"
         style={{ background: open ? "rgba(157,143,239,0.08)" : "rgba(255,255,255,0.6)", boxShadow: open ? "0 4px 24px rgba(157,143,239,0.15)" : "0 1px 4px rgba(0,0,0,0.06)", border: open ? "1.5px solid rgba(157,143,239,0.4)" : "1.5px solid rgba(0,0,0,0.06)" }}>
         <div className="flex items-start gap-4">
-          <span className="mt-0.5 min-w-[28px] h-7 w-7 rounded-full flex items-center justify-center text-xs md:text-base font-bold transition-colors duration-300"
+          <span className="mt-0.5 min-w-[28px] h-7 w-7 rounded-full flex items-center justify-center text-xs md:text-16 font-bold transition-colors duration-300"
             style={{ background: open ? "#9D8FEF" : "rgba(157,143,239,0.12)", color: open ? "#fff" : "#9D8FEF" }}>
             {String(index + 1).padStart(2, "0")}
           </span>
-          <span className="text-xs md:text-base leading-relaxed font-normal transition-colors duration-300 text-zinc-800" style={{ fontFamily: "'Inter', sans-serif" }}>
+          <span className="text-16 leading-relaxed font-normal transition-colors duration-300 text-zinc-800" style={{ fontFamily: "'Inter', sans-serif" }}>
             {item.q}
           </span>
         </div>
@@ -27,19 +27,19 @@ function FAQItem({ item, index, open, onToggle, visible }: {
 
       <div className="overflow-hidden transition-all duration-500" style={{ maxHeight: open ? "600px" : "0px" }}>
         <div className="px-6 pt-3 pb-5 pl-[4.5rem]">
-          {item.a && <p className="text-xs md:text-base leading-relaxed" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>{item.a}</p>}
+          {item.a && <p className="text-16 leading-relaxed" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>{item.a}</p>}
           {item.list && (
             <div>
-              {item.listIntro && <p className="text-[9px] md:text-base leading-relaxed mb-2" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>{item.listIntro}</p>}
+              {item.listIntro && <p className="text-16 leading-relaxed mb-2" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>{item.listIntro}</p>}
               <ul className="space-y-1.5 mb-2">
                 {item.list.map((li, i) => (
-                  <li key={i} className="flex items-center gap-2 text-[9px] md:text-base leading-relaxed" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
+                  <li key={i} className="flex items-center gap-2 text-16 leading-relaxed" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                     <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#9D8FEF" }} />
                     {li}
                   </li>
                 ))}
               </ul>
-              {item.listOutro && <p className="text-[9px] md:text-base leading-relaxed mt-2" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>{item.listOutro}</p>}
+              {item.listOutro && <p className="text-16 leading-relaxed mt-2" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>{item.listOutro}</p>}
             </div>
           )}
         </div>
@@ -354,8 +354,8 @@ export const FAQSection = () => {
           style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)" }}>
           <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5 mb-4"
             style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
-            <span className="text-[8px] md:text-xs font-bold tracking-widest uppercase"
-              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
+            <span className="badge font-bold tracking-widest uppercase"
+              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif", fontSize: 10 }}>
               {t("PYETJE TË SHPESHTA", "FREQUENTLY ASKED QUESTIONS")}
             </span>
           </div>
@@ -365,7 +365,7 @@ export const FAQSection = () => {
               {t("të Dini", "to Know")}
             </span>
           </h2>
-          <p className="text-xs md:text-base leading-relaxed max-w-xl mx-auto" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
+          <p className="text-16 leading-relaxed max-w-xl mx-auto" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
             {t(
               "Gjithçka që dëshironi të dini për metodologjinë, programet dhe rezultatet tona.",
               "Everything you want to know about our methodology, programs and results."
@@ -378,7 +378,7 @@ export const FAQSection = () => {
           style={{ opacity: visible ? 1 : 0, transitionDelay: "150ms" }}>
           {categories.map((cat, i) => (
             <button key={i} onClick={() => { setActiveCategory(i); setOpenMap({}); }}
-              className="flex items-center gap-2 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full text-xs md:text-base leading-relaxed font-semibold transition-all duration-300"
+              className="flex items-center gap-2 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full text-xs md:text-16 leading-relaxed font-semibold transition-all duration-300"
               style={{
                 background: activeCategory === i ? "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)" : "rgba(255,255,255,0.8)",
                 color: activeCategory === i ? "#fff" : "#18181b",
@@ -407,7 +407,7 @@ export const FAQSection = () => {
         {/* Footer CTA */}
         <div className="mt-4 md:mt-12 text-center transition-all duration-700 delay-500"
           style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(16px)" }}>
-          <p className="text-xs md:text-base leading-relaxed" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
+          <p className="text-16 leading-relaxed" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
             {t("Nuk gjete përgjigjen?", "Didn't find the answer?")}{" "}
             <a href="/kontakt" className="font-semibold" style={{ color: "#9D8FEF" }}>
               {t("Dërgoni mesazh →", "Send a message →")}

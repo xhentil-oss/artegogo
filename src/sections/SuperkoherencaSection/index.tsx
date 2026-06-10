@@ -84,7 +84,7 @@ export const SuperkoherencaSection = () => {
                   style={{ background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.3)" }}>
                   <f.Icon className="w-3 h-3 md:w-3.5 md:h-3.5 text-white" strokeWidth={1.8} />
                 </div>
-                <span className="md:text-[16px] font-medium text-white" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
+                <span className="font-medium text-white text-sm md:text-base" style={{ fontFamily: "'Inter', sans-serif" }}>
                   {lang === "al" ? f.al : f.en}
                 </span>
               </li>

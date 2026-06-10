@@ -107,7 +107,7 @@ export const BlogSection = () => {
                 <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full px-3 py-1"
                   style={{ background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.3)" }}>
                   <post.Icon className="w-3 h-3 text-white" strokeWidth={2} />
-                  <span className="text-white text-[10px] font-bold tracking-widest uppercase">
+                  <span className="text-white text-[14px] md:text-[10px] font-bold tracking-widest uppercase">
                     {lang === "al" ? post.categoryAl : post.categoryEn}
                   </span>
                 </div>
@@ -115,11 +115,11 @@ export const BlogSection = () => {
                 {/* Quote overlay right side */}
                 <div className="absolute bottom-4 right-4 left-1/3 text-right">
                   <p className="text-4xl font-serif leading-none mb-1" style={{ color: "#c4b5fd" }}>&ldquo;</p>
-                  <div className="text-white md:text-base leading-snug font-medium mb-2 line-clamp-3"
-                    style={{ fontFamily: "'Inter', sans-serif", fontSize: 9 }}>
+                  <div className="text-white text-[9px] md:text-base leading-snug font-medium mb-2 line-clamp-3"
+                    style={{ fontFamily: "'Inter', sans-serif" }}>
                     {lang === "al" ? post.quoteAl : post.quoteEn}
                   </div>
-                  <div className="text-white/60 md:text-base font-bold tracking-wider" style={{ fontSize: 9 }}>— {post.author}</div>
+                  <div className="text-white/60 text-[9px] md:text-base font-bold tracking-wider">— {post.author}</div>
                 </div>
               </div>
 
@@ -130,13 +130,13 @@ export const BlogSection = () => {
                   <h3 className="font-bold text-zinc-900 text-lg mb-1 leading-snug">
                     {lang === "al" ? post.titleAl : post.titleEn}
                   </h3>
-                  <p className="text-xs md:text-base leading-relaxed mb-3"
+                  <p className="text-sm md:text-base leading-relaxed mb-3"
                     style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                     {lang === "al" ? post.descAl : post.descEn}
                   </p>
                   <button
                     onClick={() => navigate("/blog")}
-                    className="inline-flex items-center gap-1.5 text-xs md:text-base font-semibold transition-all duration-200 hover:gap-2.5"
+                    className="inline-flex items-center gap-1.5 text-16 font-semibold transition-all duration-200 hover:gap-2.5"
                     style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
                     {t("Lexo më shumë", "Read more")} <ArrowRight className="w-3.5 h-3.5" />
                   </button>

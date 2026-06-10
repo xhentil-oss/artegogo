@@ -16,7 +16,7 @@ export const KontaktPage = () => {
         style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776944742321-0.jpeg')", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.55)" }} />
         <div className="relative max-w-4xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-6 bg-white/20 text-white border border-white/30">
+          <span className="inline-block px-4 py-1.5 rounded-full font-semibold tracking-widest uppercase mb-6 bg-white/20 text-white border border-white/30" style={{ fontSize: 10 }}>
             {t("Na Kontaktoni", "Contact Us")}
           </span>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-5 leading-tight">

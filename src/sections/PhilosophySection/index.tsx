@@ -87,18 +87,6 @@ export const PhilosophySection = () => {
         ))}
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-zinc-100 py-4 flex items-center justify-center gap-4 md:gap-8">
-        {[t("SHKENCË", "SCIENCE"), t("NDËRGJEGJËSIM", "AWARENESS"), t("TRANSFORMIM", "TRANSFORMATION")].map((w, i, arr) => (
-          <span key={i} className="flex items-center gap-4 md:gap-8">
-            <span className="text-[9px] md:text-base font-bold tracking-[0.2em]"
-              style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>{w}</span>
-            {i < arr.length - 1 && (
-              <span className="text-xs font-bold" style={{ color: "#C4B5FD" }}>+</span>
-            )}
-          </span>
-        ))}
-      </div>
     </section>
   );
 };

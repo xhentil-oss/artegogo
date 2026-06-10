@@ -51,19 +51,7 @@ export const UniversityBanner = () => {
         }}
       >
         {/* Left — text */}
-        <div className="flex-1 max-w-xl">
-          <div
-            className="font-bold uppercase tracking-widest mb-3"
-            style={{
-              color: "#a78bfa",
-              fontFamily: "'Inter', sans-serif",
-              letterSpacing: "0.18em",
-              fontSize: 14,
-            }}
-          >
-            {t("Shkëncë. Ndërgjegjë. Transformim.", "Science. Awareness. Transformation.")}
-          </div>
-
+        <div className="flex-1 min-w-0 max-w-xl">
           <h2
             className="text-lg md:text-3xl lg:text-4xl font-bold text-white leading-tight mb-3"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
