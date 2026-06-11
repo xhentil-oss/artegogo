@@ -2,17 +2,10 @@ import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const TrajnimeOnlinePage = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [openMed, setOpenMed] = useState<number | null>(null);
 
-  const stats = [
-    { value: t("6 Javë", "6 Weeks"), label: t("Kohëzgjatja", "Duration") },
-    { value: t("9 Seanca", "9 Sessions"), label: t("Live me Zoom", "Live via Zoom") },
-    { value: t("7 Q&A", "7 Q&A"), label: t("Pyetje-Përgjigje", "Q&A Sessions") },
-    { value: t("6 Muaj", "6 Months"), label: t("Akses Platform", "Platform Access") },
-  ];
-
-  const pillars = [
+const pillars = [
     {
       emoji: "🧬",
       titleAL: "Biologji",
@@ -163,40 +156,98 @@ export const TrajnimeOnlinePage = () => {
     <div className="min-h-screen bg-white">
 
       {/* ── HERO ── */}
-      <div className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776947306379-0.png')" }}
-        />
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.35)" }} />
-        <div className="relative max-w-4xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-6 bg-white/15 text-white border border-white/20">
-            {t("Trajnim Online", "Online Training")}
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            {t("Trajnim Online", "Online Training")}{" "}
-            <span style={{ color: "#C4B5FD" }}>
-              6 {t("Javor", "Week")}
-            </span>
+      <div className="relative overflow-hidden min-h-[280px] md:min-h-[520px] flex items-center"
+        style={{ background: "linear-gradient(135deg, #0a0015 0%, #1a0535 50%, #0d0228 100%)" }}>
+        {/* Background image */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/img/TONI1692.JPG')", opacity: 0.85 }} />
+        {/* Overlay */}
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.45)" }} />
+
+        <div className="relative max-w-5xl mx-auto px-5 py-8 md:py-14 w-full" style={{ fontFamily: "'Inter', sans-serif" }}>
+          {/* Main title */}
+          <h1 className="font-bold text-white leading-tight mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.12, fontSize: "clamp(1.8rem, 7vw, 3.5rem)" }}>
+            {lang === "al" ? <>Meditime të<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Avancuara</span></> : <>Advanced<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Meditations</span></>}
           </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto leading-relaxed">
-            {t(
-              "9 seanca live + 7 Q&A + leksione të regjistruara + ushtrime ditore. Bashkohesh online, nga kudo.",
-              "9 live sessions + 7 Q&A + recorded lessons + daily exercises. Join online, from anywhere."
-            )}
+
+          {/* Subtitle */}
+          <p className="font-semibold text-white mb-2 leading-snug" style={{ fontSize: "clamp(0.7rem, 2vw, 0.9rem)", letterSpacing: "0.05em" }}>
+            {lang === "al" ? <>E dhe për fillestarë<br />edhe për të avancuar</> : <>For beginners<br />and advanced alike</>}
           </p>
+
+          {/* Description */}
+          <p className="mb-5 max-w-xs md:max-w-sm" style={{ color: "rgba(255,255,255,0.75)", fontSize: "clamp(0.75rem, 1.5vw, 0.875rem)", lineHeight: 1.6, fontWeight: 400 }}>
+            {t("Një udhëtim i thellë transformimi që punon në trup, mendje dhe shpirt.", "A deep transformational journey that works on body, mind and spirit.")}
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-wrap gap-2">
+            <a href="/signup"
+              className="inline-flex items-center gap-1.5 text-white px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
+              style={{ backgroundColor: "#4e29c5", fontWeight: 600, fontSize: 16 }}>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
+              {t("Regjistrohu Tani", "Register Now")}
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* ── STATS BAR ── */}
-      <section className="border-y border-zinc-100 py-10 px-6" style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          {stats.map((s) => (
-            <div key={s.label} className="bg-white rounded-xl border border-violet-100 p-4">
-              <div className="text-sm leading-relaxed font-extrabold md:text-base mb-1" style={{ color: "#9D8FEF" }}>{s.value}</div>
-              <div className="text-sm leading-relaxed text-zinc-700 md:text-base">{s.label}</div>
-            </div>
-          ))}
+      {/* ── 3 SHTYLLA TRANSFORMIMI ── */}
+      <section style={{ background: "linear-gradient(180deg, #080014 0%, #130028 100%)" }} className="py-10 md:py-16 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="font-bold text-white mb-2" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.3rem, 4vw, 2rem)" }}>
+              {t("3 SHTYLLA TRANSFORMIMI", "3 PILLARS OF TRANSFORMATION")}
+            </h2>
+            <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "clamp(0.75rem, 2vw, 0.875rem)" }}>
+              {t("Një qasje e integruar për trupin, emocionet dhe mendjen.", "An integrated approach for body, emotions and mind.")}
+            </p>
+          </div>
+          <div className="divide-y divide-white/10">
+            {[
+              {
+                num: "01",
+                titleAL: "TRANSFORMIM BIOLOGJIK",
+                titleEN: "BIOLOGICAL TRANSFORMATION",
+                descAL: pillars[0].descAL,
+                descEN: pillars[0].descEN,
+                img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&q=80",
+              },
+              {
+                num: "02",
+                titleAL: "TRANSFORMIM EMOCIONAL",
+                titleEN: "EMOTIONAL TRANSFORMATION",
+                descAL: pillars[1].descAL,
+                descEN: pillars[1].descEN,
+                img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80",
+              },
+              {
+                num: "03",
+                titleAL: "TRANSFORMIM FIZIK, MENTAL",
+                titleEN: "PHYSICAL & MENTAL TRANSFORMATION",
+                descAL: pillars[2].descAL,
+                descEN: pillars[2].descEN,
+                img: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=500&q=80",
+              },
+            ].map((p, i) => (
+              <div key={i} className="flex items-center gap-4 md:gap-8 py-6 md:py-8">
+                <div className="w-28 h-20 md:w-44 md:h-28 rounded-xl overflow-hidden shrink-0">
+                  <img src={p.img} alt={p.titleAL} className="w-full h-full object-cover" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 md:gap-3 mb-1.5">
+                    <span className="font-bold shrink-0" style={{ color: "rgba(196,181,253,0.4)", fontSize: "clamp(1rem, 3vw, 1.4rem)", fontFamily: "'Playfair Display', serif" }}>{p.num}</span>
+                    <h3 className="font-bold text-white tracking-wide" style={{ fontSize: "clamp(0.7rem, 2vw, 0.9rem)" }}>{t(p.titleAL, p.titleEN)}</h3>
+                  </div>
+                  <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "clamp(0.65rem, 1.5vw, 0.8rem)", lineHeight: 1.6 }}>
+                    {t(p.descAL, p.descEN)}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -247,29 +298,6 @@ export const TrajnimeOnlinePage = () => {
                 {t("Transformim real — nga brenda jashtë.", "Real transformation — from the inside out.")}
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 3 PILLARS ── */}
-      <section className="border-y border-zinc-100 py-16 px-6" style={{ backgroundColor: "#F9FAFB" }}>
-        <div className="max-w-4xl mx-auto">
-          <span className="text-xs font-bold tracking-widest uppercase mb-3 block text-center" style={{ color: "#9D8FEF" }}>
-            {t("3 Shtylla", "3 Pillars")}
-          </span>
-          <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-10 text-center">
-            {t("Bazat shkencore të programit", "Scientific foundations of the program")}
-          </h2>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {pillars.map((p, i) => (
-              <div key={i} className="flex items-start gap-3 bg-white rounded-xl border border-violet-100 p-5">
-                <span className="w-10 h-10 rounded-full text-white text-lg flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: "#9D8FEF" }}>{p.emoji}</span>
-                <div>
-                  <p className="font-bold text-zinc-700 text-sm leading-relaxed md:text-base mb-1">{t(p.titleAL, p.titleEN)}</p>
-                  <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{t(p.descAL, p.descEN)}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

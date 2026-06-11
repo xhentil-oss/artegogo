@@ -72,7 +72,7 @@ export const VideoTestimonialsSection = () => {
 
         {/* Badge + Title */}
         <div className="text-center mb-5 md:mb-10">
-          <span className="inline-block text-[8px] md:text-xs font-bold tracking-[0.2em] uppercase rounded-full px-4 py-1.5 mb-3 md:mb-5"
+          <span className="inline-block text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase rounded-full px-4 py-1.5 mb-3 md:mb-5"
             style={{ background: "rgba(124,58,237,0.12)", color: "#7C3AED", border: "1px solid rgba(124,58,237,0.25)" }}>
             {t("TRANSFORMIME REALE", "REAL TRANSFORMATIONS")}
           </span>
@@ -141,13 +141,13 @@ export const VideoTestimonialsSection = () => {
                   — {t("PJESËMARRËSE NE RETREAT", "RETREAT PARTICIPANT")}
                 </p>
                 <div className="flex items-center gap-2 md:gap-3 pt-2 md:pt-3 border-t border-white/30">
-                  <span className="text-white text-[8px] md:text-xs flex items-center gap-1">
+                  <span className="inline-block text-white text-[10px] md:text-xs flex items-center gap-1">
                     <Play className="w-2.5 h-2.5 md:w-3 md:h-3" fill="currentColor" /> 1:42
                   </span>
-                  <span className="text-white/60 text-[8px] md:text-xs">|</span>
-                  <span className="text-white text-[8px] md:text-xs">{t("VIDEO", "VIDEO")}</span>
-                  <span className="text-white/60 text-[8px] md:text-xs">|</span>
-                  <span className="text-white text-[8px] md:text-xs">{t("ZË + PAMJE", "AUDIO + VIDEO")}</span>
+                  <span className="inline-block text-white/60 text-[10px] md:text-xs">|</span>
+                  <span className="inline-block text-white text-[10px] md:text-xs">{t("VIDEO", "VIDEO")}</span>
+                  <span className="inline-block text-white/60 text-[10px] md:text-xs">|</span>
+                  <span className="inline-block text-white text-[10px] md:text-xs">{t("ZË + PAMJE", "AUDIO + VIDEO")}</span>
                 </div>
               </div>
             </>
@@ -218,8 +218,8 @@ export const VideoTestimonialsSection = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <p className="font-bold tracking-[0.15em] uppercase mb-3 md:mb-5"
-            style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontSize: 16 }}>
+          <p className="font-bold tracking-[0.15em] uppercase mb-3 md:mb-5 text-sm md:text-base"
+            style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
             {t("KËTO MUND TË JENË MOMENTET QE NDRYSHOJNË JETËN TËNDE", "THESE COULD BE THE MOMENTS THAT CHANGE YOUR LIFE")}
           </p>
           <button onClick={() => navigate("/rezultatet/testimonials")}

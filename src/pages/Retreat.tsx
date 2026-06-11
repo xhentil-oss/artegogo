@@ -79,8 +79,8 @@ export const RetreatPage = () => {
       </div>
 
       {/* Intro text section */}
-      <section className="max-w-5xl mx-auto px-6 py-10 md:py-16">
-        <div className="space-y-4 text-zinc-700 [&_strong]:text-violet-600" style={{ lineHeight: 1.8 }}>
+      <section className="max-w-5xl mx-auto px-6 py-5 md:py-16">
+        <div className="space-y-2 md:space-y-4 text-zinc-700 [&_strong]:text-violet-600" style={{ lineHeight: 1.8 }}>
           {lang === "al" ? (
             <>
               <p>Retreati ynë është i veçantë pasi është i pari i këtij lloji në Shqipëri. Sjellim eksperiencën <strong>ndërkombëtare</strong> në një <strong>event 8 ditor</strong> i cili do mbahet në <strong>bregetin Shqiptar</strong>.</p>
@@ -152,19 +152,21 @@ export const RetreatPage = () => {
           ))}
         </div>
 
-        {/* Stats 2x2 */}
-        <div className="grid grid-cols-2 gap-4">
+        {/* Stats list */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {[
-            { icon: <svg width="22" height="22" fill="none" stroke="#7C3AED" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, value: "1,800+", label: t("Pjesëmarrës nga e gjithë bota", "Participants from around the world") },
-            { icon: <svg width="22" height="22" fill="none" stroke="#7C3AED" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>, value: "100+", label: t("Sessions transformuese", "Transformative sessions") },
-            { icon: <svg width="22" height="22" fill="none" stroke="#7C3AED" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>, value: "100+", label: t("Vende të përfaqësuara", "Countries represented") },
-            { icon: <svg width="22" height="22" fill="none" stroke="#7C3AED" strokeWidth="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>, value: null, label: t("Një tribu. Një mision. Jetë të re.", "One tribe. One mission. New life.") },
+            { icon: <svg width="20" height="20" fill="none" stroke="#7C3AED" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, value: "1,800+", label: t("Pjesëmarrës nga e gjithë bota", "Participants from around the world") },
+            { icon: <svg width="20" height="20" fill="none" stroke="#7C3AED" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>, value: "100+", label: t("Sessions transformuese", "Transformative sessions") },
+            { icon: <svg width="20" height="20" fill="none" stroke="#7C3AED" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>, value: "100+", label: t("Vende të përfaqësuara", "Countries represented") },
+            { icon: <svg width="20" height="20" fill="none" stroke="#7C3AED" strokeWidth="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>, value: null, label: t("Një tribu. Një mision. Jetë të re.", "One tribe. One mission. New life.") },
           ].map((stat, i) => (
             <div key={i} className="flex items-center gap-3">
-              <div className="shrink-0">{stat.icon}</div>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(124,58,237,0.08)" }}>
+                {stat.icon}
+              </div>
               <div className="flex items-baseline gap-2">
-                {stat.value && <span className="font-extrabold text-zinc-900" style={{ fontSize: 16 }}>{stat.value}</span>}
-                <span className="text-zinc-700" style={{ fontSize: 16, lineHeight: 1.7 }}>{stat.label}</span>
+                {stat.value && <span className="font-extrabold" style={{ color: "#7C3AED", fontSize: 15 }}>{stat.value}</span>}
+                <span className="text-zinc-600" style={{ fontSize: 14, lineHeight: 1.5 }}>{stat.label}</span>
               </div>
             </div>
           ))}
@@ -176,7 +178,7 @@ export const RetreatPage = () => {
 
       {/* Për çfarë arsye mund të vish */}
       <section className="max-w-5xl mx-auto px-6 py-8 md:py-12">
-        <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-16 items-center">
 
           {/* Left: text */}
           <div className="flex-1">
@@ -205,12 +207,11 @@ export const RetreatPage = () => {
           </div>
 
           {/* Right: image */}
-          <div className="flex-1 rounded-2xl overflow-hidden shadow-lg" style={{ minHeight: 380 }}>
+          <div className="flex-1 rounded-2xl overflow-hidden shadow-lg h-[190px] md:h-[380px]">
             <img
               src="/img/TONI1503.JPG"
               alt="Retreat participants"
               className="w-full h-full object-cover"
-              style={{ minHeight: 380 }}
             />
           </div>
         </div>
@@ -255,7 +256,7 @@ export const RetreatPage = () => {
       </section>
 
       {/* Çfarë do mësojmë */}
-      <section className="relative overflow-hidden" style={{ minHeight: 420 }}>
+      <section className="relative overflow-hidden min-h-[220px] md:min-h-[420px]">
         {/* Background image */}
         <img
           src="/img/TONI1042.JPG"
@@ -266,7 +267,7 @@ export const RetreatPage = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(12,9,38,0.72) 0%, rgba(12,9,38,0.45) 50%, rgba(12,9,38,0.10) 100%)" }} />
         {/* Content */}
-        <div className="relative max-w-5xl mx-auto px-6 py-16 flex items-center w-full" style={{ minHeight: 420 }}>
+        <div className="relative max-w-5xl mx-auto px-6 py-8 md:py-16 flex items-center w-full min-h-[220px] md:min-h-[420px]">
           <div className="text-left">
             <h2 className="font-bold leading-tight text-white mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)" }}>
               {lang === "al" ? (
@@ -341,23 +342,23 @@ export const RetreatPage = () => {
       <section className="pt-8 pb-14" style={{ backgroundColor: "#F9FAFB" }}>
         <div className="max-w-5xl mx-auto px-6">
           {/* Title row: title+subtitle left, image right */}
-          <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start mb-6">
+          <div className="flex flex-row gap-3 md:gap-12 items-start mb-6">
             <div className="flex-1">
               <h2 className="font-bold mb-2 leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)", color: "#18181b" }}>
                 {lang === "al" ? <>Meditimet</> : <>Meditations</>}
               </h2>
-              <p className="text-zinc-500" style={{ fontSize: 16, lineHeight: 1.6 }}>
+              <p className="text-zinc-500 text-sm md:text-base" style={{ lineHeight: 1.6 }}>
                 {lang === "al" ? <>Udhëtim i brendshëm drejt <strong style={{ color: "#3f3f46" }}>transformimit</strong> të vërtetë.</> : <>An inner journey toward true <strong style={{ color: "#3f3f46" }}>transformation</strong>.</>}
               </p>
             </div>
-            <div className="hidden md:flex flex-1 rounded-2xl overflow-hidden shadow-md" style={{ height: 160 }}>
+            <div className="flex w-36 h-24 md:w-auto md:h-40 md:flex-1 rounded-2xl overflow-hidden shadow-md shrink-0">
               <img src="/img/TONI2462.JPG" alt="Meditimet" className="w-full h-full object-cover" style={{ objectPosition: "center center" }} />
             </div>
           </div>
 
           {/* Items 2-col grid */}
           <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4" style={{ fontSize: 16, lineHeight: 1.75, color: "#3f3f46" }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 md:gap-y-4 text-sm md:text-base" style={{ lineHeight: 1.75, color: "#3f3f46" }}>
                 {(lang === "al" ? [
                   <>Meditime të avancuara për <strong style={{ color: "#7C3AED" }}>harmonizimin e qëndrave energjitike</strong></>,
                   <>Meditim per të harmonizuar <strong style={{ color: "#7C3AED" }}>zemrën dhe mendjen</strong> dhe për të arritur koherencën e plotë të tyre.</>,
@@ -403,7 +404,6 @@ export const RetreatPage = () => {
                 {t("Matjet e qëndrave të energjisë do të mundësohen për të gjithë pjesëmarrësit vetëm nje herë gjatë ", "Energy center measurements will be available for all participants once during the ")}<strong style={{ color: "#7C3AED" }}>{t("8 ditëve", "8 days")}</strong>{t(" që do jemi bashkë. Mund të kuptoni se me cilën qendër keni më tepër nevojë të punoni, dhe ku keni më tepër nevojë për ", " we are together. You can understand which energy center you need to work on most, and where you need more ")}<strong style={{ color: "#7C3AED" }}>{t("energji.", "energy.")}</strong>
               </p>
             </div>
-            <div className="text-2xl text-violet-300 my-3 select-none">+</div>
           </div>
 
           {/* Item 2 */}
@@ -415,21 +415,23 @@ export const RetreatPage = () => {
                 {t("Matjet e valeve të trurit gjatë meditimit me elektroencefalograme. Mund të zbulojmë se si ka ndikuar meditimi në sistemin nervor. Dhe matje të ", "Brain wave measurements during meditation with electroencephalograms. We can discover how meditation has affected the nervous system. And measurements of ")}<strong style={{ color: "#7C3AED" }}>{t("koherens së zemrës.", "heart coherence.")}</strong>
               </p>
             </div>
-            <div className="text-2xl text-violet-300 my-3 select-none">+</div>
           </div>
 
           {/* Note */}
-          <p className="text-center text-zinc-500 mt-2 mb-6" style={{ fontSize: 16, lineHeight: 1.7 }}>
-            {t("Gjithshtu disa persona do përzgjidhen me short për të bërë matjet e qëndrave të energjisë ", "Additionally, a few people will be selected by lottery to have their energy center measurements done ")}<strong style={{ color: "#7C3AED" }}>{t("2 herë", "2 times")}</strong>{t(" (në fillim dhe në fund të retreatit)", " (at the beginning and end of the retreat)")}
-          </p>
+          <div className="flex items-start gap-3 w-full mt-2 mb-6">
+            <span className="mt-1.5 shrink-0 w-2 h-2 rounded-full" style={{ background: "#7C3AED" }} />
+            <p style={{ fontSize: 16, lineHeight: 1.75, color: "#3f3f46", margin: 0 }}>
+              {t("Gjithshtu disa persona do përzgjidhen me short për të bërë matjet e qëndrave të energjisë ", "Additionally, a few people will be selected by lottery to have their energy center measurements done ")}<strong style={{ color: "#7C3AED" }}>{t("2 herë", "2 times")}</strong>{t(" (në fillim dhe në fund të retreatit)", " (at the beginning and end of the retreat)")}
+            </p>
+          </div>
 
           {/* Image */}
-          <div className="rounded-2xl overflow-hidden" style={{ maxHeight: 320, marginTop: 32 }}>
+          <div className="rounded-2xl overflow-hidden h-[220px] md:h-[320px]" style={{ marginTop: 32 }}>
             <img
               src="/img/TONI2743.JPG"
               alt="Matjet"
-              className="w-full object-cover"
-              style={{ height: 320, objectPosition: "center top" }}
+              className="w-full h-full object-cover"
+              style={{ objectPosition: "center top" }}
             />
           </div>
         </div>
@@ -441,7 +443,7 @@ export const RetreatPage = () => {
           <h2 className="font-bold text-center mb-2 leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)", color: "#18181b" }}>
             {lang === "al" ? <>Benefitet e <span style={{ color: "#7C3AED" }}>retreatit</span></> : <>Benefits of the <span style={{ color: "#7C3AED" }}>retreat</span></>}
           </h2>
-          <div className="flex justify-center mb-8"><span style={{ color: "#c4b5fd", fontSize: 22 }}>✦</span></div>
+          <div className="flex justify-center mb-3 md:mb-8"><span style={{ color: "#c4b5fd", fontSize: 22 }}>✦</span></div>
 
           {(() => {
             const allItems = lang === "al" ? [
@@ -487,11 +489,11 @@ export const RetreatPage = () => {
             const remaining: typeof allItems = [];
 
             return (
-              <div className="space-y-8">
+              <div className="space-y-4 md:space-y-8">
                 {groups.map((g, gi) => (
                   <div key={gi}>
                     {/* Image full width */}
-                    <div className="rounded-2xl overflow-hidden mb-5" style={{ height: 220 }}>
+                    <div className="rounded-2xl overflow-hidden mb-3 md:mb-5" style={{ height: 220 }}>
                       <img src={g.img.src} alt="" className="w-full h-full object-cover" style={{ objectPosition: g.img.pos }} />
                     </div>
                     {/* items: if 3, left=item[0], right=item[1]+item[2] stacked; else 2-col grid */}
@@ -513,7 +515,7 @@ export const RetreatPage = () => {
                         </div>
                       </div>
                     ) : (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5 [&_strong]:text-violet-600" style={{ fontSize: 16, lineHeight: 1.8, color: "#3f3f46" }}>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 md:gap-y-5 [&_strong]:text-violet-600" style={{ fontSize: 16, lineHeight: 1.8, color: "#3f3f46" }}>
                         {g.items.map((item) => (
                           <div key={item.n} className="flex items-start gap-1">
                             <span className="font-bold shrink-0" style={{ color: "#7C3AED", minWidth: 20 }}>{item.n}-</span>
@@ -525,7 +527,7 @@ export const RetreatPage = () => {
                   </div>
                 ))}
                 {remaining.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5 [&_strong]:text-violet-600" style={{ fontSize: 16, lineHeight: 1.8, color: "#3f3f46" }}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 md:gap-y-5 [&_strong]:text-violet-600" style={{ fontSize: 16, lineHeight: 1.8, color: "#3f3f46" }}>
                     {remaining.map((item) => (
                       <div key={item.n} className="flex items-start gap-1">
                         <span className="font-bold shrink-0" style={{ color: "#7C3AED", minWidth: 20 }}>{item.n}-</span>
@@ -678,7 +680,7 @@ export const RetreatPage = () => {
               />
             </div>
             {/* Text + button */}
-            <div className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 justify-between">
+            <div className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-2 md:gap-6 justify-between">
               <div className="text-center md:text-left">
                 <p className="text-white font-bold text-lg mb-1">{t("3 SEANCA BONUS PER TY!", "3 BONUS SESSIONS FOR YOU!")}</p>
                 <p className="text-white/80" style={{ fontSize: 14 }}>{t("Një ofertë e paçmuar për trupin, mendjen & shpirtin.", "An invaluable offer for body, mind & spirit.")}</p>
@@ -744,17 +746,17 @@ export const RetreatPage = () => {
       {/* Pricing */}
       <section id="cmimi" className="py-16 px-6" style={{ backgroundColor: "#ffffff" }}>
         <div className="max-w-lg mx-auto text-center">
-          <h2 className="font-bold mb-10 leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "#18181b" }}>
+          <div className="font-bold mb-10 leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: "#18181b" }}>
             {t("Çmimi: Trajnim + Hotel ALL inclusive", "Pricing: Training + Hotel ALL inclusive")}
-          </h2>
+          </div>
 
           {/* Varianti 1 */}
           <div className="mb-6">
             <p className="font-bold italic mb-1" style={{ color: "#7C3AED", fontSize: 17 }}>
-              {t(
-                <>Varianti 1: <strong>500 Euro</strong> (trajnimi) + <strong>364 Euro</strong></>,
-                <>Variant 1: <strong>500 Euro</strong> (training) + <strong>364 Euro</strong></>
-              )}
+              {lang === "al"
+                ? <>Varianti 1: <strong>500 Euro</strong> (trajnimi) + <strong>364 Euro</strong></>
+                : <>Variant 1: <strong>500 Euro</strong> (training) + <strong>364 Euro</strong></>
+              }
             </p>
             <p className="text-zinc-500 mb-2" style={{ fontSize: 14 }}>
               {t("(hotel me 5 yje all inclusive, 7 netë dhomë dyshe ose treshe) =", "(5-star hotel all inclusive, 7 nights double or triple room) =")}
@@ -769,10 +771,10 @@ export const RetreatPage = () => {
           {/* Varianti 2 */}
           <div className="mb-8">
             <p className="font-bold italic mb-1" style={{ color: "#7C3AED", fontSize: 17 }}>
-              {t(
-                <>Varianti 2: <strong>500 Euro</strong> (trajnimi) + <strong>616 Euro</strong></>,
-                <>Variant 2: <strong>500 Euro</strong> (training) + <strong>616 Euro</strong></>
-              )}
+              {lang === "al"
+                ? <>Varianti 2: <strong>500 Euro</strong> (trajnimi) + <strong>616 Euro</strong></>
+                : <>Variant 2: <strong>500 Euro</strong> (training) + <strong>616 Euro</strong></>
+              }
             </p>
             <p className="text-zinc-500 mb-2" style={{ fontSize: 14 }}>
               {t("(hotel me 5 yje all inclusive, 7 netë dhomë teke) =", "(5-star hotel all inclusive, 7 nights single room) =")}
@@ -785,14 +787,14 @@ export const RetreatPage = () => {
           <div className="h-px bg-zinc-200 mb-8" />
 
           {/* Companion pricing */}
-          <p className="font-bold mb-5 text-zinc-800" style={{ fontSize: 15 }}>
+          <p className="font-bold mb-5 text-zinc-800 text-center" style={{ fontSize: 15 }}>
             {t(
               "Për familjarët ose personat që duan t'ju shoqërojnë (por nuk do marrin pjesë në trajnim):",
               "For family members or those who want to accompany you (but will not attend the training):"
             )}
           </p>
 
-          <div className="space-y-5 text-left">
+          <div className="space-y-5 text-center">
             <div>
               <p className="font-bold text-zinc-800" style={{ fontSize: 15 }}>
                 {t("Për të rriturit: 364 Euro për person", "For adults: 364 Euro per person")}
@@ -829,84 +831,105 @@ export const RetreatPage = () => {
       </section>
 
       {/* Kush Jemi */}
-      <AboutSection />
+      <AboutSection mobileCentered={true} />
 
       {/* Transformime Reale */}
       <VideoTestimonialsSection />
 
 
       {/* Final CTA Hero */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden min-h-[520px] md:min-h-0">
         {/* Background image */}
         <img
-          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=80"
+          src="/img/TONI2629.JPG"
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: "center 30%" }}
+          style={{ objectPosition: "center bottom" }}
         />
         {/* Overlay */}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(30,10,60,0.72) 0%, rgba(30,10,60,0.82) 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.75) 100%)" }} />
 
         {/* Content */}
         <div className="relative z-10 max-w-xl mx-auto px-6 py-16 md:py-20 text-center">
           <h2 className="font-bold text-white mb-3 leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)" }}>
-            {t(
-              <>Gati të hapësh derën e<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>transformimit tënd?</span></>,
-              <>Ready to open the door to<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>your transformation?</span></>
-            )}
+            {lang === "al"
+              ? <>Gati të hapësh derën e<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>transformimit tënd?</span></>
+              : <>Ready to open the door to<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>your transformation?</span></>
+            }
           </h2>
 
-          <div className="text-2xl mb-4">🤍</div>
 
-          <p className="text-white/80 mb-7 mx-auto" style={{ fontSize: 15, lineHeight: 1.75, maxWidth: 380 }}>
+
+          <div className="text-white/80 mb-7 mx-auto" style={{ fontSize: 16, lineHeight: 1.75, maxWidth: 380 }}>
             {t(
               "Rezervo vendin tënd në Retreatin e Meditimit 8-Ditësh. Bëhu pjesë e një përvoje që mund të ndryshojë jetën tënde.",
               "Reserve your spot at the 8-Day Meditation Retreat. Be part of an experience that can change your life."
             )}
-          </p>
+          </div>
 
           {/* Badges */}
           <div className="flex flex-wrap justify-center gap-3 mb-7">
             <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-white/10 border border-white/20">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-              <span className="text-white font-semibold" style={{ fontSize: 13 }}>11 – 18 Prill 2027</span>
+              <span className="inline-block text-white font-semibold" style={{ fontSize: 14 }}>11 – 18 Prill 2027</span>
             </div>
             <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-white/10 border border-white/20">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-              <span className="text-white font-semibold" style={{ fontSize: 13 }}>{t("Hotel 5★ • Bregdeti", "5★ Hotel • Seaside")}</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M19.07 4.93l-2.83 2.83M7.76 16.24l-2.83 2.83"/></svg>
+              <span className="inline-block text-white font-semibold" style={{ fontSize: 14 }}>{t("Ngjyrat e Jetës", "Colors of Life")}</span>
             </div>
           </div>
 
           {/* CTA Button */}
           <a
             href="/kontakt"
-            className="inline-flex items-center gap-3 font-bold px-8 py-4 rounded-full hover:scale-105 transition-all duration-300 mb-4"
-            style={{ background: "linear-gradient(135deg, #7C3AED 0%, #4e29c5 100%)", color: "#fff", fontSize: 15, letterSpacing: "0.05em" }}
+            className="inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-xl hover:scale-105 transition-all duration-300 mb-4"
+            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", color: "#fff", fontSize: 14 }}
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             {t("REZERVO VENDIN TANI", "RESERVE YOUR SPOT NOW")} ›
           </a>
 
-          <p className="text-white/60 flex items-center justify-center gap-1.5" style={{ fontSize: 13 }}>
+          <p className="text-white/60 flex items-center justify-center gap-1.5" style={{ fontSize: 16 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             {t("Vendet janë të kufizuara!", "Spots are limited!")}
           </p>
         </div>
 
         {/* Stats row */}
-        <div className="relative z-10 border-t border-white/10" style={{ background: "rgba(20,5,50,0.7)" }}>
-          <div className="max-w-4xl mx-auto px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="relative z-10" style={{ background: "#ffffff" }}>
+          <div className="max-w-4xl mx-auto px-4 py-4 md:py-8 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
             {[
-              { value: "2500+", label: t("Pjesëmarrës nga e gjithë bota", "Participants from around the world") },
-              { value: "30+", label: t("Retreat-e dhe trajnime transformuese", "Transformative retreats and trainings") },
-              { value: "95%", label: t("Pjesëmarrësve do të riktheheshin sërish", "Would return again") },
-              { value: t("Një tribu.", "One tribe."), label: t("Një mision. Jetë e re.", "One mission. New life.") },
+              {
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+                value: "2500+", label: t("Pjesëmarrës\nnga e gjithë bota", "Participants\nfrom around the world"),
+              },
+              {
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 4-3 7-7 9-4-2-7-5-7-9a7 7 0 0 1 7-7z"/><path d="M12 6c-1.5 1.5-2 3-2 5"/><path d="M12 6c1.5 1.5 2 3 2 5"/><path d="M9 11c1 1.5 1.5 2.5 3 3 1.5-.5 2-1.5 3-3"/></svg>,
+                value: "30+", label: t("Retreat-e dhe trajnime\ntransformuese", "Transformative\nretreats & trainings"),
+              },
+              {
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+                value: "95%", label: t("E pjesëmarrësve\ndo të riktheheshin sërish", "Would return\nagain"),
+              },
+              {
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
+                value: t("Një tribu.", "One tribe."), label: t("Një mision.\nJetë e re.", "One mission.\nNew life."),
+              },
             ].map((s, i) => (
-              <div key={i} className="text-center">
-                <p className="font-extrabold text-white mb-1" style={{ fontSize: 18 }}>{s.value}</p>
-                <p className="text-white/60 leading-tight" style={{ fontSize: 12 }}>{s.label}</p>
+              <div key={i} className="text-center flex flex-col items-center px-2 md:px-4">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(124,58,237,0.10)" }}>
+                  {s.icon}
+                </div>
+                <p className="font-bold mb-2 leading-snug" style={{ fontSize: 15, color: "#7C3AED" }}>{s.value}</p>
+                <p className="leading-relaxed" style={{ fontSize: 13, color: "#71717a", whiteSpace: "pre-line", textTransform: "none" }}>{s.label}</p>
               </div>
             ))}
+          </div>
+          {/* Bottom tagline */}
+          <div className="border-t border-zinc-100 py-4 flex items-center justify-center gap-3 flex-wrap px-6">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 4-3 7-7 9-4-2-7-5-7-9a7 7 0 0 1 7-7z"/><path d="M12 6c-1.5 1.5-2 3-2 5"/><path d="M12 6c1.5 1.5 2 3 2 5"/><path d="M9 11c1 1.5 1.5 2.5 3 3 1.5-.5 2-1.5 3-3"/></svg>
+            <span className="font-bold tracking-widest uppercase" style={{ color: "#7C3AED", fontSize: 12 }}>{t("MEDITIM. LIDHJE. TRANSFORMIM.", "MEDITATION. CONNECTION. TRANSFORMATION.")}</span>
+            <span className="text-zinc-300">|</span>
+            <span className="italic" style={{ color: "#52525b", fontSize: 13 }}>{t("Një javë për ty. Një jetë për ty.", "One week for you. One life for you.")}</span>
           </div>
         </div>
       </section>

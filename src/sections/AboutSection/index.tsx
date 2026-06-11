@@ -63,7 +63,7 @@ const STATS = [
   },
 ];
 
-export function AboutSection() {
+export function AboutSection({ mobileCentered = false }: { mobileCentered?: boolean }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -86,7 +86,7 @@ export function AboutSection() {
 
         {/* Text — left */}
         <div
-          className="w-full md:w-1/2 flex flex-col justify-center"
+          className={`w-full md:w-1/2 flex flex-col justify-center ${mobileCentered ? "items-center md:items-start text-center md:text-left" : ""}`}
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(20px)',
@@ -163,7 +163,7 @@ export function AboutSection() {
           {/* CTA button */}
           <Link
             to="/rreth-nesh"
-            className="self-start inline-flex items-center gap-2 mt-4 md:text-base font-semibold px-4 py-2 md:px-6 md:py-3 rounded-xl text-white transition-all duration-300 hover:scale-105"
+            className={`${mobileCentered ? "self-center md:self-start" : "self-start"} inline-flex items-center gap-2 mt-4 md:text-base font-semibold px-4 py-2 md:px-6 md:py-3 rounded-xl text-white transition-all duration-300 hover:scale-105`}
             style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif", fontSize: 14 }}
           >
             {t("Mëso më shumë", "Learn more")} →
