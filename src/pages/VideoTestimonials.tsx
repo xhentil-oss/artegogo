@@ -1,4 +1,4 @@
-import { Play } from "lucide-react";
+﻿import { Play } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 const getEmbedUrl = (src: string): { type: "iframe" | "video" | "none" } & { url: string } => {
@@ -39,7 +39,7 @@ const VideoCard = ({ video }: { video: { id: number; src: string; title: string;
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3"
             style={{ background: "linear-gradient(135deg, #ede9fe 0%, #f3e8ff 50%, #ede9fe 100%)" }}>
             <div className="w-16 h-16 rounded-full flex items-center justify-center"
-              style={{ background: "linear-gradient(135deg, #7c3aed 0%, #9D8FEF 100%)" }}>
+              style={{ background: "linear-gradient(135deg, #7c3aed 0%, #7c3aed 100%)" }}>
               <Play size={28} fill="white" className="text-white ml-1" />
             </div>
             <p className="text-violet-200 text-sm font-medium">{t("Video do të shtohet së shpejti", "Video coming soon")}</p>

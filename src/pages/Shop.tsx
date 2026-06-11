@@ -1,4 +1,4 @@
-import { ShoppingCart, Plus, Star } from "lucide-react";
+﻿import { ShoppingCart, Plus, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
@@ -115,8 +115,8 @@ const sectionConfig = [
     icon: "🗓️",
     descAl: "Bashkohu me ne live — transformim real, njerëz real, rezultate të jashtëzakonshme",
     descEn: "Join us live — real transformation, real people, extraordinary results",
-    accent: "from-[#9D8FEF] to-[#7c6fd4]",
-    tag: "text-[#9D8FEF] bg-[#f3f0ff] border-[#d4ccf7]",
+    accent: "from-[#7c3aed] to-[#7c6fd4]",
+    tag: "text-[#7c3aed] bg-[#f3f0ff] border-[#d4ccf7]",
   },
   {
     key: "Trajnime",
@@ -125,8 +125,8 @@ const sectionConfig = [
     icon: "💻",
     descAl: "Programe digjitale me video, audio dhe mbështetje",
     descEn: "Digital programs with video, audio and direct support",
-    accent: "from-[#9D8FEF] to-[#7c6fd4]",
-    tag: "text-[#9D8FEF] bg-[#f3f0ff] border-[#d4ccf7]",
+    accent: "from-[#7c3aed] to-[#7c6fd4]",
+    tag: "text-[#7c3aed] bg-[#f3f0ff] border-[#d4ccf7]",
   },
 ];
 
@@ -161,7 +161,7 @@ const ProductCard = ({ product, onAdd }: { product: BilingualProduct; onAdd: (p:
           <span className="text-xs text-zinc-400 ml-1">({product.reviews})</span>
         </div>
         <h3 className="font-bold text-zinc-800 text-base leading-tight mb-0.5">{t(product.title, product.titleEn)}</h3>
-        <p className="text-sm leading-relaxed md:text-base font-medium mb-2" style={{ color: "#9D8FEF" }}>{t(product.subtitle, product.subtitleEn)}</p>
+        <p className="text-sm leading-relaxed md:text-base font-medium mb-2" style={{ color: "#7c3aed" }}>{t(product.subtitle, product.subtitleEn)}</p>
         <p className="text-sm leading-relaxed text-zinc-700 md:text-base mb-4">{t(product.description, product.descriptionEn)}</p>
         <div className="flex items-center justify-between">
           <div>
@@ -173,7 +173,7 @@ const ProductCard = ({ product, onAdd }: { product: BilingualProduct; onAdd: (p:
           <button
             onClick={() => onAdd(product)}
             className="flex items-center gap-1.5 text-white text-sm leading-relaxed md:text-base font-semibold px-4 py-2 rounded-xl transition-all group-hover:scale-105"
-            style={{ backgroundColor: "#9D8FEF" }}
+            style={{ backgroundColor: "#7c3aed" }}
           >
             <Plus className="w-4 h-4" />
             {t("Shto", "Add")}

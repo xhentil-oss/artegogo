@@ -1,4 +1,4 @@
-import { Instagram, Facebook, Youtube, Mail } from "lucide-react";
+﻿import { Instagram, Facebook, Youtube, Mail } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 const TikTokIcon = () => (
@@ -129,7 +129,7 @@ export const KontaktPage = () => {
           <div className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-gray-50 border border-gray-200 max-w-lg w-full">
             <p className="leading-relaxed text-zinc-700 text-center">
               {t("Ju përgjigjemi brenda", "We respond within")}{" "}
-              <span className="font-bold" style={{ color: "#9D8FEF" }}>{t("24 orëve", "24 hours")}</span>.{" "}
+              <span className="font-bold" style={{ color: "#7c3aed" }}>{t("24 orëve", "24 hours")}</span>.{" "}
               {t("Jemi këtu për t'ju ndihmuar të bëni hapin e radhës.", "We are here to help you take the next step.")}
             </p>
           </div>

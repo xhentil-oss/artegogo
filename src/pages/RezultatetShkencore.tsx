@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import { Brain, Heart, Zap, ChevronRight, Activity, Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -128,7 +128,7 @@ export const RezultatetShkencorePage = () => {
             {stats.map((s, i) => (
               <FadeIn key={i} delay={i * 80}>
                 <div className="bg-white rounded-2xl border border-purple-100 p-5 text-center">
-                  <div className="text-sm leading-relaxed font-extrabold mb-1 md:text-base" style={{ color: "#9D8FEF" }}>{s.value}</div>
+                  <div className="text-sm leading-relaxed font-extrabold mb-1 md:text-base" style={{ color: "#7c3aed" }}>{s.value}</div>
                   <div className="text-sm leading-relaxed text-zinc-700 md:text-base">{s.label}</div>
                 </div>
               </FadeIn>
@@ -181,7 +181,7 @@ export const RezultatetShkencorePage = () => {
               </div>
               <h2 className="text-3xl md:text-4xl font-extrabold text-zinc-800 leading-tight mb-4">
                 {t("Valët Gamma:", "Gamma Waves:")}{" "}
-                <span style={{ color: "#9D8FEF" }}>
+                <span style={{ color: "#7c3aed" }}>
                   {t("Gjendja e Superndërgjegjes", "The State of Super-Consciousness")}
                 </span>
               </h2>
@@ -214,7 +214,7 @@ export const RezultatetShkencorePage = () => {
           <div className="grid md:grid-cols-2 gap-8 mb-10">
             <FadeIn delay={100}>
               <div className="rounded-3xl border border-violet-200 bg-white overflow-hidden h-full">
-                <div className="px-7 py-5 flex items-center gap-3" style={{ backgroundColor: "#9D8FEF" }}>
+                <div className="px-7 py-5 flex items-center gap-3" style={{ backgroundColor: "#7c3aed" }}>
                   <div className="bg-white/20 rounded-xl p-2.5"><Activity size={24} className="text-white" /></div>
                   <div>
                     <p className="text-white/60 text-xs font-bold tracking-widest uppercase">{t("Shkencë", "Science")}</p>
@@ -239,7 +239,7 @@ export const RezultatetShkencorePage = () => {
 
             <FadeIn delay={160}>
               <div className="rounded-3xl border border-purple-200 bg-white overflow-hidden h-full">
-                <div className="px-7 py-5 flex items-center gap-3" style={{ backgroundColor: "#9D8FEF" }}>
+                <div className="px-7 py-5 flex items-center gap-3" style={{ backgroundColor: "#7c3aed" }}>
                   <div className="bg-white/20 rounded-xl p-2.5"><Brain size={24} className="text-white" /></div>
                   <div>
                     <p className="text-white/60 text-xs font-bold tracking-widest uppercase">{t("Neuroshkencë", "Neuroscience")}</p>
@@ -269,7 +269,7 @@ export const RezultatetShkencorePage = () => {
 
           <FadeIn delay={120}>
               <div className="rounded-3xl overflow-hidden border border-violet-100">
-              <div className="px-8 py-5 flex items-center gap-3" style={{ backgroundColor: "#9D8FEF" }}>
+              <div className="px-8 py-5 flex items-center gap-3" style={{ backgroundColor: "#7c3aed" }}>
                 <Sparkles size={22} className="text-white/80" />
                 <h3 className="text-white text-lg font-bold">{t("Çfarë kemi arritur në retreetet tona", "What we have achieved in our retreats")}</h3>
               </div>
@@ -282,7 +282,7 @@ export const RezultatetShkencorePage = () => {
                     { value: t("Zemër-Tru", "Heart-Brain"), label: t("koherencë + SNA harmonik", "coherence + harmonic ANS") },
                   ].map((s, i) => (
                     <div key={i} className="rounded-2xl border p-4 text-center" style={{ backgroundColor: "#F3F0FF", borderColor: "#DDD6FE" }}>
-                      <div className="font-extrabold text-lg mb-1" style={{ color: "#9D8FEF" }}>{s.value}</div>
+                      <div className="font-extrabold text-lg mb-1" style={{ color: "#7c3aed" }}>{s.value}</div>
                       <div className="text-sm leading-relaxed text-zinc-700 md:text-base">{s.label}</div>
                     </div>
                   ))}

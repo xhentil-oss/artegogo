@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { ChevronDown } from "lucide-react";
 
@@ -92,7 +92,7 @@ export const WorkshopePage = () => {
       {/* ── Program 3 Days ── */}
       <section className="max-w-5xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase mb-3" style={{ backgroundColor: "#eeeaf9", border: "1px solid #c4baf7", color: "#9D8FEF" }}>
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase mb-3" style={{ backgroundColor: "#eeeaf9", border: "1px solid #c4baf7", color: "#7c3aed" }}>
             {t("Programi", "Program")}
           </span>
           <h2 className="text-2xl md:text-3xl font-bold text-zinc-900">
@@ -149,7 +149,7 @@ export const WorkshopePage = () => {
       {/* ── Qëndrimi ── */}
       <section className="max-w-3xl mx-auto px-6 py-14 text-center">
         <div className="rounded-2xl border border-zinc-100 p-8" style={{ backgroundColor: "#F9FAFB" }}>
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-4 border" style={{ backgroundColor: "#EDE9FD", color: "#9D8FEF", borderColor: "#C4B5FD" }}>
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-4 border" style={{ backgroundColor: "#EDE9FD", color: "#7c3aed", borderColor: "#C4B5FD" }}>
             {t("Qëndrimi", "Accommodation")}
           </span>
           <p className="text-sm leading-relaxed text-zinc-700 md:text-base mb-4">
@@ -167,7 +167,7 @@ export const WorkshopePage = () => {
       {/* ── Testimonials placeholder ── */}
       <section className="border-y border-zinc-100 py-16 px-6" style={{ backgroundColor: "#F9FAFB" }}>
         <div className="max-w-4xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-3 border" style={{ backgroundColor: "#EDE9FD", color: "#9D8FEF", borderColor: "#C4B5FD" }}>
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-3 border" style={{ backgroundColor: "#EDE9FD", color: "#7c3aed", borderColor: "#C4B5FD" }}>
             {t("Vlerësime", "Reviews")}
           </span>
           <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-10">

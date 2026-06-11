@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import { Instagram, MessageCircle, Facebook, Youtube, Mail } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -114,7 +114,7 @@ export const ContactBannerSection = () => {
               className="group flex flex-col items-center text-center gap-2 md:flex-row md:text-left md:gap-4 p-3 md:p-5 rounded-2xl hover:opacity-90 transition-all duration-200 hover:-translate-y-0.5"
               style={{ background: "#F9FAFB", border: "1px solid #d4d4d8" }}>
               <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
-                style={{ background: "#9D8FEF" }}>
+                style={{ background: "#7c3aed" }}>
                 <Mail className="w-6 h-6 text-white" />
               </div>
               <div className="w-full min-w-0 text-center md:text-left" style={{ wordBreak: "break-word" }}>
@@ -140,10 +140,10 @@ export const ContactBannerSection = () => {
           <div className="mt-3 flex justify-center">
             <div className="flex items-center gap-2 md:gap-3 p-3 md:p-5 rounded-2xl max-w-md w-full"
               style={{ background: "#F9FAFB", border: "1px solid #d4d4d8" }}>
-              <MessageCircle className="w-5 h-5 flex-shrink-0" style={{ color: "#9D8FEF" }} />
+              <MessageCircle className="w-5 h-5 flex-shrink-0" style={{ color: "#7c3aed" }} />
               <p className="text-xs md:text-base leading-relaxed text-center" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                 {t("Ju përgjigjemi brenda", "We respond within")}{" "}
-                <span className="font-bold" style={{ color: "#9D8FEF" }}>{t("24 orëve", "24 hours")}</span>.{" "}
+                <span className="font-bold" style={{ color: "#7c3aed" }}>{t("24 orëve", "24 hours")}</span>.{" "}
                 {t("Jemi këtu për t'ju ndihmuar të bëni hapin e radhës.", "We are here to help you take the next step.")}
               </p>
             </div>

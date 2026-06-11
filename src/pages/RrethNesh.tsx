@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -245,7 +245,7 @@ export const RrethNeshPage = () => {
               )}
             </p>
 
-            <p className="text-sm font-semibold uppercase tracking-widest mb-6" style={{ color: "#9D8FEF", fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm font-semibold uppercase tracking-widest mb-6" style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
               {t("Pjesëmarrësit tanë shpesh raportojnë:", "Our participants often report:")}
             </p>
 

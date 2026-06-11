@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 
 function useVisible(threshold = 0.15) {
@@ -211,7 +211,7 @@ export const TestimonialsSection = () => {
             <div key={i} className="rounded-2xl border border-purple-100 text-center py-6 px-4 relative overflow-hidden"
               style={{ background: "linear-gradient(145deg, rgba(157,143,239,0.08) 0%, rgba(157,143,239,0.03) 100%)" }}>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-100/40 to-transparent pointer-events-none" />
-              <div className="text-3xl font-bold mb-1" style={{ color: "#9D8FEF" }}>{o.stat}</div>
+              <div className="text-3xl font-bold mb-1" style={{ color: "#7c3aed" }}>{o.stat}</div>
               <div className="text-sm leading-relaxed text-zinc-700 md:text-base">{o.label}</div>
             </div>
           ))}
@@ -227,8 +227,8 @@ export const TestimonialsSection = () => {
                 <div className="relative z-10">
                   <p className="text-sm leading-relaxed text-zinc-700 md:text-base mb-5 italic">&#34;{testimonial.quote}&#34;</p>
                   <div className="inline-flex items-center gap-1.5 border border-purple-200 rounded-full px-3 py-1 mb-5" style={{ background: "rgba(157,143,239,0.08)" }}>
-                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#9D8FEF" }} />
-                    <span className="text-sm leading-relaxed text-zinc-700 md:text-base font-medium" style={{ color: "#9D8FEF" }}>{testimonial.result}</span>
+                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#7c3aed" }} />
+                    <span className="text-sm leading-relaxed text-zinc-700 md:text-base font-medium" style={{ color: "#7c3aed" }}>{testimonial.result}</span>
                   </div>
                 </div>
                 <div className="relative z-10 flex items-center gap-3 mt-auto pt-4" style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}>

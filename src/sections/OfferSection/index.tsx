@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -91,12 +91,12 @@ export function OfferSection() {
     <section ref={sectionRef} id="offer" className="relative py-20 overflow-hidden" style={{ backgroundColor: "#F9FAFB" }}>
       <div className="relative max-w-6xl mx-auto px-6">
         <div className={`text-center mb-16 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase rounded-full px-4 py-1 mb-4" style={{ color: '#9D8FEF', backgroundColor: '#F3F0FF', border: '1px solid #DDD6FE' }}>
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase rounded-full px-4 py-1 mb-4" style={{ color: '#7c3aed', backgroundColor: '#F3F0FF', border: '1px solid #DDD6FE' }}>
             {t('Çfarë ofrojmë', 'What we offer')}
           </span>
           <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-4 leading-tight">
             {t('Transformohu', 'Transform')}{' '}
-            <span style={{ color: '#9D8FEF' }}>{t('me ne', 'with us')}</span>
+            <span style={{ color: '#7c3aed' }}>{t('me ne', 'with us')}</span>
           </h2>
           <p className="text-base leading-relaxed text-zinc-800 max-w-2xl mx-auto">
             {t(
@@ -110,11 +110,11 @@ export function OfferSection() {
           {offers.map((offer, i) => (
             <div key={offer.title} className={`flex flex-col items-center text-center bg-white border border-gray-200 rounded-2xl p-6 hover:-translate-y-1 transition-all duration-300 group ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${100 + i * 80}ms` }}>
-              <span className="text-xs font-semibold tracking-widest uppercase rounded-full px-3 py-1 mb-5" style={{ backgroundColor: '#F3F0FF', color: '#9D8FEF' }}>{offer.tag}</span>
+              <span className="text-xs font-semibold tracking-widest uppercase rounded-full px-3 py-1 mb-5" style={{ backgroundColor: '#F3F0FF', color: '#7c3aed' }}>{offer.tag}</span>
               <div className="w-12 h-12 rounded-xl text-white flex items-center justify-center mb-5 transition-colors duration-200" style={{ backgroundColor: '#000000' }}>{offer.icon}</div>
               <h3 className="text-base font-bold text-zinc-900 mb-2 leading-snug">{offer.title}</h3>
               <p className="text-base leading-relaxed text-zinc-800 flex-1 mb-6">{offer.desc}</p>
-              <button onClick={() => navigate(offer.route)} className="w-full py-2.5 px-4 rounded-xl text-base leading-relaxed text-zinc-800 font-semibold transition-all duration-200 hover:text-white whitespace-nowrap" style={{ border: '1px solid #DDD6FE', color: '#9D8FEF' }} onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#9D8FEF'; (e.currentTarget as HTMLButtonElement).style.borderColor = '#9D8FEF'; (e.currentTarget as HTMLButtonElement).style.color = '#fff'; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLButtonElement).style.borderColor = '#DDD6FE'; (e.currentTarget as HTMLButtonElement).style.color = '#9D8FEF'; }}>
+              <button onClick={() => navigate(offer.route)} className="w-full py-2.5 px-4 rounded-xl text-base leading-relaxed text-zinc-800 font-semibold transition-all duration-200 hover:text-white whitespace-nowrap" style={{ border: '1px solid #DDD6FE', color: '#7c3aed' }} onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#7c3aed'; (e.currentTarget as HTMLButtonElement).style.borderColor = '#7c3aed'; (e.currentTarget as HTMLButtonElement).style.color = '#fff'; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLButtonElement).style.borderColor = '#DDD6FE'; (e.currentTarget as HTMLButtonElement).style.color = '#7c3aed'; }}>
                 {offer.cta}
               </button>
             </div>

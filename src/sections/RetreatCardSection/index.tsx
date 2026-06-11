@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
 import { Flower2, Users, Wind, Headphones, HeartHandshake, Activity, type LucideIcon } from "lucide-react";
@@ -57,7 +57,7 @@ export const RetreatCardSection = () => {
               className="flex flex-col items-center text-center rounded-2xl py-3 md:py-4 px-2"
               style={{ border: "1px solid rgba(78,41,197,0.15)", background: "rgba(78,41,197,0.03)" }}
             >
-              <s.Icon className="w-4 h-4 md:w-6 md:h-6 mb-1" style={{ color: "#9D8FEF" }} />
+              <s.Icon className="w-4 h-4 md:w-6 md:h-6 mb-1" style={{ color: "#7c3aed" }} />
               <span
                 className="badge font-bold"
                 style={{ color: "#4e29c5", fontFamily: "'Inter', sans-serif", fontSize: 10 }}
@@ -84,7 +84,7 @@ export const RetreatCardSection = () => {
         <div className="grid grid-cols-2 gap-x-4 gap-y-2 md:gap-x-6 md:gap-y-2.5 mb-5 md:mb-8">
           {INCLUDES.map((item, i) => (
             <div key={i} className="flex items-center gap-2">
-              <item.Icon className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" style={{ color: "#9D8FEF" }} />
+              <item.Icon className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" style={{ color: "#7c3aed" }} />
               <span
                 className="text-xs md:text-base"
                 style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontWeight: 500 }}

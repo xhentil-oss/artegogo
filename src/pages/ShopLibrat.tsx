@@ -1,4 +1,4 @@
-import { ShoppingCart, Star, BookOpen, ChevronDown, ChevronUp, Check } from 'lucide-react';
+﻿import { ShoppingCart, Star, BookOpen, ChevronDown, ChevronUp, Check } from 'lucide-react';
 import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -119,7 +119,7 @@ export const ShopLibratPage = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 leading-tight mb-1">
                 {t('Mieshtri i Liqenit Pasqyrë', 'The Master of Mirror Lake')}
               </h2>
-              <p className="text-sm leading-relaxed md:text-base font-medium mb-2" style={{ color: '#9D8FEF' }}>Dr. Marvin Bundo &amp; Dr. Artemisa Gogollari</p>
+              <p className="text-sm leading-relaxed md:text-base font-medium mb-2" style={{ color: '#7c3aed' }}>Dr. Marvin Bundo &amp; Dr. Artemisa Gogollari</p>
               <p className="text-sm leading-relaxed text-zinc-700 md:text-base mb-6 italic">
                 {t('Një udhëtim drejt vetes së vërtetë', 'A journey toward the true self')}
               </p>
@@ -137,7 +137,7 @@ export const ShopLibratPage = () => {
                 <button
                   onClick={() => setDescOpen(!descOpen)}
                   className="flex items-center gap-2 font-semibold text-sm transition-colors"
-                  style={{ color: '#9D8FEF' }}
+                  style={{ color: '#7c3aed' }}
                 >
                   {descOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   {descOpen
@@ -166,7 +166,7 @@ export const ShopLibratPage = () => {
               <ul className="space-y-2 mb-8">
                 {highlights.map((h, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm leading-relaxed text-zinc-700 md:text-base">
-                    <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#9D8FEF' }} />
+                    <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#7c3aed' }} />
                     {h}
                   </li>
                 ))}
@@ -183,7 +183,7 @@ export const ShopLibratPage = () => {
                   className={`flex items-center gap-2 px-7 py-3 rounded-2xl font-semibold text-white text-sm leading-relaxed md:text-base transition-all ${
                     added ? 'bg-green-500' : ''
                   }`}
-                  style={!added ? { backgroundColor: '#9D8FEF' } : {}}
+                  style={!added ? { backgroundColor: '#7c3aed' } : {}}
                 >
                   {added ? (
                     <>
@@ -242,7 +242,7 @@ export const ShopLibratPage = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 leading-tight mb-1">
                 {t('Krijo jetën e re', 'Create Your New Life')}
               </h2>
-              <p className="text-sm leading-relaxed md:text-base font-medium mb-2" style={{ color: '#9D8FEF' }}>Dr. Marvin Bundo &amp; Dr. Artemisa Gogollari</p>
+              <p className="text-sm leading-relaxed md:text-base font-medium mb-2" style={{ color: '#7c3aed' }}>Dr. Marvin Bundo &amp; Dr. Artemisa Gogollari</p>
               <p className="text-sm leading-relaxed text-zinc-700 md:text-base mb-6 italic">
                 {t(
                   'Libër-ditar transformimi për jetën që dëshiron të jetosh',
@@ -263,7 +263,7 @@ export const ShopLibratPage = () => {
                 <button
                   onClick={() => setDescOpen2(!descOpen2)}
                   className="flex items-center gap-2 font-semibold text-sm transition-colors"
-                  style={{ color: '#9D8FEF' }}
+                  style={{ color: '#7c3aed' }}
                 >
                   {descOpen2 ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   {descOpen2
@@ -292,7 +292,7 @@ export const ShopLibratPage = () => {
               <ul className="space-y-2 mb-8">
                 {highlights2.map((h, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm leading-relaxed text-zinc-700 md:text-base">
-                    <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#9D8FEF' }} />
+                    <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#7c3aed' }} />
                     {h}
                   </li>
                 ))}
@@ -319,7 +319,7 @@ export const ShopLibratPage = () => {
                   className={`flex items-center gap-2 px-7 py-3 rounded-2xl font-semibold text-white text-sm leading-relaxed md:text-base transition-all ${
                     added2 ? 'bg-green-500' : ''
                   }`}
-                  style={!added2 ? { backgroundColor: '#9D8FEF' } : {}}
+                  style={!added2 ? { backgroundColor: '#7c3aed' } : {}}
                 >
                   {added2 ? (
                     <>

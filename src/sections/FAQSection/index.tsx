@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+﻿import { useState, useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -14,7 +14,7 @@ function FAQItem({ item, index, open, onToggle, visible }: {
         style={{ background: open ? "rgba(157,143,239,0.08)" : "rgba(255,255,255,0.6)", boxShadow: open ? "0 4px 24px rgba(157,143,239,0.15)" : "0 1px 4px rgba(0,0,0,0.06)", border: open ? "1.5px solid rgba(157,143,239,0.4)" : "1.5px solid rgba(0,0,0,0.06)" }}>
         <div className="flex items-start gap-4">
           <span className="mt-0.5 min-w-[28px] h-7 w-7 rounded-full flex items-center justify-center text-xs md:text-16 font-bold transition-colors duration-300"
-            style={{ background: open ? "#9D8FEF" : "rgba(157,143,239,0.12)", color: open ? "#fff" : "#9D8FEF" }}>
+            style={{ background: open ? "#7c3aed" : "rgba(157,143,239,0.12)", color: open ? "#fff" : "#7c3aed" }}>
             {String(index + 1).padStart(2, "0")}
           </span>
           <span className="text-16 leading-relaxed font-normal transition-colors duration-300 text-zinc-800" style={{ fontFamily: "'Inter', sans-serif" }}>
@@ -22,7 +22,7 @@ function FAQItem({ item, index, open, onToggle, visible }: {
           </span>
         </div>
         <ChevronDown className="min-w-[20px] mt-1 transition-transform duration-300"
-          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", color: open ? "#9D8FEF" : "#a1a1aa" }} size={20} />
+          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", color: open ? "#7c3aed" : "#a1a1aa" }} size={20} />
       </button>
 
       <div className="overflow-hidden transition-all duration-500" style={{ maxHeight: open ? "600px" : "0px" }}>
@@ -34,7 +34,7 @@ function FAQItem({ item, index, open, onToggle, visible }: {
               <ul className="space-y-1.5 mb-2">
                 {item.list.map((li, i) => (
                   <li key={i} className="flex items-center gap-2 text-16 leading-relaxed" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
-                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#9D8FEF" }} />
+                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#7c3aed" }} />
                     {li}
                   </li>
                 ))}
@@ -409,7 +409,7 @@ export const FAQSection = () => {
           style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(16px)" }}>
           <p className="text-16 leading-relaxed" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
             {t("Nuk gjete përgjigjen?", "Didn't find the answer?")}{" "}
-            <a href="/kontakt" className="font-semibold" style={{ color: "#9D8FEF" }}>
+            <a href="/kontakt" className="font-semibold" style={{ color: "#7c3aed" }}>
               {t("Dërgoni mesazh →", "Send a message →")}
             </a>
           </p>

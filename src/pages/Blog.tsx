@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface BlogPost {
@@ -246,7 +246,7 @@ function BlogModal({ post, onClose }: { post: BlogPost; onClose: () => void }) {
         className="bg-white rounded-3xl max-w-2xl w-full border border-zinc-100 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="px-8 py-10 text-white relative" style={{ backgroundColor: "#9D8FEF" }}>
+        <div className="px-8 py-10 text-white relative" style={{ backgroundColor: "#7c3aed" }}>
           <button
             onClick={onClose}
             className="absolute top-4 left-4 flex items-center gap-1 text-white/80 hover:text-white text-sm font-medium transition-colors"
@@ -274,7 +274,7 @@ function BlogModal({ post, onClose }: { post: BlogPost; onClose: () => void }) {
           <button
             onClick={onClose}
             className="w-full py-3 rounded-xl text-white font-semibold transition-colors"
-            style={{ backgroundColor: "#9D8FEF" }}
+            style={{ backgroundColor: "#7c3aed" }}
           >
             {t("Mbyll", "Close")}
           </button>
