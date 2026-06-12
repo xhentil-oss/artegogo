@@ -219,7 +219,7 @@ export const HeroSection = () => {
                     opacity: visible ? 1 : 0,
                     transform: visible ? "translateY(0)" : "translateY(14px)",
                     transition: "opacity 0.5s ease, transform 0.5s ease",
-                    maxWidth: "65%",
+                    maxWidth: "90%",
                   }}
                 >
                   {/* ri = real slide index (0-2), regardless of clone position */}
@@ -233,10 +233,10 @@ export const HeroSection = () => {
                       {ri === 2 && t("Trajnime Online", "Online Training")}
                     </span>
                   </div>
-                  <h1 className="leading-tight mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, lineHeight: 1.12 }}>
-                    {ri === 0 && (<><span className="block text-4xl text-white mb-1">{t("Rikthehu në frekuencën tënde", "Return to your true")}</span><span className="block text-4xl text-white italic">{t("të vërtetë.", "frequency.")}</span></>)}
-                    {ri === 1 && (<><span className="block text-4xl text-white mb-1">{t("Zbulo thellësinë e", "Discover the depth of")}</span><span className="block text-4xl text-white italic">{t("vetë-njohjes tënde.", "your self-knowledge.")}</span></>)}
-                    {ri === 2 && (<><span className="block text-4xl text-white mb-1">{t("Mëso kudo,", "Learn anywhere,")}</span><span className="block text-4xl text-white italic">{t("transformohu gjithmonë.", "transform always.")}</span></>)}
+                  <h1 className="leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, lineHeight: 1.1, fontSize: "clamp(3.8rem, 14vw, 4.5rem)", marginTop: 16, marginBottom: 28 }}>
+                    {ri === 0 && (<><span className="block text-white mb-1">{t("Rikthehu në frekuencën tënde", "Return to your true")}</span><span className="block text-white italic">{t("të vërtetë.", "frequency.")}</span></>)}
+                    {ri === 1 && (<><span className="block text-white mb-1">{t("Zbulo thellësinë e", "Discover the depth of")}</span><span className="block text-white italic">{t("vetë-njohjes tënde.", "your self-knowledge.")}</span></>)}
+                    {ri === 2 && (<><span className="block text-white mb-1">{t("Mëso kudo,", "Learn anywhere,")}</span><span className="block text-white italic">{t("transformohu gjithmonë.", "transform always.")}</span></>)}
                   </h1>
                   <p className="text-sm text-white/80 mb-2 leading-relaxed line-clamp-2" style={{ fontWeight: 400 }}>
                     {ri === 0 && (<>{t("Kur", "When")} <HL>{t("zemra", "heart")}</HL>, <HL>{t("truri", "mind")}</HL> {t("dhe", "and")} <HL>{t("trupi", "body")}</HL> {t("harmonizohen... fillon", "align... begins the")} <HL>{t("transformimi", "transformation")}</HL>.</>)}

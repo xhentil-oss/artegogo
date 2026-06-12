@@ -674,7 +674,7 @@ const pillars = [
       <section className="py-10 md:py-16 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-bold text-zinc-900 text-center mb-10 md:mb-14"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.3rem, 4vw, 2rem)" }}>
+            style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.3rem, 4vw, 2rem)", marginBottom: 56 }}>
             {t("Çfarë do të Praktikosh", "What You Will Practice")}
           </h2>
           <div className="space-y-6 md:space-y-10">

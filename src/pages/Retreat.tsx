@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { VideoTestimonialsSection } from "@/sections/VideoTestimonialsSection";
 import { AboutSection } from "@/sections/AboutSection";
@@ -6,6 +7,19 @@ import { AboutSection } from "@/sections/AboutSection";
 export const RetreatPage = () => {
   const { t, lang } = useLanguage();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [slideIdx, setSlideIdx] = useState(0);
+  const SLIDE_IMGS = [
+    "/img/TONI0886.JPG",
+    "/img/TONI0935.JPG",
+    "/img/TONI0877.JPG",
+    "/img/TONI2462.JPG",
+    "/img/TONI2743.JPG",
+    "/img/TONI2719.JPG",
+  ];
+  useEffect(() => {
+    const timer = setInterval(() => setSlideIdx(i => (i + 1) % (SLIDE_IMGS.length - 2)), 3500);
+    return () => clearInterval(timer);
+  }, []);
 
 
   const pricingVariants = [
@@ -74,7 +88,6 @@ export const RetreatPage = () => {
           alt="Retreat"
           className="w-full h-full object-cover object-center absolute inset-0"
         />
-        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.38)" }} />
         <div className="relative w-full max-w-5xl mx-auto px-6 text-center" />
       </div>
 
@@ -102,54 +115,80 @@ export const RetreatPage = () => {
       {/* What is retreat section */}
       <section className="pb-12 pt-12" style={{ backgroundColor: "#F9FAFB" }}>
       <div className="max-w-5xl mx-auto px-6">
-        <h2 className="font-bold mb-4 leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.6rem, 4vw, 2.8rem)", color: "#18181b" }}>
-          {lang === "al" ? (
-            <>Çfarë është <span style={{ color: "#7C3AED" }}>retreati jonë</span> i meditimit?</>
-          ) : (
-            <>What is <span style={{ color: "#7C3AED" }}>our retreat</span> of meditation?</>
-          )}
-        </h2>
-        <p className="text-zinc-600 mb-6" style={{ fontSize: 16, lineHeight: 1.7 }}>
-          {t(
-            "Retreati ynë është i veçantë pasi është i pari i këtij lloji në Shqipëri. Sjellim një përvojë transformuese në një event 8 ditor në bregdetin e mrekullueshëm Shqiptar.",
-            "Our retreat is special as it is among the first of its kind in Albania. We bring a transformative experience to an 8-day event on the magnificent Albanian Riviera."
-          )}
-        </p>
+        {/* Desktop: text left + main image right; Mobile: stacked */}
+        <div className="md:grid md:grid-cols-2 md:gap-8 md:items-center mb-4">
 
-        {/* Main image with overlay text */}
-        <div className="relative rounded-2xl overflow-hidden mb-3" style={{ minHeight: 220 }}>
-          <img
-            src="/img/TONI1692.JPG"
-            alt="Retreat"
-            className="w-full h-full object-cover absolute inset-0"
-            style={{ minHeight: 220 }}
-          />
-          <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.45)" }} />
-          <div className="relative p-6 flex flex-col justify-end" style={{ minHeight: 220 }}>
-            <h3 className="font-bold text-white" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1rem, 2.5vw, 1.5rem)", lineHeight: 1.35 }}>
+          {/* Text */}
+          <div className="mb-4 md:mb-0">
+            <h2 className="font-bold mb-4 leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.6rem, 4vw, 2.8rem)", color: "#18181b" }}>
               {lang === "al" ? (
-                <>8 ditë për t'u rikthyer tek vetja dhe për të krijuar <span style={{ color: "#C4B5FD" }}>një jetë më të re.</span></>
+                <>Çfarë është <span style={{ color: "#7C3AED" }}>retreati jonë</span> i meditimit?</>
               ) : (
-                <>8 days to return to yourself and create <span style={{ color: "#C4B5FD" }}>a new life.</span></>
+                <>What is <span style={{ color: "#7C3AED" }}>our retreat</span> of meditation?</>
               )}
-            </h3>
+            </h2>
+            <p className="text-zinc-600" style={{ fontSize: 16, lineHeight: 1.7 }}>
+              {t(
+                "Retreati ynë është i veçantë pasi është i pari i këtij lloji në Shqipëri. Sjellim një përvojë transformuese në një event 8 ditor në bregdetin e mrekullueshëm Shqiptar.",
+                "Our retreat is special as it is among the first of its kind in Albania. We bring a transformative experience to an 8-day event on the magnificent Albanian Riviera."
+              )}
+            </p>
+          </div>
+
+          {/* Main image with overlay text */}
+          <div className="relative rounded-2xl overflow-hidden" style={{ minHeight: 280 }}>
+            <img
+              src="/img/TONI1692.JPG"
+              alt="Retreat"
+              className="w-full h-full object-cover absolute inset-0"
+              style={{ minHeight: 280 }}
+            />
+            <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.45)" }} />
+            <div className="relative p-6 flex flex-col justify-end" style={{ minHeight: 280 }}>
+              <h3 className="font-bold text-white" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1rem, 2.5vw, 1.5rem)", lineHeight: 1.35 }}>
+                {lang === "al" ? (
+                  <>8 ditë për t'u rikthyer tek vetja dhe për të krijuar <span style={{ color: "#C4B5FD" }}>një jetë më të re.</span></>
+                ) : (
+                  <>8 days to return to yourself and create <span style={{ color: "#C4B5FD" }}>a new life.</span></>
+                )}
+              </h3>
+            </div>
           </div>
         </div>
 
-        {/* Image grid 3x2 */}
-        <div className="grid grid-cols-3 gap-2 mb-8">
-          {[
-            "/img/TONI0886.JPG",
-            "/img/TONI0935.JPG",
-            "/img/TONI0877.JPG",
-            "/img/TONI2462.JPG",
-            "/img/TONI2743.JPG",
-            "/img/TONI2719.JPG",
-          ].map((src, i) => (
-            <div key={i} className="rounded-xl overflow-hidden" style={{ height: 180 }}>
-              <img src={src} alt="" className="w-full h-full object-cover" />
+        {/* Image slider — 3 visible at a time */}
+        <div className="relative mb-8">
+          <div className="overflow-hidden rounded-2xl">
+            <div className="flex transition-transform duration-500"
+              style={{ transform: `translateX(-${slideIdx * (100 / 3)}%)` }}>
+              {SLIDE_IMGS.map((src, i) => (
+                <div key={i} className="shrink-0 px-1" style={{ width: "33.333%" }}>
+                  <div className="rounded-xl overflow-hidden" style={{ height: 200 }}>
+                    <img src={src} alt="" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <button
+            onClick={() => setSlideIdx((slideIdx - 1 + (SLIDE_IMGS.length - 2)) % (SLIDE_IMGS.length - 2))}
+            className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full flex items-center justify-center shadow-md"
+            style={{ background: "#fff", border: "1px solid #e9d5ff" }}>
+            <ChevronLeft className="w-5 h-5" style={{ color: "#7c3aed" }} />
+          </button>
+          <button
+            onClick={() => setSlideIdx((slideIdx + 1) % (SLIDE_IMGS.length - 2))}
+            className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full flex items-center justify-center shadow-md"
+            style={{ background: "#fff", border: "1px solid #e9d5ff" }}>
+            <ChevronRight className="w-5 h-5" style={{ color: "#7c3aed" }} />
+          </button>
+          <div className="flex justify-center gap-2 mt-3">
+            {Array.from({ length: SLIDE_IMGS.length - 2 }).map((_, i) => (
+              <button key={i} onClick={() => setSlideIdx(i)}
+                className="rounded-full transition-all duration-300"
+                style={{ width: i === slideIdx ? 24 : 7, height: 7, background: i === slideIdx ? "#7c3aed" : "#ddd6fe" }} />
+            ))}
+          </div>
         </div>
 
         {/* Stats list */}

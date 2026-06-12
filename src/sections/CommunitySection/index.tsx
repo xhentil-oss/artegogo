@@ -45,7 +45,7 @@ export const CommunitySection = () => {
             {t("BËHU PJESË E DIÇKAJE MË TË MADHE", "BE PART OF SOMETHING GREATER")}
           </p>
           <h2
-            className="text-lg md:text-3xl lg:text-4xl font-bold text-zinc-900 leading-snug mb-3"
+            className="text-lg md:text-3xl lg:text-4xl font-bold text-zinc-900 leading-snug mb-3 mt-8 md:mt-0"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             {t("Një komunitet që", "A community that")}{" "}

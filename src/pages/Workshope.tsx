@@ -54,26 +54,58 @@ export const WorkshopePage = () => {
     <div className="min-h-screen bg-white">
 
       {/* ── Hero ── */}
-      <div className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776948791548-0.jpeg')" }}
-        />
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.35)" }} />
-        <div className="relative max-w-4xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-6 bg-white/15 text-white border border-white/20">
-            {t("Workshope", "Workshops")}
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-5 leading-tight">
-            {t("Workshope", "Intensive")}{" "}
-            <span style={{ color: "#C4B5FD" }}>{t("Intensive", "Workshops")}</span>
+      <div className="relative overflow-hidden min-h-[420px] md:min-h-[560px] flex items-center">
+        {/* Background image */}
+        <div className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/img/TONI1692.JPG')" }} />
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.45)" }} />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 py-14 md:py-20 w-full">
+
+          {/* Title */}
+          <h1 className="font-bold text-white leading-tight mb-3"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.12, fontSize: "clamp(1.8rem, 7vw, 3.5rem)" }}>
+            Dyert<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Infinite</span>
           </h1>
-          <p className="text-white/75 text-lg max-w-2xl mx-auto leading-relaxed">
-            {t(
-              "Takime intensive me teori, praktikë dhe meditime të udhëhequra — në grupe të vogla me vëmendje personale.",
-              "Intensive meetings with theory, practice and guided meditations — in small groups with personal attention."
-            )}
+
+          {/* Location */}
+          <div className="flex items-center gap-3 mt-4 mb-4">
+            <span style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Playfair Display', serif", fontSize: 17, fontStyle: "italic" }}>
+              {t("Prishtinë", "Pristina")}
+            </span>
+            <div className="h-px w-10" style={{ background: "rgba(255,255,255,0.25)" }} />
+            <span style={{ color: "#f9a8d4", fontSize: 16 }}>♡</span>
+          </div>
+
+          {/* Date */}
+          <div className="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 mb-5"
+            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}>
+            <svg className="w-4 h-4" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth={1.8} viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+            <span className="font-semibold text-white" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, letterSpacing: "0.04em" }}>
+              1 – 3 DHJETOR 2025
+            </span>
+          </div>
+
+          {/* Description */}
+          <p className="mb-5 max-w-xs md:max-w-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.75rem, 1.5vw, 0.875rem)", lineHeight: 1.6, fontWeight: 400 }}>
+            {t("3 ditë për t'u rikthyer tek vetja, për të krijuar", "3 days to return to yourself, to create the")}{" "}
+            <span style={{ color: "#c4b5fd", fontWeight: 600 }}>{t("jetë më të re.", "new life you deserve.")}</span>
           </p>
+
+          {/* Buttons */}
+          <div className="flex flex-wrap gap-2">
+            <a href="/signup"
+              className="inline-flex items-center gap-1.5 text-white px-3 py-1.5 text-xs md:px-8 md:py-4 md:text-base rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
+              style={{ backgroundColor: "#4e29c5", fontWeight: 600 }}>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
+              {t("Rezervo Vendin", "Reserve Spot")}
+            </a>
+          </div>
+
         </div>
       </div>
 
