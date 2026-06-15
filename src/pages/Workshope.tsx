@@ -161,23 +161,23 @@ export const WorkshopePage = () => {
     <div className="min-h-screen bg-white">
 
       {/* ── Hero ── */}
-      <div className="relative overflow-hidden min-h-[420px] md:min-h-[560px] flex items-center">
+      <div className="relative overflow-hidden min-h-[280px] md:min-h-[520px] flex items-center">
         {/* Background image */}
         <div className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/img/TONI1692.JPG')" }} />
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.45)" }} />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 py-14 md:py-20 w-full">
+        <div className="relative z-10 max-w-4xl mx-auto px-5 py-8 md:py-14 w-full">
 
           {/* Title */}
-          <h1 className="font-bold text-white leading-tight mb-3"
+          <h1 className="font-bold text-white leading-tight mb-1 md:mb-3"
             style={{ fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.12, fontSize: "clamp(1.8rem, 7vw, 3.5rem)" }}>
             Dyert<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Infinite</span>
           </h1>
 
           {/* Location */}
-          <div className="flex items-center gap-3 mt-4 mb-4">
-            <span style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Playfair Display', serif", fontSize: 17, fontStyle: "italic" }}>
+          <div className="flex items-center gap-3 mt-2 mb-2 md:mt-4 md:mb-4">
+            <span className="text-sm md:text-base" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}>
               {t("Prishtinë", "Pristina")}
             </span>
             <div className="h-px w-10" style={{ background: "rgba(255,255,255,0.25)" }} />
@@ -185,18 +185,18 @@ export const WorkshopePage = () => {
           </div>
 
           {/* Date */}
-          <div className="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 mb-5"
+          <div className="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 mb-3 md:mb-5"
             style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}>
             <svg className="w-4 h-4" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth={1.8} viewBox="0 0 24 24">
               <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
             </svg>
-            <span className="font-semibold text-white" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, letterSpacing: "0.04em" }}>
+            <span className="font-semibold text-white text-sm md:text-base" style={{ fontFamily: "'Inter', sans-serif", letterSpacing: "0.04em" }}>
               1 – 3 DHJETOR 2025
             </span>
           </div>
 
           {/* Description */}
-          <p className="mb-5 max-w-xs md:max-w-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.75rem, 1.5vw, 0.875rem)", lineHeight: 1.6, fontWeight: 400 }}>
+          <p className="mb-3 md:mb-5 max-w-xs md:max-w-sm leading-relaxed text-sm md:text-base" style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Inter', sans-serif", lineHeight: 1.6, fontWeight: 400 }}>
             {t("3 ditë për t'u rikthyer tek vetja, për të krijuar", "3 days to return to yourself, to create the")}{" "}
             <span style={{ color: "#c4b5fd", fontWeight: 600 }}>{t("jetë më të re.", "new life you deserve.")}</span>
           </p>
@@ -204,7 +204,7 @@ export const WorkshopePage = () => {
           {/* Buttons */}
           <div className="flex flex-wrap gap-2">
             <a href="/signup"
-              className="inline-flex items-center gap-1.5 text-white px-3 py-1.5 text-xs md:px-8 md:py-4 md:text-base rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
+              className="inline-flex items-center gap-1.5 text-white px-3 py-1.5 text-sm md:px-8 md:py-4 md:text-base rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
               style={{ backgroundColor: "#4e29c5", fontWeight: 600 }}>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
@@ -217,28 +217,28 @@ export const WorkshopePage = () => {
       </div>
 
       {/* ── Stats bar ── */}
-      <section className="border-y border-zinc-100 px-6 py-6" style={{ backgroundColor: "#ffffff" }}>
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+      <section className="border-y border-zinc-100" style={{ backgroundColor: "#ffffff" }}>
+        <div className="max-w-5xl mx-auto px-3 py-2 md:px-6 md:py-6 grid grid-cols-4 gap-1 md:gap-4">
           {[
             { icon: (
-              <svg className="w-6 h-6" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            ), value: "1800+", labelAL: "PJESËMARRËS NGA E GJITHË BOTA", labelEN: "PARTICIPANTS WORLDWIDE" },
+              <svg className="w-5 h-5" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            ), value: "1800+", labelAL: "Pjesëmarrës nga e gjithë bota", labelEN: "Participants worldwide" },
             { icon: (
-              <svg className="w-6 h-6" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 5 8 12 8 12s8-7 8-12c0-4-4-8-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
-            ), value: "100+", labelAL: "EVENTE TRANSFORMUESE", labelEN: "TRANSFORMATIVE EVENTS" },
+              <svg className="w-5 h-5" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 5 8 12 8 12s8-7 8-12c0-4-4-8-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+            ), value: "100+", labelAL: "Evente transformuese", labelEN: "Transformative events" },
             { icon: (
-              <svg className="w-6 h-6" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            ), value: "8+", labelAL: "VITE EKSPERIENCE", labelEN: "YEARS EXPERIENCE" },
+              <svg className="w-5 h-5" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            ), value: "8+", labelAL: "Vite eksperience", labelEN: "Years experience" },
             { icon: (
-              <svg className="w-6 h-6" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            ), value: "20+", labelAL: "VENDE TË PREKURA", labelEN: "COUNTRIES REACHED" },
+              <svg className="w-5 h-5" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            ), value: "20+", labelAL: "Vende të prekura", labelEN: "Countries reached" },
           ].map((s, i) => (
-            <div key={i} className="flex flex-col items-center text-center gap-2 py-3 px-2 rounded-2xl" style={{ background: "rgba(124,58,237,0.04)", border: "1px solid rgba(124,58,237,0.1)" }}>
-              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(124,58,237,0.08)" }}>
+            <div key={i} className="flex flex-col items-center text-center gap-0.5 py-1.5 px-0.5 md:py-2 md:px-1 rounded-2xl" style={{ background: "rgba(124,58,237,0.04)", border: "1px solid rgba(124,58,237,0.1)" }}>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "rgba(124,58,237,0.08)" }}>
                 {s.icon}
               </div>
-              <span className="font-bold text-zinc-900" style={{ fontSize: 22, fontFamily: "'Inter', sans-serif" }}>{s.value}</span>
-              <span className="font-semibold tracking-wider" style={{ fontSize: 9, color: "#71717a", letterSpacing: "0.08em" }}>{t(s.labelAL, s.labelEN)}</span>
+              <span className="font-bold text-zinc-900 text-sm md:text-base" style={{ fontFamily: "'Inter', sans-serif" }}>{s.value}</span>
+              <span className="font-medium text-[9px] md:text-base" style={{ color: "#71717a", lineHeight: 1.3 }}>{t(s.labelAL, s.labelEN)}</span>
             </div>
           ))}
         </div>
@@ -317,7 +317,7 @@ export const WorkshopePage = () => {
       {/* ── Çfarë do përjetosh ── */}
       <section className="py-10 md:py-14 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-4 md:mb-8">
             <div className="flex-1 h-px" style={{ background: "#e4e4e7" }} />
             <h2 className="font-bold whitespace-nowrap" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#18181b" }}>
               {t("Çfarë do përjetosh?", "What will you experience?")}
@@ -325,7 +325,7 @@ export const WorkshopePage = () => {
             <div className="flex-1 h-px" style={{ background: "#e4e4e7" }} />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             {[
               { icon: <svg className="w-5 h-5" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>, titleAL: "Hapje e zemrës dhe qetësi të thellë", titleEN: "Heart opening and deep peace" },
               { icon: <svg className="w-5 h-5" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>, titleAL: "Qartësi mendore dhe fokus i pastër", titleEN: "Mental clarity and pure focus" },
@@ -334,13 +334,13 @@ export const WorkshopePage = () => {
               { icon: <svg className="w-5 h-5" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 1 5 5c0 2.76-2.24 5-5 5S7 9.76 7 7a5 5 0 0 1 5-5z"/><path d="M4 22c0-4 3.58-7 8-7s8 3 8 7"/></svg>, titleAL: "Meditime të avancuara", titleEN: "Advanced meditations" },
               { icon: <svg className="w-5 h-5" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, titleAL: "Komunitet transformues", titleEN: "Transformative community" },
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center text-center gap-3 rounded-2xl p-5"
+              <div key={i} className="flex flex-col items-center text-center gap-2 rounded-2xl p-3 md:p-5"
                 style={{ background: "#F4F4F5", border: "1px solid rgba(124,58,237,0.08)" }}>
-                <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center shrink-0"
                   style={{ background: "rgba(124,58,237,0.08)" }}>
                   {item.icon}
                 </div>
-                <span className="font-semibold leading-snug" style={{ fontSize: 16, color: "#18181b", fontFamily: "'Inter', sans-serif" }}>
+                <span className="font-semibold leading-snug text-[13px] md:text-base" style={{ color: "#18181b", fontFamily: "'Inter', sans-serif" }}>
                   {t(item.titleAL, item.titleEN)}
                 </span>
               </div>
@@ -354,7 +354,7 @@ export const WorkshopePage = () => {
         <div className="max-w-5xl mx-auto">
 
           {/* Header with dividers */}
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-3 md:mb-8">
             <div className="flex-1 h-px" style={{ background: "#e4e4e7" }} />
             <h2 className="font-bold whitespace-nowrap" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#18181b" }}>
               {t("Programi 3-ditor", "3-Day Program")}
@@ -370,7 +370,7 @@ export const WorkshopePage = () => {
             ].map((d, i) => (
               <div key={i} className="rounded-2xl overflow-hidden flex flex-col" style={{ background: "#ffffff", boxShadow: "0 2px 16px rgba(0,0,0,0.07)", border: "1px solid #f0f0f0" }}>
                 {/* Image top with badge */}
-                <div className="relative" style={{ height: 180 }}>
+                <div className="relative" style={{ height: 140 }}>
                   <img src={d.img} alt="" className="w-full h-full object-cover" />
                   <div className="absolute inset-0" style={{ background: "rgba(20,0,50,0.25)" }} />
                   <div className="absolute top-3 right-3">
@@ -378,12 +378,12 @@ export const WorkshopePage = () => {
                   </div>
                 </div>
                 {/* Text bottom */}
-                <div className="p-5 flex flex-col gap-2">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center mb-1" style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)" }}>
+                <div className="p-3 md:p-5 flex flex-col gap-1 md:gap-2">
+                  <div className="hidden md:flex w-10 h-10 rounded-full items-center justify-center" style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)" }}>
                     {d.icon}
                   </div>
-                  <h3 className="font-bold leading-snug" style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, color: "#18181b" }}>{t(d.titleAL, d.titleEN)}</h3>
-                  <p className="leading-relaxed" style={{ color: "#52525b", fontSize: 16 }}>{t(d.descAL, d.descEN)}</p>
+                  <h3 className="font-bold leading-snug text-sm md:text-base" style={{ fontFamily: "'Inter', sans-serif", color: "#18181b" }}>{t(d.titleAL, d.titleEN)}</h3>
+                  <p className="leading-relaxed text-sm md:text-base" style={{ color: "#52525b" }}>{t(d.descAL, d.descEN)}</p>
                 </div>
               </div>
             ))}
@@ -400,10 +400,10 @@ export const WorkshopePage = () => {
 
           {/* Header */}
           <div className="text-center mb-8">
-            <h2 className="font-bold leading-tight mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#18181b", fontSize: "clamp(3rem, 6vw, 4.5rem)" }}>
+            <h2 className="font-bold leading-tight mb-3 text-xl md:text-5xl" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#18181b" }}>
               {t("1–3 dhjetor: Dyert Infinite vijnë në Prishtinë", "1–3 December: Dyert Infinite comes to Pristina")}
             </h2>
-            <p className="leading-relaxed mx-auto" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontSize: 16, maxWidth: 520 }}>
+            <p className="leading-relaxed mx-auto text-sm md:text-base" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", maxWidth: 520 }}>
               {t(
                 "Ju mirëpresim në një nga eventet tona më transformuese. Për 3 ditë do të përjetojmë bashkë mrekullinë e krijimit, potencialet pafund, fuqinë e trupit, mendjes dhe zemrës tonë.",
                 "We welcome you to one of our most transformative events. For 3 days we will experience together the miracle of creation, infinite potentials, the power of body, mind and heart."
@@ -420,7 +420,7 @@ export const WorkshopePage = () => {
             ].map((d, i) => (
               <div key={i} className="flex gap-4 rounded-2xl overflow-hidden" style={{ background: "#F9FAFB", border: "1px solid #f0f0f0" }}>
                 {/* Image left */}
-                <div className="shrink-0" style={{ width: 130, height: 160 }}>
+                <div className="shrink-0 self-stretch" style={{ width: 130 }}>
                   <img src={d.img} alt="" className="w-full h-full object-cover" />
                 </div>
                 {/* Content right */}
@@ -432,7 +432,7 @@ export const WorkshopePage = () => {
                       {d.time}
                     </span>
                   </div>
-                  <h3 className="font-bold mb-1 leading-snug" style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, color: "#18181b" }}>{t(d.titleAL, d.titleEN)}</h3>
+                  <h3 className="font-bold mb-1 leading-snug text-sm md:text-base" style={{ fontFamily: "'Inter', sans-serif", color: "#18181b" }}>{t(d.titleAL, d.titleEN)}</h3>
                   <p className="leading-relaxed" style={{ color: "#52525b", fontSize: 14 }}>{t(d.descAL, d.descEN)}</p>
                 </div>
               </div>
@@ -485,12 +485,12 @@ export const WorkshopePage = () => {
       {/* ── 4 Transformations ── */}
       <section style={{ background: "#ffffff" }}>
         {/* Top image + 2×2 icon grid — same container */}
-        <div className="px-5 py-8 max-w-2xl mx-auto">
+        <div className="px-5 py-4 md:py-8 max-w-4xl mx-auto">
           {/* Top image */}
           <div className="w-full overflow-hidden rounded-2xl mb-5" style={{ height: 220 }}>
             <img src="/img/TONI2879.JPG" alt="" className="w-full h-full object-cover object-center" />
           </div>
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
               {
                 icon: (
@@ -538,8 +538,8 @@ export const WorkshopePage = () => {
                 descEN: "Awaken the power of consciousness to heal your body, nourish relationships and improve life quality.",
               },
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-start gap-3 rounded-2xl p-4" style={{ background: "#ffffff", border: "1px solid #ede9fe", boxShadow: "0 4px 20px rgba(124,58,237,0.12)" }}>
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ background: "#ede9fe" }}>
+              <div key={i} className="flex flex-row items-center gap-4 rounded-2xl p-4" style={{ background: "#ffffff", border: "1px solid #ede9fe", boxShadow: "0 4px 20px rgba(124,58,237,0.12)" }}>
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style={{ background: "#ede9fe" }}>
                   {item.icon}
                 </div>
                 <div>
@@ -558,9 +558,9 @@ export const WorkshopePage = () => {
 
       {/* ── Përvojat që flasin vetë ── */}
       <section className="py-10 px-5" style={{ background: "#F4F4F5" }}>
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Section header */}
-          <h2 className="font-bold text-center mb-6 leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.4rem, 5vw, 2rem)", color: "#18181b" }}>
+          <h2 className="font-bold text-center mb-8 mt-1 leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.4rem, 5vw, 2rem)", color: "#18181b" }}>
             {t("Përvojat që", "Experiences that")}{" "}
             <span style={{ color: "#7c3aed", fontStyle: "italic" }}>{t("flasin vetë", "speak for themselves")}</span>
           </h2>
@@ -572,7 +572,7 @@ export const WorkshopePage = () => {
 
       {/* ── Bonuset Ekskluzive ── */}
       <section className="py-10 px-5" style={{ background: "#ffffff" }}>
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Title */}
           <h2 className="font-bold text-center mb-2 leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 6vw, 2.2rem)", color: "#18181b" }}>
             {t("Bonuset që e bëjnë këtë përvojë", "Bonuses that make this experience")}{" "}
@@ -623,19 +623,21 @@ export const WorkshopePage = () => {
               },
             ].map((item, i) => (
               <div key={i} className="rounded-2xl overflow-hidden" style={{ background: "#ffffff", boxShadow: "0 2px 16px rgba(0,0,0,0.07)", border: "1px solid #f0f0f0" }}>
-                <div style={{ height: 180, overflow: "hidden" }}>
-                  <img src={item.img} alt="" className="w-full h-full object-cover object-top" />
+                <div style={{ height: 220, overflow: "hidden" }}>
+                  <img src={item.img} alt="" className="w-full h-full object-cover object-center" />
                 </div>
-                <div className="p-4 flex flex-col gap-2">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "#ede9fe" }}>
+                <div className="p-4 flex flex-row items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: "#ede9fe" }}>
                     {item.icon}
                   </div>
-                  <h3 className="font-bold leading-snug" style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "#18181b" }}>
-                    {t(item.titleAL, item.titleEN)}
-                  </h3>
-                  <p className="leading-relaxed" style={{ color: "#71717a", fontSize: 14 }}>
-                    {t(item.descAL, item.descEN)}
-                  </p>
+                  <div>
+                    <h3 className="font-bold leading-snug mb-1" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "#18181b" }}>
+                      {t(item.titleAL, item.titleEN)}
+                    </h3>
+                    <p className="leading-relaxed" style={{ color: "#71717a", fontSize: 13 }}>
+                      {t(item.descAL, item.descEN)}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -645,7 +647,7 @@ export const WorkshopePage = () => {
 
       {/* ── Çmimi & Qëndrimi ── */}
       <section className="py-10 px-5" style={{ background: "#F4F4F5" }}>
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-4xl mx-auto">
 
           {/* Çmimi */}
           <div className="mb-8 text-center">
@@ -692,7 +694,7 @@ export const WorkshopePage = () => {
 
       {/* ── Vlerësime ── */}
       <section className="py-10 px-5" style={{ background: "#ffffff" }}>
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-4xl mx-auto">
 
           {/* Title + subtitle */}
           <h2 className="font-bold text-center mb-2 leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.8rem, 7vw, 2.8rem)", color: "#18181b" }}>
@@ -760,44 +762,25 @@ export const WorkshopePage = () => {
 
       {/* ── CTA Final ── */}
       <section className="px-5 py-8">
-        <div className="max-w-2xl mx-auto">
-        <div className="relative rounded-3xl overflow-hidden text-center px-6 py-10" style={{ background: "linear-gradient(135deg, #2d0b6b 0%, #4e29c5 50%, #7c3aed 100%)" }}>
-          <div className="relative z-10">
-            <h2 className="font-bold text-white leading-snug mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 6vw, 2.2rem)" }}>
-              {t("Gati të hapësh dyert e", "Ready to open the doors of")}{" "}
-              <span style={{ color: "#e9d5ff", fontStyle: "italic" }}>{t("potencialit tënd?", "your potential?")}</span>
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-3xl text-center px-6 py-10" style={{ background: "#ede9fe" }}>
+            <h2 className="font-bold leading-snug mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 6vw, 2.2rem)", color: "#1c1917" }}>
+              {t("Gati për të transformuar jetën tënde?", "Ready to transform your life?")}
             </h2>
 
-            <div className="flex justify-center mb-4">
-              <svg width="22" height="22" fill="rgba(255,255,255,0.5)" viewBox="0 0 24 24">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
-            </div>
-
-            <p className="mb-7 leading-relaxed" style={{ color: "rgba(255,255,255,0.8)", fontSize: 15 }}>
+            <p className="mb-7 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", color: "#52525b", fontSize: 15 }}>
               {t(
-                "Rezervo vendin tënd dhe bëhu pjesë e 3 ditëve që mund të ndryshojnë gjithçka.",
-                "Reserve your spot and become part of 3 days that can change everything."
+                "Rezervo vendin tënd tani dhe bëhu pjesë e një përvoje që do ndryshojë gjithçka.",
+                "Reserve your spot now and become part of an experience that will change everything."
               )}
             </p>
 
             <a href="/kontakt"
-              className="inline-flex items-center gap-3 font-bold rounded-full transition-all hover:scale-105"
-              style={{ background: "#ffffff", color: "#4e29c5", fontSize: 14, letterSpacing: "0.08em", padding: "14px 32px" }}>
-              {t("REZERVO VENDIN TANI", "RESERVE YOUR SPOT NOW")}
-              <svg width="18" height="18" fill="none" stroke="#4e29c5" strokeWidth={2.5} viewBox="0 0 24 24">
-                <path d="M9 18l6-6-6-6"/>
-              </svg>
+              className="inline-flex items-center gap-2 font-semibold rounded-xl transition-all hover:scale-105"
+              style={{ background: "#7c3aed", color: "#ffffff", fontFamily: "'Inter', sans-serif", fontSize: 14, padding: "14px 32px" }}>
+              {t("Rezervo Tani", "Reserve Now")} →
             </a>
-
-            <p className="mt-5 flex items-center justify-center gap-2" style={{ color: "rgba(255,255,255,0.7)", fontSize: 13 }}>
-              <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-              </svg>
-              {t("Vendet janë të kufizuara!", "Spots are limited!")}
-            </p>
           </div>
-        </div>
         </div>
       </section>
 
