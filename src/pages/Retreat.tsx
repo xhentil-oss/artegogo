@@ -6,6 +6,13 @@ import { AboutSection } from "@/sections/AboutSection";
 
 export const RetreatPage = () => {
   const { t, lang } = useLanguage();
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  const topicFs = isMobile ? 14 : 16;
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [slideIdx, setSlideIdx] = useState(0);
   const SLIDE_IMGS = [
@@ -367,8 +374,8 @@ export const RetreatPage = () => {
               ),
             },
           ].map((item, i) => (
-            <div key={i} className="py-2 [&_strong]:text-violet-600 [&_p]:text-zinc-600" style={{ fontSize: 16, lineHeight: 1.6 }}>
-              <h3 className="font-bold mb-1 text-zinc-900" style={{ fontSize: 16, lineHeight: 1.4 }}>
+            <div key={i} className="py-2 [&_strong]:text-violet-600 [&_p]:text-zinc-600" style={{ lineHeight: 1.6, fontSize: topicFs }}>
+              <h3 className="font-bold mb-1 text-zinc-900" style={{ lineHeight: 1.4, fontSize: topicFs }}>
                 {item.title}
               </h3>
               {item.body}

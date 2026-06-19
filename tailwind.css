@@ -10,6 +10,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.retreat-topic-title { font-size: 16px; }
+.retreat-topic-body { font-size: 16px; }
+@media (max-width: 767px) {
+  .retreat-topic-title { font-size: 14px !important; }
+  .retreat-topic-body { font-size: 14px !important; }
+  .retreat-topic-body p { font-size: 14px !important; }
+}
+
 @layer base {
   :root {
     /* #F9FAFB → hsl(220, 14%, 96%) */

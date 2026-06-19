@@ -103,7 +103,7 @@ export const RezultatetShkencorePage = () => {
 
       {/* ── 4 matje kryesore ── */}
       <section style={{ background: "#ffffff" }}>
-        <div className="max-w-5xl mx-auto px-5 pb-8 pt-0 md:pt-0">
+        <div className="max-w-5xl mx-auto px-5 pb-4 md:pb-8 pt-0">
 
           <h2 className="font-bold text-center mb-5" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "2.2rem", color: "#1c1917" }}>
             {t("4 Matje kryesore", "4 Key measurements")}{" "}
@@ -153,7 +153,7 @@ export const RezultatetShkencorePage = () => {
                 desc: t("Mat reagimin e sistemit nervor përmes lëkurës.", "Measures the nervous system's response through the skin."),
               },
             ].map((item, i) => (
-              <div key={i} className="flex flex-col md:flex-row items-start md:items-center gap-3 rounded-2xl p-4" style={{ background: "#faf8ff", border: "1px solid #ede9fe" }}>
+              <div key={i} className="flex flex-col md:flex-row items-center md:items-center gap-2 rounded-2xl p-3 text-center md:text-left" style={{ background: "#faf8ff", border: "1px solid #ede9fe" }}>
                 <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: "#7c3aed", color: "#ffffff" }}>
                   {item.icon}
                 </div>
@@ -176,8 +176,8 @@ export const RezultatetShkencorePage = () => {
           <div className="flex justify-center">
             <a
               href="/eventet/retreat"
-              className="inline-flex items-center gap-3 rounded-2xl px-8 py-4 transition-all duration-200 hover:opacity-90"
-              style={{ background: "#7c3aed", color: "#ffffff", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 16 }}
+              className="inline-flex items-center gap-3 rounded-2xl px-5 py-3 md:px-8 md:py-4 text-sm md:text-base transition-all duration-200 hover:opacity-90"
+              style={{ background: "#7c3aed", color: "#ffffff", fontFamily: "'Inter', sans-serif", fontWeight: 600 }}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/>
@@ -194,8 +194,8 @@ export const RezultatetShkencorePage = () => {
 
       {/* ── Detajet e matjeve ── */}
       <section style={{ background: "#f9f9fb" }}>
-        <div className="max-w-5xl mx-auto px-5 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="max-w-5xl mx-auto px-5 py-2 md:py-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
             {[
               {
                 icon: (
@@ -268,7 +268,7 @@ export const RezultatetShkencorePage = () => {
             ].map((m, i) => (
               <div key={i} className="rounded-3xl overflow-hidden flex flex-col" style={{ background: "#ffffff", boxShadow: "0 2px 16px rgba(0,0,0,0.07)", border: "1px solid #ede9fe" }}>
                 {/* Header */}
-                <div className="flex flex-col items-center text-center px-5 pt-6 pb-4">
+                <div className="flex flex-col items-center text-center px-4 pt-4 pb-2 md:px-5 md:pt-6 md:pb-4">
                   <div className="w-14 h-14 rounded-full flex items-center justify-center mb-3" style={{ background: "#ede9fe", color: "#7c3aed" }}>
                     {m.icon}
                   </div>
@@ -288,7 +288,7 @@ export const RezultatetShkencorePage = () => {
                 </div>
 
                 {/* Çfarë shohim */}
-                <div className="px-5 py-5 flex flex-col gap-3">
+                <div className="px-4 py-3 md:px-5 md:py-5 flex flex-col gap-2 md:gap-3">
                   <div className="flex items-center gap-2 mb-1">
                     <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ background: "#ede9fe", color: "#7c3aed" }}>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -319,8 +319,8 @@ export const RezultatetShkencorePage = () => {
 
       {/* ── Pse i bëjmë këto matje ── */}
       <section style={{ background: "#ffffff" }}>
-        <div className="max-w-5xl mx-auto px-5 py-10">
-          <div className="text-center mb-6">
+        <div className="max-w-5xl mx-auto px-5 py-2 md:py-10">
+          <div className="text-center mb-3 md:mb-6">
             <h2 className="font-bold" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.4rem, 4vw, 2rem)", color: "#1c1917" }}>
               {t("Pse i bëjmë këto matje?", "Why do we do these measurements?")}
             </h2>
@@ -374,7 +374,7 @@ export const RezultatetShkencorePage = () => {
                 <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0" style={{ background: "#ffffff", color: "#7c3aed", boxShadow: "0 2px 8px rgba(124,58,237,0.15)" }}>
                   {item.icon}
                 </div>
-                <p className="font-bold leading-snug w-full" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "#1c1917", minHeight: 72 }}>
+                <p className="font-bold leading-snug w-full" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "#1c1917", minHeight: 48 }}>
                   {item.title}
                 </p>
                 <p className="leading-snug w-full" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "#52525b" }}>
@@ -388,20 +388,20 @@ export const RezultatetShkencorePage = () => {
 
       {/* ── Çfarë shohim vazhdimisht ── */}
       <section style={{ background: "#ffffff" }}>
-        <div className="max-w-5xl mx-auto px-5 py-10">
-          <div className="text-center mb-6">
+        <div className="max-w-5xl mx-auto px-5 py-2 md:py-10">
+          <div className="text-center mb-3 md:mb-6">
             <h2 className="font-bold" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.4rem, 4vw, 2rem)", color: "#1c1917" }}>
               {t("Çfarë shohim vazhdimisht", "What we consistently see")}{" "}
               <span style={{ color: "#7c3aed" }}>{t("në retreatet tona?", "in our retreats?")}</span>
             </h2>
-            <div className="flex items-center justify-center gap-2 mt-3">
+            <div className="flex items-center justify-center gap-2 mt-2">
               <div className="h-px w-6" style={{ background: "#c4b5fd" }} />
               <span style={{ color: "#a78bfa", fontSize: 13 }}>♦</span>
               <div className="h-px w-6" style={{ background: "#c4b5fd" }} />
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
             {[
               {
                 iconBg: "#ede9fe",
@@ -448,11 +448,11 @@ export const RezultatetShkencorePage = () => {
                 desc: t("Më shumë qetësi, relaksim dhe rigjenerim të thellë.", "More calm, relaxation and deep regeneration."),
               },
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center text-center gap-3 rounded-2xl p-5" style={{ background: "#fafafa", border: "1px solid #f0f0f0" }}>
-                <div className="w-16 h-16 rounded-full flex items-center justify-center shrink-0" style={{ background: item.iconBg, color: item.iconColor }}>
+              <div key={i} className="flex flex-col items-center text-center gap-2 rounded-2xl p-3 md:p-5" style={{ background: "#fafafa", border: "1px solid #f0f0f0" }}>
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shrink-0" style={{ background: item.iconBg, color: item.iconColor }}>
                   {item.icon}
                 </div>
-                <p className="font-bold leading-snug w-full" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "#7c3aed", minHeight: 60 }}>
+                <p className="font-bold leading-snug w-full" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "#7c3aed", minHeight: 44 }}>
                   {item.title}
                 </p>
                 <p className="leading-snug w-full" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "#71717a" }}>
@@ -465,19 +465,19 @@ export const RezultatetShkencorePage = () => {
       </section>
 
       {/* ── Final CTA ── */}
-      <section className="relative overflow-hidden flex items-center justify-center" style={{ minHeight: 480 }}>
+      <section className="relative overflow-hidden flex items-center justify-center" style={{ minHeight: 340 }}>
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/img/TONI2719.JPG')" }} />
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.58)" }} />
 
-        <div className="relative z-10 max-w-2xl mx-auto px-6 py-16 text-center">
-          <h2 className="font-bold leading-tight mb-5" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.8rem, 5vw, 2.8rem)", color: "#ffffff" }}>
+        <div className="relative z-10 max-w-2xl mx-auto px-6 py-10 text-center">
+          <h2 className="font-bold leading-tight mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2rem, 6vw, 3.2rem)", color: "#ffffff" }}>
             {t(
               "Këto matje e bëjnë transformimin të prekshëm, të matshëm dhe të verifikueshëm.",
               "These measurements make the transformation tangible, measurable and verifiable."
             )}
           </h2>
 
-          <p className="mb-5 text-sm md:text-base" style={{ fontFamily: "'Inter', sans-serif", color: "rgba(255,255,255,0.82)" }}>
+          <p className="mb-4" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.82)" }}>
             {t(
               "Shkenca na tregon rrugën. Përvoja e jetuar e transformon jetën.",
               "Science shows us the way. The lived experience transforms life."
@@ -493,7 +493,7 @@ export const RezultatetShkencorePage = () => {
           <a
             href="/eventet/retreat"
             className="inline-flex items-center gap-2 rounded-xl font-semibold transition-all duration-200 hover:opacity-90 hover:scale-105"
-            style={{ background: "#7c3aed", color: "#ffffff", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 16, padding: "14px 32px" }}
+            style={{ background: "#7c3aed", color: "#ffffff", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 14, padding: "12px 24px" }}
           >
             {t("Rezervo vendin tënd", "Reserve your spot")}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
