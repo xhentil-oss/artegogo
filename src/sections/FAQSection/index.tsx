@@ -10,7 +10,7 @@ function FAQItem({ item, index, open, onToggle, visible }: {
     <div className="transition-all duration-700"
       style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(24px)", transitionDelay: `${index * 60}ms` }}>
       <button onClick={onToggle}
-        className="w-full text-center flex items-center justify-between gap-4 py-3 md:py-5 px-4 md:px-6 rounded-2xl group transition-all duration-300"
+        className="w-full text-left flex items-center justify-between gap-4 py-3 md:py-5 px-4 md:px-6 rounded-2xl group transition-all duration-300"
         style={{ background: open ? "rgba(157,143,239,0.08)" : "rgba(255,255,255,0.6)", boxShadow: open ? "0 4px 24px rgba(157,143,239,0.15)" : "0 1px 4px rgba(0,0,0,0.06)", border: open ? "1.5px solid rgba(157,143,239,0.4)" : "1.5px solid rgba(0,0,0,0.06)" }}>
         <div className="flex items-start gap-4">
           <span className="mt-0.5 min-w-[28px] h-7 w-7 rounded-full flex items-center justify-center text-xs md:text-16 font-bold transition-colors duration-300"
