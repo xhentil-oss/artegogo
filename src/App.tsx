@@ -22,6 +22,7 @@ import { LivePage } from "@/pages/Live";
 import { TestimonialsPage } from "@/pages/Testimonials";
 import { VideoTestimonialsPage } from "@/pages/VideoTestimonials";
 import { RezultatetShkencorePage } from "@/pages/RezultatetShkencore";
+import { ValetGamaPage } from "@/pages/ValetGama";
 import { BlogPage } from "@/pages/Blog";
 import { MeditimePage } from "@/pages/Meditime";
 import { ShopPage } from "@/pages/Shop";
@@ -78,6 +79,7 @@ export const App = () => {
         <Route path="/rezultatet/testimonials" element={<Layout><TestimonialsPage /></Layout>} />
         <Route path="/rezultatet/video-testimonials" element={<Layout><VideoTestimonialsPage /></Layout>} />
         <Route path="/rezultatet/shkencore" element={<Layout><RezultatetShkencorePage /></Layout>} />
+        <Route path="/rezultatet/valet-gama" element={<Layout><ValetGamaPage /></Layout>} />
         <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
         <Route path="/meditime" element={<Layout><MeditimePage /></Layout>} />
         <Route path="/shop" element={<Layout><ShopPage /></Layout>} />
