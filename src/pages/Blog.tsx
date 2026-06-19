@@ -15,44 +15,12 @@ interface BlogPost {
   categoryEn: string;
   color: string;
   emoji: string;
+  image: string;
+  quote: string;
+  quoteEn: string;
 }
 
 const posts: BlogPost[] = [
-  {
-    id: 1,
-    title: "Jeta është një dhuratë.",
-    titleEn: "Life is a gift.",
-    excerpt: "Ti je dhuratë për botën. Zëri yt ka rëndësi.",
-    excerptEn: "You are a gift to the world. Your voice matters.",
-    content: [
-      "Jeta është një dhuratë.",
-      "Ti je dhuratë për botën.",
-      "Zëri yt ka rëndësi.",
-      "Ka zgjidhje për atë problemin që për momentin e mendon pa zgjidhje.",
-      "Gjithçka do bëhet më mirë.",
-      "Pas stuhisë dielli shfaqet sërish.",
-      "Ti meriton të duhesh dhe pranohesh pa kushte.",
-      "Bota do ishte pak më e trishtë pa dritën tënde.",
-      "Sepse ti je drita e kësaj bote.",
-    ],
-    contentEn: [
-      "Life is a gift.",
-      "You are a gift to the world.",
-      "Your voice matters.",
-      "There is a solution to the problem you currently think has no solution.",
-      "Everything will get better.",
-      "After the storm the sun shines again.",
-      "You deserve to be loved and accepted unconditionally.",
-      "The world would be a little sadder without your light.",
-      "Because you are the light of this world.",
-    ],
-    readTime: "2 min lexim",
-    readTimeEn: "2 min read",
-    category: "Frymëzim",
-    categoryEn: "Inspiration",
-    color: "from-violet-500 to-purple-600",
-    emoji: "✨",
-  },
   {
     id: 2,
     title: "Po sikur të të jepej siguria absolute që nuk do dështoje kurrë?",
@@ -87,6 +55,47 @@ const posts: BlogPost[] = [
     categoryEn: "Personal Development",
     color: "from-purple-500 to-indigo-600",
     emoji: "🦋",
+    image: "/img/TONI2472.JPG",
+    quote: "Mos e mat suksesin nga mungesa e dështimeve, por nga guximi për të vazhduar gjithmonë përpara.",
+    quoteEn: "Don't measure success by the absence of failures, but by the courage to always keep moving forward.",
+  },
+  {
+    id: 1,
+    title: "Jeta është një dhuratë.",
+    titleEn: "Life is a gift.",
+    excerpt: "Ti je dhuratë për botën. Zëri yt ka rëndësi.",
+    excerptEn: "You are a gift to the world. Your voice matters.",
+    content: [
+      "Jeta është një dhuratë.",
+      "Ti je dhuratë për botën.",
+      "Zëri yt ka rëndësi.",
+      "Ka zgjidhje për atë problemin që për momentin e mendon pa zgjidhje.",
+      "Gjithçka do bëhet më mirë.",
+      "Pas stuhisë dielli shfaqet sërish.",
+      "Ti meriton të duhesh dhe pranohesh pa kushte.",
+      "Bota do ishte pak më e trishtë pa dritën tënde.",
+      "Sepse ti je drita e kësaj bote.",
+    ],
+    contentEn: [
+      "Life is a gift.",
+      "You are a gift to the world.",
+      "Your voice matters.",
+      "There is a solution to the problem you currently think has no solution.",
+      "Everything will get better.",
+      "After the storm the sun shines again.",
+      "You deserve to be loved and accepted unconditionally.",
+      "The world would be a little sadder without your light.",
+      "Because you are the light of this world.",
+    ],
+    readTime: "2 min lexim",
+    readTimeEn: "2 min read",
+    category: "Frymëzim",
+    categoryEn: "Inspiration",
+    color: "from-violet-500 to-purple-600",
+    emoji: "✨",
+    image: "/img/TONI1866.JPG",
+    quote: "Ti je drita e kësaj bote. Bota do ishte pak më e trishtë pa praninë tënde.",
+    quoteEn: "You are the light of this world. The world would be a little sadder without your presence.",
   },
   {
     id: 4,
@@ -113,6 +122,9 @@ const posts: BlogPost[] = [
     categoryEn: "Inspiration",
     color: "from-amber-500 to-orange-600",
     emoji: "🔑",
+    image: "/img/TONI2629.JPG",
+    quote: "Nuk ka dështim — ka vetëm leksione që na bëjnë më të fortë dhe më të urtë.",
+    quoteEn: "There is no failure — there are only lessons that make us stronger and wiser.",
   },
   {
     id: 5,
@@ -142,6 +154,9 @@ const posts: BlogPost[] = [
     categoryEn: "Heart & Soul",
     color: "from-sky-400 to-blue-500",
     emoji: "🌟",
+    image: "/img/TONI1692.JPG",
+    quote: "Zemra jonë di rrugën — duhet vetëm të guxojmë t'i besojmë asaj pa kushte.",
+    quoteEn: "Our heart knows the way — we just need the courage to trust it unconditionally.",
   },
   {
     id: 6,
@@ -167,6 +182,9 @@ const posts: BlogPost[] = [
     categoryEn: "Action & Transformation",
     color: "from-emerald-500 to-teal-600",
     emoji: "🌿",
+    image: "/img/TONI1503.JPG",
+    quote: "Gjendja jote e brendshme krijon realitetin e jashtëm. Ndryshoje atë dhe gjithçka ndryshon.",
+    quoteEn: "Your inner state creates your outer reality. Change it and everything changes.",
   },
   {
     id: 3,
@@ -192,140 +210,146 @@ const posts: BlogPost[] = [
     categoryEn: "Heart & Soul",
     color: "from-pink-500 to-rose-600",
     emoji: "🌸",
+    image: "/img/TONI2743.JPG",
+    quote: "Hapja e zemrës nuk është dobësi — është akti më i guximshëm që mund të bëjë një njeri.",
+    quoteEn: "Opening your heart is not weakness — it is the most courageous act a person can do.",
   },
 ];
 
-const categoryColors: Record<string, string> = {
-  "Frymëzim": "bg-black text-white",
-  "Inspiration": "bg-black text-white",
-  "Zhvillim Personal": "bg-black text-white",
-  "Personal Development": "bg-black text-white",
-  "Zemra & Shpirti": "bg-black text-white",
-  "Heart & Soul": "bg-black text-white",
-  "Veprim & Transformim": "bg-black text-white",
-  "Action & Transformation": "bg-black text-white",
-};
-
-function BlogCard({ post, onOpen }: { post: BlogPost; onOpen: () => void }) {
-  const { t } = useLanguage();
-  const catKey = t(post.category, post.categoryEn);
-  return (
-    <div
-      className="bg-white rounded-2xl transition-all duration-300 overflow-hidden cursor-pointer group border border-zinc-100 hover:-translate-y-1"
-      onClick={onOpen}
-    >
-      <div className="h-px bg-violet-200 w-full" />
-      <div className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <span className={`text-xs font-medium px-2.5 py-1 rounded-full tracking-wide ${categoryColors[catKey] || "bg-zinc-100 text-zinc-500"}`}>
-            {catKey}
-          </span>
-          <span className="text-xs text-zinc-300">{t(post.readTime, post.readTimeEn)}</span>
-        </div>
-        <h2 className="text-sm md:text-xl font-bold text-zinc-900 mb-2 leading-snug group-hover:text-violet-600 transition-colors">
-          {t(post.title, post.titleEn)}
-        </h2>
-        <p className="text-sm leading-relaxed text-zinc-700 md:text-base line-clamp-3">{t(post.excerpt, post.excerptEn)}</p>
-        <div className="mt-5 text-violet-500 text-sm leading-relaxed md:text-base font-medium">
-          {t("Lexo më shumë →", "Read more →")}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function BlogModal({ post, onClose }: { post: BlogPost; onClose: () => void }) {
-  const { t } = useLanguage();
-  const paragraphs = t("al", "en") === "al" ? post.content : post.contentEn;
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 backdrop-blur-sm overflow-y-auto py-8 px-4"
-      onClick={onClose}
-    >
-      <div
-        className="bg-white rounded-3xl max-w-2xl w-full border border-zinc-100 overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="px-8 py-10 text-white relative" style={{ backgroundColor: "#7c3aed" }}>
-          <button
-            onClick={onClose}
-            className="absolute top-4 left-4 flex items-center gap-1 text-white/80 hover:text-white text-sm font-medium transition-colors"
-          >
-            ← {t("Kthehu", "Back")}
-          </button>
-          <div className="mt-6">
-            <span className="text-white/70 text-xs font-semibold uppercase tracking-widest block mb-3">
-              {t(post.category, post.categoryEn)}
-            </span>
-            <h1 className="text-2xl md:text-3xl font-bold leading-snug mb-2">
-              {t(post.title, post.titleEn)}
-            </h1>
-            <p className="text-white/70 text-sm">{t(post.readTime, post.readTimeEn)}</p>
-          </div>
-        </div>
-        <div className="px-8 py-8 space-y-4">
-          {paragraphs.map((para, i) => (
-            <p key={i} className="text-sm leading-relaxed text-zinc-700 md:text-base">
-              {para}
-            </p>
-          ))}
-        </div>
-        <div className="px-8 pb-8">
-          <button
-            onClick={onClose}
-            className="w-full py-3 rounded-xl text-white font-semibold transition-colors"
-            style={{ backgroundColor: "#7c3aed" }}
-          >
-            {t("Mbyll", "Close")}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export const BlogPage = () => {
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [selectedPost, setSelectedPost] = useState<BlogPost>(posts[0]);
   const { t } = useLanguage();
+  const paragraphs = t("al", "en") === "al" ? selectedPost.content : selectedPost.contentEn;
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777298085111-0.jpeg')" }}
-        />
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.52)" }} />
-        <div className="relative z-10 text-center max-w-3xl mx-auto">
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-6 bg-white/15 text-white border border-white/20">
-            {t("Blog & Artikuj", "Blog & Articles")}
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-5">
-            {t("Frymëzim &", "Inspiration &")}{" "}
-            <span style={{ color: "#C4B5FD" }}>
-              {t("Transformim", "Transformation")}
-            </span>
+      {/* ── Hero ── */}
+      <div className="relative overflow-hidden min-h-[320px] md:min-h-[420px] flex items-center">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777298085111-0.jpeg')" }} />
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.62)" }} />
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-12 md:py-20 w-full">
+          <h1 className="font-bold leading-tight mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2rem, 6vw, 3.2rem)", color: "#ffffff" }}>
+            {t("Sekreti që të jep mundësinë", "The secret that gives you the power")}<br />
+            <span style={{ color: "#c4b5fd", fontStyle: "italic" }}>{t("të mos dështosh kurrë.", "to never fail.")}</span>
           </h1>
-          <p className="text-white/80 text-lg leading-relaxed">
-            {t(
-              "Mendime, reflektime dhe frymëzime nga Dr. Artemisa dhe ekipi ynë.",
-              "Thoughts, reflections and inspirations from Dr. Artemisa and our team."
-            )}
+          <div className="flex items-center gap-2 mb-4">
+            <div className="h-px w-8" style={{ background: "rgba(255,255,255,0.4)" }} />
+            <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 16 }}>♦</span>
+            <div className="h-px w-8" style={{ background: "rgba(255,255,255,0.4)" }} />
+          </div>
+          <p className="leading-relaxed mb-4 md:mb-6 text-sm md:text-base" style={{ fontFamily: "'Inter', sans-serif", color: "rgba(255,255,255,0.85)", maxWidth: 420 }}>
+            {t("Mendime, reflektime dhe frymëzime nga Dr. Artemisa dhe ekipi ynë.", "Thoughts, reflections and inspirations from Dr. Artemisa and our team.")}
           </p>
+          <a href="/kontakt"
+            className="inline-flex items-center gap-1.5 text-white text-sm md:text-base px-3 py-1.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105"
+            style={{ backgroundColor: "#4e29c5", fontFamily: "'Inter', sans-serif", fontWeight: 600 }}>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+            </svg>
+            {t("Lexo artikujt", "Read articles")}
+          </a>
         </div>
       </div>
 
-      <section className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => (
-            <BlogCard key={post.id} post={post} onOpen={() => setSelectedPost(post)} />
-          ))}
+      {/* ── Post list — direkt pas hero ── */}
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-6">
+        <div className="bg-white rounded-3xl border border-zinc-100 shadow-sm overflow-hidden">
+          <div className="px-5 py-4 border-b border-zinc-100">
+            <h3 className="font-bold text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18 }}>
+              {t("Lexo më tej", "Read more")}
+            </h3>
+            <div className="flex items-center gap-2 mt-1">
+              <div className="h-px w-5" style={{ background: "#c4b5fd" }} />
+              <span style={{ color: "#a78bfa", fontSize: 11 }}>♦</span>
+              <div className="h-px w-5" style={{ background: "#c4b5fd" }} />
+            </div>
+          </div>
+          <div className="divide-y divide-zinc-100">
+            {posts.map((post) => {
+              const isActive = selectedPost.id === post.id;
+              return (
+                <button
+                  key={post.id}
+                  onClick={() => setSelectedPost(post)}
+                  className="w-full flex items-stretch text-left transition-colors hover:bg-violet-50 overflow-hidden"
+                  style={{ background: isActive ? "#f5f0ff" : undefined, height: 100 }}
+                >
+                  {/* Thumbnail — full card height */}
+                  <div className="w-20 shrink-0">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* Info */}
+                  <div className="flex-1 min-w-0 px-3 py-3">
+                    <p className="font-semibold leading-snug line-clamp-2" style={{ fontSize: 13, color: isActive ? "#7c3aed" : "#1c1917" }}>
+                      {t(post.title, post.titleEn)}
+                    </p>
+                    <p className="text-xs text-zinc-400 mt-1">{t(post.readTime, post.readTimeEn)}</p>
+                  </div>
+                  {/* Arrow */}
+                  <div className="flex items-center pr-3">
+                    <svg className="w-4 h-4 shrink-0" fill="none" stroke={isActive ? "#7c3aed" : "#d4d4d8"} strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                    </svg>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {selectedPost && (
-        <BlogModal post={selectedPost} onClose={() => setSelectedPost(null)} />
-      )}
+      {/* ── Article content + quote ── */}
+      <section className="max-w-6xl mx-auto px-4 md:px-6 pb-12">
+        <div className="flex flex-col md:flex-row gap-6">
+
+          {/* Article content */}
+          <div className="flex-1 min-w-0 flex flex-col gap-4">
+            <div className="bg-white rounded-3xl px-7 py-8 border border-zinc-100 shadow-sm space-y-4">
+              {paragraphs.map((para, i) => (
+                <p key={i} className="leading-relaxed text-zinc-700" style={{ fontSize: 15 }}>{para}</p>
+              ))}
+            </div>
+
+            {/* Quote */}
+            <div className="rounded-3xl px-6 py-7 text-center border border-violet-100" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #ede9fe 100%)" }}>
+              <div style={{ color: "#7c3aed", fontFamily: "Georgia, serif", fontSize: 48, lineHeight: 1 }}>"</div>
+              <p className="italic font-medium leading-relaxed mt-2" style={{ color: "#4c1d95", fontSize: 14 }}>
+                {t(selectedPost.quote, selectedPost.quoteEn)}
+              </p>
+              <div className="mt-4 flex justify-center">
+                <span style={{ fontSize: 20, color: "#a78bfa" }}>✿</span>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA card */}
+          <div className="w-full md:w-72 shrink-0">
+            <div className="rounded-3xl px-5 py-6 text-center border border-violet-100" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #ede9fe 100%)" }}>
+              <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3" style={{ background: "#7c3aed" }}>
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
+                </svg>
+              </div>
+              <h4 className="font-bold text-zinc-900 mb-1" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15 }}>
+                {t("Gati për të bërë hapin tënd të parë?", "Ready to take your first step?")}
+              </h4>
+              <p className="text-zinc-500 mb-4" style={{ fontSize: 14 }}>
+                {t("Zbulo programet tona dhe bashkohu me komunitetin.", "Discover our programs and join the community.")}
+              </p>
+              <a href="/kontakt"
+                className="inline-flex items-center gap-1.5 text-white rounded-xl px-4 py-2 font-semibold transition-all hover:scale-105"
+                style={{ backgroundColor: "#7c3aed", fontSize: 13 }}>
+                {t("Shiko programet", "View programs")} →
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
     </div>
   );
 };
