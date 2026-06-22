@@ -12,27 +12,43 @@ export const KontaktPage = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>
-      <div className="relative py-16 md:py-28 px-4 md:px-6 overflow-hidden min-h-[300px] md:min-h-[420px] flex items-center"
-        style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776944742321-0.jpeg')", backgroundSize: "cover", backgroundPosition: "center" }}>
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.55)" }} />
-        <div className="relative max-w-4xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full font-semibold tracking-widest uppercase mb-6 bg-white/20 text-white border border-white/30" style={{ fontSize: 10 }}>
-            {t("Na Kontaktoni", "Contact Us")}
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-5 leading-tight">
-            {t("Jemi këtu", "We are here")}{" "}
-            <span style={{ color: "#C4B5FD" }}>{t("për ju", "for you")}</span>
-          </h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto leading-relaxed">
-            {t("Keni pyetje, ose dëshironi të filloni udhëtimin tuaj të transformimit? Na kontaktoni dhe do t'ju ndihmojmë të gjeni rrugën e duhur.", "Do you have questions, or want to begin your transformation journey? Contact us and we will help you find the right path.")}
-          </p>
+      <div className="relative overflow-hidden min-h-[320px] md:min-h-[420px] flex items-center">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776944742321-0.jpeg')" }} />
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.45)" }} />
+
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full">
+          <div className="flex-1 text-left">
+            <h1 className="font-bold leading-tight mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2rem, 6vw, 3.2rem)", color: "#ffffff" }}>
+              {t("Jemi këtu", "We are here")}<br />
+              <span style={{ color: "#c4b5fd", fontStyle: "italic" }}>{t("për ju", "for you")}</span>
+            </h1>
+
+            <div className="flex items-center gap-2 mb-4">
+              <div className="h-px w-8" style={{ background: "rgba(255,255,255,0.4)" }} />
+              <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 16 }}>♦</span>
+              <div className="h-px w-8" style={{ background: "rgba(255,255,255,0.4)" }} />
+            </div>
+
+            <p className="leading-relaxed mb-4 md:mb-6 text-sm md:text-base" style={{ fontFamily: "'Inter', sans-serif", color: "rgba(255,255,255,0.85)", maxWidth: 420 }}>
+              {t(
+                "Keni pyetje, ose dëshironi të filloni udhëtimin tuaj të transformimit? Na kontaktoni dhe do t'ju ndihmojmë të gjeni rrugën e duhur.",
+                "Do you have questions, or want to begin your transformation journey? Contact us and we will help you find the right path."
+              )}
+            </p>
+
+            <a href="https://wa.me/355692420827" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-white text-sm md:text-base px-3 py-1.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
+              style={{ backgroundColor: "#4e29c5", fontFamily: "'Inter', sans-serif", fontWeight: 600 }}>
+              {t("Na kontaktoni", "Contact us")}
+            </a>
+          </div>
         </div>
       </div>
 
       <div className="max-w-5xl mx-auto px-6 py-16">
 
         <div className="text-center mb-10">
-          <p className="leading-relaxed text-zinc-700 max-w-2xl mx-auto" style={{ fontSize: 16 }}>
+          <p className="leading-relaxed text-zinc-700 max-w-2xl mx-auto text-sm">
             {t("Jemi të lumtur për t'ju mbështetur në çdo hap të udhëtimit tuaj. Na kontaktoni në mënyrat e mëposhtme:", "We are happy to support you at every step of your journey. Contact us in the following ways:")}
           </p>
         </div>
@@ -48,9 +64,9 @@ export const KontaktPage = () => {
               </svg>
             </div>
             <div className="w-full min-w-0" style={{ wordBreak: "break-word" }}>
-              <p className="leading-relaxed text-zinc-700 font-bold mb-0.5">WhatsApp</p>
-              <p className="leading-relaxed text-zinc-700">{t("Për pyetje dhe informacione:", "For questions and information:")}</p>
-              <p className="text-zinc-800 font-bold mt-0.5">+355 69 242 0827</p>
+              <p className="leading-relaxed text-zinc-700 font-bold mb-0.5 text-sm">WhatsApp</p>
+              <p className="leading-relaxed text-zinc-700 text-sm">{t("Për pyetje dhe informacione:", "For questions and information:")}</p>
+              <p className="text-zinc-800 font-bold mt-0.5 text-sm">+355 69 242 0827</p>
             </div>
           </a>
 
@@ -62,9 +78,9 @@ export const KontaktPage = () => {
               <Instagram className="w-7 h-7 text-white" />
             </div>
             <div className="w-full min-w-0" style={{ wordBreak: "break-word" }}>
-              <p className="leading-relaxed text-zinc-700 font-bold mb-0.5">Instagram</p>
-              <p className="leading-relaxed text-zinc-700">{t("Na ndiqni dhe na shkruani direkt:", "Follow us and write directly:")}</p>
-              <p className="text-zinc-800 font-bold mt-0.5">@arte_gogo</p>
+              <p className="leading-relaxed text-zinc-700 font-bold mb-0.5 text-sm">Instagram</p>
+              <p className="leading-relaxed text-zinc-700 text-sm">{t("Na ndiqni dhe na shkruani direkt:", "Follow us and write directly:")}</p>
+              <p className="text-zinc-800 font-bold mt-0.5 text-sm">@arte_gogo</p>
             </div>
           </a>
 
@@ -76,9 +92,9 @@ export const KontaktPage = () => {
               <Facebook className="w-7 h-7 text-white" />
             </div>
             <div className="w-full min-w-0" style={{ wordBreak: "break-word" }}>
-              <p className="leading-relaxed text-zinc-700 font-bold mb-0.5">Facebook</p>
-              <p className="leading-relaxed text-zinc-700">{t("Na ndiqni:", "Follow us:")}</p>
-              <p className="text-zinc-800 font-bold mt-0.5">Arte Gogo — Facebook</p>
+              <p className="leading-relaxed text-zinc-700 font-bold mb-0.5 text-sm">Facebook</p>
+              <p className="leading-relaxed text-zinc-700 text-sm">{t("Na ndiqni:", "Follow us:")}</p>
+              <p className="text-zinc-800 font-bold mt-0.5 text-sm">Arte Gogo — Facebook</p>
             </div>
           </a>
 
@@ -90,9 +106,9 @@ export const KontaktPage = () => {
               <Youtube className="w-7 h-7 text-white" />
             </div>
             <div className="w-full min-w-0" style={{ wordBreak: "break-word" }}>
-              <p className="leading-relaxed text-zinc-700 font-bold mb-0.5">YouTube</p>
-              <p className="leading-relaxed text-zinc-700">{t("Na ndiqni:", "Follow us:")}</p>
-              <p className="text-zinc-800 font-bold mt-0.5">@artegogo3246</p>
+              <p className="leading-relaxed text-zinc-700 font-bold mb-0.5 text-sm">YouTube</p>
+              <p className="leading-relaxed text-zinc-700 text-sm">{t("Na ndiqni:", "Follow us:")}</p>
+              <p className="text-zinc-800 font-bold mt-0.5 text-sm">@artegogo3246</p>
             </div>
           </a>
 
@@ -104,9 +120,9 @@ export const KontaktPage = () => {
               <Mail className="w-7 h-7 text-white" />
             </div>
             <div className="w-full min-w-0" style={{ wordBreak: "break-word" }}>
-              <p className="leading-relaxed text-zinc-700 font-bold mb-0.5">Email</p>
-              <p className="leading-relaxed text-zinc-700">{t("Na shkruani:", "Write to us:")}</p>
-              <p className="text-zinc-800 font-bold mt-0.5">info@artogogo.com</p>
+              <p className="leading-relaxed text-zinc-700 font-bold mb-0.5 text-sm">Email</p>
+              <p className="leading-relaxed text-zinc-700 text-sm">{t("Na shkruani:", "Write to us:")}</p>
+              <p className="text-zinc-800 font-bold mt-0.5 text-sm">info@artogogo.com</p>
             </div>
           </a>
 
@@ -117,9 +133,9 @@ export const KontaktPage = () => {
               <TikTokIcon />
             </div>
             <div className="w-full min-w-0" style={{ wordBreak: "break-word" }}>
-              <p className="leading-relaxed text-zinc-700 font-bold mb-0.5">TikTok</p>
-              <p className="leading-relaxed text-zinc-700">{t("Na ndiqni:", "Follow us:")}</p>
-              <p className="text-zinc-800 font-bold mt-0.5">@dr.artegogo</p>
+              <p className="leading-relaxed text-zinc-700 font-bold mb-0.5 text-sm">TikTok</p>
+              <p className="leading-relaxed text-zinc-700 text-sm">{t("Na ndiqni:", "Follow us:")}</p>
+              <p className="text-zinc-800 font-bold mt-0.5 text-sm">@dr.artegogo</p>
             </div>
           </a>
         </div>
@@ -127,7 +143,7 @@ export const KontaktPage = () => {
         {/* Response time banner */}
         <div className="flex justify-center mb-12">
           <div className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-gray-50 border border-gray-200 max-w-lg w-full">
-            <p className="leading-relaxed text-zinc-700 text-center">
+            <p className="leading-relaxed text-zinc-700 text-center text-sm">
               {t("Ju përgjigjemi brenda", "We respond within")}{" "}
               <span className="font-bold" style={{ color: "#7c3aed" }}>{t("24 orëve", "24 hours")}</span>.{" "}
               {t("Jemi këtu për t'ju ndihmuar të bëni hapin e radhës.", "We are here to help you take the next step.")}
@@ -141,10 +157,10 @@ export const KontaktPage = () => {
             {t("Rezervoni vendin tuaj në retreat ose programin tonë online dhe filloni transformimin tuaj sot.", "Book your spot at our retreat or online program and begin your transformation today.")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/eventet/retreat" className="inline-block bg-white text-black font-bold px-8 py-3.5 rounded-xl hover:bg-gray-100 transition-all">
+            <a href="/eventet/retreat" className="inline-block bg-white text-black font-bold px-8 py-3.5 rounded-xl hover:bg-gray-100 transition-all text-sm">
               {t("Rezervo Retreat-in", "Book the Retreat")}
             </a>
-            <a href="/eventet/trajnime-online" className="inline-block border-2 border-white/40 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-white/10 transition-all">
+            <a href="/eventet/trajnime-online" className="inline-block border-2 border-white/40 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-white/10 transition-all text-sm">
               {t("Shiko Trajnimet Online", "View Online Trainings")}
             </a>
           </div>

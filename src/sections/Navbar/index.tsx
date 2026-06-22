@@ -153,7 +153,7 @@ const NavItemDesktop = ({ item }: { item: NavItem }) => {
       {item.children ? (
         <button
           onClick={() => setOpen((o) => !o)}
-          className={`flex items-center gap-1 text-sm font-medium px-3 py-2 rounded-lg transition-colors whitespace-nowrap ${
+          className={`flex items-center gap-1 text-base font-medium px-3 py-2 rounded-lg transition-colors whitespace-nowrap ${
             isActive ? "text-violet-700 bg-violet-50" : "text-zinc-700 hover:text-violet-700 hover:bg-gray-100"
           }`}
         >
@@ -163,7 +163,7 @@ const NavItemDesktop = ({ item }: { item: NavItem }) => {
       ) : (
         <Link
           to={item.href}
-          className={`flex items-center text-sm font-medium px-3 py-2 rounded-lg transition-colors whitespace-nowrap ${
+          className={`flex items-center text-base font-medium px-3 py-2 rounded-lg transition-colors whitespace-nowrap ${
             isActive ? "text-violet-700 bg-violet-50" : "text-zinc-700 hover:text-violet-700 hover:bg-gray-100"
           }`}
         >
