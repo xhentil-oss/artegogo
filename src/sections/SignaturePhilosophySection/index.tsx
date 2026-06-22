@@ -30,7 +30,7 @@ export const SignaturePhilosophySection = () => {
   }, []);
 
   return (
-    <section ref={ref} className="w-full bg-white py-8 md:py-16 px-6 overflow-hidden"
+    <section ref={ref} className="w-full bg-white pt-20 pb-8 md:py-16 px-6 overflow-hidden"
       style={{ opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}>
 
       <div className="max-w-lg mx-auto text-center">
@@ -39,7 +39,7 @@ export const SignaturePhilosophySection = () => {
         <div className="flex justify-center mb-3 md:mb-6">
           <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5"
             style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
-            <span className="badge text-[8px] md:text-xs font-bold tracking-widest uppercase"
+            <span className="badge text-[10px] md:text-xs font-bold tracking-widest uppercase"
               style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
               {t("FILOZOFIA JONË", "SIGNATURE PHILOSOPHY")}
             </span>
@@ -82,7 +82,7 @@ export const SignaturePhilosophySection = () => {
                   ? { background: "linear-gradient(135deg, #5b21b6, #7c3aed)", color: "#fff" }
                   : { background: "#f5f3ff", border: "1px solid #ddd6fe", color: "#7c3aed" }}>
                 <item.Icon className="w-4.5 h-4.5 w-[18px] h-[18px]" strokeWidth={1.8} />
-                <span className="badge text-[14px] md:text-base font-semibold">
+                <span className={`badge text-[14px] md:text-base font-semibold ${item.highlight ? "text-white" : ""}`}>
                   {lang === "al" ? item.labelAl : item.labelEn}
                 </span>
               </div>

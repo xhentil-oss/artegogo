@@ -57,10 +57,10 @@ export const BlogSection = () => {
 
         {/* Header */}
         <div className="text-center mb-4 md:mb-10">
-          <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 mb-2 md:mb-4"
+          <div className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 md:px-3 md:py-1.5 mb-2 md:mb-4"
             style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
-            <NotebookPen className="w-3.5 h-3.5" style={{ color: "#7c3aed" }} />
-            <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#7c3aed" }}>
+            <NotebookPen className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" style={{ color: "#7c3aed" }} />
+            <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase" style={{ color: "#7c3aed" }}>
               {t("BLOG", "BLOG")}
             </span>
           </div>
@@ -101,13 +101,13 @@ export const BlogSection = () => {
                 <img src={post.img} alt={lang === "al" ? post.titleAl : post.titleEn}
                   className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0"
-                  style={{ background: "linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(76,29,149,0.55) 50%, rgba(76,29,149,0.75) 100%)" }} />
+                  style={{ background: "linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.55) 100%)" }} />
 
                 {/* Category badge */}
                 <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full px-3 py-1"
                   style={{ background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.3)" }}>
                   <post.Icon className="w-3 h-3 text-white" strokeWidth={2} />
-                  <span className="text-white text-[14px] md:text-[10px] font-bold tracking-widest uppercase">
+                  <span className="text-white text-[10px] font-bold tracking-widest uppercase">
                     {lang === "al" ? post.categoryAl : post.categoryEn}
                   </span>
                 </div>
@@ -127,10 +127,10 @@ export const BlogSection = () => {
               <div className="px-5 py-4">
                 {/* Title + desc + button */}
                 <div className="min-w-0">
-                  <h3 className="font-bold text-zinc-900 text-lg mb-1 leading-snug">
+                  <h3 className="font-bold text-zinc-900 text-sm md:text-lg mb-1 leading-snug">
                     {lang === "al" ? post.titleAl : post.titleEn}
                   </h3>
-                  <p className="text-sm md:text-base leading-relaxed mb-3"
+                  <p className="text-[14px] md:text-base leading-relaxed mb-3"
                     style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                     {lang === "al" ? post.descAl : post.descEn}
                   </p>

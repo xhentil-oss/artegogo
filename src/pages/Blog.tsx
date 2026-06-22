@@ -251,63 +251,12 @@ export const BlogPage = () => {
         </div>
       </div>
 
-      {/* ── Post list — direkt pas hero ── */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 py-6">
-        <div className="bg-white rounded-3xl border border-zinc-100 shadow-sm overflow-hidden">
-          <div className="px-5 py-4 border-b border-zinc-100">
-            <h3 className="font-bold text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18 }}>
-              {t("Lexo më tej", "Read more")}
-            </h3>
-            <div className="flex items-center gap-2 mt-1">
-              <div className="h-px w-5" style={{ background: "#c4b5fd" }} />
-              <span style={{ color: "#a78bfa", fontSize: 11 }}>♦</span>
-              <div className="h-px w-5" style={{ background: "#c4b5fd" }} />
-            </div>
-          </div>
-          <div className="divide-y divide-zinc-100">
-            {posts.map((post) => {
-              const isActive = selectedPost.id === post.id;
-              return (
-                <button
-                  key={post.id}
-                  onClick={() => setSelectedPost(post)}
-                  className="w-full flex items-stretch text-left transition-colors hover:bg-violet-50 overflow-hidden"
-                  style={{ background: isActive ? "#f5f0ff" : undefined, height: 100 }}
-                >
-                  {/* Thumbnail — full card height */}
-                  <div className="w-20 shrink-0">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {/* Info */}
-                  <div className="flex-1 min-w-0 px-3 py-3">
-                    <p className="font-semibold leading-snug line-clamp-2" style={{ fontSize: 13, color: isActive ? "#7c3aed" : "#1c1917" }}>
-                      {t(post.title, post.titleEn)}
-                    </p>
-                    <p className="text-xs text-zinc-400 mt-1">{t(post.readTime, post.readTimeEn)}</p>
-                  </div>
-                  {/* Arrow */}
-                  <div className="flex items-center pr-3">
-                    <svg className="w-4 h-4 shrink-0" fill="none" stroke={isActive ? "#7c3aed" : "#d4d4d8"} strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
-                    </svg>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      {/* ── Main two-column layout ── */}
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-6 pb-12">
+        <div className="flex flex-col md:flex-row gap-6 items-start">
 
-      {/* ── Article content + quote ── */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 pb-12">
-        <div className="flex flex-col md:flex-row gap-6">
-
-          {/* Article content */}
-          <div className="flex-1 min-w-0 flex flex-col gap-4">
+          {/* LEFT: Article content + Quote (order-2 on mobile, order-1 on desktop) */}
+          <div className="flex-1 min-w-0 flex flex-col gap-4 order-2 md:order-1">
             <div className="bg-white rounded-3xl px-7 py-8 border border-zinc-100 shadow-sm space-y-4">
               {paragraphs.map((para, i) => (
                 <p key={i} className="leading-relaxed text-zinc-700" style={{ fontSize: 15 }}>{para}</p>
@@ -326,8 +275,58 @@ export const BlogPage = () => {
             </div>
           </div>
 
-          {/* CTA card */}
-          <div className="w-full md:w-72 shrink-0">
+          {/* RIGHT: Post list + CTA (order-1 on mobile, order-2 on desktop) */}
+          <div className="w-full md:w-80 shrink-0 flex flex-col gap-4 order-1 md:order-2">
+
+            {/* Post list */}
+            <div className="bg-white rounded-3xl border border-zinc-100 shadow-sm overflow-hidden">
+              <div className="px-5 py-4 border-b border-zinc-100">
+                <h3 className="font-bold text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18 }}>
+                  {t("Lexo më tej", "Read more")}
+                </h3>
+                <div className="flex items-center gap-2 mt-1">
+                  <div className="h-px w-5" style={{ background: "#c4b5fd" }} />
+                  <span style={{ color: "#a78bfa", fontSize: 11 }}>♦</span>
+                  <div className="h-px w-5" style={{ background: "#c4b5fd" }} />
+                </div>
+              </div>
+              <div className="divide-y divide-zinc-100">
+                {posts.map((post) => {
+                  const isActive = selectedPost.id === post.id;
+                  return (
+                    <button
+                      key={post.id}
+                      onClick={() => setSelectedPost(post)}
+                      className="w-full flex items-stretch text-left transition-colors hover:bg-violet-50 overflow-hidden"
+                      style={{ background: isActive ? "#f5f0ff" : undefined, minHeight: 90 }}
+                    >
+                      {/* Thumbnail */}
+                      <div className="w-16 shrink-0">
+                        <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                      </div>
+                      {/* Info */}
+                      <div className="flex-1 min-w-0 px-3 py-3">
+                        <p className="font-semibold leading-snug line-clamp-2" style={{ fontSize: 12, color: isActive ? "#7c3aed" : "#1c1917" }}>
+                          {t(post.title, post.titleEn)}
+                        </p>
+                        <p className="text-xs text-zinc-400 mt-1 flex items-center gap-1">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                          {t(post.readTime, post.readTimeEn)}
+                        </p>
+                      </div>
+                      {/* Arrow */}
+                      <div className="flex items-center pr-3">
+                        <svg className="w-4 h-4 shrink-0" fill="none" stroke={isActive ? "#7c3aed" : "#d4d4d8"} strokeWidth={2} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                        </svg>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* CTA card */}
             <div className="rounded-3xl px-5 py-6 text-center border border-violet-100" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #ede9fe 100%)" }}>
               <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3" style={{ background: "#7c3aed" }}>
                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -346,8 +345,8 @@ export const BlogPage = () => {
                 {t("Shiko programet", "View programs")} →
               </a>
             </div>
-          </div>
 
+          </div>
         </div>
       </section>
     </div>

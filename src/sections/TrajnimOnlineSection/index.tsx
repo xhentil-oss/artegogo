@@ -176,10 +176,10 @@ export const TrajnimOnlineSection = () => {
         {/* ── CTA button ── */}
         <button
           onClick={() => navigate("/eventet/trajnime-online")}
-          className="w-full py-3 md:py-4 rounded-2xl text-white font-bold text-xs md:text-base tracking-widest uppercase flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] hover:opacity-90 mb-3 md:mb-5"
+          className="w-full py-3 md:py-4 rounded-2xl text-white font-bold text-xs md:text-base normal-case tracking-normal flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] hover:opacity-90 mb-3 md:mb-5"
           style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)" }}>
           <UserRound className="w-5 h-5" />
-          {t("REGJISTROHU TANI", "REGISTER NOW")}
+          {t("Regjistrohu tani", "Register now")}
         </button>
 
         {/* ── Footer note ── */}

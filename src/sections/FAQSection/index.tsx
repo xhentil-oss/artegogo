@@ -347,15 +347,15 @@ export const FAQSection = () => {
   const currentItems = categories[activeCategory].items;
 
   return (
-    <section ref={ref} className="relative py-8 md:py-24 overflow-hidden" style={{ backgroundColor: "#F9FAFB" }}>
+    <section ref={ref} className="relative pt-20 pb-8 md:py-24 overflow-hidden" style={{ backgroundColor: "#F9FAFB" }}>
       <div className="relative z-10 max-w-3xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-4 md:mb-12 transition-all duration-700"
           style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)" }}>
           <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5 mb-4"
             style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
-            <span className="badge font-bold tracking-widest uppercase"
-              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif", fontSize: 10 }}>
+            <span className="badge font-bold tracking-widest uppercase text-[10px] md:text-xs"
+              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
               {t("PYETJE TË SHPESHTA", "FREQUENTLY ASKED QUESTIONS")}
             </span>
           </div>

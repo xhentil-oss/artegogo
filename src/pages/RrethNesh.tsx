@@ -289,8 +289,8 @@ export const RrethNeshPage = () => {
                   <p className="result-card-text font-bold mb-1 leading-snug" style={{ fontFamily: "'Inter', sans-serif", color: "#7c3aed" }}>
                     {t(item.titleAl, item.titleEn)}
                   </p>
-                  <div className={`w-6 h-px mb-1 mx-auto${i === 3 ? " result-4th-divider" : ""}`} style={{ background: "#ddd6fe", ...(i === 3 ? { marginTop: 28 } : {}) }} />
-                  <p className="result-card-text leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", color: "#3f3f46" }}>
+                  <div className={`w-6 h-px mb-1 mx-auto${i === 3 ? " mt-4 md:mt-0" : ""}`} style={{ background: "#ddd6fe" }} />
+                  <p className={`result-card-text leading-relaxed${i === 3 ? " mt-2 md:mt-0" : ""}`} style={{ fontFamily: "'Inter', sans-serif", color: "#3f3f46" }}>
                     {t(item.descAl, item.descEn)}
                   </p>
                 </div>
@@ -406,7 +406,7 @@ export const RrethNeshPage = () => {
                   <p className="font-bold mb-1 leading-snug flex items-center justify-center" style={{ fontFamily: "'Inter', sans-serif", color: "#7c3aed", fontSize: 12, minHeight: "3.5rem" }}>
                     {t(item.titleAl, item.titleEn)}
                   </p>
-                  <div className={`w-5 h-px mb-1${i === 1 ? " research-mid-divider" : ""}`} style={{ background: "#ddd6fe", ...(i === 2 ? { marginTop: 26 } : {}) }} />
+                  <div className="w-5 h-px mb-1" style={{ background: "#ddd6fe" }} />
                   <p className="leading-relaxed text-zinc-500" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12 }}>
                     {t(item.descAl, item.descEn)}
                   </p>
@@ -462,12 +462,12 @@ export const RrethNeshPage = () => {
                       { svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>, text: t("Shërimin emocional dhe punën me nënndërgjegjen", "Emotional healing and subconscious work") },
                       { svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>, text: t("Aktivizimin dhe lirimin e fashave", "Activation and release of fascia") },
                     ].map((item, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                      <li key={i} className="flex items-center gap-3">
+                        <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
                           style={{ background: "rgba(255,255,255,0.6)" }}>
                           {item.svg}
                         </div>
-                        <span className="text-base text-zinc-700" style={{ fontFamily: "'Inter', sans-serif", lineHeight: 1.6 }}>{item.text}</span>
+                        <span className="text-base text-zinc-700 mt-1" style={{ fontFamily: "'Inter', sans-serif", lineHeight: 1.6 }}>{item.text}</span>
                       </li>
                     ))}
                   </ul>
@@ -503,7 +503,7 @@ export const RrethNeshPage = () => {
               <div className="grid md:grid-cols-2">
                 {/* Left: 3 items */}
                 <div className="p-7 flex flex-col gap-5">
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
                       style={{ background: "rgba(255,255,255,0.6)" }}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -511,32 +511,32 @@ export const RrethNeshPage = () => {
                         <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                       </svg>
                     </div>
-                    <p className="text-base leading-relaxed text-zinc-700" style={{ fontFamily: "'Inter', sans-serif" }}>
+                    <p className="text-base leading-relaxed text-zinc-700 mt-1" style={{ fontFamily: "'Inter', sans-serif" }}>
                       {t("Përmes retreat-eve dhe programeve tona online, kemi ndihmuar ", "Through our retreats and online programs, we have helped ")}
                       <strong style={{ color: "#5b21b6" }}>{t("mijëra njerëz", "thousands of people")}</strong>
                       {t(" të transformojnë jetën e tyre.", " transform their lives.")}
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
                       style={{ background: "rgba(255,255,255,0.6)" }}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="#7c3aed" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                       </svg>
                     </div>
-                    <p className="text-base text-zinc-700" style={{ fontFamily: "'Inter', sans-serif" }}>
+                    <p className="text-base text-zinc-700 mt-1" style={{ fontFamily: "'Inter', sans-serif" }}>
                       {t("Edhe ju mund të krijoni ", "You too can create ")}
                       <strong style={{ color: "#5b21b6" }}>{t("jetën tuaj të re", "your new life")}</strong>.
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
                       style={{ background: "rgba(255,255,255,0.6)" }}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="#7c3aed" stroke="#7c3aed" strokeWidth="1.5">
                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                       </svg>
                     </div>
-                    <p className="text-base font-bold" style={{ color: "#3b0764", fontFamily: "'Inter', sans-serif" }}>
+                    <p className="text-base font-bold mt-1" style={{ color: "#3b0764", fontFamily: "'Inter', sans-serif" }}>
                       {t("Jeni të mirëpritur!", "You are welcome!")} 💙
                     </p>
                   </div>
@@ -558,14 +558,14 @@ export const RrethNeshPage = () => {
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/eventet/retreat"
-                className="inline-flex items-center justify-center gap-2 px-4 py-3 md:px-8 md:py-4 rounded-xl text-white font-semibold transition-all hover:opacity-90 text-xs md:text-base"
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 md:px-8 md:py-4 rounded-xl text-white font-semibold transition-all hover:opacity-90 text-sm md:text-base"
                 style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 {t("Rezervo vendin tënd", "Reserve your spot")}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </Link>
               <Link to="/eventet/trajnime-online"
-                className="inline-flex items-center justify-center gap-2 px-4 py-3 md:px-8 md:py-4 rounded-xl font-semibold transition-all text-xs md:text-base hover:opacity-80"
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 md:px-8 md:py-4 rounded-xl font-semibold transition-all text-sm md:text-base hover:opacity-80"
                 style={{ background: "#ede9fe", border: "1.5px solid #ddd6fe", color: "#5b21b6", fontFamily: "'Inter', sans-serif" }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 {t("Mëso më shumë", "Learn more")}

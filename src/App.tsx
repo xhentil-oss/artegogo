@@ -18,6 +18,7 @@ import { ShtyllatEPunesPage } from "@/pages/ShtyllatEPunes";
 import { RetreatPage } from "@/pages/Retreat";
 import { RetreatPagesaPage } from "@/pages/RetreatPagesa";
 import { RegjistrohuTrajnimPage } from "@/pages/RegjistrohuTrajnim";
+import { RegjistrohuRetreatPage } from "@/pages/RegjistrohuRetreat";
 import { TrajnimePagesaPage } from "@/pages/TrajnimePagesa";
 import { RegjistrohuWorkshopPage } from "@/pages/RegjistrohuWorkshop";
 import { TrajnimeOnlinePage } from "@/pages/TrajnimeOnline";
@@ -76,7 +77,7 @@ export const App = () => {
         <Route path="/rreth-nesh/shtyllat-e-punes" element={<Layout><ShtyllatEPunesPage /></Layout>} />
         <Route path="/eventet" element={<Navigate to="/eventet/retreat" replace />} />
         <Route path="/eventet/retreat" element={<Layout><RetreatPage /></Layout>} />
-        <Route path="/shop/regjistrohu-retreat" element={<Layout><RetreatPage /></Layout>} />
+        <Route path="/shop/regjistrohu-retreat" element={<Layout><RegjistrohuRetreatPage /></Layout>} />
         <Route path="/eventet/retreat/pagesa" element={<Layout><RetreatPagesaPage /></Layout>} />
         <Route path="/eventet/trajnime-online/regjistrohu" element={<Layout><RegjistrohuTrajnimPage /></Layout>} />
         <Route path="/shop/regjistrohu-trajnim-online" element={<Layout><RegjistrohuTrajnimPage /></Layout>} />

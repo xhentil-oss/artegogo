@@ -192,7 +192,7 @@ export const ShtyllatEPunesPage = () => {
                 alt="CTA"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(91,33,182,0.2) 0%, rgba(91,33,182,0.6) 100%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.25) 100%)" }} />
             </div>
 
             {/* Content */}
@@ -219,7 +219,7 @@ export const ShtyllatEPunesPage = () => {
               {/* Buttons */}
               <div className="flex flex-col items-center gap-3 w-full max-w-xs mx-auto">
                 <Link to="/signup"
-                  className="flex items-center justify-center gap-3 px-8 py-3.5 rounded-2xl text-white font-semibold w-full"
+                  className="flex items-center justify-center gap-3 px-8 py-3.5 rounded-2xl text-white font-semibold w-full text-sm md:text-base"
                   style={{ background: "linear-gradient(135deg, #6d28d9 0%, #4e29c5 100%)" }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
@@ -228,7 +228,7 @@ export const ShtyllatEPunesPage = () => {
                 </Link>
 
                 <Link to="/eventet/retreat"
-                  className="flex items-center justify-center gap-3 px-8 py-3.5 rounded-2xl font-semibold border w-full"
+                  className="flex items-center justify-center gap-3 px-8 py-3.5 rounded-2xl font-semibold border w-full text-sm md:text-base"
                   style={{ borderColor: "#ddd6fe", color: "#6d28d9", background: "#faf7ff" }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>

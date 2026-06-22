@@ -96,8 +96,8 @@ export function AboutSection({ mobileCentered = false }: { mobileCentered?: bool
           {/* Label */}
           <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5 mb-5"
             style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
-            <span className="badge font-bold tracking-widest uppercase"
-              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif", fontSize: 10 }}>
+            <span className="badge font-bold tracking-widest uppercase text-[10px] md:text-xs"
+              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
               {t('KUSH JEMI', 'WHO WE ARE')}
             </span>
           </div>
@@ -163,8 +163,8 @@ export function AboutSection({ mobileCentered = false }: { mobileCentered?: bool
           {/* CTA button */}
           <Link
             to="/rreth-nesh"
-            className={`${mobileCentered ? "self-center md:self-start" : "self-start"} inline-flex items-center gap-2 mt-4 md:text-base font-semibold px-4 py-2 md:px-6 md:py-3 rounded-xl text-white transition-all duration-300 hover:scale-105`}
-            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif", fontSize: 14 }}
+            className={`${mobileCentered ? "self-center md:self-start" : "self-start"} inline-flex items-center gap-2 mt-4 text-sm md:text-base font-semibold px-4 py-2 md:px-6 md:py-3 rounded-xl text-white transition-all duration-300 hover:scale-105`}
+            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}
           >
             {t("Mëso më shumë", "Learn more")} →
           </Link>
@@ -221,7 +221,7 @@ export function AboutSection({ mobileCentered = false }: { mobileCentered?: bool
 
               {/* Description */}
               <p
-                className={`md:text-base leading-relaxed ${i === 0 ? "mt-6" : ""}`}
+                className="md:text-base leading-relaxed"
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 400,

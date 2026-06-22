@@ -223,8 +223,8 @@ export const VideoTestimonialsSection = () => {
             {t("KËTO MUND TË JENË MOMENTET QE NDRYSHOJNË JETËN TËNDE", "THESE COULD BE THE MOMENTS THAT CHANGE YOUR LIFE")}
           </p>
           <button onClick={() => navigate("/rezultatet/testimonials")}
-            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
-            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif", fontSize: 16 }}>
+            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-100 text-sm md:text-base"
+            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}>
             <Play className="w-4 h-4" fill="white" />
             {t("Shiko më shumë video testimoniale", "Watch more video testimonials")}
           </button>

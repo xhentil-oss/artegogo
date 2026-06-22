@@ -76,7 +76,7 @@ export const RetreatCardSection = () => {
 
         {/* ── Includes ── */}
         <p
-          className="text-[8px] md:text-xs font-bold uppercase tracking-widest mb-2 md:mb-3"
+          className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2 md:mb-3"
           style={{ color: "#4e29c5", fontFamily: "'Inter', sans-serif", letterSpacing: "0.18em" }}
         >
           {t("ÇFARË PËRFSHIN", "WHAT IT INCLUDES")}

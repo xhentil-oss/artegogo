@@ -148,7 +148,7 @@ export const RetreatPagesaPage = () => {
             {/* Back + Pay buttons */}
             <div className="flex gap-3">
               <button
-                onClick={() => navigate('/eventet/retreat')}
+                onClick={() => navigate('/shop/regjistrohu-retreat')}
                 className="flex items-center gap-2 px-5 py-3 rounded-xl border border-gray-200 text-zinc-700 font-semibold text-sm hover:bg-gray-50 transition-all">
                 <ChevronLeft className="w-4 h-4" />
                 {t("Kthehu pas", "Go back")}

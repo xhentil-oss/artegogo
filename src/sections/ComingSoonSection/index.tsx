@@ -10,7 +10,7 @@ const CARDS = [
     Icon: Flower2,
   },
   {
-    titleAl: "Meditimi i Energisë",
+    titleAl: "Meditimi i Energjisë",
     titleEn: "Energy Meditation",
     img: "https://images.unsplash.com/photo-1554244933-d876deb6b2ff?w=400&q=80",
     Icon: User,
@@ -22,7 +22,7 @@ const CARDS = [
     Icon: Moon,
   },
   {
-    titleAl: "Breathwork Experience",
+    titleAl: "Eksperiencë me Frymëmarrje",
     titleEn: "Breathwork Experience",
     img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80",
     Icon: Wind,
@@ -82,9 +82,9 @@ export const ComingSoonSection = () => {
               {/* Background image */}
               <img src={card.img} alt={lang === "al" ? card.titleAl : card.titleEn}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              {/* Purple overlay */}
+              {/* Dark overlay */}
               <div className="absolute inset-0"
-                style={{ background: "linear-gradient(to bottom, rgba(88,28,180,0.3) 0%, rgba(109,40,217,0.65) 60%, rgba(76,29,149,0.85) 100%)" }} />
+                style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.75) 100%)" }} />
 
               {/* Lock top-right */}
               <div className="absolute top-2 right-2 w-5 h-5 md:w-7 md:h-7 rounded-full flex items-center justify-center"
@@ -102,7 +102,7 @@ export const ComingSoonSection = () => {
                   style={{ fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
                   {lang === "al" ? card.titleAl : card.titleEn}
                 </p>
-                <span className="inline-block px-2 py-1 rounded-full text-white text-[12px] md:text-xs font-bold tracking-widest uppercase"
+                <span className="inline-block px-2 py-1 rounded-full text-white text-[10px] md:text-xs font-bold tracking-widest uppercase"
                   style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.3)", fontFamily: "'Inter', sans-serif" }}>
                   {t("SË SHPEJTI", "COMING SOON")}
                 </span>

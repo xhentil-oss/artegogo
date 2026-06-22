@@ -79,7 +79,7 @@ export const PhilosophySection = () => {
               style={{ color: "#7C3AED", fontSize: 14 }}>
               {lang === "al" ? p.labelAl : p.labelEn}
             </p>
-            <p className="md:text-base leading-relaxed"
+            <p className={`md:text-base leading-relaxed ${(i === 0 || i === 2 || i === 5) ? "mt-6 md:mt-0" : ""}`}
               style={{ color: "#52525b", fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
               {lang === "al" ? p.descAl : p.descEn}
             </p>

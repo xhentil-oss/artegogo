@@ -25,20 +25,18 @@ export const CTABannerSection = () => {
 
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <button onClick={() => navigate("/eventet/retreat")}
-            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-[1.03]" style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)" }}>
-            <span className="relative z-10 text-xs md:text-base" style={{ fontFamily: "'Inter', sans-serif" }}>{t("Rezervo Retreat-in", "Book the Retreat")}</span>
-            <svg className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            className="inline-flex items-center gap-2 text-white font-semibold text-sm md:text-base px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105"
+            style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}>
+            {t("Rezervo Retreat-in", "Book the Retreat")}
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-            <span className="absolute inset-0 -translate-x-full bg-white/15 skew-x-12 transition-transform duration-500 group-hover:translate-x-full" />
           </button>
 
           <button onClick={() => navigate("/eventet/trajnime-online")}
-            className="inline-flex items-center gap-3 rounded-full border-2 bg-white px-8 py-[14px] font-semibold transition-all duration-300 hover:scale-[1.02]"
-            style={{ borderColor: '#000000', color: '#000000' }}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#f4f4f5'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#ffffff'; }}>
-            <span className="text-xs md:text-base" style={{ color: "#000000", fontFamily: "'Inter', sans-serif" }}>{t("Shiko trajnimet online", "View online trainings")}</span>
+            className="inline-flex items-center gap-2 font-semibold text-sm md:text-base px-8 py-4 rounded-xl border border-gray-200 bg-white text-zinc-700 transition-all duration-300 hover:scale-105 hover:bg-gray-50"
+            style={{ fontFamily: "'Inter', sans-serif" }}>
+            {t("Shiko trajnimet online", "View online trainings")}
           </button>
         </div>
 

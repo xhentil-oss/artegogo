@@ -114,7 +114,7 @@ export const FoundationSection = () => {
           }}
         >
           <p
-            className="text-[8px] font-bold uppercase tracking-widest mb-3 md:mb-5"
+            className="text-[10px] md:text-[12px] font-bold uppercase tracking-widest mb-3 md:mb-5"
             style={{ color: "#4e29c5", fontFamily: "'Inter', sans-serif", letterSpacing: "0.2em" }}
           >
             {t("I rrënjosur në shkencë. I udhëhequr nga përvoja.", "Rooted in science. Guided by experience.")}

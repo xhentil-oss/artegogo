@@ -7,8 +7,8 @@ const FEATURES = [
   { Icon: Heart,      al: "Harmoni zemër-tru",          en: "Heart-brain harmony" },
   { Icon: Brain,      al: "Qetësim i sistemit nervor",  en: "Nervous system calming" },
   { Icon: Sparkles,   al: "Aktivizim emocional",        en: "Emotional activation" },
-  { Icon: Headphones, al: "Audio immersive experience", en: "Audio immersive experience" },
-  { Icon: Zap,        al: "Akses menjëhershëm",         en: "Instant access" },
+  { Icon: Headphones, al: "Audio imersive experience", en: "Audio imersive experience" },
+  { Icon: Zap,        al: "Akses i menjëhershëm",         en: "Instant access" },
 ];
 
 export const SuperkoherencaSection = () => {
@@ -37,14 +37,9 @@ export const SuperkoherencaSection = () => {
         className="absolute inset-0 w-full h-full object-cover object-center"
       />
 
-      {/* Gradient overlay: strong left → transparent right on desktop; top-to-bottom on mobile */}
+      {/* Dark overlay for text readability */}
       <div className="absolute inset-0"
-        style={{
-          background: "linear-gradient(to right, rgba(88,28,180,0.75) 0%, rgba(109,40,217,0.55) 35%, rgba(124,58,237,0.25) 60%, transparent 100%)"
-        }} />
-      {/* Extra top/bottom vignette for mobile */}
-      <div className="absolute inset-0"
-        style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.2) 100%)" }} />
+        style={{ background: "linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)" }} />
 
       {/* Content */}
       <div className="relative z-10 flex items-center px-6 md:px-16 py-5 md:py-16">
@@ -55,7 +50,7 @@ export const SuperkoherencaSection = () => {
           <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 mb-3 md:mb-5"
             style={{ background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.35)", backdropFilter: "blur(8px)" }}>
             <Headphones className="w-3 h-3 md:w-3.5 md:h-3.5 text-white" />
-            <span className="badge font-bold tracking-widest uppercase text-white" style={{ fontSize: 10 }}>
+            <span className="badge font-bold tracking-widest uppercase text-white text-[10px] md:text-xs">
               {t("AUDIO EXPERIENCE", "AUDIO EXPERIENCE")}
             </span>
           </div>
@@ -94,7 +89,7 @@ export const SuperkoherencaSection = () => {
           {/* CTA */}
           <button
             onClick={() => navigate("/meditime")}
-            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl md:text-[16px] transition-all duration-300 hover:scale-105 active:scale-100 mb-3"
+            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl text-sm md:text-base transition-all duration-300 hover:scale-105 active:scale-100 mb-3"
             style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}>
             <Play className="w-4 h-4" fill="white" />
             {t("Fillo meditimin", "Start meditation")}

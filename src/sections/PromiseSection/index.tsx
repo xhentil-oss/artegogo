@@ -110,8 +110,8 @@ export const PromiseSection = () => {
           {/* Label */}
           <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5 mb-2 md:mb-5"
             style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
-            <span className="badge font-bold tracking-widest uppercase"
-              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif", fontSize: 10 }}>
+            <span className="badge font-bold tracking-widest uppercase text-[10px] md:text-xs"
+              style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
               {t("PREMTIMI YNË", "OUR PROMISE")}
             </span>
           </div>
