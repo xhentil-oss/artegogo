@@ -48,8 +48,9 @@ const navItemsAL: NavItem[] = [
     label: "Shop",
     href: "/shop",
     children: [
-      { label: "Evente", href: "/shop#evente" },
-      { label: "Meditime", href: "/shop/meditime" },
+      { label: "Regjistrohu Retreat", href: "/shop/regjistrohu-retreat" },
+      { label: "Regjistrohu Trajnim Online", href: "/shop/regjistrohu-trajnim-online" },
+      { label: "Regjistrohu Workshop", href: "/shop/regjistrohu-workshop" },
       { label: "Librat", href: "/shop/librat" },
     ],
   },
@@ -100,8 +101,9 @@ const navItemsEN: NavItem[] = [
     label: "Shop",
     href: "/shop",
     children: [
-      { label: "Events", href: "/shop#evente" },
-      { label: "Meditation", href: "/shop/meditime" },
+      { label: "Register Retreat", href: "/shop/regjistrohu-retreat" },
+      { label: "Register Online Training", href: "/shop/regjistrohu-trajnim-online" },
+      { label: "Register Workshop", href: "/shop/regjistrohu-workshop" },
       { label: "Books", href: "/shop/librat" },
     ],
   },

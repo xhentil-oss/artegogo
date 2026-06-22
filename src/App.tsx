@@ -16,6 +16,10 @@ import { RrethNeshPage } from "@/pages/RrethNesh";
 import { MisioniPage } from "@/pages/Misioni";
 import { ShtyllatEPunesPage } from "@/pages/ShtyllatEPunes";
 import { RetreatPage } from "@/pages/Retreat";
+import { RetreatPagesaPage } from "@/pages/RetreatPagesa";
+import { RegjistrohuTrajnimPage } from "@/pages/RegjistrohuTrajnim";
+import { TrajnimePagesaPage } from "@/pages/TrajnimePagesa";
+import { RegjistrohuWorkshopPage } from "@/pages/RegjistrohuWorkshop";
 import { TrajnimeOnlinePage } from "@/pages/TrajnimeOnline";
 import { WorkshopePage } from "@/pages/Workshope";
 import { LivePage } from "@/pages/Live";
@@ -72,6 +76,13 @@ export const App = () => {
         <Route path="/rreth-nesh/shtyllat-e-punes" element={<Layout><ShtyllatEPunesPage /></Layout>} />
         <Route path="/eventet" element={<Navigate to="/eventet/retreat" replace />} />
         <Route path="/eventet/retreat" element={<Layout><RetreatPage /></Layout>} />
+        <Route path="/shop/regjistrohu-retreat" element={<Layout><RetreatPage /></Layout>} />
+        <Route path="/eventet/retreat/pagesa" element={<Layout><RetreatPagesaPage /></Layout>} />
+        <Route path="/eventet/trajnime-online/regjistrohu" element={<Layout><RegjistrohuTrajnimPage /></Layout>} />
+        <Route path="/shop/regjistrohu-trajnim-online" element={<Layout><RegjistrohuTrajnimPage /></Layout>} />
+        <Route path="/eventet/trajnime-online/pagesa" element={<Layout><TrajnimePagesaPage /></Layout>} />
+        <Route path="/shop/regjistrohu-workshop" element={<Layout><RegjistrohuWorkshopPage /></Layout>} />
+        <Route path="/shop/regjistrohu-workshop/pagesa" element={<Layout><TrajnimePagesaPage /></Layout>} />
         <Route path="/eventet/trajnime-online" element={<Layout><TrajnimeOnlinePage /></Layout>} />
         <Route path="/eventet/workshope" element={<Layout><WorkshopePage /></Layout>} />
         <Route path="/live" element={<Layout><LivePage /></Layout>} />
