@@ -328,8 +328,8 @@ export const RetreatPage = () => {
               ),
             },
           ].map((item, i) => (
-            <div key={i} className="py-2 [&_strong]:text-violet-600 [&_p]:text-zinc-600" style={{ fontSize: 16, lineHeight: 1.6 }}>
-              <h3 className="font-bold mb-1 text-zinc-900" style={{ fontSize: 16, lineHeight: 1.4 }}>
+            <div key={i} className="py-2 text-sm md:text-base [&_strong]:text-violet-600 [&_p]:text-zinc-600" style={{ lineHeight: 1.6 }}>
+              <h3 className="font-bold mb-1 text-zinc-900 text-sm md:text-base" style={{ lineHeight: 1.4 }}>
                 {item.title}
               </h3>
               {item.body}
@@ -868,7 +868,7 @@ export const RetreatPage = () => {
           </div>
 
           <a
-            href="/kontakt"
+            href="/shop/regjistrohu-retreat"
             className="inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-xl hover:scale-105 transition-all duration-300 mb-4"
             style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", color: "#fff", fontSize: 14 }}
           >

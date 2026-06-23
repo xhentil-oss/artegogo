@@ -464,13 +464,12 @@ const pillars = [
           </div>
 
           {/* Pricing CTA */}
-          <div className="rounded-2xl px-5 py-5 flex flex-col sm:flex-row items-center justify-between gap-4"
-            style={{ background: "#18181b" }}>
-            <div>
-              <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "clamp(0.65rem, 1.5vw, 0.75rem)", letterSpacing: "0.05em" }}>
+          <div className="rounded-2xl px-5 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#ede9fe] md:bg-[#18181b]">
+            <div className="text-center sm:text-left">
+              <p className="text-violet-700 md:text-white/55" style={{ fontSize: "clamp(0.65rem, 1.5vw, 0.75rem)", letterSpacing: "0.05em" }}>
                 {t("INVESTO NË VETEN TËNDE. TRANSFORMIMI YT FILLON KËTU.", "INVEST IN YOURSELF. YOUR TRANSFORMATION STARTS HERE.")}
               </p>
-              <p className="font-bold text-white" style={{ fontSize: "clamp(1.8rem, 5vw, 2.5rem)", lineHeight: 1.1 }}>320€</p>
+              <p className="font-bold text-violet-900 md:text-white" style={{ fontSize: "clamp(1.8rem, 5vw, 2.5rem)", lineHeight: 1.1 }}>320€</p>
             </div>
             <a href="/signup"
               className="inline-flex items-center gap-2 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shrink-0"
@@ -513,10 +512,10 @@ const pillars = [
       </section>
 
       {/* ── UDHËTIMI 6 JAVË ── */}
-      <section style={{ background: "#ffffff" }} className="py-10 md:py-16 px-6">
+      <section style={{ background: "#ffffff" }} className="pt-3 pb-10 md:pt-12 md:pb-16 px-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="flex items-center gap-3 justify-center mb-8 md:mb-12">
+          <div className="flex items-center gap-3 justify-center mt-3 md:mt-0 mb-3 md:mb-12">
             <div className="flex-1 h-px max-w-20" style={{ background: "linear-gradient(to right, transparent, #7c3aed)" }} />
             <p className="font-bold text-center whitespace-nowrap" style={{ color: "#7c3aed", fontSize: "clamp(0.65rem, 2vw, 0.8rem)", letterSpacing: "0.15em" }}>
               {t("UDHËTIMI YT TRANSFORMUES – 6 JAVË", "YOUR TRANSFORMATIVE JOURNEY – 6 WEEKS")}
@@ -597,13 +596,13 @@ const pillars = [
       </section>
 
       {/* ── ÇFARË PËRFSHIN PROGRAMI ── */}
-      <section style={{ background: "#F4F4F5" }} className="py-10 md:py-16 px-6">
+      <section style={{ background: "#F4F4F5" }} className="pt-3 pb-10 md:py-16 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-bold text-center mb-8"
+          <h2 className="font-bold text-center mt-3 md:mt-0 mb-10 md:mb-8"
             style={{ color: "#18181b", fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.3rem, 4vw, 2rem)" }}>
             {t("Çfarë Përfshin Programi?", "What Does the Program Include?")}
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-4 md:mt-0">
             {[
               {
                 icon: (
@@ -681,10 +680,10 @@ const pillars = [
             {practiceItems.map((item, i) => (
               <div key={i} className={`flex flex-col ${item.imgLeft ? "md:flex-row-reverse" : "md:flex-row"} gap-6 md:gap-10 items-center`}>
                 <div className="flex-1">
-                  <h3 className="font-bold text-zinc-800 mb-3" style={{ fontSize: "clamp(1rem, 2.5vw, 1.2rem)", fontFamily: "'Inter', sans-serif" }}>
+                  <h3 className="font-bold text-zinc-800 mt-3 md:mt-0 mb-3" style={{ fontSize: "clamp(1rem, 2.5vw, 1.2rem)", fontFamily: "'Inter', sans-serif" }}>
                     {t(item.titleAL, item.titleEN)}
                   </h3>
-                  <p style={{ color: "#52525b", fontSize: 16, lineHeight: 1.7 }}>
+                  <p className="mt-3 md:mt-0" style={{ color: "#52525b", fontSize: 16, lineHeight: 1.7 }}>
                     {t(item.descAL, item.descEN)}
                   </p>
                 </div>
@@ -794,11 +793,11 @@ const pillars = [
             ].map((item, i) => (
               <div key={i} className={`flex flex-col ${item.imgLeft ? "md:flex-row-reverse" : "md:flex-row"} gap-6 md:gap-10 items-center`}>
                 <div className="flex-1">
-                  <h3 className="font-bold uppercase mb-3"
+                  <h3 className="font-bold uppercase mt-3 md:mt-0 mb-3"
                     style={{ color: "#7c3aed", fontSize: 16, letterSpacing: "0.04em", lineHeight: 1.3 }}>
                     {t(item.titleAL, item.titleEN)}
                   </h3>
-                  <p style={{ color: "#52525b", fontSize: 16, lineHeight: 1.7 }}>
+                  <p className="mt-3 md:mt-0" style={{ color: "#52525b", fontSize: 16, lineHeight: 1.7 }}>
                     {t(item.descAL, item.descEN)}
                   </p>
                 </div>

@@ -49,7 +49,7 @@ export const ValetGamaPage = () => {
 
             {/* Left: text */}
             <div className="flex-1 min-w-0">
-              <h2 className="font-bold leading-tight mb-3 text-lg md:text-3xl" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#1a1033" }}>
+              <h2 className="font-bold leading-tight mt-3 md:mt-0 mb-3 text-lg md:text-3xl" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#1a1033" }}>
                 {t("Çfarë janë ", "What are ")}<span style={{ color: "#7c3aed" }}>{t("Valët Gamma?", "Gamma Waves?")}</span>
               </h2>
 
@@ -150,7 +150,7 @@ export const ValetGamaPage = () => {
           </div>
 
           {/* Bottom banner */}
-          <div className="mt-10 flex items-center gap-4 rounded-2xl px-6 py-5" style={{ background: "#f3f0ff", border: "1px solid rgba(124,58,237,0.15)" }}>
+          <div className="mt-4 md:mt-10 flex items-center gap-4 rounded-2xl px-6 py-5" style={{ background: "#f3f0ff", border: "1px solid rgba(124,58,237,0.15)" }}>
             <svg className="w-7 h-7 shrink-0" fill="#a78bfa" viewBox="0 0 24 24">
               <path d="M12 2C9 2 6 4 6 7c0 2.5 1.5 4.5 3.5 5.5C8 14 7 16 7 18c0 2.5 1.5 4 5 4s5-1.5 5-4c0-2-.9-4-2.5-5.5C16.5 11.5 18 9.5 18 7c0-3-3-5-6-5z"/>
             </svg>
@@ -263,7 +263,7 @@ export const ValetGamaPage = () => {
         <div className="max-w-5xl mx-auto">
 
           {/* Title with dashes */}
-          <div className="flex items-center justify-center gap-3 mb-10">
+          <div className="flex items-center justify-center gap-3 mb-4 md:mb-10">
             <div className="h-px flex-1 max-w-[60px]" style={{ background: "#d4d4d8" }} />
             <h2 className="font-bold text-lg md:text-3xl text-center" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#1a1033" }}>
               {t("Pamja e Valëve Gamma", "The View of Gamma Waves")}
@@ -492,7 +492,7 @@ export const ValetGamaPage = () => {
         <div className="max-w-5xl mx-auto">
 
           {/* Top: photo + text */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start mb-10">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start mb-4 md:mb-10">
             {/* Left: photo */}
             <div className="shrink-0 w-full md:w-64 h-72 md:h-80 rounded-3xl overflow-hidden">
               <img src="/img/richard-davidson.webp" alt="Richard Davidson" className="w-full h-full object-cover object-left-top" />
@@ -594,9 +594,7 @@ export const ValetGamaPage = () => {
 
           {/* Header */}
           <div className="text-center mb-10">
-            <p className="font-bold tracking-widest uppercase mb-2 text-xs" style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
-              {t("PËRVOJA E PJESËMARRËSVE TANË", "OUR PARTICIPANTS' EXPERIENCES")}
-            </p>
+
             <h2 className="font-bold leading-tight mb-3 text-lg md:text-3xl" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#1a1033" }}>
               {t("Transformime", "Transformations")}<br />
               <span style={{ color: "#7c3aed" }}>{t("që flasin vetë", "that speak for themselves")}</span>
@@ -698,7 +696,7 @@ export const ValetGamaPage = () => {
             )}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-4 md:mt-0">
             <a href="/shop/regjistrohu-retreat"
               className="inline-flex items-center gap-2 font-bold rounded-xl transition-all hover:scale-105 text-sm md:text-base"
               style={{ background: "#7c3aed", color: "#ffffff", padding: "11px 22px" }}>

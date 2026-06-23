@@ -223,7 +223,7 @@ export const RegjistrohuRetreatPage = () => {
               </div>
 
               <div className="p-5">
-                <h3 className="font-bold text-zinc-800 mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 16 }}>
+                <h3 className="font-bold text-zinc-800 mb-4" style={{ fontSize: 16 }}>
                   {t("Pse ky retreat?", "Why this retreat?")}
                 </h3>
 

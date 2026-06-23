@@ -157,10 +157,10 @@ export const KontaktPage = () => {
             {t("Rezervoni vendin tuaj në retreat ose programin tonë online dhe filloni transformimin tuaj sot.", "Book your spot at our retreat or online program and begin your transformation today.")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/eventet/retreat" className="inline-block font-bold px-8 py-3.5 rounded-xl transition-all text-white" style={{ backgroundColor: "#7c3aed", fontSize: 16 }}>
+            <a href="/eventet/retreat" className="inline-block font-bold px-8 py-3.5 rounded-xl transition-all text-white text-sm md:text-base" style={{ backgroundColor: "#7c3aed" }}>
               {t("Rezervo Retreat-in", "Book the Retreat")}
             </a>
-            <a href="/eventet/trajnime-online" className="inline-block font-semibold px-8 py-3.5 rounded-xl transition-all" style={{ border: "2px solid #7c3aed", color: "#7c3aed", backgroundColor: "white", fontSize: 16 }}>
+            <a href="/eventet/trajnime-online" className="inline-block font-semibold px-8 py-3.5 rounded-xl transition-all text-sm md:text-base" style={{ border: "2px solid #7c3aed", color: "#7c3aed", backgroundColor: "white" }}>
               {t("Shiko Trajnimet Online", "View Online Trainings")}
             </a>
           </div>

@@ -46,7 +46,7 @@ const navItemsAL: NavItem[] = [
   { label: "Meditime", href: "/meditime" },
   {
     label: "Shop",
-    href: "/shop",
+    href: "/shop/regjistrohu-retreat",
     children: [
       { label: "Regjistrohu Retreat", href: "/shop/regjistrohu-retreat" },
       { label: "Regjistrohu Trajnim Online", href: "/shop/regjistrohu-trajnim-online" },
@@ -99,7 +99,7 @@ const navItemsEN: NavItem[] = [
   { label: "Meditation", href: "/meditime" },
   {
     label: "Shop",
-    href: "/shop",
+    href: "/shop/regjistrohu-retreat",
     children: [
       { label: "Register Retreat", href: "/shop/regjistrohu-retreat" },
       { label: "Register Online Training", href: "/shop/regjistrohu-trajnim-online" },

@@ -43,7 +43,7 @@ export const MeditimePage = () => {
       {/* ── "Ne do të vazhdojmë derisa..." section ── */}
       <section className="py-12 md:py-16 px-4" style={{ background: "#f9f9fb" }}>
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="font-bold mb-3 text-lg md:text-3xl" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#1a1033" }}>
+          <h2 className="font-bold mt-3 md:mt-0 mb-3 text-lg md:text-3xl" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#1a1033" }}>
             {t("Ne do të vazhdojmë derisa...", "We will continue until...")}
           </h2>
           <p className="text-zinc-500 mb-10 max-w-xl mx-auto text-sm md:text-base">
@@ -53,7 +53,7 @@ export const MeditimePage = () => {
             )}
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-4 md:mt-0">
             {/* 1 */}
             <div className="flex flex-col items-center text-center gap-3">
               <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: "#ede9fe" }}>
@@ -138,7 +138,7 @@ export const MeditimePage = () => {
 
           {/* Left: text */}
           <div className="flex-1 min-w-0 z-10">
-            <h2 className="font-bold leading-tight mb-5 text-lg md:text-3xl" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#1a1033" }}>
+            <h2 className="font-bold leading-tight mt-3 md:mt-0 mb-5 text-lg md:text-3xl" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#1a1033" }}>
               {t("Një rikthim", "A return")}<br />
               <span style={{ color: "#7c3aed", fontStyle: "italic" }}>{t("drejt koherencës", "toward coherence")}</span>
             </h2>
@@ -259,7 +259,7 @@ export const MeditimePage = () => {
                       <circle cx="12" cy="12" r="4"/>
                     </svg>
                   </div>
-                  <p className="font-bold text-zinc-900 text-center mt-1 text-sm md:text-base min-h-[2.5rem] flex items-center justify-center">{card.title}</p>
+                  <p className="font-bold text-zinc-900 text-center mt-1 text-sm md:text-base min-h-[2.5rem] flex items-start justify-center">{card.title}</p>
                   <p className="text-zinc-500 text-center leading-relaxed text-sm md:text-base">{card.desc}</p>
                 </div>
               </div>
@@ -404,8 +404,8 @@ export const MeditimePage = () => {
           </p>
 
           <a href="/shop/regjistrohu-retreat"
-            className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-2xl transition-all hover:scale-105 hover:shadow-lg"
-            style={{ background: "linear-gradient(135deg, #7c3aed 0%, #4e29c5 100%)", color: "#ffffff", fontSize: 16 }}>
+            className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-2xl transition-all hover:scale-105 hover:shadow-lg text-sm md:text-base"
+            style={{ background: "linear-gradient(135deg, #7c3aed 0%, #4e29c5 100%)", color: "#ffffff" }}>
             {t("Regjistrohu tani", "Register now")}
           </a>
         </div>

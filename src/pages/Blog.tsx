@@ -266,7 +266,7 @@ export const BlogPage = () => {
             {/* Quote */}
             <div className="rounded-3xl px-6 py-7 text-center border border-violet-100" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #ede9fe 100%)" }}>
               <div style={{ color: "#7c3aed", fontFamily: "Georgia, serif", fontSize: 48, lineHeight: 1 }}>"</div>
-              <p className="italic font-medium leading-relaxed mt-2" style={{ color: "#4c1d95", fontSize: 16 }}>
+              <p className="italic font-medium leading-relaxed mt-2" style={{ color: "#4c1d95", fontSize: 14 }}>
                 {t(selectedPost.quote, selectedPost.quoteEn)}
               </p>
               <div className="mt-4 flex justify-center">
@@ -281,7 +281,7 @@ export const BlogPage = () => {
             {/* Post list */}
             <div className="bg-white rounded-3xl border border-zinc-100 shadow-sm overflow-hidden">
               <div className="px-5 py-4 border-b border-zinc-100">
-                <h3 className="font-bold text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18 }}>
+                <h3 className="font-bold text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20 }}>
                   {t("Lexo më tej", "Read more")}
                 </h3>
                 <div className="flex items-center gap-2 mt-1">

@@ -225,7 +225,7 @@ export const WorkshopePage = () => {
             ), value: "1800+", labelAL: "Pjesëmarrës nga e gjithë bota", labelEN: "Participants worldwide" },
             { icon: (
               <svg className="w-5 h-5" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 5 8 12 8 12s8-7 8-12c0-4-4-8-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
-            ), value: "100+", labelAL: "Evente transformuese", labelEN: "Transformative events" },
+            ), value: "100+", labelAL: "Evente transformues", labelEN: "Transformative events" },
             { icon: (
               <svg className="w-5 h-5" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             ), value: "8+", labelAL: "Vite eksperience", labelEN: "Years experience" },
@@ -233,12 +233,12 @@ export const WorkshopePage = () => {
               <svg className="w-5 h-5" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             ), value: "20+", labelAL: "Vende të prekura", labelEN: "Countries reached" },
           ].map((s, i) => (
-            <div key={i} className="flex flex-col items-center text-center gap-0.5 py-1.5 px-0.5 md:py-2 md:px-1 rounded-2xl" style={{ background: "rgba(124,58,237,0.04)", border: "1px solid rgba(124,58,237,0.1)" }}>
+            <div key={i} className="flex flex-col items-center text-center gap-0.5 py-1.5 px-0.5 md:py-2 md:px-1 rounded-2xl overflow-hidden" style={{ background: "rgba(124,58,237,0.04)", border: "1px solid rgba(124,58,237,0.1)" }}>
               <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "rgba(124,58,237,0.08)" }}>
                 {s.icon}
               </div>
               <span className="font-bold text-zinc-900 text-sm md:text-base" style={{ fontFamily: "'Inter', sans-serif" }}>{s.value}</span>
-              <span className="font-medium text-[9px] md:text-base" style={{ color: "#71717a", lineHeight: 1.3 }}>{t(s.labelAL, s.labelEN)}</span>
+              <span className="font-medium text-[7px] md:text-base w-full" style={{ color: "#71717a", lineHeight: 1.3 }}>{t(s.labelAL, s.labelEN)}</span>
             </div>
           ))}
         </div>
@@ -446,7 +446,7 @@ export const WorkshopePage = () => {
       <section className="py-10 md:py-12 px-6" style={{ background: "#F4F4F5" }}>
         <div className="max-w-4xl mx-auto">
 
-          <div className="grid grid-cols-3 gap-4 mb-8">
+          <div className="grid grid-cols-3 gap-4 mb-8 mt-3 md:mt-0">
             {[
               { icon: <svg className="w-6 h-6" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>, labelAL: "Matjet e qëndrave të energjisë", labelEN: "Energy center measurements" },
               { icon: <svg className="w-6 h-6" fill="none" stroke="#7c3aed" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 1 5 5c0 2.76-2.24 5-5 5S7 9.76 7 7a5 5 0 0 1 5-5z"/><path d="M4 22c0-4 3.58-7 8-7s8 3 8 7"/></svg>, labelAL: "Akses në platformë me meditime", labelEN: "Access to meditation platform" },
@@ -474,7 +474,7 @@ export const WorkshopePage = () => {
             </p>
             <a href="/signup"
               className="inline-flex items-center gap-2 font-semibold px-8 py-3 rounded-xl text-white transition-all hover:scale-105"
-              style={{ background: "#7c3aed", fontFamily: "'Inter', sans-serif", fontSize: 16 }}>
+              style={{ background: "#7c3aed", fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
               {t("Rezervo Tani", "Reserve Now")} →
             </a>
           </div>
@@ -560,7 +560,7 @@ export const WorkshopePage = () => {
       <section className="py-10 px-5" style={{ background: "#F4F4F5" }}>
         <div className="max-w-4xl mx-auto">
           {/* Section header */}
-          <h2 className="font-bold text-center mb-8 mt-1 leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.4rem, 5vw, 2rem)", color: "#18181b" }}>
+          <h2 className="font-bold text-center mb-32 md:mb-8 mt-1 leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.4rem, 5vw, 2rem)", color: "#18181b" }}>
             {t("Përvojat që", "Experiences that")}{" "}
             <span style={{ color: "#7c3aed", fontStyle: "italic" }}>{t("flasin vetë", "speak for themselves")}</span>
           </h2>
@@ -574,7 +574,7 @@ export const WorkshopePage = () => {
       <section className="py-10 px-5" style={{ background: "#ffffff" }}>
         <div className="max-w-4xl mx-auto">
           {/* Title */}
-          <h2 className="font-bold text-center mb-2 leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 6vw, 2.2rem)", color: "#18181b" }}>
+          <h2 className="font-bold text-center mt-3 md:mt-0 mb-2 leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 6vw, 2.2rem)", color: "#18181b" }}>
             {t("Bonuset që e bëjnë këtë përvojë", "Bonuses that make this experience")}{" "}
             <span style={{ color: "#7c3aed" }}>{t("transformuese", "transformative")}</span>
           </h2>

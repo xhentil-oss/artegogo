@@ -118,21 +118,47 @@ export const ShtyllatEPunesPage = () => {
 
   return (
     <div className="shtyllat-e-punes min-h-screen bg-white">
-      <section className="relative overflow-hidden min-h-[35vh] md:min-h-[52vh] flex items-center justify-center">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776844664912-0.jpeg')" }} />
-        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.35)" }} />
-        <div className="relative w-full max-w-5xl mx-auto px-6 py-24 text-center" />
-      </section>
+      <div className="relative overflow-hidden min-h-[320px] md:min-h-[420px] flex items-center">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776844664912-0.jpeg')" }} />
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.45)" }} />
+
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full">
+          <div className="flex-1 text-left">
+            <h1 className="font-bold leading-tight mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2rem, 6vw, 3.2rem)", color: "#ffffff" }}>
+              {t("Shtylla të", "Pillars of")}<br />
+              <span style={{ color: "#c4b5fd", fontStyle: "italic" }}>{t("transformimit.", "transformation.")}</span>
+            </h1>
+
+            <div className="flex items-center gap-2 mb-4">
+              <div className="h-px w-8" style={{ background: "rgba(255,255,255,0.4)" }} />
+              <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 16 }}>♦</span>
+              <div className="h-px w-8" style={{ background: "rgba(255,255,255,0.4)" }} />
+            </div>
+
+            <p className="leading-relaxed mb-4 md:mb-6 text-sm md:text-base" style={{ fontFamily: "'Inter', sans-serif", color: "rgba(255,255,255,0.85)", maxWidth: 420 }}>
+              {t(
+                "7 metodat shkencore që përdorim për të transformuar trupin, mendjen dhe shpirtin në retreatet dhe trajnimet tona.",
+                "7 scientific methods we use to transform body, mind and spirit in our retreats and trainings."
+              )}
+            </p>
+
+            <a href="/eventet/retreat"
+              className="inline-flex items-center gap-1.5 text-white text-sm md:text-base px-3 py-1.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
+              style={{ backgroundColor: "#4e29c5", fontFamily: "'Inter', sans-serif", fontWeight: 600 }}>
+              {t("Shiko Retreat", "View Retreat")}
+            </a>
+          </div>
+        </div>
+      </div>
 
 
       <section className="max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-16 space-y-10 md:space-y-14">
         {pillars.map((pillar, i) => (
           <FadeIn key={pillar.number} delay={(i % 3) * 80}>
-            <div className="rounded-3xl overflow-hidden shadow-sm border border-violet-100">
+            <div className="rounded-3xl overflow-hidden shadow-sm border border-violet-100 mt-4 md:mt-0">
               {/* Image */}
-              <div className="relative h-48 md:h-64 overflow-hidden">
-                <img src={PILLAR_IMAGES[i]} alt={pillar.title} className="w-full h-full object-cover object-center" />
+              <div className="relative h-60 md:h-80 overflow-hidden">
+                <img src={PILLAR_IMAGES[i]} alt={pillar.title} className="w-full h-full object-cover object-top" />
               </div>
 
               {/* Content */}
