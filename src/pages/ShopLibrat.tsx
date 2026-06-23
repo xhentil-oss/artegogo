@@ -380,7 +380,7 @@ export const ShopLibratPage = () => {
                 <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ backgroundColor: "#f3f0ff" }}>
                   <Icon className="w-6 h-6" style={{ color: "#7c3aed" }} />
                 </div>
-                <p className="font-bold text-sm text-zinc-800 leading-snug">{title}</p>
+                <p className="font-bold text-sm text-zinc-800 leading-snug flex items-start justify-center min-h-[3.5rem]">{title}</p>
                 <p className="text-xs text-zinc-500 leading-relaxed">{desc}</p>
               </div>
             ))}

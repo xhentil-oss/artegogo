@@ -62,13 +62,13 @@ export const PhilosophySection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full bg-white border-y border-zinc-100 overflow-hidden"
+    <section ref={sectionRef} className="w-full bg-white border-b border-zinc-100 md:border-y overflow-hidden"
       style={{ opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}>
 
       {/* 6-column grid */}
-      <div className="grid grid-cols-3 lg:grid-cols-6 divide-x divide-y md:divide-y-0 divide-zinc-100">
+      <div className="grid grid-cols-3 lg:grid-cols-6 divide-x divide-zinc-100">
         {PILLARS.map((p, i) => (
-          <div key={i} className="flex flex-col items-center text-center px-2 md:px-5 py-5 md:py-10 gap-2 md:gap-4">
+          <div key={i} className={`flex flex-col items-center text-center px-2 md:px-5 py-5 md:py-10 gap-2 md:gap-4${i >= 3 ? " border-t border-zinc-100 md:border-t-0" : ""}`}>
             <div className="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0"
               style={{ background: "#EDE8FA" }}>
               <div className="scale-[0.65] md:scale-100">

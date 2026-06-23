@@ -74,8 +74,8 @@ export const TrajnimOnlineSection = () => {
 
         {/* ── Title ── */}
         <div className="text-center mb-3 md:mb-8">
-          <h2 className="trajnim-title font-black leading-none mb-3"
-            style={{ color: "#5b21b6", fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "-0.02em", fontSize: 30 }}>
+          <h2 className="trajnim-title font-black leading-none mb-3 text-4xl md:text-[30px]"
+            style={{ color: "#5b21b6", fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "-0.02em" }}>
             {t("TRAJNIM", "ONLINE")}<br />
             <span style={{ color: "#4e29c5" }}>{t("ONLINE", "TRAINING")}</span>
           </h2>

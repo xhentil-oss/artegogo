@@ -29,7 +29,7 @@ const CATEGORIES: { id: CategoryId; label: string; icon: React.ReactNode }[] = [
     ),
   },
   {
-    id: "sherim", label: "Sherim",
+    id: "sherim", label: "Shërim",
     icon: (
       <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 1-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21a48.309 48.309 0 0 1-8.135-.687c-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>
@@ -37,7 +37,7 @@ const CATEGORIES: { id: CategoryId; label: string; icon: React.ReactNode }[] = [
     ),
   },
   {
-    id: "sherim-femije", label: "Sherim i fëmijës së brendshme",
+    id: "sherim-femije", label: "Shërim i fëmijës së brendshme",
     icon: (
       <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75s.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z"/>
@@ -49,12 +49,12 @@ const CATEGORIES: { id: CategoryId; label: string; icon: React.ReactNode }[] = [
 const TESTIMONIALS: Testimonial[] = [
   { id: 1, image: "/img/hapje-zemre.jpg", category: "hapje-zemre",   label: "Hapje zemre" },
   { id: 2, image: "/img/manifestime.jpg", category: "manifestime",   label: "Manifestime" },
-  { id: 3, image: "/img/sherim1.jpg",     category: "sherim-femije", label: "Sherim i fëmijës së brendshme" },
-  { id: 4, image: "/img/sherim2.jpg",     category: "sherim-femije", label: "Sherim i fëmijës së brendshme" },
-  { id: 5, image: "/img/sherim3.jpg",     category: "sherim-femije", label: "Sherim i fëmijës së brendshme" },
-  { id: 6, image: "/img/sherim4.jpg",     category: "sherim-femije", label: "Sherim i fëmijës së brendshme" },
-  { id: 7, image: "/img/sherim5.jpg",     category: "sherim-femije", label: "Sherim i fëmijës së brendshme" },
-  { id: 8, image: "/img/sherim-6.jpg",    category: "sherim",        label: "Sherim" },
+  { id: 3, image: "/img/sherim1.jpg",     category: "sherim-femije", label: "Shërim i fëmijës së brendshme" },
+  { id: 4, image: "/img/sherim2.jpg",     category: "sherim-femije", label: "Shërim i fëmijës së brendshme" },
+  { id: 5, image: "/img/sherim3.jpg",     category: "sherim-femije", label: "Shërim i fëmijës së brendshme" },
+  { id: 6, image: "/img/sherim4.jpg",     category: "sherim-femije", label: "Shërim i fëmijës së brendshme" },
+  { id: 7, image: "/img/sherim5.jpg",     category: "sherim-femije", label: "Shërim i fëmijës së brendshme" },
+  { id: 8, image: "/img/sherim-6.jpg",    category: "sherim",        label: "Shërim" },
 ];
 
 export const TestimonialsPage = () => {

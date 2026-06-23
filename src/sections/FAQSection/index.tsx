@@ -13,8 +13,8 @@ function FAQItem({ item, index, open, onToggle, visible }: {
         className="w-full text-left flex items-center justify-between gap-4 py-3 md:py-5 px-4 md:px-6 rounded-2xl group transition-all duration-300"
         style={{ background: open ? "rgba(157,143,239,0.08)" : "rgba(255,255,255,0.6)", boxShadow: open ? "0 4px 24px rgba(157,143,239,0.15)" : "0 1px 4px rgba(0,0,0,0.06)", border: open ? "1.5px solid rgba(157,143,239,0.4)" : "1.5px solid rgba(0,0,0,0.06)" }}>
         <div className="flex items-start gap-4">
-          <span className="mt-0.5 min-w-[28px] h-7 w-7 rounded-full flex items-center justify-center text-xs md:text-16 font-bold transition-colors duration-300"
-            style={{ background: open ? "#7c3aed" : "rgba(157,143,239,0.12)", color: open ? "#fff" : "#7c3aed" }}>
+          <span className={`mt-0.5 min-w-[28px] h-7 w-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors duration-300 ${open ? "text-white" : "text-violet-600"}`}
+            style={{ background: open ? "#7c3aed" : "rgba(157,143,239,0.12)" }}>
             {String(index + 1).padStart(2, "0")}
           </span>
           <span className="text-16 leading-relaxed font-normal transition-colors duration-300 text-zinc-800" style={{ fontFamily: "'Inter', sans-serif" }}>
@@ -352,7 +352,7 @@ export const FAQSection = () => {
         {/* Header */}
         <div className="text-center mb-4 md:mb-12 transition-all duration-700"
           style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)" }}>
-          <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5 mb-4"
+          <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5 mt-3 md:mt-0 mb-4"
             style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
             <span className="badge font-bold tracking-widest uppercase text-[10px] md:text-xs"
               style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
@@ -409,7 +409,7 @@ export const FAQSection = () => {
           style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(16px)" }}>
           <p className="text-16 leading-relaxed" style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
             {t("Nuk gjete përgjigjen?", "Didn't find the answer?")}{" "}
-            <a href="/kontakt" className="font-semibold" style={{ color: "#7c3aed" }}>
+            <a href="https://wa.me/355692420827" target="_blank" rel="noopener noreferrer" className="font-semibold" style={{ color: "#7c3aed" }}>
               {t("Dërgoni mesazh →", "Send a message →")}
             </a>
           </p>

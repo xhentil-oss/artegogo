@@ -82,7 +82,7 @@ export function AboutSection({ mobileCentered = false }: { mobileCentered?: bool
     <section ref={sectionRef} className="w-full overflow-hidden" style={{ backgroundColor: "#F9FAFB" }}>
 
       {/* ── Hero split ── */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-6 md:py-14 min-h-0 md:min-h-[600px] flex flex-col md:flex-row items-stretch gap-6 md:gap-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-3 pb-6 md:py-14 min-h-0 md:min-h-[600px] flex flex-col md:flex-row items-stretch gap-6 md:gap-8">
 
         {/* Text — left */}
         <div
@@ -194,7 +194,7 @@ export function AboutSection({ mobileCentered = false }: { mobileCentered?: bool
           {STATS.map((stat, i) => (
             <div
               key={i}
-              className="flex flex-col items-center text-center px-1 md:px-6 py-5 md:py-12"
+              className="flex flex-col items-center text-center px-1 md:px-6 py-3 md:py-12"
               style={{
                 borderRight: i < STATS.length - 1 ? '1px solid rgba(120,80,200,0.12)' : 'none',
               }}

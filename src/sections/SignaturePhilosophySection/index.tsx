@@ -30,13 +30,13 @@ export const SignaturePhilosophySection = () => {
   }, []);
 
   return (
-    <section ref={ref} className="w-full bg-white pt-20 pb-8 md:py-16 px-6 overflow-hidden"
+    <section ref={ref} className="w-full bg-white pt-28 pb-8 md:py-16 px-6 overflow-hidden"
       style={{ opacity: visible ? 1 : 0, transition: "opacity 0.7s ease" }}>
 
       <div className="max-w-lg mx-auto text-center">
 
         {/* Label */}
-        <div className="flex justify-center mb-3 md:mb-6">
+        <div className="flex justify-center mt-3 md:mt-0 mb-3 md:mb-6">
           <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5"
             style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
             <span className="badge text-[10px] md:text-xs font-bold tracking-widest uppercase"

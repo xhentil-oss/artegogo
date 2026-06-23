@@ -142,7 +142,7 @@ export const RegjistrohuRetreatPage = () => {
                   <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t("Nr. i celularit", "Phone number")}</label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
-                    <input type="tel" placeholder="+383 44 123 456"
+                    <input type="tel" placeholder="+355 69 242 0827"
                       className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
                       style={{ backgroundColor: '#fafafa' }} />
                   </div>
@@ -220,26 +220,10 @@ export const RegjistrohuRetreatPage = () => {
               {/* Image with overlay text */}
               <div className="relative">
                 <img src="/img/TONI1692.JPG" alt="Retreat" className="w-full h-44 object-cover" />
-                <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'rgba(78,41,197,0.55)' }}>
-                  <div className="text-center px-4">
-                    <div className="flex justify-center mb-2">
-                      <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
-                        <path d="M32 4C32 4 22 16 22 28C22 34 26.5 38.5 32 38.5C37.5 38.5 42 34 42 28C42 16 32 4 32 4Z" fill="rgba(255,255,255,0.3)" stroke="white" strokeWidth="1.5"/>
-                        <path d="M12 20C12 20 18 30 26 34" stroke="white" strokeWidth="1.2" strokeLinecap="round" opacity="0.7"/>
-                        <path d="M52 20C52 20 46 30 38 34" stroke="white" strokeWidth="1.2" strokeLinecap="round" opacity="0.7"/>
-                        <path d="M32 38.5V54" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                      </svg>
-                    </div>
-                    <p className="text-white font-bold text-base" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-                      {t("Transformo jetën tënde", "Transform your life")}
-                    </p>
-                    <p className="text-white/80 text-sm">{t("në retreat.", "at the retreat.")}</p>
-                  </div>
-                </div>
               </div>
 
               <div className="p-5">
-                <h3 className="font-bold text-zinc-800 text-base mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                <h3 className="font-bold text-zinc-800 mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 16 }}>
                   {t("Pse ky retreat?", "Why this retreat?")}
                 </h3>
 
@@ -255,31 +239,31 @@ export const RegjistrohuRetreatPage = () => {
                         <Icon className="w-4 h-4" style={{ color: '#7c3aed' }} />
                       </div>
                       <div>
-                        <p className="font-semibold text-zinc-800 text-sm">{title}</p>
-                        <p className="text-zinc-500 text-xs mt-0.5 leading-relaxed">{desc}</p>
+                        <p className="font-semibold text-zinc-800" style={{ fontSize: 16 }}>{title}</p>
+                        <p className="text-zinc-500 mt-0.5 leading-relaxed" style={{ fontSize: 16 }}>{desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
 
                 <div className="border-t border-gray-100 pt-4 mb-4">
-                  <h4 className="font-bold text-zinc-800 text-sm mb-3">{t("Keni pytje?", "Have questions?")}</h4>
+                  <h4 className="font-bold text-zinc-800 mb-3" style={{ fontSize: 16 }}>{t("Keni pytje?", "Have questions?")}</h4>
                   <div className="space-y-2">
-                    <p className="text-xs text-zinc-500 mb-1">{t("Ne jemi këtu për t'ju ndihmuar.", "We are here to help you.")}</p>
-                    <a href="tel:+38344123456" className="flex items-center gap-2 text-xs text-zinc-600 hover:text-violet-700 transition-colors">
-                      <Phone className="w-3.5 h-3.5" style={{ color: '#7c3aed' }} /> +383 44 123 456
+                    <p className="text-zinc-500 mb-1" style={{ fontSize: 16 }}>{t("Ne jemi këtu për t'ju ndihmuar.", "We are here to help you.")}</p>
+                    <a href="tel:+355692420827" className="flex items-center gap-2 text-zinc-600 hover:text-violet-700 transition-colors" style={{ fontSize: 16 }}>
+                      <Phone className="w-3.5 h-3.5" style={{ color: '#7c3aed' }} /> +355 69 242 0827
                     </a>
-                    <a href="mailto:info@artegogo.com" className="flex items-center gap-2 text-xs text-zinc-600 hover:text-violet-700 transition-colors">
+                    <a href="mailto:info@artegogo.com" className="flex items-center gap-2 text-zinc-600 hover:text-violet-700 transition-colors" style={{ fontSize: 16 }}>
                       <Mail className="w-3.5 h-3.5" style={{ color: '#7c3aed' }} /> info@artegogo.com
                     </a>
-                    <a href="https://www.artegogo.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs text-zinc-600 hover:text-violet-700 transition-colors">
+                    <a href="https://www.artegogo.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-zinc-600 hover:text-violet-700 transition-colors" style={{ fontSize: 16 }}>
                       <Globe className="w-3.5 h-3.5" style={{ color: '#7c3aed' }} /> www.artegogo.com
                     </a>
                   </div>
                 </div>
 
                 <div className="rounded-xl p-4 mb-4" style={{ backgroundColor: '#f8f7ff', border: '1px solid #ede9fe' }}>
-                  <p className="text-xs text-zinc-600 italic leading-relaxed">
+                  <p className="text-zinc-600 italic leading-relaxed" style={{ fontSize: 16 }}>
                     "{t("Investimi më i mirë që mund të bësh është ai për veten.", "The best investment you can make is in yourself.")}"
                   </p>
                 </div>

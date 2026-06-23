@@ -266,7 +266,7 @@ export const BlogPage = () => {
             {/* Quote */}
             <div className="rounded-3xl px-6 py-7 text-center border border-violet-100" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #ede9fe 100%)" }}>
               <div style={{ color: "#7c3aed", fontFamily: "Georgia, serif", fontSize: 48, lineHeight: 1 }}>"</div>
-              <p className="italic font-medium leading-relaxed mt-2" style={{ color: "#4c1d95", fontSize: 14 }}>
+              <p className="italic font-medium leading-relaxed mt-2" style={{ color: "#4c1d95", fontSize: 16 }}>
                 {t(selectedPost.quote, selectedPost.quoteEn)}
               </p>
               <div className="mt-4 flex justify-center">
@@ -333,15 +333,15 @@ export const BlogPage = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
                 </svg>
               </div>
-              <h4 className="font-bold text-zinc-900 mb-1" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15 }}>
+              <h4 className="font-bold text-zinc-900 mb-1" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 16 }}>
                 {t("Gati për të bërë hapin tënd të parë?", "Ready to take your first step?")}
               </h4>
-              <p className="text-zinc-500 mb-4" style={{ fontSize: 14 }}>
+              <p className="text-zinc-500 mb-4" style={{ fontSize: 16 }}>
                 {t("Zbulo programet tona dhe bashkohu me komunitetin.", "Discover our programs and join the community.")}
               </p>
               <a href="/kontakt"
                 className="inline-flex items-center gap-1.5 text-white rounded-xl px-4 py-2 font-semibold transition-all hover:scale-105"
-                style={{ backgroundColor: "#7c3aed", fontSize: 13 }}>
+                style={{ backgroundColor: "#7c3aed", fontSize: 16 }}>
                 {t("Shiko programet", "View programs")} →
               </a>
             </div>

@@ -101,7 +101,7 @@ export const FoundationSection = () => {
   }, []);
 
   return (
-    <section ref={ref} className="w-full py-8 md:py-12 overflow-hidden" style={{ backgroundColor: "#F9FAFB" }}>
+    <section ref={ref} className="w-full pt-10 pb-8 md:py-12 overflow-hidden" style={{ backgroundColor: "#F9FAFB" }}>
       <div className="max-w-7xl mx-auto px-2 md:px-12 lg:px-20">
 
         {/* ── Header ── */}

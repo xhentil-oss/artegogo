@@ -75,10 +75,10 @@ export const WhatWeOfferStrip = () => {
   }, []);
 
   return (
-    <section ref={ref} className="w-full bg-white pt-0 pb-3">
+    <section ref={ref} className="w-full bg-white py-10 md:pt-0 md:pb-3">
       {/* Title */}
       <h2
-        className="text-center text-lg md:text-3xl font-bold mb-6"
+        className="text-center text-lg md:text-3xl font-bold mb-8 px-4"
         style={{
           fontFamily: "'Playfair Display', Georgia, serif",
           color: "#18181b",
@@ -91,11 +91,11 @@ export const WhatWeOfferStrip = () => {
       </h2>
 
       {/* Items strip */}
-      <div className="max-w-6xl mx-auto px-4 md:px-10 flex flex-nowrap items-start justify-between gap-3 md:gap-10 overflow-x-auto overflow-y-visible" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+      <div className="max-w-6xl mx-auto px-6 md:px-10 grid grid-cols-2 md:flex gap-x-8 gap-y-4 md:gap-10 md:justify-between md:items-start">
         {ITEMS.map((item, i) => (
           <div
             key={i}
-            className="flex flex-col items-center text-center gap-1 flex-shrink-0 w-[18%] md:flex-1 md:w-auto"
+            className="flex flex-col items-center text-center gap-1 md:flex-1 md:w-auto"
             style={{
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(20px)",

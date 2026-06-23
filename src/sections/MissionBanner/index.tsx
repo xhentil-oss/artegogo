@@ -48,7 +48,7 @@ export const MissionBanner = () => {
         }}
       >
         {/* 1 MISSION */}
-        <div className="flex items-baseline gap-2 md:gap-3 mb-2">
+        <div className="flex items-baseline gap-2 md:gap-3 mb-0">
           <span
             className="text-2xl md:text-[4.5rem]"
             style={{

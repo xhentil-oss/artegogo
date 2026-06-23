@@ -72,7 +72,7 @@ export const VideoTestimonialsSection = () => {
 
         {/* Badge + Title */}
         <div className="text-center mb-5 md:mb-10">
-          <span className="inline-block text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase rounded-full px-4 py-1.5 mb-3 md:mb-5"
+          <span className="inline-block text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase rounded-full px-4 py-1.5 mt-3 md:mt-0 mb-3 md:mb-5"
             style={{ background: "rgba(124,58,237,0.12)", color: "#7C3AED", border: "1px solid rgba(124,58,237,0.25)" }}>
             {t("TRANSFORMIME REALE", "REAL TRANSFORMATIONS")}
           </span>
@@ -223,7 +223,7 @@ export const VideoTestimonialsSection = () => {
             {t("KËTO MUND TË JENË MOMENTET QE NDRYSHOJNË JETËN TËNDE", "THESE COULD BE THE MOMENTS THAT CHANGE YOUR LIFE")}
           </p>
           <button onClick={() => navigate("/rezultatet/testimonials")}
-            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-100 text-sm md:text-base"
+            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-100 text-sm md:text-base mb-4 md:mb-0"
             style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}>
             <Play className="w-4 h-4" fill="white" />
             {t("Shiko më shumë video testimoniale", "Watch more video testimonials")}

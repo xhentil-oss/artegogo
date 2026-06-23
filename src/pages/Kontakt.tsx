@@ -141,7 +141,7 @@ export const KontaktPage = () => {
         </div>
 
         {/* Response time banner */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-16">
           <div className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-gray-50 border border-gray-200 max-w-lg w-full">
             <p className="leading-relaxed text-zinc-700 text-center text-sm">
               {t("Ju përgjigjemi brenda", "We respond within")}{" "}
@@ -151,16 +151,16 @@ export const KontaktPage = () => {
           </div>
         </div>
 
-        <div className="rounded-3xl p-10 text-white text-center" style={{ backgroundColor: "#000000" }}>
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">{t("Gati të filloni?", "Ready to begin?")}</h2>
-          <p className="text-white/70 text-lg mb-7 max-w-xl mx-auto">
+        <div className="rounded-3xl p-10 text-center" style={{ backgroundColor: "#ede9fe" }}>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3" style={{ color: "#1a1a2e" }}>{t("Gati të filloni?", "Ready to begin?")}</h2>
+          <p className="text-lg mb-7 max-w-xl mx-auto" style={{ color: "#4c1d95" }}>
             {t("Rezervoni vendin tuaj në retreat ose programin tonë online dhe filloni transformimin tuaj sot.", "Book your spot at our retreat or online program and begin your transformation today.")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/eventet/retreat" className="inline-block bg-white text-black font-bold px-8 py-3.5 rounded-xl hover:bg-gray-100 transition-all text-sm">
+            <a href="/eventet/retreat" className="inline-block font-bold px-8 py-3.5 rounded-xl transition-all text-white" style={{ backgroundColor: "#7c3aed", fontSize: 16 }}>
               {t("Rezervo Retreat-in", "Book the Retreat")}
             </a>
-            <a href="/eventet/trajnime-online" className="inline-block border-2 border-white/40 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-white/10 transition-all text-sm">
+            <a href="/eventet/trajnime-online" className="inline-block font-semibold px-8 py-3.5 rounded-xl transition-all" style={{ border: "2px solid #7c3aed", color: "#7c3aed", backgroundColor: "white", fontSize: 16 }}>
               {t("Shiko Trajnimet Online", "View Online Trainings")}
             </a>
           </div>

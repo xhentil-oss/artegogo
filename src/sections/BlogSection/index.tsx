@@ -57,7 +57,7 @@ export const BlogSection = () => {
 
         {/* Header */}
         <div className="text-center mb-4 md:mb-10">
-          <div className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 md:px-3 md:py-1.5 mb-2 md:mb-4"
+          <div className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 md:px-3 md:py-1.5 mt-3 md:mt-0 mb-2 md:mb-4"
             style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
             <NotebookPen className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" style={{ color: "#7c3aed" }} />
             <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase" style={{ color: "#7c3aed" }}>
@@ -151,7 +151,7 @@ export const BlogSection = () => {
         <div className="text-center">
           <button
             onClick={() => navigate("/blog")}
-            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-7 md:py-3.5 rounded-xl text-xs md:text-lg transition-all duration-300 hover:scale-105 active:scale-100"
+            className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-7 md:py-3.5 rounded-xl text-xs md:text-lg transition-all duration-300 hover:scale-105 active:scale-100 mb-4 md:mb-0"
             style={{ fontFamily: "'Inter', sans-serif", background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)" }}>
             <Sparkles className="w-4 h-4" />
             {t("Shiko të gjitha artikujt", "View all articles")}

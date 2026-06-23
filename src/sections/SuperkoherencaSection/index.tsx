@@ -47,7 +47,7 @@ export const SuperkoherencaSection = () => {
           style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(24px)", transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s" }}>
 
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 mb-3 md:mb-5"
+          <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 mt-3 md:mt-0 mb-3 md:mb-5"
             style={{ background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.35)", backdropFilter: "blur(8px)" }}>
             <Headphones className="w-3 h-3 md:w-3.5 md:h-3.5 text-white" />
             <span className="badge font-bold tracking-widest uppercase text-white text-[10px] md:text-xs">

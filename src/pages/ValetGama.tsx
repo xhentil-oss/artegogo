@@ -33,7 +33,7 @@ export const ValetGamaPage = () => {
               )}
             </p>
 
-            <a href="/kontakt"
+            <a href="/shop/regjistrohu-retreat"
               className="inline-flex items-center gap-1.5 text-white text-sm md:text-base px-3 py-1.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
               style={{ backgroundColor: "#4e29c5", fontFamily: "'Inter', sans-serif", fontWeight: 600 }}>
               {t("Regjistrohu", "Register")}
@@ -699,7 +699,7 @@ export const ValetGamaPage = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href="/kontakt"
+            <a href="/shop/regjistrohu-retreat"
               className="inline-flex items-center gap-2 font-bold rounded-xl transition-all hover:scale-105 text-sm md:text-base"
               style={{ background: "#7c3aed", color: "#ffffff", padding: "11px 22px" }}>
               <svg className="w-4 h-4" fill="none" stroke="white" strokeWidth={2} viewBox="0 0 24 24">
@@ -707,7 +707,7 @@ export const ValetGamaPage = () => {
               </svg>
               {t("Rezervo vendin tënd", "Reserve your spot")}
             </a>
-            <a href="/rezultatet/shkencore"
+            <a href="/eventet/retreat"
               className="inline-flex items-center gap-2 font-bold rounded-xl transition-all hover:scale-105 text-sm md:text-base"
               style={{ background: "transparent", color: "#ffffff", padding: "10px 22px", border: "1.5px solid rgba(255,255,255,0.5)" }}>
               <svg className="w-4 h-4" fill="none" stroke="white" strokeWidth={2} viewBox="0 0 24 24">

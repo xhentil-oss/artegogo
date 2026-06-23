@@ -32,7 +32,7 @@ export const ContactBannerSection = () => {
       <div className="relative z-10 max-w-5xl mx-auto px-6">
         <div className="text-center mb-4 md:mb-16 transition-all duration-700"
           style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(24px)" }}>
-          <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5 mb-5"
+          <div className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5 mt-3 md:mt-0 mb-5"
             style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
             <span className="badge font-bold tracking-widest uppercase text-[10px] md:text-xs"
               style={{ color: "#7c3aed", fontFamily: "'Inter', sans-serif" }}>
