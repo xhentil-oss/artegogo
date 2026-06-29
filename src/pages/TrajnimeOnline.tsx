@@ -203,7 +203,10 @@ const pillars = [
 
         <div className="relative max-w-5xl mx-auto px-5 py-8 md:py-14 w-full" style={{ fontFamily: "'Inter', sans-serif" }}>
           {/* Main title */}
-          <h1 className="font-bold text-white leading-tight mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.12, fontSize: "clamp(1.8rem, 7vw, 3.5rem)" }}>
+          <h1 className="hero-title-mobile md:hidden font-bold text-white mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.12 }}>
+            {lang === "al" ? <>Meditime të<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Avancuara</span></> : <>Advanced<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Meditations</span></>}
+          </h1>
+          <h1 className="hidden md:block font-bold text-white leading-tight mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.12, fontSize: "clamp(1.8rem, 7vw, 3.5rem)" }}>
             {lang === "al" ? <>Meditime të<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Avancuara</span></> : <>Advanced<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Meditations</span></>}
           </h1>
 

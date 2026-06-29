@@ -16,7 +16,12 @@ export const PlatformaTeachablePage = () => {
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.50)" }} />
 
         <div className="relative max-w-5xl mx-auto px-5 py-8 md:py-14 w-full">
-          <h1 className="font-bold text-white leading-tight mb-3"
+          <h1 className="hero-title-mobile md:hidden font-bold text-white mb-3"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.12 }}>
+            {t(<>Platforma<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Teachable</span></>,
+               <>The<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Teachable Platform</span></>)}
+          </h1>
+          <h1 className="hidden md:block font-bold text-white leading-tight mb-3"
             style={{ fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.12, fontSize: "clamp(1.8rem, 7vw, 3.5rem)" }}>
             {t(<>Platforma<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Teachable</span></>,
                <>The<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Teachable Platform</span></>)}

@@ -232,7 +232,11 @@ export const BlogPage = () => {
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777298085111-0.jpeg')" }} />
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.62)" }} />
         <div className="relative z-10 max-w-5xl mx-auto px-6 py-12 md:py-20 w-full">
-          <h1 className="font-bold leading-tight mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2rem, 6vw, 3.2rem)", color: "#ffffff" }}>
+          <h1 className="hero-title-mobile md:hidden font-bold mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#ffffff" }}>
+            {t("Sekreti që të jep mundësinë", "The secret that gives you the power")}<br />
+            <span style={{ color: "#c4b5fd", fontStyle: "italic" }}>{t("të mos dështosh kurrë.", "to never fail.")}</span>
+          </h1>
+          <h1 className="hidden md:block font-bold leading-tight mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2rem, 6vw, 3.2rem)", color: "#ffffff" }}>
             {t("Sekreti që të jep mundësinë", "The secret that gives you the power")}<br />
             <span style={{ color: "#c4b5fd", fontStyle: "italic" }}>{t("të mos dështosh kurrë.", "to never fail.")}</span>
           </h1>

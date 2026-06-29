@@ -233,7 +233,7 @@ export const HeroSection = () => {
                       {ri === 2 && t("Trajnime Online", "Online Training")}
                     </span>
                   </div>
-                  <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: 72, lineHeight: 0.98, marginTop: 12, marginBottom: 20 }}>
+                  <h1 className="hero-title-mobile" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, lineHeight: 0.98, marginTop: 12, marginBottom: 20 }}>
                     {ri === 0 && (<><span className="block text-white mb-1">{t("Rikthehu në frekuencën tënde", "Return to your true")}</span><span className="block text-white italic">{t("të vërtetë.", "frequency.")}</span></>)}
                     {ri === 1 && (<><span className="block text-white mb-1">{t("Zbulo thellësinë e", "Discover the depth of")}</span><span className="block text-white italic">{t("vetë-njohjes tënde.", "your self-knowledge.")}</span></>)}
                     {ri === 2 && (<><span className="block text-white mb-1">{t("Mëso kudo,", "Learn anywhere,")}</span><span className="block text-white italic">{t("transformohu gjithmonë.", "transform always.")}</span></>)}

@@ -357,6 +357,12 @@ h2 span:not(.badge):not(.inline-block) {
   p {
     margin-bottom: 0.4rem !important;
   }
+  /* Hero titles — override the 20px global rule */
+  h1.hero-title-mobile {
+    font-size: 36px !important;
+    line-height: 1.1 !important;
+    margin-bottom: 0.5rem !important;
+  }
 }
 
 /* ── Retreat page mobile 14px ── */

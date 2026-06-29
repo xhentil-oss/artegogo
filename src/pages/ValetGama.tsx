@@ -15,7 +15,11 @@ export const ValetGamaPage = () => {
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full">
           <div className="flex-1 text-left">
-            <h1 className="font-bold leading-tight mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2rem, 6vw, 3.2rem)", color: "#ffffff" }}>
+            <h1 className="hero-title-mobile md:hidden font-bold mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#ffffff" }}>
+              {t("Valët Gamma", "Gamma Waves")}<br />
+              <span style={{ color: "#c4b5fd", fontStyle: "italic" }}>{t("Gjendja e Superndërgjegjies", "The State of Super-Consciousness")}<br />{t("e matur me EEG", "measured with EEG")}</span>
+            </h1>
+            <h1 className="hidden md:block font-bold leading-tight mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2rem, 6vw, 3.2rem)", color: "#ffffff" }}>
               {t("Valët Gamma", "Gamma Waves")}<br />
               <span style={{ color: "#c4b5fd", fontStyle: "italic" }}>{t("Gjendja e Superndërgjegjies", "The State of Super-Consciousness")}<br />{t("e matur me EEG", "measured with EEG")}</span>
             </h1>

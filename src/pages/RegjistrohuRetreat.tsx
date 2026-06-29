@@ -45,7 +45,7 @@ export const RegjistrohuRetreatPage = () => {
             <ellipse cx="32" cy="59" rx="7" ry="1.8" fill="#ede9fe" opacity="0.5"/>
           </svg>
         </div>
-        <h1 className="font-bold leading-tight mb-2" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.8rem, 5vw, 2.8rem)', color: '#1a1a2e' }}>
+        <h1 className="hero-title-mobile font-bold leading-tight mb-2" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.8rem, 5vw, 2.8rem)', color: '#1a1a2e' }}>
           {t("Regjistrohu për ", "Register for ")}
           <span style={{ color: '#7c3aed', fontStyle: 'italic' }}>{t("Retreatin", "the Retreat")}</span>
         </h1>

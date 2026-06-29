@@ -170,7 +170,11 @@ export const WorkshopePage = () => {
         <div className="relative z-10 max-w-4xl mx-auto px-5 py-8 md:py-14 w-full">
 
           {/* Title */}
-          <h1 className="font-bold text-white leading-tight mb-1 md:mb-3"
+          <h1 className="hero-title-mobile md:hidden font-bold text-white mb-1"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.12 }}>
+            Dyert<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Infinite</span>
+          </h1>
+          <h1 className="hidden md:block font-bold text-white leading-tight mb-3"
             style={{ fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.12, fontSize: "clamp(1.8rem, 7vw, 3.5rem)" }}>
             Dyert<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Infinite</span>
           </h1>
