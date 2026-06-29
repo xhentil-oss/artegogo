@@ -7,6 +7,8 @@ const QUOTES = [
   {
     quoteAl: "Kam qarë dhe jam ndier i lirë. Dicka brenda meje u çlirua.",
     quoteEn: "I cried and felt free. Something inside me was released.",
+    detailAl: "Përmes retreatit, unë lidha me emocionet e mia të bllokuara dhe arrita një qetësi të paprecedentë që vazhdon të më shoqërojë.",
+    detailEn: "Through the retreat, I connected to my blocked emotions and found a lasting calm that still accompanies me.",
     nameAl: "Ardit", nameEn: "Ardit",
     locationAl: "Tiranë, Shqipëri", locationEn: "Tirana, Albania",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80",
@@ -14,6 +16,8 @@ const QUOTES = [
   {
     quoteAl: "Kam fjetur i qetë për herë të parë pas shumë vitesh. Ishte magjike.",
     quoteEn: "I slept peacefully for the first time in many years. It was magical.",
+    detailAl: "Më në fund ndjeva se trupi im po pushonte, mendja u qetësua dhe gjumi erdhi natyrshëm pa tension dhe frikë.",
+    detailEn: "I finally felt my body rest, my mind quiet, and sleep came naturally without tension or fear.",
     nameAl: "Elira", nameEn: "Elira",
     locationAl: "Prishtinë, Kosovë", locationEn: "Pristina, Kosovo",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80",
@@ -21,9 +25,29 @@ const QUOTES = [
   {
     quoteAl: "Ndjeva trupin tim të rilindej me zemrën dhe frymën. Pa fjalë.",
     quoteEn: "I felt my body reborn with heart and breath. Beyond words.",
+    detailAl: "Çdo frymëmarrje më ndihmoi të ndjeja se isha më i pranishëm, më i gjallë dhe më i lidhur me vetveten.",
+    detailEn: "Each breath helped me feel more present, alive, and connected to myself.",
     nameAl: "Besnik", nameEn: "Besnik",
     locationAl: "Shkodër, Shqipëri", locationEn: "Shkoder, Albania",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80",
+  },
+  {
+    quoteAl: "Për herë të parë ndjeva se isha unë — jo roli që luaja për të tjerët.",
+    quoteEn: "For the first time I felt like myself — not the role I was playing for others.",
+    detailAl: "Retreati më dha hapësirën për të hequr maskat dhe për të takuar veten time të vërtetë. U ktheva në shtëpi ndryshe.",
+    detailEn: "The retreat gave me space to remove the masks and meet my true self. I returned home transformed.",
+    nameAl: "Mirela", nameEn: "Mirela",
+    locationAl: "Durrës, Shqipëri", locationEn: "Durres, Albania",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80",
+  },
+  {
+    quoteAl: "Tri ditë që ndryshuan mënyrën se si shikoj veten dhe jetën time.",
+    quoteEn: "Three days that changed the way I see myself and my life.",
+    detailAl: "Nuk e prisja që brenda tre ditësh do të ndryshoja kaq shumë. Dola me qartësi, me energji dhe me një paqe të brendshme që s'e kisha ndjer kurrë.",
+    detailEn: "I didn't expect to change so much in three days. I left with clarity, energy, and an inner peace I had never felt before.",
+    nameAl: "Gentian", nameEn: "Gentian",
+    locationAl: "Korçë, Shqipëri", locationEn: "Korce, Albania",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80",
   },
 ];
 
@@ -33,6 +57,7 @@ export const VideoTestimonialsSection = () => {
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
+  const [popupQuoteIndex, setPopupQuoteIndex] = useState<number | null>(null);
   const navigate = useNavigate();
   const { t, lang } = useLanguage();
 
@@ -174,7 +199,9 @@ export const VideoTestimonialsSection = () => {
                 style={{ boxShadow: "0 4px 24px rgba(124,58,237,0.08)", border: "1px solid #f3f0ff" }}>
                 <div>
                   <p className="text-3xl md:text-7xl font-serif leading-none mb-1" style={{ color: "#a78bfa", lineHeight: "0.8" }}>&ldquo;</p>
-                  <p className="text-[11px] md:text-base leading-relaxed font-medium mb-3 md:mb-5"
+                        <p
+                    onClick={() => setPopupQuoteIndex((quoteIndex + i) % QUOTES.length)}
+                    className="text-[11px] md:text-base leading-relaxed font-medium mb-3 md:mb-5 cursor-pointer"
                     style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
                     {lang === "al" ? q.quoteAl : q.quoteEn}
                   </p>
@@ -222,15 +249,58 @@ export const VideoTestimonialsSection = () => {
             style={{ color: "#52525b", fontFamily: "'Inter', sans-serif" }}>
             {t("KËTO MUND TË JENË MOMENTET QE NDRYSHOJNË JETËN TËNDE", "THESE COULD BE THE MOMENTS THAT CHANGE YOUR LIFE")}
           </p>
-          <button onClick={() => navigate("/rezultatet/testimonials")}
+          <button onClick={() => navigate("/rezultatet/video-testimonials")}
             className="inline-flex items-center gap-1.5 text-white font-semibold px-3 py-1.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-100 text-sm md:text-base mb-4 md:mb-0"
             style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", fontFamily: "'Inter', sans-serif" }}>
             <Play className="w-4 h-4" fill="white" />
             {t("Shiko më shumë video testimoniale", "Watch more video testimonials")}
           </button>
         </div>
+      {popupQuoteIndex !== null && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setPopupQuoteIndex(null)} />
+          <div className="relative z-10 w-full max-w-2xl bg-white rounded-[32px] p-6 md:p-8 shadow-2xl">
+            <button
+              onClick={() => setPopupQuoteIndex(null)}
+              className="absolute top-4 right-4 text-zinc-500 hover:text-zinc-900"
+              style={{ fontSize: 18 }}>
+              ✕
+            </button>
+            <div className="mb-5">
+              <p className="text-sm md:text-base leading-relaxed text-zinc-900"
+                style={{ fontFamily: "'Inter', sans-serif" }}>
+                {lang === "al"
+                  ? QUOTES[popupQuoteIndex].quoteAl
+                  : QUOTES[popupQuoteIndex].quoteEn}
+              </p>
+            </div>
+            <div className="mb-5">
+              <p className="text-sm md:text-base leading-relaxed text-zinc-900"
+                style={{ fontFamily: "'Inter', sans-serif" }}>
+                {lang === "al"
+                  ? QUOTES[popupQuoteIndex].detailAl
+                  : QUOTES[popupQuoteIndex].detailEn}
+              </p>
+            </div>
+            <div className="flex items-center gap-3 border-t border-zinc-200 pt-4">
+              <img
+                src={QUOTES[popupQuoteIndex].avatar}
+                alt={lang === "al" ? QUOTES[popupQuoteIndex].nameAl : QUOTES[popupQuoteIndex].nameEn}
+                className="w-12 h-12 rounded-full object-cover"
+              />
+              <div>
+                <p className="font-semibold text-zinc-900 text-sm md:text-base">
+                  {lang === "al" ? QUOTES[popupQuoteIndex].nameAl : QUOTES[popupQuoteIndex].nameEn}
+                </p>
+                <p className="text-zinc-500 text-xs md:text-sm">
+                  {lang === "al" ? QUOTES[popupQuoteIndex].locationAl : QUOTES[popupQuoteIndex].locationEn}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
-
 
     </section>
   );

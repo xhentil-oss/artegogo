@@ -822,6 +822,63 @@ const pillars = [
         </div>
       </section>
 
+      {/* ── Vlerësime ── */}
+      <section className="py-10 px-5" style={{ background: "#ffffff" }}>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-bold text-center mb-2 leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.8rem, 7vw, 2.8rem)", color: "#18181b" }}>
+            {t("Vlerësime", "Reviews")}
+          </h2>
+          <p className="text-center mb-8" style={{ color: "#71717a", fontSize: 14, lineHeight: 1.7 }}>
+            {t(
+              "Mijëra zemra të transformuara. Mijëra jetë të ndrysuara. Çfarë thonë pjesëmarrësit tanë.",
+              "Thousands of transformed hearts. Thousands of changed lives. What our participants say."
+            )}
+          </p>
+          <div className="flex flex-col gap-4">
+            {[
+              {
+                textAL: "Përshëndetje Arte & Marvin ju fal dy jeni bekimi i shpirtit tim ❤️. Ju jam mirënjohëse shum falënderuese fund për gjithë çka që bëm për ne dhe për trojet Shqiptare ❤️. Ju jam mirënjohëse shumë shumë për sekondat që na i dedikoni dhe për të gjitha shpjegimet dhe dashurinë pa limit që na dhuruat ❤️💛🙏. Falënderoj nga thellësia e zemrës stafin tuaj të mrekullueshme për punë e pa llogaritur që bëm për ne për çdo sekondë që na qëndruan pranë 🙏🙏🙏🙏🙏🙏🙏🙏.",
+                textEN: "Hello Arte & Marvin, you are both a blessing to my soul ❤️. I am so grateful for everything you did for us. Thank you from the bottom of my heart for every second you dedicate to us and for all the explanations and limitless love you share ❤️💛🙏.",
+              },
+              {
+                textAL: "Përshëndetje Arte, ne Workshopin 3 ditor jam ndjer si në Parajsë! Kam pasur shum energji pozitive gjatë gjithë kohës, gjithçka aty ishte e mrekullueshme, shpjegimet ishin shum të qarta, meditimet ishin diçka e mrekullueshme, vërtet hyjnore. Kam pasur dridha të papritshme 3 ditë radhë. Tani ndihem shum shum e qetë dhe shum më mirë. Do të doja që workshopi të vazhdonte me shum sepse aty ndodhen shum mrekulli. Ju jam mirënjohëse pafund ty dhe Marvinit, ju përqafoj me shum dashuri, Almira 💜",
+                textEN: "Hello Arte, the 3-day Workshop felt like Paradise to me. I had so much positive energy, everything was wonderful. The explanations were very clear, the meditations were incredible, truly divine. Now I feel so much calmer and better. I am endlessly grateful to you and Marvin. With much love, Almira 💜",
+              },
+              {
+                textAL: "Arta të falënderit zemër për gjithçka, për kontributin tënd maksimal aty për ne. Workshopi ishte perfekt, shpjegimet më të mira që unë i kam dëgjuar ndonjëherë. Aty kuptova që unë doja të harroj gjithçka dhe të besoj se jeta ka mrekulli. Këtë e kuptova falë teje Arta dhe Marvinit — se s'duhet të fajësoj as të gjykoj, gjithçka ndodh për një arsye. Wow, pashë mrekulli në meditime dhe pata shumë lëshime emocionale. Mësova ta dëgjoj vetëm zërin tim të brendshëm. O Arta, faleminderit nga zemra! 🙏",
+                textEN: "Arta, thank you from the heart for everything, for your maximum contribution for us. The workshop was perfect, the best explanations I've ever heard. I understood that life has miracles. I experienced a miracle in meditation. Arta",
+              },
+            ].map((item, i) => (
+              <div key={i} className="rounded-2xl p-5" style={{ background: "#ffffff", boxShadow: "0 2px 12px rgba(0,0,0,0.07)", border: "1px solid #f0f0f0" }}>
+                <div className="flex items-start justify-between mb-3">
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "#ede9fe" }}>
+                    <span style={{ color: "#7c3aed", fontSize: 18, lineHeight: 1, fontFamily: "Georgia, serif", fontWeight: 700 }}>"</span>
+                  </div>
+                  <div className="flex flex-col items-end gap-1">
+                    <span className="font-semibold" style={{ fontSize: 12, color: "#7c3aed" }}>{t("Vlerësime", "Review")}</span>
+                    <div className="flex gap-0.5">
+                      {[0,1,2,3,4].map(s => (
+                        <svg key={s} width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <p className="leading-relaxed mb-4" style={{ color: "#3f3f46", fontSize: 14 }}>
+                  {t(item.textAL, item.textEN)}
+                </p>
+                <div className="flex justify-end pt-3" style={{ borderTop: "1px solid #f4f4f5" }}>
+                  <svg width="16" height="16" fill="#f43f5e" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── FINAL CTA BANNER ── */}
       <section className="relative overflow-hidden px-6 py-10 md:py-16">
         {/* Background image + overlay */}

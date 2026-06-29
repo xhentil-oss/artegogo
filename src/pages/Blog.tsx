@@ -218,8 +218,12 @@ const posts: BlogPost[] = [
 
 export const BlogPage = () => {
   const [selectedPost, setSelectedPost] = useState<BlogPost>(posts[0]);
+  const [mobileOpenId, setMobileOpenId] = useState<number | null>(null);
   const { t } = useLanguage();
   const paragraphs = t("al", "en") === "al" ? selectedPost.content : selectedPost.contentEn;
+
+  const getMobileParagraphs = (post: BlogPost) =>
+    t("al", "en") === "al" ? post.content : post.contentEn;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -251,19 +255,83 @@ export const BlogPage = () => {
         </div>
       </div>
 
-      {/* ── Main two-column layout ── */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 py-6 pb-12">
-        <div className="flex flex-col md:flex-row gap-6 items-start">
+      {/* ── MOBILE accordion layout ── */}
+      <section className="md:hidden px-4 py-6 pb-10">
+        <div className="bg-white rounded-3xl border border-zinc-100 shadow-sm overflow-hidden mb-4">
+          <div className="px-5 py-4 border-b border-zinc-100">
+            <h3 className="font-bold text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20 }}>
+              {t("Lexo më tej", "Read more")}
+            </h3>
+            <div className="flex items-center gap-2 mt-1">
+              <div className="h-px w-5" style={{ background: "#c4b5fd" }} />
+              <span style={{ color: "#a78bfa", fontSize: 11 }}>♦</span>
+              <div className="h-px w-5" style={{ background: "#c4b5fd" }} />
+            </div>
+          </div>
 
-          {/* LEFT: Article content + Quote (order-2 on mobile, order-1 on desktop) */}
-          <div className="flex-1 min-w-0 flex flex-col gap-4 order-2 md:order-1">
+          {posts.map((post) => {
+            const isOpen = mobileOpenId === post.id;
+            const mobileParagraphs = getMobileParagraphs(post);
+            return (
+              <div key={post.id} className="border-b border-zinc-100 last:border-0">
+                {/* Row header */}
+                <button
+                  onClick={() => setMobileOpenId(isOpen ? null : post.id)}
+                  className="w-full flex items-stretch text-left transition-colors hover:bg-violet-50 overflow-hidden"
+                  style={{ background: isOpen ? "#f5f0ff" : undefined, minHeight: 90 }}
+                >
+                  <div className="w-16 shrink-0">
+                    <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0 px-3 py-3">
+                    <p className="font-semibold leading-snug line-clamp-2" style={{ fontSize: 12, color: isOpen ? "#7c3aed" : "#1c1917" }}>
+                      {t(post.title, post.titleEn)}
+                    </p>
+                    <p className="text-xs text-zinc-400 mt-1 flex items-center gap-1">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                      {t(post.readTime, post.readTimeEn)}
+                    </p>
+                  </div>
+                  <div className="flex items-center pr-3">
+                    <svg className="w-4 h-4 shrink-0 transition-transform" style={{ color: isOpen ? "#7c3aed" : "#d4d4d8", transform: isOpen ? "rotate(90deg)" : "none" }} fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                    </svg>
+                  </div>
+                </button>
+
+                {/* Expanded content */}
+                {isOpen && (
+                  <div className="px-4 py-5 border-t border-violet-100" style={{ background: "#faf9ff" }}>
+                    <div className="space-y-3 mb-4">
+                      {mobileParagraphs.map((para, i) => (
+                        <p key={i} className="leading-relaxed text-zinc-700" style={{ fontSize: 14 }}>{para}</p>
+                      ))}
+                    </div>
+                    <div className="rounded-2xl px-4 py-5 text-center border border-violet-100" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #ede9fe 100%)" }}>
+                      <div style={{ color: "#7c3aed", fontFamily: "Georgia, serif", fontSize: 36, lineHeight: 1 }}>"</div>
+                      <p className="italic font-medium leading-relaxed mt-1" style={{ color: "#4c1d95", fontSize: 13 }}>
+                        {t(post.quote, post.quoteEn)}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ── DESKTOP two-column layout ── */}
+      <section className="hidden md:block max-w-6xl mx-auto px-6 py-6 pb-12">
+        <div className="flex flex-row gap-6 items-start">
+
+          {/* LEFT: Article content + Quote */}
+          <div className="flex-1 min-w-0 flex flex-col gap-4">
             <div className="bg-white rounded-3xl px-7 py-8 border border-zinc-100 shadow-sm space-y-4">
               {paragraphs.map((para, i) => (
                 <p key={i} className="leading-relaxed text-zinc-700" style={{ fontSize: 15 }}>{para}</p>
               ))}
             </div>
-
-            {/* Quote */}
             <div className="rounded-3xl px-6 py-7 text-center border border-violet-100" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #ede9fe 100%)" }}>
               <div style={{ color: "#7c3aed", fontFamily: "Georgia, serif", fontSize: 48, lineHeight: 1 }}>"</div>
               <p className="italic font-medium leading-relaxed mt-2" style={{ color: "#4c1d95", fontSize: 14 }}>
@@ -275,10 +343,8 @@ export const BlogPage = () => {
             </div>
           </div>
 
-          {/* RIGHT: Post list + CTA (order-1 on mobile, order-2 on desktop) */}
-          <div className="w-full md:w-80 shrink-0 flex flex-col gap-4 order-1 md:order-2">
-
-            {/* Post list */}
+          {/* RIGHT: Post list + CTA */}
+          <div className="w-80 shrink-0 flex flex-col gap-4">
             <div className="bg-white rounded-3xl border border-zinc-100 shadow-sm overflow-hidden">
               <div className="px-5 py-4 border-b border-zinc-100">
                 <h3 className="font-bold text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20 }}>
@@ -300,11 +366,9 @@ export const BlogPage = () => {
                       className="w-full flex items-stretch text-left transition-colors hover:bg-violet-50 overflow-hidden"
                       style={{ background: isActive ? "#f5f0ff" : undefined, minHeight: 90 }}
                     >
-                      {/* Thumbnail */}
                       <div className="w-16 shrink-0">
                         <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
                       </div>
-                      {/* Info */}
                       <div className="flex-1 min-w-0 px-3 py-3">
                         <p className="font-semibold leading-snug line-clamp-2" style={{ fontSize: 12, color: isActive ? "#7c3aed" : "#1c1917" }}>
                           {t(post.title, post.titleEn)}
@@ -314,7 +378,6 @@ export const BlogPage = () => {
                           {t(post.readTime, post.readTimeEn)}
                         </p>
                       </div>
-                      {/* Arrow */}
                       <div className="flex items-center pr-3">
                         <svg className="w-4 h-4 shrink-0" fill="none" stroke={isActive ? "#7c3aed" : "#d4d4d8"} strokeWidth={2} viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
@@ -326,7 +389,6 @@ export const BlogPage = () => {
               </div>
             </div>
 
-            {/* CTA card */}
             <div className="rounded-3xl px-5 py-6 text-center border border-violet-100" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #ede9fe 100%)" }}>
               <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3" style={{ background: "#7c3aed" }}>
                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -345,7 +407,6 @@ export const BlogPage = () => {
                 {t("Shiko programet", "View programs")} →
               </a>
             </div>
-
           </div>
         </div>
       </section>

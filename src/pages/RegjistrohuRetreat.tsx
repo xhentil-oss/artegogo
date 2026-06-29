@@ -158,6 +158,22 @@ export const RegjistrohuRetreatPage = () => {
                       style={{ backgroundColor: '#fafafa' }} />
                   </div>
                 </div>
+
+                {/* Dhoma */}
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t("Preferenca e dhomës", "Room preference")}</label>
+                  <div className="relative">
+                    <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                    <select className="w-full pl-10 pr-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all appearance-none"
+                      style={{ backgroundColor: '#fafafa', color: '#3f3f46' }}>
+                      <option value="">{t("Zgjidh preferencën", "Select preference")}</option>
+                      <option value="single">{t("Dhomë teke (vetëm për ty)", "Single room (just for you)")}</option>
+                      <option value="shared">{t("Dhomë e ndarë (me persona të tjerë)", "Shared room (with other participants)")}</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
 

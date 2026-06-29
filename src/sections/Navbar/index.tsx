@@ -27,8 +27,15 @@ const navItemsAL: NavItem[] = [
     href: "/eventet",
     children: [
       { label: "Retreat", href: "/eventet/retreat" },
-      { label: "Trajnime Online", href: "/eventet/trajnime-online" },
       { label: "Workshope", href: "/eventet/workshope" },
+    ],
+  },
+  {
+    label: "Trajnime Online",
+    href: "/eventet/trajnime-online",
+    children: [
+      { label: "Trajnime Online", href: "/eventet/trajnime-online" },
+      { label: "Platforma Teachable", href: "/eventet/trajnime-online/platforma" },
     ],
   },
   { label: "Live", href: "/live" },
@@ -80,8 +87,15 @@ const navItemsEN: NavItem[] = [
     href: "/eventet",
     children: [
       { label: "Retreat", href: "/eventet/retreat" },
-      { label: "Online Training", href: "/eventet/trajnime-online" },
       { label: "Workshops", href: "/eventet/workshope" },
+    ],
+  },
+  {
+    label: "Online Training",
+    href: "/eventet/trajnime-online",
+    children: [
+      { label: "Online Training", href: "/eventet/trajnime-online" },
+      { label: "Teachable Platform", href: "/eventet/trajnime-online/platforma" },
     ],
   },
   { label: "Live", href: "/live" },
@@ -140,7 +154,10 @@ const NavItemDesktop = ({ item }: { item: NavItem }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLLIElement>(null);
   const location = useLocation();
-  const isActive = location.pathname === item.href || location.pathname.startsWith(item.href + "/");
+  const isActive = location.pathname === item.href ||
+    (item.children
+      ? item.children.some(child => location.pathname === child.href || location.pathname.startsWith(child.href + "/"))
+      : false);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -314,13 +331,13 @@ export const Navbar = () => {
               {item.children ? (
                 <>
                   <div className="flex items-center justify-between">
-                    <Link
-                      to={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="flex-1 py-3 text-sm font-medium text-zinc-700 hover:text-violet-700"
+                    <button
+                      onClick={() => setMobileExpanded((e) => (e === item.href ? null : item.href))}
+                      className="flex-1 text-left py-3 text-sm font-medium text-zinc-700 hover:text-violet-700"
+                      aria-label={`Toggle submenu for ${item.label}`}
                     >
                       {item.label}
-                    </Link>
+                    </button>
                     <button
                       onClick={() => setMobileExpanded((e) => (e === item.href ? null : item.href))}
                       className="px-2 py-3 text-zinc-400 hover:text-zinc-700"

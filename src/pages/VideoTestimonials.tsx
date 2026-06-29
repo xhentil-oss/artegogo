@@ -81,11 +81,15 @@ const VideoListItem = ({ video }: { video: VideoItem }) => {
   const embed = getEmbedUrl(video.src);
 
   return (
-    <div className="rounded-2xl overflow-hidden transition-all duration-200" style={{ background: "#ffffff", border: "1.5px solid #e4e4e7", boxShadow: "0 2px 12px rgba(0,0,0,0.05)" }}>
+    <div className="rounded-2xl transition-all duration-200" style={{ background: "#ffffff", border: "1.5px solid #e4e4e7", boxShadow: "0 2px 12px rgba(0,0,0,0.05)", overflow: "hidden" }}>
       {/* List row */}
       <div className="flex items-stretch gap-0">
         {/* Thumbnail */}
-        <div className="shrink-0 relative" style={{ width: 110, minHeight: 90 }}>
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="shrink-0 relative focus:outline-none"
+          style={{ width: 110, minHeight: 90 }}
+        >
           <img
             src={video.thumbnail}
             alt={video.title}
@@ -99,7 +103,7 @@ const VideoListItem = ({ video }: { video: VideoItem }) => {
               </svg>
             </div>
           </div>
-        </div>
+        </button>
 
         {/* Content */}
         <div className="flex-1 px-4 py-3 flex flex-col justify-between min-w-0">
@@ -135,15 +139,17 @@ const VideoListItem = ({ video }: { video: VideoItem }) => {
 
       {/* Expanded video player */}
       {expanded && (
-        <div className="border-t border-zinc-100">
+        <div style={{ borderTop: "1px solid #f4f4f5" }}>
           {embed.type === "iframe" ? (
             <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-              <iframe className="absolute inset-0 w-full h-full" src={embed.url} title={video.title} style={{ border: 0 }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+              <iframe className="absolute inset-0 w-full h-full" src={embed.url} title={video.title} style={{ border: 0, display: "block" }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
             </div>
           ) : embed.type === "video" ? (
-            <video className="w-full" controls playsInline autoPlay preload="metadata" style={{ maxHeight: 300 }}>
-              <source src={embed.url} />
-            </video>
+            <div className="w-full" style={{ aspectRatio: "16/9", background: "#000" }}>
+              <video className="w-full h-full" controls playsInline autoPlay preload="metadata" style={{ display: "block" }}>
+                <source src={embed.url} />
+              </video>
+            </div>
           ) : null}
         </div>
       )}

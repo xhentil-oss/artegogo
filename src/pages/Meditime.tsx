@@ -31,7 +31,7 @@ export const MeditimePage = () => {
               )}
             </p>
 
-            <a href="/shop/regjistrohu-retreat"
+            <a href="/signup"
               className="inline-flex items-center gap-1.5 text-white text-sm md:text-base px-3 py-1.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
               style={{ backgroundColor: "#4e29c5", fontFamily: "'Inter', sans-serif", fontWeight: 600 }}>
               {t("Regjistrohu", "Register")}
@@ -403,7 +403,7 @@ export const MeditimePage = () => {
             )}
           </p>
 
-          <a href="/shop/regjistrohu-retreat"
+          <a href="/signup"
             className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-2xl transition-all hover:scale-105 hover:shadow-lg text-sm md:text-base"
             style={{ background: "linear-gradient(135deg, #7c3aed 0%, #4e29c5 100%)", color: "#ffffff" }}>
             {t("Regjistrohu tani", "Register now")}

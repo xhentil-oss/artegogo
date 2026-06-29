@@ -1,11 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
 import { VideoTestimonialsSection } from "@/sections/VideoTestimonialsSection";
 import { AboutSection } from "@/sections/AboutSection";
+import { X, ChevronRight, Shield, CheckCircle, Headphones, CreditCard } from "lucide-react";
+
+const WhatsAppSVG = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className ?? "w-7 h-7 fill-white"}>
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+);
 
 export const RetreatPage = () => {
   const { t, lang } = useLanguage();
+  const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [showRezervoModal, setShowRezervoModal] = useState(false);
 
 
   const pricingVariants = [
@@ -831,6 +841,66 @@ export const RetreatPage = () => {
       <VideoTestimonialsSection />
 
 
+      {/* ── Vlerësime ── */}
+      <section className="py-10 px-5" style={{ background: "#ffffff" }}>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-bold text-center mb-2 leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.8rem, 7vw, 2.8rem)", color: "#18181b" }}>
+            {t("Vlerësime", "Reviews")}
+          </h2>
+          <p className="text-center mb-8" style={{ color: "#71717a", fontSize: 14, lineHeight: 1.7 }}>
+            {t(
+              "Mijëra zemra të transformuara. Mijëra jetë të ndrysuara. Çfarë thonë pjesëmarrësit tanë.",
+              "Thousands of transformed hearts. Thousands of changed lives. What our participants say."
+            )}
+          </p>
+          <div className="flex flex-col gap-4">
+            {[
+              {
+                textAL: "Përshëndetje Arte & Marvin ju fal dy jeni bekimi i shpirtit tim ❤️. Ju jam mirënjohëse shum falënderuese fund për gjithë çka që bëm për ne dhe për trojet Shqiptare ❤️. Ju jam mirënjohëse shumë shumë për sekondat që na i dedikoni dhe për të gjitha shpjegimet dhe dashurinë pa limit që na dhuruat ❤️💛🙏. Falënderoj nga thellësia e zemrës stafin tuaj të mrekullueshme për punë e pa llogaritur që bëm për ne për çdo sekondë që na qëndruan pranë 🙏🙏🙏🙏🙏🙏🙏🙏.",
+                textEN: "Hello Arte & Marvin, you are both a blessing to my soul ❤️. I am so grateful for everything you did for us. Thank you from the bottom of my heart for every second you dedicate to us and for all the explanations and limitless love you share ❤️💛🙏.",
+                name: "Arta, Kosovë",
+              },
+              {
+                textAL: "Përshëndetje Arte, ne Workshopin 3 ditor jam ndjer si në Parajsë! Kam pasur shum energji pozitive gjatë gjithë kohës, gjithçka aty ishte e mrekullueshme, shpjegimet ishin shum të qarta, meditimet ishin diçka e mrekullueshme, vërtet hyjnore. Kam pasur dridha të papritshme 3 ditë radhë. Tani ndihem shum shum e qetë dhe shum më mirë. Do të doja që workshopi të vazhdonte me shum sepse aty ndodhen shum mrekulli. Ju jam mirënjohëse pafund ty dhe Marvinit, ju përqafoj me shum dashuri, Almira 💜",
+                textEN: "Hello Arte, the 3-day Workshop felt like Paradise to me. I had so much positive energy, everything was wonderful. The explanations were very clear, the meditations were incredible, truly divine. Now I feel so much calmer and better. I am endlessly grateful to you and Marvin. With much love, Almira 💜",
+                name: "Almira, Shqipëri",
+              },
+              {
+                textAL: "Arta të falënderit zemër për gjithçka, për kontributin tënd maksimal aty për ne. Workshopi ishte perfekt, shpjegimet më të mira që unë i kam dëgjuar ndonjëherë. Aty kuptova që unë doja të harroj gjithçka dhe të besoj se jeta ka mrekulli. Këtë e kuptova falë teje Arta dhe Marvinit — se s'duhet të fajësoj as të gjykoj, gjithçka ndodh për një arsye. Wow, pashë mrekulli në meditime dhe pata shumë lëshime emocionale. Mësova ta dëgjoj vetëm zërin tim të brendshëm. O Arta, faleminderit nga zemra! 🙏",
+                textEN: "Arta, thank you from the heart for everything, for your maximum contribution for us. The workshop was perfect, the best explanations I've ever heard. I understood that life has miracles. I experienced a miracle in meditation. Arta",
+                name: "Arta, Shqipëri",
+              },
+            ].map((item, i) => (
+              <div key={i} className="rounded-2xl p-5" style={{ background: "#ffffff", boxShadow: "0 2px 12px rgba(0,0,0,0.07)", border: "1px solid #f0f0f0" }}>
+                <div className="flex items-start justify-between mb-3">
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "#ede9fe" }}>
+                    <span style={{ color: "#7c3aed", fontSize: 18, lineHeight: 1, fontFamily: "Georgia, serif", fontWeight: 700 }}>"</span>
+                  </div>
+                  <div className="flex flex-col items-end gap-1">
+                    <span className="font-semibold" style={{ fontSize: 12, color: "#7c3aed" }}>{t("Vlerësime", "Review")}</span>
+                    <div className="flex gap-0.5">
+                      {[0,1,2,3,4].map(s => (
+                        <svg key={s} width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <p className="leading-relaxed mb-4" style={{ color: "#3f3f46", fontSize: 14 }}>
+                  {t(item.textAL, item.textEN)}
+                </p>
+                <div className="flex justify-end pt-3" style={{ borderTop: "1px solid #f4f4f5" }}>
+                  <svg width="16" height="16" fill="#f43f5e" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA Hero */}
       <section className="relative overflow-hidden min-h-[520px] md:min-h-0">
         <img
@@ -867,13 +937,13 @@ export const RetreatPage = () => {
             </div>
           </div>
 
-          <a
-            href="/shop/regjistrohu-retreat"
+          <button
+            onClick={() => setShowRezervoModal(true)}
             className="inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-xl hover:scale-105 transition-all duration-300 mb-4"
             style={{ background: "linear-gradient(135deg, #4e29c5 0%, #3f1e92 100%)", color: "#fff", fontSize: 14 }}
           >
             {t("REZERVO VENDIN TANI", "RESERVE YOUR SPOT NOW")} ›
-          </a>
+          </button>
 
           <p className="text-white/60 flex items-center justify-center gap-1.5" style={{ fontSize: 16 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -918,6 +988,103 @@ export const RetreatPage = () => {
           </div>
         </div>
       </section>
+
+      {/* ── MODAL REZERVO ── */}
+      {showRezervoModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ backgroundColor: "rgba(0,0,0,0.55)" }}>
+          <div className="bg-white rounded-3xl shadow-2xl relative overflow-y-auto" style={{ width: 800, maxWidth: "95vw", maxHeight: "90vh" }}>
+            <button onClick={() => setShowRezervoModal(false)}
+              className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full text-zinc-400 hover:text-zinc-700 hover:bg-gray-100 transition-all z-10">
+              <X className="w-5 h-5" />
+            </button>
+            <div className="px-7 pt-4 pb-4 text-center">
+              <div className="flex justify-center mb-1">
+                <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+                  <path d="M32 8C32 8 24 18 24 28C24 33 27.6 37 32 37C36.4 37 40 33 40 28C40 18 32 8 32 8Z" fill="#ede9fe" stroke="#7c3aed" strokeWidth="1.3"/>
+                  <path d="M12 22C12 22 18 32 26 35" stroke="#7c3aed" strokeWidth="1.3" strokeLinecap="round" opacity="0.8"/>
+                  <path d="M52 22C52 22 46 32 38 35" stroke="#7c3aed" strokeWidth="1.3" strokeLinecap="round" opacity="0.8"/>
+                  <path d="M32 37V56" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <h2 className="font-bold mb-1" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 26, color: "#4e29c5" }}>
+                {t("Rezervo vendin tënd", "Reserve your spot")}
+              </h2>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <div className="h-px w-10" style={{ background: "rgba(124,58,237,0.25)" }} />
+                <span style={{ color: "#7c3aed", fontSize: 14 }}>♦</span>
+                <div className="h-px w-10" style={{ background: "rgba(124,58,237,0.25)" }} />
+              </div>
+              <p className="text-zinc-500 mb-3 max-w-sm mx-auto" style={{ fontSize: 13 }}>
+                {t("Zgjidh mënyrën që preferon për të siguruar vendin në retreat.", "Choose how you prefer to secure your spot in the retreat.")}
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+                <div className="flex flex-col items-center rounded-2xl p-4 border-2 text-center" style={{ borderColor: "#7c3aed", backgroundColor: "#faf9ff" }}>
+                  <div className="relative w-12 h-12 mb-2">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: "#ede9fe" }}>
+                      <CreditCard className="w-6 h-6" style={{ color: "#7c3aed" }} />
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: "#7c3aed" }}>
+                      <Shield className="w-3 h-3 text-white" />
+                    </div>
+                  </div>
+                  <h3 className="font-bold mb-1" style={{ color: "#4e29c5", fontSize: 16, fontFamily: "'Playfair Display', Georgia, serif" }}>
+                    {t("Regjistrohu online", "Register online")}
+                  </h3>
+                  <div className="flex justify-center mb-2"><span style={{ color: "#7c3aed", fontSize: 12 }}>♦</span></div>
+                  <p className="text-zinc-500 leading-relaxed mb-3" style={{ fontSize: 13 }}>
+                    {t("Plotëso formularin dhe kryej pagesën menjëherë për të siguruar vendin tënd.", "Fill the form and complete payment immediately to secure your spot.")}
+                  </p>
+                  <button
+                    onClick={() => { setShowRezervoModal(false); navigate("/shop/regjistrohu-retreat"); }}
+                    className="mt-auto w-full flex items-center justify-center gap-2 py-3 rounded-xl text-white font-bold transition-all hover:scale-105"
+                    style={{ backgroundColor: "#7c3aed", fontSize: 15 }}>
+                    {t("Regjistrohu online", "Register online")}
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <div className="flex flex-col items-center rounded-2xl p-4 border-2 text-center" style={{ borderColor: "#22c55e", backgroundColor: "#f0fdf4" }}>
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center mb-2" style={{ backgroundColor: "#22c55e" }}>
+                    <WhatsAppSVG className="w-7 h-7 fill-white" />
+                  </div>
+                  <h3 className="font-bold mb-1" style={{ color: "#16a34a", fontSize: 16, fontFamily: "'Playfair Display', Georgia, serif" }}>
+                    {t("Regjistrohu me WhatsApp", "Register via WhatsApp")}
+                  </h3>
+                  <div className="flex justify-center mb-2"><span style={{ color: "#22c55e", fontSize: 12 }}>♦</span></div>
+                  <p className="text-zinc-500 leading-relaxed mb-3" style={{ fontSize: 13 }}>
+                    {t("Flit direkt me stafin tonë. Do të të ndihmojmë me regjistrimin, pagesën dhe çdo pyetje që mund të kesh.", "Talk directly with our staff. We will help with registration, payment and any question you may have.")}
+                  </p>
+                  <a href="https://wa.me/355692420827" target="_blank" rel="noopener noreferrer"
+                    className="mt-auto w-full flex items-center justify-center gap-2 py-3 rounded-xl text-white font-bold transition-all hover:scale-105"
+                    style={{ backgroundColor: "#22c55e", fontSize: 15 }}>
+                    <WhatsAppSVG className="w-4 h-4 fill-white shrink-0" />
+                    {t("Na shkruaj në WhatsApp", "Message us on WhatsApp")}
+                    <ChevronRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center gap-4 flex-wrap border-t border-gray-100 pt-4">
+                <div className="flex items-center gap-1.5 text-zinc-500" style={{ fontSize: 12 }}>
+                  <Shield className="w-3.5 h-3.5" style={{ color: "#7c3aed" }} />
+                  {t("Pagesë e sigurt", "Secure payment")}
+                </div>
+                <span className="text-zinc-300">•</span>
+                <div className="flex items-center gap-1.5 text-zinc-500" style={{ fontSize: 12 }}>
+                  <CheckCircle className="w-3.5 h-3.5" style={{ color: "#7c3aed" }} />
+                  {t("Konfirmim i menjëhershëm", "Instant confirmation")}
+                </div>
+                <span className="text-zinc-300">•</span>
+                <div className="flex items-center gap-1.5 text-zinc-500" style={{ fontSize: 12 }}>
+                  <Headphones className="w-3.5 h-3.5" style={{ color: "#7c3aed" }} />
+                  {t("Mbështetje nga stafi", "Staff support")}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -362,20 +362,16 @@ export const WorkshopePage = () => {
             <div className="flex-1 h-px" style={{ background: "#e4e4e7" }} />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 gap-5">
             {[
-              { num: "DITA 1", icon: <svg className="w-6 h-6" fill="none" stroke="#a78bfa" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>, img: "/img/TONI0886.JPG", titleAL: days[0].titleAL, titleEN: days[0].titleEN, descAL: days[0].descAL, descEN: days[0].descEN },
-              { num: "DITA 2", icon: <svg className="w-6 h-6" fill="none" stroke="#a78bfa" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>, img: "/img/TONI1379.JPG", titleAL: days[1].titleAL, titleEN: days[1].titleEN, descAL: days[1].descAL, descEN: days[1].descEN },
-              { num: "DITA 3", icon: <svg className="w-6 h-6" fill="none" stroke="#a78bfa" strokeWidth={1.8} viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>, img: "/img/TONI2462.JPG", titleAL: days[2].titleAL, titleEN: days[2].titleEN, descAL: days[2].descAL, descEN: days[2].descEN },
+              { icon: <svg className="w-6 h-6" fill="none" stroke="#a78bfa" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>, img: "/img/TONI0886.JPG", imgPos: "center 30%", titleAL: days[0].titleAL, titleEN: days[0].titleEN, descAL: days[0].descAL, descEN: days[0].descEN },
+              { icon: <svg className="w-6 h-6" fill="none" stroke="#a78bfa" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>, img: "/img/TONI1379.JPG", imgPos: "center center", titleAL: days[1].titleAL, titleEN: days[1].titleEN, descAL: days[1].descAL, descEN: days[1].descEN },
             ].map((d, i) => (
               <div key={i} className="rounded-2xl overflow-hidden flex flex-col" style={{ background: "#ffffff", boxShadow: "0 2px 16px rgba(0,0,0,0.07)", border: "1px solid #f0f0f0" }}>
-                {/* Image top with badge */}
-                <div className="relative" style={{ height: 140 }}>
-                  <img src={d.img} alt="" className="w-full h-full object-cover" />
-                  <div className="absolute inset-0" style={{ background: "rgba(20,0,50,0.25)" }} />
-                  <div className="absolute top-3 right-3">
-                    <span className="font-bold tracking-widest px-3 py-1 rounded-full" style={{ background: "#7c3aed", color: "#fff", fontSize: 11, letterSpacing: "0.12em" }}>{d.num}</span>
-                  </div>
+                {/* Image top */}
+                <div className="relative" style={{ height: 200 }}>
+                  <img src={d.img} alt="" className="w-full h-full object-cover" style={{ objectPosition: d.imgPos }} />
+                  <div className="absolute inset-0" style={{ background: "rgba(20,0,50,0.18)" }} />
                 </div>
                 {/* Text bottom */}
                 <div className="p-3 md:p-5 flex flex-col gap-1 md:gap-2">

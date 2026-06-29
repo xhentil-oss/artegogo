@@ -104,7 +104,7 @@ export function AboutSection({ mobileCentered = false }: { mobileCentered?: bool
 
           {/* Heading */}
           <h2
-            className="text-lg md:text-4xl lg:text-5xl font-bold leading-tight text-zinc-900 mb-1"
+            className="text-[72px] md:text-[86px] lg:text-[94px] font-bold leading-tight text-zinc-900 mb-1"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             {t('Ku shkenca takon', 'Where science meets')}

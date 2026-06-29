@@ -22,6 +22,7 @@ import { RegjistrohuRetreatPage } from "@/pages/RegjistrohuRetreat";
 import { TrajnimePagesaPage } from "@/pages/TrajnimePagesa";
 import { RegjistrohuWorkshopPage } from "@/pages/RegjistrohuWorkshop";
 import { TrajnimeOnlinePage } from "@/pages/TrajnimeOnline";
+import { PlatformaTeachablePage } from "@/pages/PlatformaTeachable";
 import { WorkshopePage } from "@/pages/Workshope";
 import { LivePage } from "@/pages/Live";
 import { TestimonialsPage } from "@/pages/Testimonials";
@@ -45,7 +46,7 @@ const WhatsAppButton = () => (
     href="https://wa.me/355692420827"
     target="_blank"
     rel="noopener noreferrer"
-    className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full px-4 py-3 text-white font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+    className="fixed bottom-6 right-6 z-[99999] flex items-center gap-2 rounded-full px-4 py-3 text-white font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
     style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)", fontFamily: "'Inter', sans-serif", fontSize: "clamp(11px, 1.5vw, 14px)" }}
   >
     <svg viewBox="0 0 24 24" className="w-5 h-5 flex-shrink-0 fill-white">
@@ -85,6 +86,7 @@ export const App = () => {
         <Route path="/shop/regjistrohu-workshop" element={<Layout><RegjistrohuWorkshopPage /></Layout>} />
         <Route path="/shop/regjistrohu-workshop/pagesa" element={<Layout><TrajnimePagesaPage /></Layout>} />
         <Route path="/eventet/trajnime-online" element={<Layout><TrajnimeOnlinePage /></Layout>} />
+        <Route path="/eventet/trajnime-online/platforma" element={<Layout><PlatformaTeachablePage /></Layout>} />
         <Route path="/eventet/workshope" element={<Layout><WorkshopePage /></Layout>} />
         <Route path="/live" element={<Layout><LivePage /></Layout>} />
         <Route path="/rezultatet" element={<Navigate to="/rezultatet/testimonials" replace />} />

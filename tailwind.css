@@ -10,6 +10,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.hero-mobile-title { font-size: 42px; line-height: 1.2; }
+@media (min-width: 768px) {
+  .hero-mobile-title { font-size: inherit; line-height: inherit; }
+}
+
 .retreat-topic-title { font-size: 16px; }
 .retreat-topic-body { font-size: 16px; }
 @media (max-width: 767px) {
