@@ -18,13 +18,13 @@ export const PlatformaTeachablePage = () => {
         <div className="relative max-w-5xl mx-auto px-5 py-8 md:py-14 w-full">
           <h1 className="hero-title-mobile md:hidden font-bold text-white mb-3"
             style={{ fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.12 }}>
-            {t(<>Platforma<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Teachable</span></>,
-               <>The<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Teachable Platform</span></>)}
+            {t(<>Platforma<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Online</span></>,
+               <>The<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Online Platform</span></>)}
           </h1>
           <h1 className="hidden md:block font-bold text-white leading-tight mb-3"
             style={{ fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.12, fontSize: "clamp(1.8rem, 7vw, 3.5rem)" }}>
-            {t(<>Platforma<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Teachable</span></>,
-               <>The<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Teachable Platform</span></>)}
+            {t(<>Platforma<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Online</span></>,
+               <>The<br /><span style={{ fontStyle: "italic", color: "#c4b5fd" }}>Online Platform</span></>)}
           </h1>
 
           <p className="font-semibold text-white mb-2 leading-snug"

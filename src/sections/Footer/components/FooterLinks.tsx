@@ -9,11 +9,13 @@ export const FooterLinks = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-10">
         <div className="col-span-2 md:col-span-1">
           <div className="mb-3">
-            <img
-              src="https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777384541015-0.png"
-              alt="Arte Gogo Logo"
-              className="h-16 w-auto object-contain"
-            />
+            <Link to="/">
+              <img
+                src="https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777384541015-0.png"
+                alt="Arte Gogo Logo"
+                className="h-16 w-auto object-contain"
+              />
+            </Link>
           </div>
           <p className="text-white text-base leading-relaxed">
             {t("Bashkojmë shkencën moderne me meditimet dhe teknikat e transformimit.", "We combine modern science with meditations and transformation techniques.")}
@@ -67,7 +69,7 @@ export const FooterLinks = () => {
               { label: t("Trajnime Online", "Online Trainings"), href: "/eventet/trajnime-online" },
               { label: t("Workshope", "Workshops"), href: "/eventet/workshope" },
               { label: t("Testimonials", "Testimonials"), href: "/rezultatet/testimonials" },
-              { label: t("Shop", "Shop"), href: "/shop" },
+              { label: t("Shop", "Shop"), href: "/shop/regjistrohu-retreat" },
             ].map((l) => (
               <li key={l.href}><Link to={l.href} className="text-white hover:text-gray-300 text-base leading-relaxed transition-colors">{l.label}</Link></li>
             ))}

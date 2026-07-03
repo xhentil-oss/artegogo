@@ -361,7 +361,7 @@ export const WorkshopePage = () => {
           <div className="flex items-center gap-3 mb-3 md:mb-8">
             <div className="flex-1 h-px" style={{ background: "#e4e4e7" }} />
             <h2 className="font-bold whitespace-nowrap" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "#18181b" }}>
-              {t("Programi 3-ditor", "3-Day Program")}
+              {t("Programi 2-ditor", "2-Day Program")}
             </h2>
             <div className="flex-1 h-px" style={{ background: "#e4e4e7" }} />
           </div>
@@ -416,7 +416,6 @@ export const WorkshopePage = () => {
             {[
               { num: "DITA 1", time: "14:30 – 20:30", img: "/img/TONI0886.JPG", titleAL: days[0].titleAL, titleEN: days[0].titleEN, descAL: days[0].descAL, descEN: days[0].descEN },
               { num: "DITA 2", time: "08:00 – 19:00", img: "/img/TONI1379.JPG", titleAL: days[1].titleAL, titleEN: days[1].titleEN, descAL: days[1].descAL, descEN: days[1].descEN },
-              { num: "DITA 3", time: "08:00 – 19:00", img: "/img/TONI2462.JPG", titleAL: days[2].titleAL, titleEN: days[2].titleEN, descAL: days[2].descAL, descEN: days[2].descEN },
             ].map((d, i) => (
               <div key={i} className="flex gap-4 rounded-2xl overflow-hidden" style={{ background: "#F9FAFB", border: "1px solid #f0f0f0" }}>
                 {/* Image left */}

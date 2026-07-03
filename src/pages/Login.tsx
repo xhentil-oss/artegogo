@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -7,11 +7,33 @@ export const LoginPage = () => {
   const [showPass, setShowPass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Login [SKIPBACKEND] — no backend connected.");
+    setError("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.message || t("Email ose fjalëkalim i gabuar.", "Invalid email or password."));
+        return;
+      }
+      navigate("/");
+    } catch {
+      setError(t("Gabim lidhjeje. Provo përsëri.", "Connection error. Please try again."));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -19,10 +41,15 @@ export const LoginPage = () => {
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl border border-purple-100 p-8">
           <div className="flex justify-center mb-6">
-            <img src="https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776774255229-0.png" alt="Harmonizim Kuantik" className="h-14 w-auto object-contain" />
+            <img src="https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776774255229-0.png" alt="Arte Gogo" className="h-14 w-auto object-contain" />
           </div>
           <h1 className="text-2xl font-bold text-center text-zinc-800 mb-1">{t("Mirë se vjen!", "Welcome back!")}</h1>
           <p className="text-center text-zinc-500 text-sm mb-8">{t("Hyr në llogarinë tënde", "Sign in to your account")}</p>
+          {error && (
+            <div className="mb-4 px-4 py-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm text-center">
+              {error}
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div>
               <label className="block text-sm font-medium text-zinc-700 mb-1.5">{t("Email", "Email")}</label>
@@ -44,8 +71,8 @@ export const LoginPage = () => {
                 </button>
               </div>
             </div>
-            <button type="submit" className="w-full py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 transition-all">
-              {t("Hyr", "Sign In")}
+            <button type="submit" disabled={loading} className="w-full py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 transition-all disabled:opacity-60 disabled:cursor-not-allowed">
+              {loading ? t("Duke hyrë...", "Signing in...") : t("Hyr", "Sign In")}
             </button>
           </form>
           <p className="text-center text-sm text-zinc-500 mt-6">

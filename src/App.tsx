@@ -40,6 +40,7 @@ import { LoginPage } from "@/pages/Login";
 import { SignUpPage } from "@/pages/SignUp";
 import { CheckoutPage } from "@/pages/Checkout";
 import { AdminLivePage } from "@/pages/AdminLive";
+import { AdminDashboard } from "@/pages/Admin";
 
 const WhatsAppButton = () => (
   <a
@@ -105,6 +106,7 @@ export const App = () => {
         <Route path="/signup" element={<Layout><SignUpPage /></Layout>} />
         <Route path="/checkout" element={<Layout><CheckoutPage /></Layout>} />
         <Route path="/admin/live" element={<AdminLivePage />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
       <CartDrawer />
     </CartProvider>

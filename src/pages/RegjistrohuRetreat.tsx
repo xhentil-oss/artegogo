@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { User, Mail, Phone, Globe, MapPin, CreditCard, Lock, Heart, Brain, Clock, Users, ChevronRight, MessageCircle, Shield, X, CheckCircle, Headphones } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +25,15 @@ export const RegjistrohuRetreatPage = () => {
   const navigate = useNavigate();
   const [agreed, setAgreed] = useState(false);
   const [reserveOpen, setReserveOpen] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setReserveOpen(true);
+      setTimeout(() => setModalVisible(true), 10);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="min-h-screen pb-12" style={{ backgroundColor: '#f8f7ff' }}>
@@ -218,7 +227,7 @@ export const RegjistrohuRetreatPage = () => {
 
             {/* Button */}
             <button
-              onClick={() => setReserveOpen(true)}
+              onClick={() => { setReserveOpen(true); setTimeout(() => setModalVisible(true), 10); }}
               className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-white font-bold text-sm transition-all hover:scale-105"
               style={{ backgroundColor: '#7c3aed' }}>
               {t("Regjistrohu", "Register")}
@@ -296,9 +305,11 @@ export const RegjistrohuRetreatPage = () => {
 
       {/* Reserve Modal */}
       {reserveOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ backgroundColor: 'rgba(0,0,0,0.55)' }}>
-          <div className="bg-white rounded-3xl shadow-2xl relative overflow-y-auto" style={{ width: 800, maxWidth: '95vw', maxHeight: '90vh' }}>
-            <button onClick={() => setReserveOpen(false)}
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ backgroundColor: modalVisible ? 'rgba(0,0,0,0.55)' : 'rgba(0,0,0,0)', transition: 'background-color 0.4s ease' }}>
+          <div className="bg-white rounded-3xl shadow-2xl relative overflow-y-auto"
+            style={{ width: 800, maxWidth: '95vw', maxHeight: '90vh', opacity: modalVisible ? 1 : 0, transform: modalVisible ? 'translateY(0) scale(1)' : 'translateY(24px) scale(0.97)', transition: 'opacity 0.4s ease, transform 0.4s ease' }}>
+            <button onClick={() => { setModalVisible(false); setTimeout(() => setReserveOpen(false), 400); }}
               className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full text-zinc-400 hover:text-zinc-700 hover:bg-gray-100 transition-all z-10">
               <X className="w-5 h-5" />
             </button>

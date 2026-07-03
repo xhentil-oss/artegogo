@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>artegogo</title>
+<link rel="icon" type="image/png" href="https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777384541015-0.png">
+<style>
+:root{
+  --accent:#7D62BE;--accent-dark:#614D9E;--accent-light:#B8A8E0;
+  --sidebar-bg:#FAFAFE;--sidebar-hover:#F0EBF9;--sidebar-active:#EDE6F8;
+  --sidebar-text:#6B5FA3;--sidebar-text-active:#2B1D6E;
+  --bg:#F3EEFB;--card:#FFFFFF;--border:#E5DFF5;
+  --text:#0F0D14;--text-muted:#7B6FA8;
+  --green:#10B981;--orange:#F59E0B;--red:#EF4444;--blue:#3B82F6;
+  --shadow:0 1px 3px rgba(125,98,190,.06),0 4px 16px rgba(125,98,190,.04);
+  --shadow-card:0 1px 4px rgba(125,98,190,.09);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100vw;overflow-x:hidden}
+html{font-size:15px}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+
+/* ── SIDEBAR ── */
+.sidebar{width:220px;min-width:220px;background:var(--sidebar-bg);border-right:1px solid var(--border);display:flex;flex-direction:column;height:100vh;overflow-y:auto;overflow-x:hidden;position:relative;z-index:10}
+.sidebar-logo{padding:16px 18px 14px;border-bottom:1px solid var(--border);background:#0F0D14}
+.logo-mark{display:flex;align-items:center;gap:10px}
+.logo-icon{width:34px;height:34px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-text{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.3px}
+.logo-sub{font-size:10px;color:var(--text-muted);letter-spacing:.5px;text-transform:uppercase;margin-top:1px}
+.sidebar-nav{flex:1;padding:10px 8px}
+.nav-section{margin-bottom:6px}
+.nav-label{font-size:9.5px;font-weight:600;color:var(--text-muted);letter-spacing:1.2px;text-transform:uppercase;padding:10px 10px 4px;opacity:.65}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;cursor:pointer;color:var(--sidebar-text);font-size:13.5px;font-weight:450;transition:background .15s,color .15s;position:relative;user-select:none}
+.nav-item:hover{background:var(--sidebar-hover);color:var(--sidebar-text-active)}
+.nav-item.active{background:var(--sidebar-active);color:var(--sidebar-text-active);font-weight:600}
+.nav-item.active::before{content:'';position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:3px;height:18px;background:var(--accent);border-radius:0 3px 3px 0}
+.nav-svg{width:16px;height:16px;display:block;flex-shrink:0;stroke:currentColor;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5}
+.nav-badge{margin-left:auto;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:20px}
+.sidebar-footer{padding:12px 8px;border-top:1px solid var(--border)}
+.admin-chip{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;background:var(--sidebar-active)}
+.admin-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700;flex-shrink:0}
+.admin-name{font-size:12.5px;color:var(--text);font-weight:600}
+.admin-role{font-size:11px;color:var(--text-muted)}
+
+/* ── MAIN ── */
+.main-wrapper{flex:1;width:0;display:flex;flex-direction:column;overflow:hidden;min-width:0;min-height:0}
+.topbar{background:var(--card);border-bottom:1px solid var(--border);padding:0 24px;height:58px;display:flex;align-items:center;gap:16px;flex-shrink:0;width:100%}
+.breadcrumb{flex:1;display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted)}
+.breadcrumb span{color:var(--text);font-weight:600;font-size:15px}
+.topbar-actions{display:flex;align-items:center;gap:10px}
+.btn-icon{width:36px;height:36px;border-radius:9px;border:1px solid var(--border);background:transparent;display:flex;align-items:center;justify-content:center;color:var(--text-muted);position:relative;transition:background .15s}
+.btn-icon:hover{background:var(--bg)}
+.btn-icon .nav-svg{width:17px;height:17px}
+.notif-dot{position:absolute;top:5px;right:5px;width:7px;height:7px;background:var(--red);border-radius:50%;border:1.5px solid white}
+.topbar-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700;cursor:pointer}
+#avatar-menu{display:none}#avatar-menu.open{display:block}
+
+/* ── CONTENT ── */
+.content{flex:1;overflow-y:auto;overflow-x:hidden;padding:24px;min-width:0;min-height:0;-webkit-overflow-scrolling:touch}
+.page{display:none}
+.page.active{display:block}
+.page-header{margin-bottom:20px}
+.page-title{font-size:22px;font-weight:700;letter-spacing:-.4px}
+.page-sub{font-size:13px;color:var(--text-muted);margin-top:2px}
+
+/* ── KPI CARDS ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;min-width:0}
+.kpi-card{background:var(--card);border-radius:12px;padding:18px 20px;border:1px solid var(--border);box-shadow:var(--shadow-card);min-width:0;overflow:hidden}
+.kpi-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.kpi-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.kpi-icon .nav-svg{width:18px;height:18px}
+.kpi-badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px}
+.up{color:var(--green);background:rgba(16,185,129,.1)}
+.dn{color:var(--red);background:rgba(239,68,68,.1)}
+.kpi-num{font-size:26px;font-weight:800;letter-spacing:-.8px;font-variant-numeric:tabular-nums}
+.kpi-label{font-size:12px;color:var(--text-muted);margin-top:2px}
+.kpi-sub{font-size:11.5px;color:var(--text-muted);margin-top:6px;border-top:1px solid var(--border);padding-top:8px}
+
+/* ── CHART SECTION ── */
+.chart-card{background:var(--card);border-radius:12px;padding:20px;border:1px solid var(--border);box-shadow:var(--shadow-card);margin-bottom:20px;min-width:0;overflow:hidden}
+.chart-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.chart-title{font-size:15px;font-weight:700}
+.chart-legend{display:flex;gap:12px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted)}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.filter-tabs{display:flex;gap:4px;flex-wrap:wrap}
+.filter-tab{padding:4px 10px;border-radius:6px;font-size:12px;font-weight:500;border:1px solid var(--border);background:transparent;color:var(--text-muted);transition:all .15s;white-space:nowrap}
+.filter-tab.active,.filter-tab:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* ── LAYOUT GRIDS ── */
+.two-col{display:grid;grid-template-columns:1.4fr 0.6fr;gap:14px;margin-bottom:20px;min-width:0}
+.two-col>*{min-width:0;overflow:hidden}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;min-width:0}
+.three-col>*{min-width:0;overflow:hidden}
+
+/* ── TABLE ── */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:middle;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--bg)}
+
+/* ── BADGES ── */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:20px;font-size:11.5px;font-weight:600}
+.badge-green{background:rgba(16,185,129,.1);color:#059669}
+.badge-orange{background:rgba(245,158,11,.1);color:#D97706}
+.badge-red{background:rgba(239,68,68,.1);color:#DC2626}
+.badge-purple{background:rgba(125,98,190,.12);color:var(--accent)}
+.badge-blue{background:rgba(59,130,246,.1);color:#2563EB}
+.badge-gray{background:rgba(107,114,128,.1);color:#6B7280}
+
+/* ── BUTTONS ── */
+.btn{padding:7px 16px;border-radius:8px;font-size:13px;font-weight:600;border:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark)}
+.btn-ghost{background:transparent;color:var(--accent);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--bg)}
+.btn-sm{padding:4px 10px;font-size:12px}
+.btn-danger{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.2)}
+
+/* ── ACTION ICONS ── */
+.actions{display:flex;gap:4px}
+.act{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;background:transparent;transition:background .12s;color:var(--text-muted);cursor:pointer}
+.act:hover{background:var(--bg);color:var(--accent);border-color:var(--accent-light)}
+.act .nav-svg{width:13px;height:13px}
+
+/* ── PROGRESS BARS ── */
+.progress-bar{background:var(--border);border-radius:99px;overflow:hidden;height:6px}
+.progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent-light))}
+.progress-fill-green{background:linear-gradient(90deg,var(--green),#6EE7B7)}
+.progress-fill-orange{background:linear-gradient(90deg,var(--orange),#FCD34D)}
+.progress-fill-blue{background:linear-gradient(90deg,var(--blue),#93C5FD)}
+
+/* ── DONUT / COUNTRY ── */
+.country-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.country-row{display:flex;flex-direction:column;gap:4px}
+.country-label{display:flex;justify-content:space-between;font-size:12.5px}
+.country-val{font-weight:700;font-variant-numeric:tabular-nums}
+
+/* ── RATING ── */
+.rating-rows{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.rating-row{display:flex;align-items:center;gap:8px;font-size:12px}
+.rating-stars{width:28px;text-align:right;color:var(--text-muted)}
+.rating-pct{width:28px;font-variant-numeric:tabular-nums;color:var(--text-muted)}
+
+/* ── SEARCH BAR ── */
+.search-bar{display:flex;gap:8px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.search-input{flex:1;min-width:160px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13.5px;background:var(--card);color:var(--text);outline:none;transition:border-color .15s}
+.search-input:focus{border-color:var(--accent)}
+.filter-select{padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:var(--card);color:var(--text);outline:none;max-width:160px}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:16px;overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:9px 16px;font-size:13px;font-weight:500;cursor:pointer;border-bottom:2px solid transparent;color:var(--text-muted);transition:all .15s;background:none;border-top:none;border-left:none;border-right:none;white-space:nowrap;flex-shrink:0}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+.tab:hover{color:var(--text)}
+
+/* ── STAT CHIPS ── */
+.stat-chips{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 16px;text-align:center}
+.stat-chip-num{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
+.stat-chip-label{font-size:11px;color:var(--text-muted);margin-top:1px}
+
+/* ── EVENT CARDS ── */
+.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%}
+.event-card{background:var(--card);border-radius:14px;padding:20px;border:1px solid var(--border);box-shadow:var(--shadow-card)}
+.event-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.event-name{font-size:15px;font-weight:700}
+.event-date{font-size:12px;color:var(--text-muted);margin-top:3px}
+.event-location{font-size:12px;color:var(--text-muted);margin-bottom:12px}
+.event-capacity{margin-bottom:14px}
+.event-cap-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px}
+.event-cap-num{font-weight:700;font-variant-numeric:tabular-nums}
+.event-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.event-pill{font-size:11.5px;background:var(--bg);padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--text-muted)}
+.event-actions{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:100;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--card);border-radius:16px;padding:28px;width:520px;max-width:95vw;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.18)}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.modal-title{font-size:18px;font-weight:700}
+.modal-close{font-size:20px;cursor:pointer;color:var(--text-muted);background:none;border:none;line-height:1}
+.profile-row{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.profile-avatar{width:56px;height:56px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;font-weight:700}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.info-field label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:3px}
+.info-field span{font-size:14px;font-weight:500}
+.info-field a{color:var(--accent)}
+.purchase-list{display:flex;flex-direction:column;gap:8px}
+.purchase-item{padding:10px 14px;border-radius:8px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px}
+
+/* ── FINANCE GRID ── */
+.fin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.fin-card{background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--border)}
+.fin-label{font-size:11.5px;color:var(--text-muted);margin-bottom:4px}
+.fin-num{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
+.fin-period{font-size:11px;color:var(--text-muted);margin-top:2px}
+
+/* ── MARKETING ── */
+.mkt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:20px;width:100%}
+.mkt-card{background:var(--card);border-radius:12px;padding:18px;border:1px solid var(--border)}
+.mkt-icon{width:36px;height:36px;background:var(--sidebar-active);border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.mkt-icon .nav-svg{width:18px;height:18px;color:var(--accent)}
+.mkt-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.mkt-desc{font-size:12.5px;color:var(--text-muted);margin-bottom:14px;line-height:1.5}
+.link-copy{display:flex;gap:6px;align-items:center;background:var(--bg);border-radius:7px;padding:7px 10px;font-size:12px;font-family:monospace;color:var(--text-muted);border:1px solid var(--border);margin-bottom:10px}
+.link-copy span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn-copy{padding:3px 10px;background:var(--accent);color:#fff;border:none;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;flex-shrink:0}
+
+/* ── SETTINGS ── */
+.settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;width:100%}
+.settings-card{background:var(--card);border-radius:12px;padding:20px;border:1px solid var(--border)}
+.settings-title{font-size:14px;font-weight:700;margin-bottom:14px;color:var(--text)}
+.form-field{margin-bottom:12px}
+.form-label{font-size:12px;color:var(--text-muted);display:block;margin-bottom:5px;font-weight:600}
+.form-input{width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13.5px;background:var(--bg);color:var(--text);outline:none}
+.form-input:focus{border-color:var(--accent);background:#fff}
+.toggle-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+.toggle-row:last-child{border-bottom:none}
+.toggle{width:38px;height:22px;background:var(--border);border-radius:11px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.toggle.on{background:var(--accent)}
+.toggle::after{content:'';position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.toggle.on::after{transform:translateX(16px)}
+
+/* ── MISC ── */
+.see-all{text-align:right;margin-top:12px}
+.see-all a{font-size:12.5px;color:var(--accent);font-weight:600}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent-light)}
+
+/* ── HAMBURGER ── */
+.hamburger{display:none;width:36px;height:36px;border-radius:9px;border:1px solid var(--border);background:transparent;align-items:center;justify-content:center;color:var(--text-muted);flex-shrink:0;cursor:pointer}
+.hamburger .nav-svg{width:18px;height:18px}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:200;backdrop-filter:blur(1px)}
+.sidebar-overlay.open{display:block}
+
+@media(max-width:1100px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .fin-grid{grid-template-columns:repeat(2,1fr)}
+  .two-col{grid-template-columns:1fr}
+  .three-col{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .sidebar{
+    position:fixed;left:-240px;top:0;z-index:300;height:100vh;
+    transition:left .25s cubic-bezier(.4,0,.2,1);
+    box-shadow:4px 0 24px rgba(0,0,0,.12);
+  }
+  .sidebar.open{left:0}
+  .hamburger{display:flex}
+  .main-wrapper{width:100%}
+  .topbar{padding:0 14px;gap:10px}
+  .breadcrumb{font-size:12px}
+  .breadcrumb span{font-size:14px}
+  .content{padding:12px;padding-bottom:40px}
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .fin-grid{grid-template-columns:1fr 1fr}
+  .two-col{grid-template-columns:1fr}
+  .three-col{grid-template-columns:1fr}
+  canvas{max-width:100%}
+  /* Table always scrolls inside card — never breaks page width */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+  table{min-width:600px}
+  /* Stat chips: 2-col grid instead of flex-row */
+  .stat-chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .stat-chip{padding:10px 12px}
+  .stat-chip-num{font-size:18px}
+  /* Search bar: input full-width row, selects next row */
+  .search-bar{flex-direction:column;align-items:stretch}
+  .search-bar .search-input{min-width:0;width:100%}
+  .search-bar .filter-select{max-width:100%;width:100%}
+  .search-bar .btn{align-self:flex-start}
+  /* Page header button wraps below title */
+  .page-header [style*="justify-content:space-between"]{flex-direction:column;gap:12px}
+  .events-grid{grid-template-columns:1fr}
+  .settings-grid{grid-template-columns:1fr}
+  .mkt-grid{grid-template-columns:1fr}
+  .settings-grid,.mkt-grid,.events-grid{width:100%}
+  .modal{width:95vw;padding:20px 16px}
+  .info-grid{grid-template-columns:1fr}
+  /* Chart card padding */
+  .chart-card{padding:14px}
+  .chart-header{flex-direction:column;gap:10px;align-items:flex-start}
+  .chart-legend{flex-wrap:wrap;gap:8px}
+}
+@media(max-width:420px){
+  .kpi-grid{grid-template-columns:1fr}
+  .fin-grid{grid-template-columns:1fr}
+  .stat-chips{grid-template-columns:1fr 1fr}
+  .topbar-actions .btn-icon:first-child{display:none}
+  .content{padding:10px}
+}
+
+/* ── LOGIN SCREEN ── */
+#login-screen{
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(135deg,#EDE6F8 0%,#F3EEFB 50%,#e8e0f5 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.login-box{
+  width:400px;max-width:92vw;
+  background:#fff;border-radius:20px;padding:40px 36px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 40px rgba(125,98,190,.14),0 2px 8px rgba(125,98,190,.08);
+}
+.login-logo{display:flex;flex-direction:column;align-items:center;margin-bottom:30px;gap:16px}
+.login-logo-icon{width:52px;height:52px;background:var(--accent);border-radius:14px;display:flex;align-items:center;justify-content:center}
+.login-title{font-size:22px;font-weight:800;letter-spacing:-.4px;color:var(--text);text-align:center}
+.login-sub{font-size:13px;color:var(--text-muted);text-align:center;margin-top:4px}
+.login-field{margin-bottom:16px}
+.login-label{display:block;font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.login-input{
+  width:100%;padding:11px 14px;
+  border:1.5px solid var(--border);border-radius:10px;
+  font-size:14.5px;font-family:inherit;color:var(--text);
+  background:var(--bg);outline:none;transition:border-color .15s,background .15s;
+}
+.login-input:focus{border-color:var(--accent);background:#fff}
+.login-input.error{border-color:var(--red)!important}
+.login-btn{
+  width:100%;padding:12px;border-radius:10px;border:none;
+  background:var(--accent);color:#fff;font-size:15px;font-weight:700;
+  cursor:pointer;margin-top:6px;transition:background .15s,transform .1s;
+  letter-spacing:.2px;
+}
+.login-btn:hover{background:var(--accent-dark)}
+.login-btn:active{transform:scale(.98)}
+.login-error{
+  background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);
+  color:var(--red);font-size:13px;border-radius:8px;
+  padding:10px 14px;margin-top:14px;display:none;text-align:center;
+}
+.login-error.show{display:block}
+</style>
+</head>
+<body>
+
+<!-- ── SVG SPRITE ── -->
+<svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="ico-dashboard" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></symbol>
+  <symbol id="ico-registrations" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><path d="M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="ico-clients" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 20c0-3.314 2.686-6 6-6s6 2.686 6 6"/><path d="M16 3.13a4 4 0 010 7.75"/><path d="M21 20c0-2.21-2.239-4-5-4"/></symbol>
+  <symbol id="ico-payments" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></symbol>
+  <symbol id="ico-events" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></symbol>
+  <symbol id="ico-online" viewBox="0 0 24 24"><path d="M12 4L2 9l10 5 10-5-10-5z"/><path d="M6 11.5V17c0 1.5 2.686 2.5 6 2.5s6-1 6-2.5v-5.5"/><path d="M22 9v5"/></symbol>
+  <symbol id="ico-meditations" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7c0 0-4 2.5-4 5.5s4 4.5 4 4.5"/><path d="M12 7c0 0 4 2.5 4 5.5s-4 4.5-4 4.5"/></symbol>
+  <symbol id="ico-blog" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></symbol>
+  <symbol id="ico-shop" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></symbol>
+  <symbol id="ico-marketing" viewBox="0 0 24 24"><path d="M15 5v14L5 16H3a1 1 0 01-1-1v-6a1 1 0 011-1h2L15 5z"/><path d="M18 9c.9.5 1.5 1.4 1.5 2.5s-.6 2-1.5 2.5"/><path d="M7 16l2 5"/></symbol>
+  <symbol id="ico-settings" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2" fill="white"/><circle cx="16" cy="12" r="2" fill="white"/><circle cx="10" cy="18" r="2" fill="white"/></symbol>
+  <symbol id="ico-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></symbol>
+  <symbol id="ico-bell" viewBox="0 0 24 24"><path d="M15 17H9m3 4a2 2 0 01-2-2h4a2 2 0 01-2 2zm6-5c0-3-1-5-4-6V7a2 2 0 10-4 0v1c-3 1-4 3-4 6v1l-1 1v1h14v-1l-1-1v-1z"/></symbol>
+  <symbol id="ico-eye" viewBox="0 0 24 24"><path d="M1 12S5 5 12 5s11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="ico-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></symbol>
+  <symbol id="ico-phone" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11 21 3 13 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.3 1L6.6 10.8z"/></symbol>
+  <symbol id="ico-check" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></symbol>
+  <symbol id="ico-x" viewBox="0 0 24 24"><path d="M6 6l12 12M6 18L18 6"/></symbol>
+  <symbol id="ico-receipt" viewBox="0 0 24 24"><path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14l-3-2-2 2-2-2-2 2-2-2-3 2V5z"/><path d="M8 10h8M8 14h5"/></symbol>
+  <symbol id="ico-edit" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></symbol>
+  <symbol id="ico-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></symbol>
+  <symbol id="ico-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="ico-ticket" viewBox="0 0 24 24"><path d="M15 5H9a2 2 0 00-2 2v1a2 2 0 000 4v1a2 2 0 002 2h6a2 2 0 002-2v-1a2 2 0 000-4V7a2 2 0 00-2-2z"/><path d="M3 7h2M19 7h2M3 17h2M19 17h2"/></symbol>
+  <symbol id="ico-send" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></symbol>
+</svg>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div style="background:#0F0D14;border-radius:14px;padding:12px 20px;display:flex;align-items:center;justify-content:center">
+        <img src="https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777384541015-0.png"
+             alt="Arte Gogo" style="height:48px;width:auto;object-fit:contain;display:block">
+      </div>
+      <div>
+        <div class="login-title">Arte Gogo Admin</div>
+        <div class="login-sub" style="margin-top:6px;">Hyr me llogarinë tënde</div>
+      </div>
+    </div>
+    <div class="login-field">
+      <label class="login-label" for="l-email">Email</label>
+      <input class="login-input" id="l-email" type="email" placeholder="admin@artegogo.com" autocomplete="email">
+    </div>
+    <div class="login-field">
+      <label class="login-label" for="l-pass">Fjalëkalimi</label>
+      <input class="login-input" id="l-pass" type="password" placeholder="••••••••••" autocomplete="current-password">
+    </div>
+    <button class="login-btn" id="login-btn" onclick="doLogin()">Hyr</button>
+    <div class="login-error" id="login-error">Email ose fjalëkalimi është i gabuar.</div>
+  </div>
+</div>
+
+<div id="app-shell" style="display:none;width:100vw;height:100vh;overflow:hidden;">
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+<div style="display:flex;width:100%;height:100vh;overflow:hidden;">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo" style="background:#0F0D14;margin:-1px;padding:16px 18px 14px;border-radius:0">
+    <img src="https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1777384541015-0.png"
+         alt="Arte Gogo"
+         style="height:44px;width:auto;object-fit:contain;display:block;max-width:160px">
+    <div style="font-size:10px;color:#B8A8E0;letter-spacing:.8px;text-transform:uppercase;margin-top:4px;font-weight:500">Admin Portal</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-item active" data-page="dashboard">
+        <svg class="nav-svg"><use href="#ico-dashboard"/></svg> Dashboard
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Biznesi</div>
+      <div class="nav-item" data-page="registrations">
+        <svg class="nav-svg"><use href="#ico-registrations"/></svg> Regjistrimet
+        <span class="nav-badge" id="reg-nav-badge" style="display:none">0</span>
+      </div>
+      <div class="nav-item" data-page="clients">
+        <svg class="nav-svg"><use href="#ico-clients"/></svg> Klientët
+      </div>
+      <div class="nav-item" data-page="payments">
+        <svg class="nav-svg"><use href="#ico-payments"/></svg> Pagesat
+      </div>
+      <div class="nav-item" data-page="events">
+        <svg class="nav-svg"><use href="#ico-events"/></svg> Eventet
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Produktet</div>
+      <div class="nav-item" data-page="online">
+        <svg class="nav-svg"><use href="#ico-online"/></svg> Trajnimet Online
+      </div>
+      <div class="nav-item" data-page="meditations">
+        <svg class="nav-svg"><use href="#ico-meditations"/></svg> Meditimet
+      </div>
+      <div class="nav-item" data-page="blog">
+        <svg class="nav-svg"><use href="#ico-blog"/></svg> Blog
+      </div>
+      <div class="nav-item" data-page="shop">
+        <svg class="nav-svg"><use href="#ico-shop"/></svg> Shop / Librat
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Rritja</div>
+      <div class="nav-item" data-page="marketing">
+        <svg class="nav-svg"><use href="#ico-marketing"/></svg> Marketing
+      </div>
+      <div class="nav-item" data-page="settings">
+        <svg class="nav-svg"><use href="#ico-settings"/></svg> Cilësimet
+      </div>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="admin-chip">
+      <div class="admin-avatar">AG</div>
+      <div>
+        <div class="admin-name">Arte Gogo</div>
+        <div class="admin-role">Super Admin</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main-wrapper">
+  <header class="topbar">
+    <button class="hamburger" onclick="toggleSidebar()" title="Menu">
+      <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <div class="breadcrumb">
+      Arte Gogo &rsaquo; <span id="breadcrumb-title">Dashboard</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-icon" title="Kërko">
+        <svg class="nav-svg"><use href="#ico-search"/></svg>
+      </button>
+      <button class="btn-icon" title="Njoftimet">
+        <svg class="nav-svg"><use href="#ico-bell"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+      <div style="position:relative">
+        <div class="topbar-avatar" title="Profili" onclick="var m=document.getElementById('avatar-menu');m.style.display=m.style.display==='block'?'none':'block'">AG</div>
+        <div id="avatar-menu" style="display:none;position:absolute;right:0;top:calc(100% + 8px);background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);min-width:160px;z-index:9999;overflow:hidden">
+          <div style="padding:12px 16px;border-bottom:1px solid var(--border)">
+            <div style="font-size:13px;font-weight:600;color:var(--text)">Arte Gogo</div>
+            <div style="font-size:11px;color:var(--text-muted)">Super Admin</div>
+          </div>
+          <button onclick="adminLogout()" style="width:100%;padding:10px 16px;border:none;background:transparent;color:var(--text);font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px;text-align:left" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='transparent'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Dil
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <section class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div class="page-title">Dashboard — Overview</div>
+        <div class="page-sub">Të dhënat e përditësuara deri sot, 2 Korrik 2026</div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <div class="kpi-icon" style="background:rgba(125,98,190,.1)">
+              <svg class="nav-svg" style="color:var(--accent)"><use href="#ico-clients"/></svg>
+            </div>
+            <span class="kpi-badge up">+12%</span>
+          </div>
+          <div class="kpi-num">—</div>
+          <div class="kpi-label">Regjistrimi Totalë</div>
+          <div class="kpi-sub"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <div class="kpi-icon" style="background:rgba(16,185,129,.1)">
+              <svg class="nav-svg" style="color:var(--green)"><use href="#ico-payments"/></svg>
+            </div>
+            <span class="kpi-badge up">+8.5%</span>
+          </div>
+          <div class="kpi-num">—</div>
+          <div class="kpi-label">Të Ardhura Mujore</div>
+          <div class="kpi-sub"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <div class="kpi-icon" style="background:rgba(245,158,11,.1)">
+              <svg class="nav-svg" style="color:var(--orange)"><use href="#ico-events"/></svg>
+            </div>
+            <span class="kpi-badge up">Aktiv</span>
+          </div>
+          <div class="kpi-num">—</div>
+          <div class="kpi-label">Produkti Aktiv</div>
+          <div class="kpi-sub"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <div class="kpi-icon" style="background:rgba(59,130,246,.1)">
+              <svg class="nav-svg" style="color:var(--blue)"><use href="#ico-online"/></svg>
+            </div>
+            <span class="kpi-badge" style="background:rgba(59,130,246,.1);color:#2563EB">Së shpejti</span>
+          </div>
+          <div class="kpi-num">—</div>
+          <div class="kpi-label">Produkte Aktive</div>
+          <div class="kpi-sub"></div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Të Ardhurat Mujore 2026</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px">Retreat, Workshop dhe Trajnime Online</div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center">
+            <div class="chart-legend">
+              <div class="legend-item"><div class="legend-dot" style="background:#7D62BE"></div>Retreat</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#F59E0B"></div>Workshop</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#10B981"></div>Online</div>
+            </div>
+            <div class="filter-tabs">
+              <button class="filter-tab active">Muaj</button>
+              <button class="filter-tab">Tremujor</button>
+              <button class="filter-tab">Vit</button>
+            </div>
+          </div>
+        </div>
+        <canvas id="revenueChart" style="display:block;max-width:100%"></canvas>
+      </div>
+
+      <div class="two-col">
+        <div class="chart-card" style="margin-bottom:0">
+          <div class="chart-header" style="margin-bottom:12px">
+            <div class="chart-title">Regjistrimet e Fundit</div>
+            <button class="btn btn-ghost btn-sm">Eksporto CSV</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Emri</th><th>Produkti</th><th>Data</th><th>Shuma</th><th>Statusi</th><th>Mënyra</th></tr></thead>
+              <tbody id="recent-registrations"></tbody>
+            </table>
+          </div>
+          <div class="see-all"><a href="#" onclick="navigate('registrations');return false">Shiko të gjitha &rarr;</a></div>
+        </div>
+        <div class="chart-card" style="margin-bottom:0">
+          <div class="chart-title" style="margin-bottom:14px">Shpërndarja e Produkteve</div>
+          <canvas id="donutChart" width="200" height="200" style="display:block;margin:0 auto"></canvas>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px" id="donut-legend"></div>
+        </div>
+      </div>
+
+      <div class="three-col" style="margin-top:14px">
+        <div class="chart-card" style="margin-bottom:0">
+          <div class="chart-title">Sipas Vendeve</div>
+          <div id="country-list" style="padding:30px 0;text-align:center;color:var(--text-muted);font-size:13px">Nuk ka të dhëna ende.</div>
+        </div>
+        <div class="chart-card" style="margin-bottom:0">
+          <div class="chart-title" style="margin-bottom:14px">Mënyra e Pagesës</div>
+          <div style="padding:30px 0;text-align:center;color:var(--text-muted);font-size:13px">Nuk ka të dhëna ende.</div>
+        </div>
+        <div class="chart-card" style="margin-bottom:0">
+          <div class="chart-title">Vlerësimet</div>
+          <div style="padding:30px 0;text-align:center;color:var(--text-muted);font-size:13px">Nuk ka të dhëna ende.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ REGISTRATIONS ═══ -->
+    <section class="page" id="page-registrations">
+      <div class="page-header">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div><div class="page-title">Regjistrimet</div><div class="page-sub">Të gjitha regjistrimet — Retreat, Workshop, Trajnime, Meditime</div></div>
+          <button class="btn btn-primary">+ Regjistrim Manual</button>
+        </div>
+      </div>
+      <div class="stat-chips">
+        <div class="stat-chip"><div class="stat-chip-num" id="chip-total">—</div><div class="stat-chip-label">Totalë</div></div>
+        <div class="stat-chip"><div class="stat-chip-num" style="color:var(--green)" id="chip-confirmed">—</div><div class="stat-chip-label">Konfirmuar</div></div>
+        <div class="stat-chip"><div class="stat-chip-num" style="color:var(--orange)" id="chip-pending">—</div><div class="stat-chip-label">Në pritë</div></div>
+        <div class="stat-chip"><div class="stat-chip-num" style="color:var(--red)" id="chip-cancelled">—</div><div class="stat-chip-label">Anuluar</div></div>
+        <div class="stat-chip"><div class="stat-chip-num" id="chip-revenue">—</div><div class="stat-chip-label">Të Ardhura Totale</div></div>
+        <div class="stat-chip"><div class="stat-chip-num" id="chip-avg">—</div><div class="stat-chip-label">Mesatare/Regjistrim</div></div>
+      </div>
+      <div class="tabs">
+        <button class="tab active" onclick="filterReg('all',this)">Të gjitha</button>
+        <button class="tab" onclick="filterReg('retreat',this)">Retreat</button>
+        <button class="tab" onclick="filterReg('workshop',this)">Workshop</button>
+        <button class="tab" onclick="filterReg('online',this)">Trajnime Online</button>
+        <button class="tab" onclick="filterReg('meditation',this)">Meditime</button>
+      </div>
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Kërko sipas emrit, emailit, produktit..." oninput="filterRegSearch(this.value)" id="reg-search">
+        <select class="filter-select" onchange="filterRegStatus(this.value)">
+          <option value="">Të gjitha statuset</option>
+          <option value="confirmed">Konfirmuar</option>
+          <option value="pending">Në pritë</option>
+          <option value="cancelled">Anuluar</option>
+        </select>
+        <select class="filter-select">
+          <option value="">Mënyra e pagesës</option>
+          <option>Stripe</option>
+          <option>WhatsApp</option>
+        </select>
+        <button class="btn btn-ghost btn-sm">Eksporto</button>
+      </div>
+      <div class="chart-card" style="padding:0;overflow:hidden">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Emri i Plotë</th><th>Email</th><th>Telefon</th><th>Produkti</th><th>Data</th><th>Shuma</th><th>Statusi</th><th>Mënyra</th><th>Veprime</th></tr></thead>
+            <tbody id="reg-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CLIENTS ═══ -->
+    <section class="page" id="page-clients">
+      <div class="page-header">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div><div class="page-title">Klientët e Regjistruar</div><div class="page-sub">Të gjithë përdoruesit me email dhe historikun e blerjeve</div></div>
+          <button class="btn btn-primary" onclick="openAddClientModal()">+ Shto Klient</button>
+        </div>
+      </div>
+      <div class="tabs">
+        <button class="tab active" onclick="filterClients('all',this)">Të gjithë (25)</button>
+        <button class="tab" onclick="filterClients('vip',this)">VIP</button>
+        <button class="tab" onclick="filterClients('loyal',this)">Besnikë</button>
+        <button class="tab" onclick="filterClients('new',this)">Të rinj</button>
+      </div>
+      <div class="search-bar">
+        <input type="text" class="search-input" id="client-search" placeholder="Kërko sipas emrit ose emailit..." oninput="searchClients(this.value)">
+        <select class="filter-select" onchange="filterClientsCountry(this.value)" id="client-country-filter">
+          <option value="">Të gjitha vendet</option>
+        </select>
+        <button class="btn btn-ghost btn-sm" onclick="exportClientsCSV()">Eksporto CSV</button>
+      </div>
+      <div class="chart-card" style="padding:0;overflow:hidden">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Klienti</th><th>Email</th><th>Telefon</th><th>Vendi</th><th>Produkte</th><th>Total</th><th>Data e Parë</th><th>Segmenti</th><th>Veprime</th></tr></thead>
+            <tbody id="clients-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ PAYMENTS ═══ -->
+    <section class="page" id="page-payments">
+      <div class="page-header">
+        <div class="page-title">Pagesat &amp; Transaksionet</div>
+        <div class="page-sub">Pasqyra financiare e plotë</div>
+      </div>
+      <div class="fin-grid">
+        <div class="fin-card"><div class="fin-label">Sot</div><div class="fin-num">€1,240</div><div class="fin-period">2 Korrik 2026</div></div>
+        <div class="fin-card"><div class="fin-label">Kjo Javë</div><div class="fin-num">€8,960</div><div class="fin-period">25 Qer – 2 Kor</div></div>
+        <div class="fin-card"><div class="fin-label">Ky Muaj</div><div class="fin-num">€48,320</div><div class="fin-period">Korriku 2026</div></div>
+        <div class="fin-card"><div class="fin-label">Ky Vit</div><div class="fin-num">€384,200</div><div class="fin-period">Jan – Kor 2026</div></div>
+      </div>
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Kërko transaksionet...">
+        <select class="filter-select"><option>Të gjitha metodat</option><option>Stripe</option><option>WhatsApp/Manual</option></select>
+        <select class="filter-select"><option>Të gjitha statuset</option><option>Suksesshëm</option><option>Në pritë</option><option>Kthyer</option></select>
+      </div>
+      <div class="chart-card" style="padding:0;overflow:hidden">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Klienti</th><th>Produkti</th><th>Data</th><th>Shuma</th><th>Metoda</th><th>Statusi</th><th>Fatura</th></tr></thead>
+            <tbody id="pay-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ EVENTS ═══ -->
+    <section class="page" id="page-events">
+      <div class="page-header">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div><div class="page-title">Eventet</div><div class="page-sub">Eventet aktive dhe të ardhshme</div></div>
+          <button class="btn btn-primary">+ Event i Ri</button>
+        </div>
+      </div>
+      <div class="events-grid" id="events-grid">
+        <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-muted)">Nuk ka evente ende.</div>
+      </div>
+    </section>
+
+    <!-- ═══ ONLINE TRAINING ═══ -->
+    <section class="page" id="page-online">
+      <div class="page-header">
+        <div class="page-title">Trajnimet Online</div>
+        <div class="page-sub">Menaxhimi i kurseve online dhe aksesit</div>
+      </div>
+      <div class="chart-card" style="padding:0;overflow:hidden">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Kursi</th><th>Regjistruar</th><th>Aktiv</th><th>Përfunduan</th><th>Të Ardhura</th><th>Vlerësimi</th><th>Aksesi</th></tr></thead>
+            <tbody><tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka trajnime online ende.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MEDITATIONS ═══ -->
+    <section class="page" id="page-meditations">
+      <div class="page-header">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div><div class="page-title">Meditimet Audio</div><div class="page-sub">Libraria e meditimeve dhe aksesi i përdoruesve</div></div>
+          <button class="btn btn-primary">+ Meditim i Ri</button>
+        </div>
+      </div>
+      <div class="chart-card" style="padding:0;overflow:hidden">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Titulli</th><th>Kategoria</th><th>Kohëzgjatja</th><th>Aksesi</th><th>Dëgjime</th><th>Statusi</th><th>Veprime</th></tr></thead>
+            <tbody>
+              <tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka meditimë ende.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ BLOG ═══ -->
+    <section class="page" id="page-blog">
+      <div class="page-header">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div><div class="page-title">Blog</div><div class="page-sub">Artikujt dhe menaxhimi i kategorive</div></div>
+          <button class="btn btn-primary">+ Artikull i Ri</button>
+        </div>
+      </div>
+      <div class="chart-card" style="padding:0;overflow:hidden">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Titulli</th><th>Kategoria</th><th>Autori</th><th>Data</th><th>Statusi</th><th>Lexime</th><th>Veprime</th></tr></thead>
+            <tbody>
+              <tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka artikuj ende.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SHOP ═══ -->
+    <section class="page" id="page-shop">
+      <div class="page-header">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div><div class="page-title">Shop / Librat</div><div class="page-sub">Produktet fizike dhe digjitale</div></div>
+          <button class="btn btn-primary">+ Produkt i Ri</button>
+        </div>
+      </div>
+      <div class="chart-card" style="padding:0;overflow:hidden">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Produkti</th><th>Tipi</th><th>Çmimi</th><th>Shitur</th><th>Stock</th><th>Të Ardhura</th><th>Statusi</th></tr></thead>
+            <tbody>
+              <tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka produkte ende.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MARKETING ═══ -->
+    <section class="page" id="page-marketing">
+      <div class="page-header">
+        <div class="page-title">Marketing</div>
+        <div class="page-sub">Lidhjet e regjistrimit, kodet promo, dhe fushatat</div>
+      </div>
+      <div class="mkt-grid">
+        <div class="mkt-card">
+          <div class="mkt-icon"><svg class="nav-svg"><use href="#ico-link"/></svg></div>
+          <div class="mkt-title">Lidhjet e Regjistrimit</div>
+          <div class="mkt-desc">Gjenero dhe kopjo linkun e regjistrimit për secilin event — ndajeni në WhatsApp, Instagram dhe email.</div>
+          <div class="link-copy"><span>artegogo.com/retreat-2027</span><button class="btn-copy" onclick="copyLink(this,'artegogo.com/retreat-2027')">Kopjo</button></div>
+          <div class="link-copy"><span>artegogo.com/workshop-dhjetor</span><button class="btn-copy" onclick="copyLink(this,'artegogo.com/workshop-dhjetor')">Kopjo</button></div>
+          <div class="link-copy"><span>artegogo.com/trajnim-online</span><button class="btn-copy" onclick="copyLink(this,'artegogo.com/trajnim-online')">Kopjo</button></div>
+        </div>
+        <div class="mkt-card">
+          <div class="mkt-icon"><svg class="nav-svg"><use href="#ico-ticket"/></svg></div>
+          <div class="mkt-title">Kodet Promo</div>
+          <div class="mkt-desc">Krijo dhe menaxho kodet e zbritjes për fushata specifike.</div>
+          <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);padding:12px 0">
+            Nuk ka kode promo ende.
+          </div>
+          <button class="btn btn-primary btn-sm">+ Kod i Ri</button>
+        </div>
+        <div class="mkt-card">
+          <div class="mkt-icon"><svg class="nav-svg"><use href="#ico-mail"/></svg></div>
+          <div class="mkt-title">Email Kampanja</div>
+          <div class="mkt-desc">Dërgo email bulk tek klientët e segmentuar — konfirmime, kujtesa dhe oferta speciale.</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;font-size:13px">
+            <div style="display:flex;justify-content:space-between"><span>Email të dërguar</span><strong>—</strong></div>
+            <div style="display:flex;justify-content:space-between"><span>Hap rate</span><strong>—</strong></div>
+            <div style="display:flex;justify-content:space-between"><span>Click rate</span><strong>—</strong></div>
+          </div>
+          <button class="btn btn-primary btn-sm">Kampanjë e Re</button>
+        </div>
+        <div class="mkt-card">
+          <div class="mkt-icon"><svg class="nav-svg"><use href="#ico-phone"/></svg></div>
+          <div class="mkt-title">WhatsApp Bulk</div>
+          <div class="mkt-desc">Lista e numrave për mesazhe grupore dhe njoftime direkte.</div>
+          <div style="font-size:13px;margin-bottom:12px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>Kontakte totale</span><strong>—</strong></div>
+            <div style="display:flex;justify-content:space-between"><span>WhatsApp aktiv</span><strong>—</strong></div>
+          </div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:10px">+355 69 242 0827</div>
+          <button class="btn btn-primary btn-sm">Shkarko Listën</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SETTINGS ═══ -->
+    <section class="page" id="page-settings">
+      <div class="page-header">
+        <div class="page-title">Cilësimet</div>
+        <div class="page-sub">Konfigurimi i platformës Arte Gogo</div>
+      </div>
+      <div class="settings-grid">
+        <div class="settings-card">
+          <div class="settings-title">Informacioni i Biznesit</div>
+          <div class="form-field"><label class="form-label">Emri i Biznesit</label><input class="form-input" value="Arte Gogo"></div>
+          <div class="form-field"><label class="form-label">Email Kontakti</label><input class="form-input" value="info@artegogo.com"></div>
+          <div class="form-field"><label class="form-label">WhatsApp</label><input class="form-input" value="+355 69 242 0827"></div>
+          <div class="form-field"><label class="form-label">Website</label><input class="form-input" value="www.artegogo.com"></div>
+          <button class="btn btn-primary btn-sm" style="margin-top:4px">Ruaj Ndryshimet</button>
+        </div>
+        <div class="settings-card">
+          <div class="settings-title">Njoftimet</div>
+          <div class="toggle-row"><div><div style="font-size:13px;font-weight:500">Email për çdo regjistrim</div><div style="font-size:11.5px;color:var(--text-muted)">Merr email sapo dikush regjistrohet</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="toggle-row"><div><div style="font-size:13px;font-weight:500">SMS konfirmimi</div><div style="font-size:11.5px;color:var(--text-muted)">SMS automatik tek klienti</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="toggle-row"><div><div style="font-size:13px;font-weight:500">Kujtesa para eventit</div><div style="font-size:11.5px;color:var(--text-muted)">24 orë para eventit</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="toggle-row"><div><div style="font-size:13px;font-weight:500">Raport javor</div><div style="font-size:11.5px;color:var(--text-muted)">Statistika çdo të hënë</div></div><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+        </div>
+        <div class="settings-card">
+          <div class="settings-title">Pagesat</div>
+          <div class="form-field"><label class="form-label">Stripe API Key</label><input class="form-input" type="password" value="sk_live_xxxxxxxxxxxxxxxx"></div>
+          <div class="form-field"><label class="form-label">Monedha e Parazgjedhur</label><input class="form-input" value="EUR (€)"></div>
+          <div class="toggle-row" style="margin-top:8px"><div><div style="font-size:13px;font-weight:500">Pagesat manuale (WhatsApp)</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="toggle-row"><div><div style="font-size:13px;font-weight:500">Kuponët dhe zbritjet</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        </div>
+        <div class="settings-card">
+          <div class="settings-title">Emaili SMTP</div>
+          <div class="form-field"><label class="form-label">SMTP Host</label><input class="form-input" value="smtp.gmail.com"></div>
+          <div class="form-field"><label class="form-label">Email Dërgues</label><input class="form-input" value="info@artegogo.com"></div>
+          <div class="form-field"><label class="form-label">SMTP Password</label><input class="form-input" type="password" value="password"></div>
+          <button class="btn btn-ghost btn-sm" style="margin-top:4px">Testo Emailin</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+</div>
+</div><!-- /app-shell -->
+
+<!-- ADD CLIENT MODAL -->
+<div class="modal-overlay" id="addClientModal" onclick="if(event.target===this)closeAddClientModal()">
+  <div class="modal" style="max-width:460px">
+    <div class="modal-header">
+      <div class="modal-title">Shto Klient të Ri</div>
+      <button class="modal-close" onclick="closeAddClientModal()">&#x2715;</button>
+    </div>
+    <div style="padding:0 24px 24px">
+      <div id="add-client-error" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#fef2f2;border:1px solid #fecaca;color:#dc2626;font-size:13px"></div>
+      <div id="add-client-success" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#f0fdf4;border:1px solid #bbf7d0;color:#16a34a;font-size:13px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field"><label class="form-label">Emri *</label><input class="form-input" id="ac-firstname" placeholder="Emri"></div>
+        <div class="form-field"><label class="form-label">Mbiemri *</label><input class="form-input" id="ac-lastname" placeholder="Mbiemri"></div>
+      </div>
+      <div class="form-field" style="margin-bottom:12px"><label class="form-label">Email *</label><input class="form-input" id="ac-email" type="email" placeholder="email@shembull.com"></div>
+      <div class="form-field" style="margin-bottom:20px"><label class="form-label">Telefon</label><input class="form-input" id="ac-phone" placeholder="+355 69 000 0000"></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn btn-ghost btn-sm" onclick="closeAddClientModal()">Anulo</button>
+        <button class="btn btn-primary btn-sm" id="ac-submit" onclick="submitAddClient()">Shto Klientin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENT MODAL -->
+<div class="modal-overlay" id="clientModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Profili i Klientit</div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="profile-row">
+      <div class="profile-avatar" id="modal-avatar"></div>
+      <div>
+        <div style="font-size:18px;font-weight:700" id="modal-name"></div>
+        <div style="font-size:13px;color:var(--text-muted)" id="modal-status-badge"></div>
+      </div>
+    </div>
+    <div class="info-grid">
+      <div class="info-field"><label>Email</label><span id="modal-email"></span></div>
+      <div class="info-field"><label>Telefon</label><span id="modal-phone"></span></div>
+      <div class="info-field"><label>Vendi</label><span id="modal-country"></span></div>
+      <div class="info-field"><label>Blerja e Parë</label><span id="modal-first"></span></div>
+      <div class="info-field"><label>Total Shpenzuar</label><span id="modal-total" style="font-weight:800;color:var(--accent)"></span></div>
+      <div class="info-field"><label>Nr. Blerjeve</label><span id="modal-count"></span></div>
+    </div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:8px">Historia e Blerjeve</div>
+    <div class="purchase-list" id="modal-purchases"></div>
+    <div style="display:flex;gap:8px;margin-top:20px">
+      <button class="btn btn-primary btn-sm">Dërgo Email</button>
+      <button class="btn btn-ghost btn-sm">WhatsApp</button>
+      <button class="btn btn-ghost btn-sm">Shënim</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let clients=[];
+
+let registrations=[];
+let transactions=[];
+
+const breadcrumbs={dashboard:'Dashboard',registrations:'Regjistrimet',clients:'Klientët',payments:'Pagesat',events:'Eventet',online:'Trajnimet Online',meditations:'Meditimet',blog:'Blog',shop:'Shop / Librat',marketing:'Marketing',settings:'Cilësimet'};
+
+function navigate(pageId){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const page=document.getElementById('page-'+pageId);
+  if(page)page.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>{if(n.dataset.page===pageId)n.classList.add('active')});
+  document.getElementById('breadcrumb-title').textContent=breadcrumbs[pageId]||pageId;
+  if(pageId==='clients')renderClients(clients);
+  if(pageId==='payments')renderPayments();
+  if(pageId==='registrations')renderRegistrations(registrations);
+}
+document.querySelectorAll('.nav-item[data-page]').forEach(item=>{
+  item.addEventListener('click',()=>navigate(item.dataset.page));
+});
+
+const actBtn=(icon,title,extra='')=>`<button class="act" title="${title}"${extra}><svg class="nav-svg"><use href="#ico-${icon}"/></svg></button>`;
+
+function statusBadge(s){
+  if(s==='confirmed')return'<span class="badge badge-green">Konfirmuar</span>';
+  if(s==='pending')return'<span class="badge badge-orange">Pritë</span>';
+  if(s==='cancelled')return'<span class="badge badge-red">Anuluar</span>';
+  return s;
+}
+
+document.getElementById('recent-registrations').innerHTML='<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--text-muted)">Nuk ka regjistrime ende.</td></tr>';
+
+let regFilter='all',regSearch='',regStatusFilter='';
+function renderRegistrations(data){
+  let rows=data;
+  if(regFilter!=='all')rows=rows.filter(r=>r.type===regFilter);
+  if(regSearch)rows=rows.filter(r=>r.name.toLowerCase().includes(regSearch.toLowerCase())||r.email.toLowerCase().includes(regSearch.toLowerCase())||r.product.toLowerCase().includes(regSearch.toLowerCase()));
+  if(regStatusFilter)rows=rows.filter(r=>r.status===regStatusFilter);
+  document.getElementById('reg-table-body').innerHTML=rows.map(r=>`
+    <tr>
+      <td style="color:var(--text-muted)">${r.id}</td>
+      <td><strong>${r.name}</strong></td>
+      <td style="color:var(--accent)">${r.email}</td>
+      <td style="color:var(--text-muted);font-size:12px">${r.phone}</td>
+      <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.product}</td>
+      <td style="color:var(--text-muted)">${r.date}</td>
+      <td style="font-weight:700">€${r.amount}</td>
+      <td>${statusBadge(r.status)}</td>
+      <td>${r.method==='Stripe'?'<span class="badge badge-purple">Stripe</span>':'<span class="badge badge-green">WhatsApp</span>'}</td>
+      <td><div class="actions">${actBtn('eye','Shiko')}${actBtn('mail','Email')}${actBtn('phone','WhatsApp')}${actBtn('check','Konfirmo',' style="color:var(--green)"')}${actBtn('x','Anulo',' style="color:var(--red)"')}</div></td>
+    </tr>`).join('');
+}
+function filterReg(type,btn){document.querySelectorAll('#page-registrations .tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');regFilter=type;renderRegistrations(registrations);}
+function filterRegSearch(v){regSearch=v;renderRegistrations(registrations);}
+function filterRegStatus(v){regStatusFilter=v;renderRegistrations(registrations);}
+
+const segLabel={vip:'VIP',loyal:'Besnik',new:'I ri'};
+const segBadge={vip:'badge-purple',loyal:'badge-blue',new:'badge-gray'};
+let clientFilter='all',clientSearch='',clientCountry='';
+function renderClients(data){
+  const tbody=document.getElementById('clients-table-body');
+  if(!tbody)return;
+  let rows=data;
+  if(clientFilter==='vip')rows=rows.filter(c=>(c.orderCount||0)>=3);
+  else if(clientFilter==='loyal')rows=rows.filter(c=>(c.orderCount||0)>=1&&(c.orderCount||0)<3);
+  else if(clientFilter==='new')rows=rows.filter(c=>(c.orderCount||0)===0);
+  if(clientSearch)rows=rows.filter(c=>{
+    const name=((c.firstName||'')+(c.lastName||'')).toLowerCase();
+    return name.includes(clientSearch.toLowerCase())||(c.email||'').toLowerCase().includes(clientSearch.toLowerCase());
+  });
+  if(!rows.length){
+    tbody.innerHTML='<tr><td colspan="9" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka klientë ende.</td></tr>';
+    return;
+  }
+  tbody.innerHTML=rows.map(c=>{
+    const initials=((c.firstName||'?')[0]+(c.lastName||'?')[0]).toUpperCase();
+    const seg=(c.orderCount||0)>=3?'vip':(c.orderCount||0)>=1?'loyal':'new';
+    return`<tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;flex-shrink:0">${initials}</div>
+          <div><div style="font-weight:600;font-size:13.5px">${c.firstName||''} ${c.lastName||''}</div></div>
+        </div>
+      </td>
+      <td><a href="mailto:${c.email}" style="color:var(--accent);font-size:12.5px">${c.email}</a></td>
+      <td style="font-size:12.5px;color:var(--text-muted)">${c.phone||'—'}</td>
+      <td>—</td>
+      <td style="font-size:12px">${c.orderCount||0} blerje</td>
+      <td style="font-weight:800;color:var(--accent)">€${(c.totalSpent||0).toLocaleString()}</td>
+      <td style="font-size:12px;color:var(--text-muted)">${new Date(c.createdAt).toLocaleDateString('sq-AL')}</td>
+      <td><span class="badge ${segBadge[seg]}">${segLabel[seg]}</span></td>
+      <td><div class="actions">${actBtn('mail','Email')}${actBtn('phone','WhatsApp')}</div></td>
+    </tr>`;}).join('');
+}
+function filterClients(type,btn){document.querySelectorAll('#page-clients .tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');clientFilter=type;renderClients(clients);}
+function searchClients(v){clientSearch=v;renderClients(clients);}
+function filterClientsCountry(v){clientCountry=v;renderClients(clients);}
+
+function openClient(id){
+  const c=clients.find(x=>x.id===id);if(!c)return;
+  document.getElementById('modal-avatar').textContent=c.name.split(' ').map(n=>n[0]).join('').slice(0,2);
+  document.getElementById('modal-name').textContent=c.name;
+  document.getElementById('modal-status-badge').innerHTML=`<span class="badge ${segBadge[c.status]}">${segLabel[c.status]}</span>`;
+  document.getElementById('modal-email').innerHTML=`<a href="mailto:${c.email}" style="color:var(--accent)">${c.email}</a>`;
+  document.getElementById('modal-phone').textContent=c.phone;
+  document.getElementById('modal-country').textContent=c.city+', '+c.country;
+  document.getElementById('modal-first').textContent=c.firstDate;
+  document.getElementById('modal-total').textContent='€'+c.total.toLocaleString();
+  document.getElementById('modal-count').textContent=c.purchases+' blerje';
+  document.getElementById('modal-purchases').innerHTML=c.products.map(p=>`<div class="purchase-item"><span>${p}</span><span class="badge badge-green">Aktiv</span></div>`).join('');
+  document.getElementById('clientModal').classList.add('open');
+}
+function closeModal(){document.getElementById('clientModal').classList.remove('open');}
+document.getElementById('clientModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+
+function renderPayments(){
+  const statusPay={paid:'<span class="badge badge-green">Suksesshëm</span>',pending:'<span class="badge badge-orange">Pritë</span>',refunded:'<span class="badge badge-red">Kthyer</span>'};
+  document.getElementById('pay-table-body').innerHTML=transactions.map(t=>`
+    <tr>
+      <td style="font-family:monospace;font-size:12px;color:var(--text-muted)">${t.id}</td>
+      <td><strong>${t.client}</strong></td>
+      <td style="font-size:12.5px">${t.product}</td>
+      <td style="color:var(--text-muted)">${t.date}</td>
+      <td style="font-weight:800">€${t.amount}</td>
+      <td>${t.method==='Stripe'?'<span class="badge badge-purple">Stripe</span>':'<span class="badge badge-green">WhatsApp</span>'}</td>
+      <td>${statusPay[t.status]||t.status}</td>
+      <td>${actBtn('receipt','Fatura')}</td>
+    </tr>`).join('');
+}
+
+const countries=[
+  {flag:'🇦🇱',name:'Shqipëri',val:1240,max:1240},
+  {flag:'🇽🇰',name:'Kosovë',val:780,max:1240},
+  {flag:'🇲🇰',name:'Maqedoni',val:210,max:1240},
+  {flag:'🇨🇭',name:'Zvicër',val:156,max:1240},
+  {flag:'🇩🇪',name:'Gjermani',val:98,max:1240},
+  {flag:'🇺🇸',name:'SHBA',val:63,max:1240},
+];
+document.getElementById('country-list').innerHTML=countries.map(c=>`
+  <div class="country-row">
+    <div class="country-label"><span>${c.flag} ${c.name}</span><span class="country-val">${c.val.toLocaleString()}</span></div>
+    <div class="progress-bar"><div class="progress-fill" style="width:${Math.round(c.val/c.max*100)}%"></div></div>
+  </div>`).join('');
+
+const donutData=[
+  {label:'Trajnime Online',pct:42,color:'#7D62BE'},
+  {label:'Retreat',pct:38,color:'#F59E0B'},
+  {label:'Workshop',pct:15,color:'#10B981'},
+  {label:'Meditime/Audio',pct:5,color:'#3B82F6'},
+];
+document.getElementById('donut-legend').innerHTML=donutData.map(d=>`
+  <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px">
+    <div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:${d.color}"></div>${d.label}</div>
+    <strong>${d.pct}%</strong>
+  </div>`).join('');
+
+function drawDonut(canvasId,data){
+  const canvas=document.getElementById(canvasId);if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height,cx=W/2,cy=H/2,R=72,r=44;
+  let start=-Math.PI/2;
+  data.forEach(d=>{
+    const angle=(d.pct/100)*2*Math.PI;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,R,start,start+angle);ctx.closePath();
+    ctx.fillStyle=d.color;ctx.fill();start+=angle;
+  });
+  ctx.beginPath();ctx.arc(cx,cy,r,0,2*Math.PI);ctx.fillStyle='#fff';ctx.fill();
+  ctx.fillStyle='#0F0D14';ctx.font='bold 16px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';
+  const total=data.reduce((s,d)=>s+(d.val||0),0);
+  ctx.fillText(total.toLocaleString(),cx,cy-8);ctx.fillStyle='#7B6FA8';ctx.font='11px system-ui';ctx.fillText('klientë',cx,cy+10);
+}
+
+function drawPayDonut(canvasId){
+  const canvas=document.getElementById(canvasId);if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height,cx=W/2,cy=H/2,R=64,r=42;
+  const segments=[{pct:64,color:'#7D62BE'},{pct:36,color:'#10B981'}];
+  let start=-Math.PI/2;
+  segments.forEach(s=>{
+    const angle=(s.pct/100)*2*Math.PI;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,R,start,start+angle);ctx.closePath();
+    ctx.fillStyle=s.color;ctx.fill();start+=angle;
+  });
+  ctx.beginPath();ctx.arc(cx,cy,r,0,2*Math.PI);ctx.fillStyle='#fff';ctx.fill();
+  ctx.fillStyle='#0F0D14';ctx.font='bold 14px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('64/36',cx,cy);
+}
+
+function drawRevenue(){
+  const canvas=document.getElementById('revenueChart');if(!canvas)return;
+  const dpr=window.devicePixelRatio||1;
+  const parent=canvas.parentElement;
+  const cssW=parent?parent.clientWidth-40:800;
+  const cssH=220;
+  canvas.style.width=cssW+'px';
+  canvas.style.height=cssH+'px';
+  canvas.width=Math.round(cssW*dpr);
+  canvas.height=Math.round(cssH*dpr);
+  const ctx=canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+  const W=cssW,H=cssH;
+
+  const months=['Jan','Shk','Mar','Pri','Maj','Qer','Kor','Gus','Sht','Tet','Nën','Dhj'];
+  const src = revenueData;
+  const retreat  = months.map((_,i)=>src?(src[i+1]?.retreat||0):([0,0,8000,18000,0,0,22000,0,0,15000,0,0][i]));
+  const workshop = months.map((_,i)=>src?(src[i+1]?.workshop||0):([0,5000,0,0,3600,9000,0,3600,9000,0,5400,0][i]));
+  const online   = months.map((_,i)=>src?((src[i+1]?.training||0)+(src[i+1]?.book||0)):([8000,6400,9600,9600,12800,9600,9600,12800,8000,8000,9600,11200][i]));
+
+  const pad={l:48,r:20,t:16,b:36};
+  const cW=W-pad.l-pad.r, cH=H-pad.t-pad.b;
+  const maxVal=24000;
+  const grp=cW/months.length;
+  const totalBW=grp*0.62, bw=totalBW/3, gap=0;
+
+  // grid lines
+  for(let i=0;i<=4;i++){
+    const y=pad.t+cH-(i/4)*cH;
+    ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);
+    ctx.strokeStyle=i===0?'#C8BEE8':'#EDE6F8';ctx.lineWidth=1;ctx.stroke();
+    const val=Math.round(maxVal*i/4);
+    const lbl=val>=1000?'€'+(val/1000)+'k':'€0';
+    ctx.fillStyle='#9B90BE';ctx.font='11px system-ui';ctx.textAlign='right';ctx.textBaseline='middle';
+    ctx.fillText(lbl,pad.l-6,y);
+  }
+
+  const series=[
+    {data:retreat,color:'#7D62BE',light:'#B8A8E0'},
+    {data:workshop,color:'#F59E0B',light:'#FCD34D'},
+    {data:online,color:'#10B981',light:'#6EE7B7'}
+  ];
+
+  months.forEach((m,mi)=>{
+    const gx=pad.l+mi*grp+(grp-totalBW)/2;
+    series.forEach((s,si)=>{
+      const val=s.data[mi];
+      const bh=Math.max((val/maxVal)*cH,val>0?3:0);
+      const bx=gx+si*(bw+gap);
+      const by=pad.t+cH-bh;
+      if(val===0)return;
+      const grad=ctx.createLinearGradient(0,by,0,by+bh);
+      grad.addColorStop(0,s.color);grad.addColorStop(1,s.light);
+      ctx.fillStyle=grad;
+      ctx.beginPath();
+      const r=Math.min(4,bw/2,bh/2);
+      ctx.moveTo(bx+r,by);ctx.lineTo(bx+bw-r,by);
+      ctx.quadraticCurveTo(bx+bw,by,bx+bw,by+r);
+      ctx.lineTo(bx+bw,by+bh);ctx.lineTo(bx,by+bh);ctx.lineTo(bx,by+r);
+      ctx.quadraticCurveTo(bx,by,bx+r,by);ctx.closePath();
+      ctx.fill();
+    });
+    ctx.fillStyle='#9B90BE';ctx.font='11px system-ui';ctx.textAlign='center';ctx.textBaseline='top';
+    ctx.fillText(m,pad.l+mi*grp+grp/2,H-pad.b+6);
+  });
+}
+
+function copyLink(btn,text){
+  navigator.clipboard.writeText('https://'+text).catch(()=>{});
+  btn.textContent='✓';setTimeout(()=>btn.textContent='Kopjo',1500);
+}
+
+document.querySelectorAll('.filter-tab').forEach(tab=>{
+  tab.addEventListener('click',function(){
+    this.closest('.filter-tabs').querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+window.addEventListener('load',()=>{
+  if(sessionStorage.getItem('ag_auth')==='1'){showDashboard();}
+});
+window.addEventListener('resize',drawRevenue);
+
+const API = '';
+
+document.addEventListener('click',e=>{
+  const menu=document.getElementById('avatar-menu');
+  if(menu&&!e.target.closest('#avatar-menu')&&!e.target.closest('.topbar-avatar'))
+    menu.style.display='none';
+});
+
+function exportClientsCSV(){
+  if(!clients.length){alert('Nuk ka klientë për të eksportuar.');return;}
+  const seg=c=>(c.orderCount||0)>=3?'VIP':(c.orderCount||0)>=1?'Besnik':'I ri';
+  const rows=[['Emri','Mbiemri','Email','Telefon','Blerje','Total (€)','Data','Segmenti'],...clients.map(c=>[
+    c.firstName||'',c.lastName||'',c.email||'',c.phone||'',
+    c.orderCount||0,(c.totalSpent||0).toFixed(2),
+    new Date(c.createdAt).toLocaleDateString('sq-AL'),seg(c)
+  ])];
+  const csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,﻿'+encodeURIComponent(csv);
+  a.download='klientet-'+new Date().toISOString().slice(0,10)+'.csv';
+  a.click();
+}
+
+function openAddClientModal(){
+  document.getElementById('addClientModal').classList.add('open');
+  document.getElementById('add-client-error').style.display='none';
+  document.getElementById('add-client-success').style.display='none';
+  ['ac-firstname','ac-lastname','ac-email','ac-phone'].forEach(id=>{document.getElementById(id).value='';});
+}
+function closeAddClientModal(){document.getElementById('addClientModal').classList.remove('open');}
+
+async function submitAddClient(){
+  const fn=document.getElementById('ac-firstname').value.trim();
+  const ln=document.getElementById('ac-lastname').value.trim();
+  const em=document.getElementById('ac-email').value.trim();
+  const ph=document.getElementById('ac-phone').value.trim();
+  const errEl=document.getElementById('add-client-error');
+  const okEl=document.getElementById('add-client-success');
+  errEl.style.display='none'; okEl.style.display='none';
+  if(!fn||!ln||!em){errEl.textContent='Plotëso emrin, mbiemrin dhe emailin.';errEl.style.display='block';return;}
+  const btn=document.getElementById('ac-submit');
+  btn.disabled=true; btn.textContent='Duke shtuar...';
+  try{
+    const tempPass='Arte'+Math.random().toString(36).slice(2,8).toUpperCase()+'1!';
+    const res=await fetch(API+'/api/auth/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({firstName:fn,lastName:ln,email:em,password:tempPass})});
+    const data=await res.json();
+    if(!res.ok){errEl.textContent=data.message||(data.errors?Object.values(data.errors).flat()[0]:'')||'Gabim gjatë shtimit.';errEl.style.display='block';return;}
+    if(ph){
+      await fetch(API+'/api/admin/clients/phone',{method:'PATCH',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em,phone:ph})}).catch(()=>{});
+    }
+    okEl.textContent='Klienti u shtua me sukses!';okEl.style.display='block';
+    setTimeout(()=>{closeAddClientModal();loadDashboardData();},1500);
+  }catch{errEl.textContent='Gabim lidhjeje.';errEl.style.display='block';}
+  finally{btn.disabled=false;btn.textContent='Shto Klientin';}
+}
+
+async function adminLogout(){
+  await fetch(API+'/api/auth/logout',{method:'POST',credentials:'include'}).catch(()=>{});
+  sessionStorage.removeItem('ag_auth');
+  location.reload();
+}
+
+async function doLogin(){
+  const email=document.getElementById('l-email').value.trim().toLowerCase();
+  const pass=document.getElementById('l-pass').value;
+  const errEl=document.getElementById('login-error');
+  const emailEl=document.getElementById('l-email');
+  const passEl=document.getElementById('l-pass');
+  const btn=document.getElementById('login-btn');
+  emailEl.classList.remove('error');passEl.classList.remove('error');errEl.classList.remove('show');
+  btn.textContent='Duke hyrë...';btn.disabled=true;
+  try {
+    const res = await fetch(API+'/api/auth/login',{
+      method:'POST', credentials:'include',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email,password:pass})
+    });
+    if(!res.ok){
+      const j=await res.json().catch(()=>({}));
+      throw new Error(j.message||'E gabuar');
+    }
+    // Verify it's an admin
+    const me = await fetch(API+'/api/auth/me',{credentials:'include'});
+    const mj = await me.json();
+    if(mj.data?.user?.role!=='admin'){
+      await fetch(API+'/api/auth/logout',{method:'POST',credentials:'include'});
+      throw new Error('Nuk keni akses admin.');
+    }
+    sessionStorage.setItem('ag_auth','1');
+    showDashboard();
+  } catch(e){
+    emailEl.classList.add('error');passEl.classList.add('error');
+    errEl.textContent=e.message||'Email ose fjalëkalimi është i gabuar.';
+    errEl.classList.add('show');passEl.value='';passEl.focus();
+  } finally {
+    btn.textContent='Hyr';btn.disabled=false;
+  }
+}
+
+async function showDashboard(){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('app-shell').style.display='block';
+  drawRevenue();drawDonut('donutChart',donutData);drawPayDonut('payChart');
+  renderRegistrations(registrations);
+  loadDashboardData();
+}
+
+async function apiGet(path){
+  try{
+    const r=await fetch(API+path,{credentials:'include'});
+    if(!r.ok)return null;
+    return await r.json();
+  }catch{return null;}
+}
+
+async function loadDashboardData(){
+  const [stats, revenue] = await Promise.all([
+    apiGet('/api/admin/stats'),
+    apiGet('/api/admin/revenue?year='+new Date().getFullYear()),
+  ]);
+  if(stats?.data) applyStats(stats.data);
+  if(revenue?.data) applyRevenue(revenue.data);
+
+  const [regs, clients, txns] = await Promise.all([
+    apiGet('/api/admin/registrations?limit=50'),
+    apiGet('/api/admin/clients?limit=50'),
+    apiGet('/api/admin/transactions?limit=50'),
+  ]);
+  if(regs?.items)     applyRegistrations(regs.items);
+  if(clients?.items)  applyClients(clients.items);
+  if(txns?.items)     applyTransactions(txns.items);
+}
+
+function applyStats(d){
+  // KPI cards
+  const kpis=document.querySelectorAll('.kpi-num');
+  if(kpis[0]) kpis[0].textContent=d.totalRegistrations?.toLocaleString()??'—';
+  if(kpis[1]) kpis[1].textContent='€'+Math.round(d.monthRevenue||0).toLocaleString();
+  // Fin cards (Pagesat page)
+  const fins=document.querySelectorAll('.fin-num');
+  if(fins[2]) fins[2].textContent='€'+Math.round(d.monthRevenue||0).toLocaleString();
+  if(fins[3]) fins[3].textContent='€'+Math.round(d.totalRevenue||0).toLocaleString();
+  // Stat chips (Regjistrimet page)
+  const total=d.totalRegistrations||0;
+  const rev=d.totalRevenue||0;
+  const el=id=>document.getElementById(id);
+  if(el('chip-total'))     el('chip-total').textContent=total.toLocaleString();
+  if(el('chip-confirmed')) el('chip-confirmed').textContent=(d.paidOrders||0).toLocaleString();
+  if(el('chip-pending'))   el('chip-pending').textContent=(d.pendingOrders||0).toLocaleString();
+  if(el('chip-cancelled')) el('chip-cancelled').textContent=(d.cancelledOrders||0).toLocaleString();
+  if(el('chip-revenue'))   el('chip-revenue').textContent='€'+Math.round(rev).toLocaleString();
+  if(el('chip-avg'))       el('chip-avg').textContent=total>0?'€'+Math.round(rev/total).toLocaleString():'—';
+  // Nav badge
+  const badge=document.getElementById('reg-nav-badge');
+  if(badge){badge.textContent=total;badge.style.display=total>0?'':'none';}
+  // Marketing page total contacts
+  document.querySelectorAll('[data-total-users]').forEach(el=>el.textContent=(d.totalUsers||0).toLocaleString());
+  // Update all elements with mock 2,547
+  document.querySelectorAll('.mock-total').forEach(el=>el.textContent=(d.totalRegistrations||0).toLocaleString());
+}
+
+function applyRevenue(data){
+  // data: { 1:{retreat,workshop,training,book}, 2:{...}, ... }
+  revenueData=data;
+  drawRevenue();
+}
+let revenueData=null;
+
+function applyRegistrations(items){
+  registrations=items;
+  const tbody=document.getElementById('reg-table-body');
+  if(!tbody)return;
+  if(!items.length){
+    tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka regjistrime ende.</td></tr>';
+    const recent=document.getElementById('recent-registrations');
+    if(recent) recent.innerHTML='<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--text-muted)">Nuk ka regjistrime ende.</td></tr>';
+    return;
+  }
+  tbody.innerHTML=items.map((r,i)=>`
+    <tr>
+      <td style="color:var(--text-muted)">${r.id}</td>
+      <td><strong>${r.firstName} ${r.lastName}</strong></td>
+      <td style="color:var(--accent);font-size:12px">${r.email}</td>
+      <td style="color:var(--text-muted);font-size:12px">${r.phone||'—'}</td>
+      <td style="font-size:12.5px">${r.product?.titleSq||'—'}</td>
+      <td style="color:var(--text-muted)">${new Date(r.createdAt).toLocaleDateString('sq-AL')}</td>
+      <td style="font-weight:700">€${parseFloat(r.totalAmount||0).toLocaleString()}</td>
+      <td>${statusBadge(r.orderStatus==='paid'?'confirmed':r.orderStatus==='pending'?'pending':'cancelled')}</td>
+      <td>${r.orderStatus==='paid'?'<span class="badge badge-purple">Stripe</span>':'<span class="badge badge-green">—</span>'}</td>
+      <td><div class="actions">${actBtn('eye','Shiko')}${actBtn('mail','Email')}</div></td>
+    </tr>`).join('');
+  // Also update recent registrations on dashboard
+  const recent=document.getElementById('recent-registrations');
+  if(recent) recent.innerHTML=items.slice(0,5).map(r=>`
+    <tr>
+      <td><strong>${r.firstName} ${r.lastName}</strong></td>
+      <td style="max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.product?.titleSq||'—'}</td>
+      <td style="color:var(--text-muted)">${new Date(r.createdAt).toLocaleDateString('sq-AL')}</td>
+      <td style="font-weight:700">€${parseFloat(r.totalAmount||0).toLocaleString()}</td>
+      <td>${statusBadge(r.orderStatus==='paid'?'confirmed':r.orderStatus==='pending'?'pending':'cancelled')}</td>
+      <td>${r.orderStatus==='paid'?'<span class="badge badge-purple">Stripe</span>':'<span class="badge badge-green">—</span>'}</td>
+    </tr>`).join('');
+}
+
+function applyClients(items){
+  clients=items;
+  // Update tab count
+  const allTab=document.querySelector('#page-clients .tab');
+  if(allTab) allTab.textContent=`Të gjithë (${items.length})`;
+  renderClients(clients);
+}
+
+function applyTransactions(items){
+  transactions=items;
+  const tbody=document.getElementById('pay-table-body');
+  if(!tbody)return;
+  if(!items.length){
+    tbody.innerHTML='<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka transaksione ende.</td></tr>';
+    return;
+  }
+  const statusPay={paid:'<span class="badge badge-green">Suksesshëm</span>',pending:'<span class="badge badge-orange">Pritë</span>',cancelled:'<span class="badge badge-red">Anuluar</span>',refunded:'<span class="badge badge-red">Kthyer</span>'};
+  tbody.innerHTML=items.map(t=>`
+    <tr>
+      <td style="font-family:monospace;font-size:12px;color:var(--text-muted)">#${t.id}</td>
+      <td><strong>${t.user?.firstName||''} ${t.user?.lastName||''}</strong><div style="font-size:11px;color:var(--text-muted)">${t.user?.email||''}</div></td>
+      <td style="font-size:12.5px;max-width:180px">${(t.products||[]).join(', ')||'—'}</td>
+      <td style="color:var(--text-muted)">${new Date(t.createdAt).toLocaleDateString('sq-AL')}</td>
+      <td style="font-weight:800">€${parseFloat(t.totalAmount||0).toLocaleString()}</td>
+      <td>${t.stripePaymentIntentId?'<span class="badge badge-purple">Stripe</span>':'<span class="badge badge-green">Manual</span>'}</td>
+      <td>${statusPay[t.status]||t.status}</td>
+      <td>${actBtn('receipt','Fatura')}</td>
+    </tr>`).join('');
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.getElementById('login-screen').style.display!=='none')doLogin();});
+
+function toggleSidebar(){
+  const sb=document.querySelector('.sidebar');
+  const ov=document.getElementById('sidebar-overlay');
+  sb.classList.toggle('open');
+  ov.classList.toggle('open');
+}
+function closeSidebar(){
+  document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+// Close sidebar when nav item clicked on mobile
+document.querySelectorAll('.nav-item[data-page]').forEach(item=>{
+  item.addEventListener('click',()=>{if(window.innerWidth<=768)closeSidebar();});
+});
+</script>
+</body>
+</html>

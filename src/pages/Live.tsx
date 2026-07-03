@@ -109,12 +109,44 @@ export const LivePage = () => {
         {/* Info cards */}
         <div className="grid sm:grid-cols-3 gap-5">
           {[
-            { icon: "🧘", title: t("Meditime Live", "Live Meditations"), desc: t("Sesione të udhëhequra nga Dr. Artemisa në kohë reale", "Sessions guided by Dr. Artemisa in real time") },
-            { icon: "💡", title: t("Workshope Online", "Online Workshops"), desc: t("Mësimet dhe praktikat live me interaksion të drejtpërdrejtë", "Live lessons and practices with direct interaction") },
-            { icon: "🎯", title: t("Q&A dhe Koçing", "Q&A and Coaching"), desc: t("Pyetje dhe përgjigje live — merr ndihmë direkt", "Live questions and answers — get help directly") },
+            {
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+                  <path d="M12 2a4 4 0 0 1 4 4c0 2.5-2 5-4 6-2-1-4-3.5-4-6a4 4 0 0 1 4-4z"/>
+                  <path d="M6.5 15.5C4.5 17 3 19 3 21h18c0-2-1.5-4-3.5-5.5"/>
+                  <path d="M9 13v2M15 13v2"/>
+                </svg>
+              ),
+              bg: "#f3f0ff",
+              title: t("Meditime Live", "Live Meditations"),
+              desc: t("Sesione të udhëhequra nga Dr. Artemisa në kohë reale", "Sessions guided by Dr. Artemisa in real time")
+            },
+            {
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/>
+                  <path d="M8 21h8M12 17v4"/>
+                  <path d="M9 8l2 2 4-4"/>
+                </svg>
+              ),
+              bg: "#f3f0ff",
+              title: t("Workshope Online", "Online Workshops"),
+              desc: t("Mësimet dhe praktikat live me interaksion të drejtpërdrejtë", "Live lessons and practices with direct interaction")
+            },
+            {
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                  <path d="M8 10h8M8 14h5"/>
+                </svg>
+              ),
+              bg: "#f3f0ff",
+              title: t("Q&A dhe Koçing", "Q&A and Coaching"),
+              desc: t("Pyetje dhe përgjigje live — merr ndihmë direkt", "Live questions and answers — get help directly")
+            },
           ].map((item, i) => (
             <div key={i} className="rounded-2xl border border-zinc-200 bg-white p-6 text-center">
-              <div className="text-4xl mb-3">{item.icon}</div>
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-3" style={{ background: item.bg }}>{item.icon}</div>
               <h3 className="font-bold text-zinc-800 text-base mb-2">{item.title}</h3>
               <p className="text-sm leading-relaxed text-zinc-700 md:text-base">{item.desc}</p>
             </div>

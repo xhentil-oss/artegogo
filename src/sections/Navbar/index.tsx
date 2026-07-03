@@ -35,7 +35,7 @@ const navItemsAL: NavItem[] = [
     href: "/eventet/trajnime-online",
     children: [
       { label: "Trajnime Online", href: "/eventet/trajnime-online" },
-      { label: "Platforma Teachable", href: "/eventet/trajnime-online/platforma" },
+      { label: "Platforma Online", href: "/eventet/trajnime-online/platforma" },
     ],
   },
   { label: "Live", href: "/live" },
@@ -271,18 +271,6 @@ export const Navbar = () => {
         {/* Desktop CTA */}
         <div className="hidden xl:flex items-center gap-3 shrink-0">
           <LangToggle />
-          <button
-            onClick={() => setCartOpen(true)}
-            className="relative flex items-center justify-center text-zinc-600 hover:text-black transition-colors p-2 rounded-lg hover:bg-gray-100"
-            aria-label="Shporta"
-          >
-            <ShoppingCart size={20} />
-            {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-yellow-400 text-purple-900 text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
-                {totalItems}
-              </span>
-            )}
-          </button>
           <Link
             to="/login"
             className="flex items-center gap-1.5 text-sm font-medium text-zinc-700 hover:text-black px-3 py-2 rounded-lg hover:bg-gray-100 transition-all"
@@ -301,18 +289,6 @@ export const Navbar = () => {
         {/* Mobile right actions */}
         <div className="xl:hidden flex items-center gap-1">
           <LangToggle />
-          <button
-            onClick={() => setCartOpen(true)}
-            className="relative flex items-center justify-center text-zinc-600 p-2 rounded-lg hover:bg-gray-100"
-            aria-label="Shporta"
-          >
-            <ShoppingCart size={20} />
-            {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-yellow-400 text-purple-900 text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
-                {totalItems}
-              </span>
-            )}
-          </button>
           <button
             onClick={() => setMobileOpen((o) => !o)}
             className="p-2 rounded-lg text-zinc-600 hover:bg-gray-100"
@@ -393,13 +369,6 @@ export const Navbar = () => {
             >
               {lang === "al" ? "Regjistrohu" : "Sign Up"}
             </Link>
-            <button
-              onClick={() => { setMobileOpen(false); setCartOpen(true); }}
-              className="flex items-center justify-center gap-2 border border-gray-200 text-zinc-600 text-sm font-medium px-4 py-3 rounded-lg hover:bg-gray-50 transition-all"
-            >
-              <ShoppingCart size={16} />
-              {lang === "al" ? "Shporta" : "Cart"} {totalItems > 0 ? `(${totalItems})` : ""}
-            </button>
           </div>
         </div>
       )}
