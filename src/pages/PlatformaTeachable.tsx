@@ -1,6 +1,6 @@
 import { useLanguage } from "@/context/LanguageContext";
 
-const TEACHABLE_URL = "https://artegogo.teachable.com"; // ndrysho URL-në këtu
+const TEACHABLE_URL = "https://artegogo.com/l/products?sortKey=name&sortDirection=asc&page=1";
 
 export const PlatformaTeachablePage = () => {
   const { t } = useLanguage();
