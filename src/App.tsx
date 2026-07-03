@@ -41,6 +41,7 @@ import { SignUpPage } from "@/pages/SignUp";
 import { CheckoutPage } from "@/pages/Checkout";
 import { AdminLivePage } from "@/pages/AdminLive";
 import { AdminDashboard } from "@/pages/Admin";
+import { ResetPasswordPage } from "@/pages/ResetPassword";
 
 const WhatsAppButton = () => (
   <a
@@ -104,6 +105,7 @@ export const App = () => {
         <Route path="/faq" element={<Layout><FAQPage /></Layout>} />
         <Route path="/login" element={<Layout><LoginPage /></Layout>} />
         <Route path="/signup" element={<Layout><SignUpPage /></Layout>} />
+        <Route path="/auth/reset-password" element={<Layout><ResetPasswordPage /></Layout>} />
         <Route path="/checkout" element={<Layout><CheckoutPage /></Layout>} />
         <Route path="/admin/live" element={<AdminLivePage />} />
         <Route path="/admin" element={<AdminDashboard />} />
