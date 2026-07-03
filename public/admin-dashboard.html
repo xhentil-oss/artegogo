@@ -482,13 +482,31 @@ tr:hover td{background:var(--bg)}
       Arte Gogo &rsaquo; <span id="breadcrumb-title">Dashboard</span>
     </div>
     <div class="topbar-actions">
-      <button class="btn-icon" title="Kërko">
-        <svg class="nav-svg"><use href="#ico-search"/></svg>
-      </button>
-      <button class="btn-icon" title="Njoftimet">
-        <svg class="nav-svg"><use href="#ico-bell"/></svg>
-        <span class="notif-dot"></span>
-      </button>
+      <div style="position:relative" id="global-search-wrap">
+        <button class="btn-icon" title="Kërko" onclick="toggleGlobalSearch()">
+          <svg class="nav-svg"><use href="#ico-search"/></svg>
+        </button>
+        <div id="global-search-box" style="display:none;position:absolute;right:0;top:calc(100% + 8px);background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);width:320px;z-index:9999;overflow:hidden">
+          <div style="padding:10px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input id="global-search-input" type="text" placeholder="Kërko klientë, regjistrime..." style="border:none;outline:none;background:transparent;font-size:13px;color:var(--text);flex:1" oninput="runGlobalSearch(this.value)" onkeydown="if(event.key==='Escape')toggleGlobalSearch()">
+          </div>
+          <div id="global-search-results" style="max-height:320px;overflow-y:auto;padding:8px 0"></div>
+        </div>
+      </div>
+      <div style="position:relative" id="notif-wrap">
+        <button class="btn-icon" title="Njoftimet" onclick="toggleNotifPanel()">
+          <svg class="nav-svg"><use href="#ico-bell"/></svg>
+          <span class="notif-dot" id="notif-dot" style="display:none"></span>
+        </button>
+        <div id="notif-panel" style="display:none;position:absolute;right:0;top:calc(100% + 8px);background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.14);width:300px;z-index:9999;overflow:hidden">
+          <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:13px;font-weight:700;color:var(--text)">Njoftimet</span>
+            <button onclick="clearNotifs()" style="font-size:11px;color:var(--text-muted);border:none;background:none;cursor:pointer">Pastro</button>
+          </div>
+          <div id="notif-list" style="max-height:320px;overflow-y:auto"></div>
+        </div>
+      </div>
       <div style="position:relative">
         <div class="topbar-avatar" title="Profili" onclick="var m=document.getElementById('avatar-menu');m.style.display=m.style.display==='block'?'none':'block'">AG</div>
         <div id="avatar-menu" style="display:none;position:absolute;right:0;top:calc(100% + 8px);background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);min-width:160px;z-index:9999;overflow:hidden">
@@ -625,7 +643,7 @@ tr:hover td{background:var(--bg)}
       <div class="page-header">
         <div style="display:flex;justify-content:space-between;align-items:flex-start">
           <div><div class="page-title">Regjistrimet</div><div class="page-sub">Të gjitha regjistrimet — Retreat, Workshop, Trajnime, Meditime</div></div>
-          <button class="btn btn-primary">+ Regjistrim Manual</button>
+          <button class="btn btn-primary" onclick="openAddRegModal()">+ Regjistrim Manual</button>
         </div>
       </div>
       <div class="stat-chips">
@@ -731,7 +749,7 @@ tr:hover td{background:var(--bg)}
       <div class="page-header">
         <div style="display:flex;justify-content:space-between;align-items:flex-start">
           <div><div class="page-title">Eventet</div><div class="page-sub">Eventet aktive dhe të ardhshme</div></div>
-          <button class="btn btn-primary">+ Event i Ri</button>
+          <button class="btn btn-primary" onclick="openAddEventModal()">+ Event i Ri</button>
         </div>
       </div>
       <div class="events-grid" id="events-grid">
@@ -760,15 +778,15 @@ tr:hover td{background:var(--bg)}
       <div class="page-header">
         <div style="display:flex;justify-content:space-between;align-items:flex-start">
           <div><div class="page-title">Meditimet Audio</div><div class="page-sub">Libraria e meditimeve dhe aksesi i përdoruesve</div></div>
-          <button class="btn btn-primary">+ Meditim i Ri</button>
+          <button class="btn btn-primary" onclick="openAddMeditimModal()">+ Meditim i Ri</button>
         </div>
       </div>
       <div class="chart-card" style="padding:0;overflow:hidden">
         <div class="table-wrap">
           <table>
             <thead><tr><th>Titulli</th><th>Kategoria</th><th>Kohëzgjatja</th><th>Aksesi</th><th>Dëgjime</th><th>Statusi</th><th>Veprime</th></tr></thead>
-            <tbody>
-              <tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka meditimë ende.</td></tr>
+            <tbody id="med-tbody">
+              <tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Duke ngarkuar...</td></tr>
             </tbody>
           </table>
         </div>
@@ -780,15 +798,15 @@ tr:hover td{background:var(--bg)}
       <div class="page-header">
         <div style="display:flex;justify-content:space-between;align-items:flex-start">
           <div><div class="page-title">Blog</div><div class="page-sub">Artikujt dhe menaxhimi i kategorive</div></div>
-          <button class="btn btn-primary">+ Artikull i Ri</button>
+          <button class="btn btn-primary" onclick="openAddBlogModal()">+ Artikull i Ri</button>
         </div>
       </div>
       <div class="chart-card" style="padding:0;overflow:hidden">
         <div class="table-wrap">
           <table>
             <thead><tr><th>Titulli</th><th>Kategoria</th><th>Autori</th><th>Data</th><th>Statusi</th><th>Lexime</th><th>Veprime</th></tr></thead>
-            <tbody>
-              <tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka artikuj ende.</td></tr>
+            <tbody id="blog-tbody">
+              <tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Duke ngarkuar...</td></tr>
             </tbody>
           </table>
         </div>
@@ -800,14 +818,14 @@ tr:hover td{background:var(--bg)}
       <div class="page-header">
         <div style="display:flex;justify-content:space-between;align-items:flex-start">
           <div><div class="page-title">Shop / Librat</div><div class="page-sub">Produktet fizike dhe digjitale</div></div>
-          <button class="btn btn-primary">+ Produkt i Ri</button>
+          <button class="btn btn-primary" onclick="openAddProductModal()">+ Produkt i Ri</button>
         </div>
       </div>
       <div class="chart-card" style="padding:0;overflow:hidden">
         <div class="table-wrap">
           <table>
             <thead><tr><th>Produkti</th><th>Tipi</th><th>Çmimi</th><th>Shitur</th><th>Stock</th><th>Të Ardhura</th><th>Statusi</th></tr></thead>
-            <tbody>
+            <tbody id="shop-tbody">
               <tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka produkte ende.</td></tr>
             </tbody>
           </table>
@@ -826,18 +844,16 @@ tr:hover td{background:var(--bg)}
           <div class="mkt-icon"><svg class="nav-svg"><use href="#ico-link"/></svg></div>
           <div class="mkt-title">Lidhjet e Regjistrimit</div>
           <div class="mkt-desc">Gjenero dhe kopjo linkun e regjistrimit për secilin event — ndajeni në WhatsApp, Instagram dhe email.</div>
-          <div class="link-copy"><span>artegogo.com/retreat-2027</span><button class="btn-copy" onclick="copyLink(this,'artegogo.com/retreat-2027')">Kopjo</button></div>
-          <div class="link-copy"><span>artegogo.com/workshop-dhjetor</span><button class="btn-copy" onclick="copyLink(this,'artegogo.com/workshop-dhjetor')">Kopjo</button></div>
-          <div class="link-copy"><span>artegogo.com/trajnim-online</span><button class="btn-copy" onclick="copyLink(this,'artegogo.com/trajnim-online')">Kopjo</button></div>
+          <div class="link-copy"><span>artegogo.com/shop/regjistrohu-retreat</span><button class="btn-copy" onclick="copyLink(this,'artegogo.com/shop/regjistrohu-retreat')">Kopjo</button></div>
+          <div class="link-copy"><span>artegogo.com/shop/regjistrohu-workshop</span><button class="btn-copy" onclick="copyLink(this,'artegogo.com/shop/regjistrohu-workshop')">Kopjo</button></div>
+          <div class="link-copy"><span>artegogo.com/eventet/trajnime-online/regjistrohu</span><button class="btn-copy" onclick="copyLink(this,'artegogo.com/eventet/trajnime-online/regjistrohu')">Kopjo</button></div>
         </div>
         <div class="mkt-card">
           <div class="mkt-icon"><svg class="nav-svg"><use href="#ico-ticket"/></svg></div>
           <div class="mkt-title">Kodet Promo</div>
           <div class="mkt-desc">Krijo dhe menaxho kodet e zbritjes për fushata specifike.</div>
-          <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);padding:12px 0">
-            Nuk ka kode promo ende.
-          </div>
-          <button class="btn btn-primary btn-sm">+ Kod i Ri</button>
+          <div id="promo-list" style="margin-bottom:10px"></div>
+          <button class="btn btn-primary btn-sm" onclick="openAddPromoModal()">+ Kod i Ri</button>
         </div>
         <div class="mkt-card">
           <div class="mkt-icon"><svg class="nav-svg"><use href="#ico-mail"/></svg></div>
@@ -881,10 +897,22 @@ tr:hover td{background:var(--bg)}
         </div>
         <div class="settings-card">
           <div class="settings-title">Njoftimet</div>
-          <div class="toggle-row"><div><div style="font-size:13px;font-weight:500">Email për çdo regjistrim</div><div style="font-size:11.5px;color:var(--text-muted)">Merr email sapo dikush regjistrohet</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
-          <div class="toggle-row"><div><div style="font-size:13px;font-weight:500">SMS konfirmimi</div><div style="font-size:11.5px;color:var(--text-muted)">SMS automatik tek klienti</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
-          <div class="toggle-row"><div><div style="font-size:13px;font-weight:500">Kujtesa para eventit</div><div style="font-size:11.5px;color:var(--text-muted)">24 orë para eventit</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
-          <div class="toggle-row"><div><div style="font-size:13px;font-weight:500">Raport javor</div><div style="font-size:11.5px;color:var(--text-muted)">Statistika çdo të hënë</div></div><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+          <div class="toggle-row">
+            <div><div style="font-size:13px;font-weight:500">Email për çdo regjistrim</div><div style="font-size:11.5px;color:var(--text-muted)">Merr email sapo dikush regjistrohet</div></div>
+            <div class="toggle" id="toggle-email-reg" onclick="toggleNotifSetting('emailReg',this)"></div>
+          </div>
+          <div class="toggle-row">
+            <div><div style="font-size:13px;font-weight:500">SMS konfirmimi</div><div style="font-size:11.5px;color:var(--text-muted)">SMS automatik tek klienti (kërkon konfigurim)</div></div>
+            <div class="toggle" id="toggle-sms" onclick="toggleNotifSetting('smsConfirm',this)"></div>
+          </div>
+          <div class="toggle-row">
+            <div><div style="font-size:13px;font-weight:500">Kujtesa para eventit</div><div style="font-size:11.5px;color:var(--text-muted)">24 orë para eventit (kërkon konfigurim)</div></div>
+            <div class="toggle" id="toggle-reminder" onclick="toggleNotifSetting('eventReminder',this)"></div>
+          </div>
+          <div class="toggle-row">
+            <div><div style="font-size:13px;font-weight:500">Raport javor</div><div style="font-size:11.5px;color:var(--text-muted)">Statistika çdo të hënë</div></div>
+            <div class="toggle" id="toggle-report" onclick="toggleNotifSetting('weeklyReport',this)"></div>
+          </div>
         </div>
         <div class="settings-card">
           <div class="settings-title">Pagesat</div>
@@ -927,6 +955,276 @@ tr:hover td{background:var(--bg)}
       <div style="display:flex;gap:10px;justify-content:flex-end">
         <button class="btn btn-ghost btn-sm" onclick="closeAddClientModal()">Anulo</button>
         <button class="btn btn-primary btn-sm" id="ac-submit" onclick="submitAddClient()">Shto Klientin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD BLOG MODAL -->
+<div class="modal-overlay" id="addBlogModal" onclick="if(event.target===this)closeAddBlogModal()">
+  <div class="modal" style="max-width:540px">
+    <div class="modal-header">
+      <div class="modal-title">Artikull i Ri</div>
+      <button class="modal-close" onclick="closeAddBlogModal()">&#x2715;</button>
+    </div>
+    <div style="padding:0 24px 24px">
+      <div id="blog-error" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#fef2f2;border:1px solid #fecaca;color:#dc2626;font-size:13px"></div>
+      <div id="blog-success" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#f0fdf4;border:1px solid #bbf7d0;color:#16a34a;font-size:13px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field"><label class="form-label">Titulli (SQ) *</label><input class="form-input" id="bl-title-sq" placeholder="Titulli shqip"></div>
+        <div class="form-field"><label class="form-label">Titulli (EN) *</label><input class="form-input" id="bl-title-en" placeholder="Title in English"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field">
+          <label class="form-label">Kategoria</label>
+          <select class="form-input" id="bl-category">
+            <option value="">— Pa kategori —</option>
+            <option value="zhvillim-personal">Zhvillim Personal</option>
+            <option value="frymezim">Frymëzim</option>
+            <option value="zemra-shpirti">Zemra &amp; Shpirti</option>
+            <option value="veprim-transformim">Veprim &amp; Transformim</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Statusi</label>
+          <select class="form-input" id="bl-status">
+            <option value="draft">Draft</option>
+            <option value="published">Publikuar</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field" style="margin-bottom:12px"><label class="form-label">Përmbledhje (SQ)</label><input class="form-input" id="bl-excerpt-sq" placeholder="Tekst i shkurtër prezantues..."></div>
+      <div class="form-field" style="margin-bottom:12px"><label class="form-label">Përmbledhje (EN)</label><input class="form-input" id="bl-excerpt-en" placeholder="Short preview text..."></div>
+      <div class="form-field" style="margin-bottom:20px"><label class="form-label">Foto Cover (URL, opsionale)</label><input class="form-input" id="bl-cover" placeholder="/images/blog/artikulli.jpg"></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn btn-ghost btn-sm" onclick="closeAddBlogModal()">Anulo</button>
+        <button class="btn btn-primary btn-sm" id="bl-submit" onclick="submitAddBlog()">Krijo Artikullin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD EVENT MODAL -->
+<div class="modal-overlay" id="addEventModal" onclick="if(event.target===this)closeAddEventModal()">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-header">
+      <div class="modal-title">Event i Ri</div>
+      <button class="modal-close" onclick="closeAddEventModal()">&#x2715;</button>
+    </div>
+    <div style="padding:0 24px 24px">
+      <div id="ev-error" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#fef2f2;border:1px solid #fecaca;color:#dc2626;font-size:13px"></div>
+      <div class="form-field" style="margin-bottom:12px"><label class="form-label">Emri i Eventit *</label><input class="form-input" id="ev-name" placeholder="p.sh. Retreat Vjeshtë 2026"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field">
+          <label class="form-label">Tipi *</label>
+          <select class="form-input" id="ev-type">
+            <option value="retreat">Retreat</option>
+            <option value="workshop">Workshop</option>
+            <option value="training">Trajnim Online</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Statusi</label>
+          <select class="form-input" id="ev-status">
+            <option value="active">Aktiv</option>
+            <option value="draft">Draft</option>
+            <option value="finished">Përfunduar</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field"><label class="form-label">Data e Fillimit *</label><input class="form-input" id="ev-start" type="date"></div>
+        <div class="form-field"><label class="form-label">Data e Mbarimit</label><input class="form-input" id="ev-end" type="date"></div>
+      </div>
+      <div class="form-field" style="margin-bottom:12px"><label class="form-label">Vendndodhja</label><input class="form-input" id="ev-location" placeholder="p.sh. Shkodër, Shqipëri"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field"><label class="form-label">Kapaciteti (vende)</label><input class="form-input" id="ev-capacity" type="number" min="1" placeholder="20"></div>
+        <div class="form-field"><label class="form-label">Çmimi (€)</label><input class="form-input" id="ev-price" type="number" min="0" step="0.01" placeholder="0.00"></div>
+      </div>
+      <div class="form-field" style="margin-bottom:20px"><label class="form-label">Përshkrimi (opsional)</label><input class="form-input" id="ev-desc" placeholder="Përshkrim i shkurtër i eventit..."></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn btn-ghost btn-sm" onclick="closeAddEventModal()">Anulo</button>
+        <button class="btn btn-primary btn-sm" id="ev-submit" onclick="submitAddEvent()">Krijo Eventin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD PRODUCT MODAL -->
+<div class="modal-overlay" id="addProductModal" onclick="if(event.target===this)closeAddProductModal()">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-header">
+      <div class="modal-title">Produkt i Ri</div>
+      <button class="modal-close" onclick="closeAddProductModal()">&#x2715;</button>
+    </div>
+    <div style="padding:0 24px 24px">
+      <div id="prod-error" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#fef2f2;border:1px solid #fecaca;color:#dc2626;font-size:13px"></div>
+      <div id="prod-success" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#f0fdf4;border:1px solid #bbf7d0;color:#16a34a;font-size:13px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field"><label class="form-label">Emri (SQ) *</label><input class="form-input" id="pr-title-sq" placeholder="p.sh. Libri i Shpirtit"></div>
+        <div class="form-field"><label class="form-label">Emri (EN)</label><input class="form-input" id="pr-title-en" placeholder="e.g. Book of the Soul"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field">
+          <label class="form-label">Tipi *</label>
+          <select class="form-input" id="pr-type">
+            <option value="book">Libër</option>
+            <option value="digital">Digjital</option>
+            <option value="physical">Fizik</option>
+            <option value="other">Tjetër</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Statusi</label>
+          <select class="form-input" id="pr-status">
+            <option value="active">Aktiv</option>
+            <option value="inactive">Joaktiv</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field"><label class="form-label">Çmimi (€) *</label><input class="form-input" id="pr-price" type="number" min="0" step="0.01" placeholder="0.00"></div>
+        <div class="form-field"><label class="form-label">Stock (copë)</label><input class="form-input" id="pr-stock" type="number" min="0" placeholder="0 = i pakufizuar"></div>
+      </div>
+      <div class="form-field" style="margin-bottom:20px"><label class="form-label">Përshkrim (opsional)</label><input class="form-input" id="pr-desc" placeholder="Përshkrim i shkurtër..."></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn btn-ghost btn-sm" onclick="closeAddProductModal()">Anulo</button>
+        <button class="btn btn-primary btn-sm" id="pr-submit" onclick="submitAddProduct()">Shto Produktin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD PROMO MODAL -->
+<div class="modal-overlay" id="addPromoModal" onclick="if(event.target===this)closeAddPromoModal()">
+  <div class="modal" style="max-width:460px">
+    <div class="modal-header">
+      <div class="modal-title">Kod Promo i Ri</div>
+      <button class="modal-close" onclick="closeAddPromoModal()">&#x2715;</button>
+    </div>
+    <div style="padding:0 24px 24px">
+      <div id="promo-error" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#fef2f2;border:1px solid #fecaca;color:#dc2626;font-size:13px"></div>
+      <div id="promo-success" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#f0fdf4;border:1px solid #bbf7d0;color:#16a34a;font-size:13px"></div>
+      <div class="form-field" style="margin-bottom:12px"><label class="form-label">Kodi * (p.sh. SUMMER20)</label><input class="form-input" id="pm-code" placeholder="KODI123" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field">
+          <label class="form-label">Tipi i zbritjes *</label>
+          <select class="form-input" id="pm-type">
+            <option value="percent">Përqindje (%)</option>
+            <option value="fixed">Shumë fikse (€)</option>
+          </select>
+        </div>
+        <div class="form-field"><label class="form-label">Vlera *</label><input class="form-input" id="pm-value" type="number" min="0" step="0.01" placeholder="p.sh. 20"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+        <div class="form-field"><label class="form-label">Skadon më (opsional)</label><input class="form-input" id="pm-expiry" type="date"></div>
+        <div class="form-field"><label class="form-label">Limit përdorimesh (0=∞)</label><input class="form-input" id="pm-limit" type="number" min="0" placeholder="0"></div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn btn-ghost btn-sm" onclick="closeAddPromoModal()">Anulo</button>
+        <button class="btn btn-primary btn-sm" id="pm-submit" onclick="submitAddPromo()">Krijo Kodin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD REGISTRATION MODAL -->
+<div class="modal-overlay" id="addRegModal" onclick="if(event.target===this)closeAddRegModal()">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-header">
+      <div class="modal-title">Regjistrim Manual</div>
+      <button class="modal-close" onclick="closeAddRegModal()">&#x2715;</button>
+    </div>
+    <div style="padding:0 24px 24px">
+      <div id="reg-modal-error" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#fef2f2;border:1px solid #fecaca;color:#dc2626;font-size:13px"></div>
+      <div id="reg-modal-success" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#f0fdf4;border:1px solid #bbf7d0;color:#16a34a;font-size:13px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field"><label class="form-label">Emri *</label><input class="form-input" id="rm-firstname" placeholder="Emri"></div>
+        <div class="form-field"><label class="form-label">Mbiemri *</label><input class="form-input" id="rm-lastname" placeholder="Mbiemri"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field"><label class="form-label">Email *</label><input class="form-input" id="rm-email" type="email" placeholder="email@shembull.com"></div>
+        <div class="form-field"><label class="form-label">Telefon</label><input class="form-input" id="rm-phone" placeholder="+355 69 000 0000"></div>
+      </div>
+      <div class="form-field" style="margin-bottom:12px">
+        <label class="form-label">Produkti *</label>
+        <select class="form-input" id="rm-product" onchange="onRegProductChange(this)">
+          <option value="">— Zgjidh produktin —</option>
+          <option value="retreat">Retreat</option>
+          <option value="training">Trajnim Online</option>
+          <option value="workshop">Workshop</option>
+        </select>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field"><label class="form-label">Shuma (€) *</label><input class="form-input" id="rm-amount" type="number" min="0" step="0.01" placeholder="0.00"></div>
+        <div class="form-field">
+          <label class="form-label">Statusi</label>
+          <select class="form-input" id="rm-status">
+            <option value="paid">I paguar</option>
+            <option value="pending" selected>Në pritë</option>
+            <option value="cancelled">Anuluar</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Mënyra</label>
+          <select class="form-input" id="rm-method">
+            <option value="manual">Manual</option>
+            <option value="stripe">Stripe</option>
+            <option value="whatsapp">WhatsApp</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field" style="margin-bottom:20px"><label class="form-label">Shënime (opsionale)</label><input class="form-input" id="rm-notes" placeholder="p.sh. pagoi cash, dhomë e vetme..."></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn btn-ghost btn-sm" onclick="closeAddRegModal()">Anulo</button>
+        <button class="btn btn-primary btn-sm" id="rm-submit" onclick="submitAddReg()">Shto Regjistrimin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD MEDITIM MODAL -->
+<div class="modal-overlay" id="addMeditimModal" onclick="if(event.target===this)closeAddMeditimModal()">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-header">
+      <div class="modal-title">Shto Meditim të Ri</div>
+      <button class="modal-close" onclick="closeAddMeditimModal()">&#x2715;</button>
+    </div>
+    <div style="padding:0 24px 24px">
+      <div id="med-error" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#fef2f2;border:1px solid #fecaca;color:#dc2626;font-size:13px"></div>
+      <div id="med-success" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#f0fdf4;border:1px solid #bbf7d0;color:#16a34a;font-size:13px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field"><label class="form-label">Titulli (SQ) *</label><input class="form-input" id="med-title-sq" placeholder="Titulli shqip"></div>
+        <div class="form-field"><label class="form-label">Titulli (EN) *</label><input class="form-input" id="med-title-en" placeholder="Title in English"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field">
+          <label class="form-label">Kategoria</label>
+          <select class="form-input" id="med-category"><option value="">— Pa kategori —</option></select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Kohëzgjatja (sek.)</label>
+          <input class="form-input" id="med-duration" type="number" min="1" placeholder="p.sh. 600">
+        </div>
+      </div>
+      <div class="form-field" style="margin-bottom:12px"><label class="form-label">URL / Rruga e Skedarit Audio *</label><input class="form-input" id="med-audio" placeholder="/audio/meditim-01.mp3"></div>
+      <div class="form-field" style="margin-bottom:12px"><label class="form-label">Foto Cover (URL, opsionale)</label><input class="form-input" id="med-cover" placeholder="/images/cover-meditim.jpg"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+        <div class="form-field">
+          <label class="form-label">Aksesi</label>
+          <select class="form-input" id="med-free">
+            <option value="false">Me pagesë</option>
+            <option value="true">Falas</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Renditja</label>
+          <input class="form-input" id="med-sort" type="number" min="0" value="0">
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn btn-ghost btn-sm" onclick="closeAddMeditimModal()">Anulo</button>
+        <button class="btn btn-primary btn-sm" id="med-submit" onclick="submitAddMeditim()">Shto Meditimin</button>
       </div>
     </div>
   </div>
@@ -982,6 +1280,10 @@ function navigate(pageId){
   if(pageId==='clients')renderClients(clients);
   if(pageId==='payments')renderPayments();
   if(pageId==='registrations')renderRegistrations(registrations);
+  if(pageId==='meditations')loadMeditations();
+  if(pageId==='events')renderEvents();
+  if(pageId==='blog')loadBlog();
+  if(pageId==='shop')renderProducts();
 }
 document.querySelectorAll('.nav-item[data-page]').forEach(item=>{
   item.addEventListener('click',()=>navigate(item.dataset.page));
@@ -1018,7 +1320,7 @@ function renderRegistrations(data){
       <td><div class="actions">${actBtn('eye','Shiko')}${actBtn('mail','Email')}${actBtn('phone','WhatsApp')}${actBtn('check','Konfirmo',' style="color:var(--green)"')}${actBtn('x','Anulo',' style="color:var(--red)"')}</div></td>
     </tr>`).join('');
 }
-function filterReg(type,btn){document.querySelectorAll('#page-registrations .tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');regFilter=type;renderRegistrations(registrations);}
+function filterReg(type,btn){document.querySelectorAll('#page-registrations .tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');regFilter=type==='online'?'training':type;renderRegistrations(registrations);}
 function filterRegSearch(v){regSearch=v;renderRegistrations(registrations);}
 function filterRegStatus(v){regStatusFilter=v;renderRegistrations(registrations);}
 
@@ -1110,22 +1412,22 @@ document.getElementById('country-list').innerHTML=countries.map(c=>`
     <div class="progress-bar"><div class="progress-fill" style="width:${Math.round(c.val/c.max*100)}%"></div></div>
   </div>`).join('');
 
-const donutData=[
-  {label:'Trajnime Online',pct:42,color:'#7D62BE'},
-  {label:'Retreat',pct:38,color:'#F59E0B'},
-  {label:'Workshop',pct:15,color:'#10B981'},
-  {label:'Meditime/Audio',pct:5,color:'#3B82F6'},
-];
-document.getElementById('donut-legend').innerHTML=donutData.map(d=>`
-  <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px">
-    <div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:${d.color}"></div>${d.label}</div>
-    <strong>${d.pct}%</strong>
-  </div>`).join('');
+let donutData=[];
 
 function drawDonut(canvasId,data){
   const canvas=document.getElementById(canvasId);if(!canvas)return;
   const ctx=canvas.getContext('2d');
   const W=canvas.width,H=canvas.height,cx=W/2,cy=H/2,R=72,r=44;
+  ctx.clearRect(0,0,W,H);
+  const legend=document.getElementById('donut-legend');
+  if(!data||!data.length){
+    ctx.beginPath();ctx.arc(cx,cy,R,0,2*Math.PI);ctx.fillStyle='#EDE6F8';ctx.fill();
+    ctx.beginPath();ctx.arc(cx,cy,r,0,2*Math.PI);ctx.fillStyle='#fff';ctx.fill();
+    ctx.fillStyle='#9B90BE';ctx.font='11px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('Pa të dhëna',cx,cy);
+    if(legend)legend.innerHTML='<div style="text-align:center;color:var(--text-muted);font-size:12px;padding:8px 0">Nuk ka të ardhura ende.</div>';
+    return;
+  }
   let start=-Math.PI/2;
   data.forEach(d=>{
     const angle=(d.pct/100)*2*Math.PI;
@@ -1133,9 +1435,15 @@ function drawDonut(canvasId,data){
     ctx.fillStyle=d.color;ctx.fill();start+=angle;
   });
   ctx.beginPath();ctx.arc(cx,cy,r,0,2*Math.PI);ctx.fillStyle='#fff';ctx.fill();
-  ctx.fillStyle='#0F0D14';ctx.font='bold 16px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';
-  const total=data.reduce((s,d)=>s+(d.val||0),0);
-  ctx.fillText(total.toLocaleString(),cx,cy-8);ctx.fillStyle='#7B6FA8';ctx.font='11px system-ui';ctx.fillText('klientë',cx,cy+10);
+  ctx.fillStyle='#0F0D14';ctx.font='bold 15px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';
+  const totalVal=data.reduce((s,d)=>s+(d.val||0),0);
+  ctx.fillText('€'+Math.round(totalVal).toLocaleString(),cx,cy-8);
+  ctx.fillStyle='#7B6FA8';ctx.font='11px system-ui';ctx.fillText('total',cx,cy+10);
+  if(legend)legend.innerHTML=data.map(d=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px">
+      <div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:${d.color}"></div>${d.label}</div>
+      <strong>${d.pct}%</strong>
+    </div>`).join('');
 }
 
 function drawPayDonut(canvasId){
@@ -1168,19 +1476,40 @@ function drawRevenue(){
   ctx.scale(dpr,dpr);
   const W=cssW,H=cssH;
 
-  const months=['Jan','Shk','Mar','Pri','Maj','Qer','Kor','Gus','Sht','Tet','Nën','Dhj'];
-  const src = revenueData;
-  const retreat  = months.map((_,i)=>src?(src[i+1]?.retreat||0):([0,0,8000,18000,0,0,22000,0,0,15000,0,0][i]));
-  const workshop = months.map((_,i)=>src?(src[i+1]?.workshop||0):([0,5000,0,0,3600,9000,0,3600,9000,0,5400,0][i]));
-  const online   = months.map((_,i)=>src?((src[i+1]?.training||0)+(src[i+1]?.book||0)):([8000,6400,9600,9600,12800,9600,9600,12800,8000,8000,9600,11200][i]));
+  const src=revenueData;
+  const allM=[...Array(12)].map((_,i)=>({
+    retreat:  src?(src[i+1]?.retreat||0):([0,0,8000,18000,0,0,22000,0,0,15000,0,0][i]),
+    workshop: src?(src[i+1]?.workshop||0):([0,5000,0,0,3600,9000,0,3600,9000,0,5400,0][i]),
+    online:   src?((src[i+1]?.training||0)+(src[i+1]?.book||0)):([8000,6400,9600,9600,12800,9600,9600,12800,8000,8000,9600,11200][i]),
+  }));
+
+  let labels,retreat,workshop,online;
+  if(revPeriod==='tremujor'){
+    labels=['Q1','Q2','Q3','Q4'];
+    retreat= [0,1,2,3].map(q=>allM.slice(q*3,q*3+3).reduce((s,m)=>s+m.retreat,0));
+    workshop=[0,1,2,3].map(q=>allM.slice(q*3,q*3+3).reduce((s,m)=>s+m.workshop,0));
+    online=  [0,1,2,3].map(q=>allM.slice(q*3,q*3+3).reduce((s,m)=>s+m.online,0));
+  } else if(revPeriod==='vit'){
+    labels=[new Date().getFullYear().toString()];
+    retreat= [allM.reduce((s,m)=>s+m.retreat,0)];
+    workshop=[allM.reduce((s,m)=>s+m.workshop,0)];
+    online=  [allM.reduce((s,m)=>s+m.online,0)];
+  } else {
+    labels=['Jan','Shk','Mar','Pri','Maj','Qer','Kor','Gus','Sht','Tet','Nën','Dhj'];
+    retreat= allM.map(m=>m.retreat);
+    workshop=allM.map(m=>m.workshop);
+    online=  allM.map(m=>m.online);
+  }
+
+  const allVals=[...retreat,...workshop,...online];
+  const maxData=Math.max(...allVals,1);
+  const maxVal=Math.ceil(maxData/6000)*6000||6000;
 
   const pad={l:48,r:20,t:16,b:36};
   const cW=W-pad.l-pad.r, cH=H-pad.t-pad.b;
-  const maxVal=24000;
-  const grp=cW/months.length;
-  const totalBW=grp*0.62, bw=totalBW/3, gap=0;
+  const grp=cW/labels.length;
+  const totalBW=grp*(labels.length===1?0.3:0.62), bw=totalBW/3;
 
-  // grid lines
   for(let i=0;i<=4;i++){
     const y=pad.t+cH-(i/4)*cH;
     ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);
@@ -1197,12 +1526,12 @@ function drawRevenue(){
     {data:online,color:'#10B981',light:'#6EE7B7'}
   ];
 
-  months.forEach((m,mi)=>{
+  labels.forEach((lbl,mi)=>{
     const gx=pad.l+mi*grp+(grp-totalBW)/2;
     series.forEach((s,si)=>{
       const val=s.data[mi];
       const bh=Math.max((val/maxVal)*cH,val>0?3:0);
-      const bx=gx+si*(bw+gap);
+      const bx=gx+si*bw;
       const by=pad.t+cH-bh;
       if(val===0)return;
       const grad=ctx.createLinearGradient(0,by,0,by+bh);
@@ -1217,7 +1546,7 @@ function drawRevenue(){
       ctx.fill();
     });
     ctx.fillStyle='#9B90BE';ctx.font='11px system-ui';ctx.textAlign='center';ctx.textBaseline='top';
-    ctx.fillText(m,pad.l+mi*grp+grp/2,H-pad.b+6);
+    ctx.fillText(lbl,pad.l+mi*grp+grp/2,H-pad.b+6);
   });
 }
 
@@ -1226,10 +1555,48 @@ function copyLink(btn,text){
   btn.textContent='✓';setTimeout(()=>btn.textContent='Kopjo',1500);
 }
 
+/* ── Notification Settings ── */
+const NS_KEY='ag_notif_settings';
+const NS_DEFAULTS={emailReg:true,smsConfirm:true,eventReminder:true,weeklyReport:false};
+const NS_IDS={emailReg:'toggle-email-reg',smsConfirm:'toggle-sms',eventReminder:'toggle-reminder',weeklyReport:'toggle-report'};
+
+function getNS(key){
+  try{const s=JSON.parse(localStorage.getItem(NS_KEY)||'{}');return key in s?s[key]:NS_DEFAULTS[key];}catch{return NS_DEFAULTS[key];}
+}
+function setNS(key,val){
+  try{const s=JSON.parse(localStorage.getItem(NS_KEY)||'{}');s[key]=val;localStorage.setItem(NS_KEY,JSON.stringify(s));}catch{}
+}
+function toggleNotifSetting(key,el){
+  const isOn=el.classList.toggle('on');
+  setNS(key,isOn);
+  const label={emailReg:'Email regjistrimesh',smsConfirm:'SMS konfirmimi',eventReminder:'Kujtesa eventit',weeklyReport:'Raporti javor'};
+  addNotif('⚙️',`${label[key]} ${isOn?'aktivizuar':'çaktivizuar'}`,isOn?'Cilësimi u ruajt':'Cilësimi u ruajt');
+  if(key==='weeklyReport'&&isOn)checkWeeklyReport(true);
+}
+function loadNotifSettings(){
+  Object.keys(NS_DEFAULTS).forEach(key=>{
+    const el=document.getElementById(NS_IDS[key]);
+    if(el)el.classList.toggle('on',getNS(key));
+  });
+}
+function checkWeeklyReport(force=false){
+  if(!getNS('weeklyReport'))return;
+  const now=new Date();
+  if(!force&&now.getDay()!==1)return;
+  const last=parseInt(localStorage.getItem('ag_last_weekly_rep')||'0');
+  if(!force&&Date.now()-last<6*24*60*60*1000)return;
+  localStorage.setItem('ag_last_weekly_rep',Date.now().toString());
+  const s=window._lastStats||{};
+  addNotif('📊','Raporti javor i Hënës',`Klientë: ${s.totalUsers||0} | Regjistrime: ${s.totalRegistrations||0} | Të ardhura: €${(s.monthRevenue||0).toFixed(0)}`);
+}
+
 document.querySelectorAll('.filter-tab').forEach(tab=>{
   tab.addEventListener('click',function(){
     this.closest('.filter-tabs').querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
     this.classList.add('active');
+    const txt=this.textContent.trim();
+    revPeriod=txt==='Tremujor'?'tremujor':txt==='Vit'?'vit':'muaj';
+    drawRevenue();
   });
 });
 
@@ -1244,7 +1611,114 @@ document.addEventListener('click',e=>{
   const menu=document.getElementById('avatar-menu');
   if(menu&&!e.target.closest('#avatar-menu')&&!e.target.closest('.topbar-avatar'))
     menu.style.display='none';
+  const gsw=document.getElementById('global-search-wrap');
+  if(gsw&&!e.target.closest('#global-search-wrap'))
+    document.getElementById('global-search-box').style.display='none';
+  if(!e.target.closest('#notif-wrap'))
+    document.getElementById('notif-panel').style.display='none';
 });
+
+// ── Notifications ────────────────────────────────────────────────
+let notifList=[];
+let lastClientCount=-1;
+let lastRegCount=-1;
+
+function toggleNotifPanel(){
+  const p=document.getElementById('notif-panel');
+  const isOpen=p.style.display==='block';
+  p.style.display=isOpen?'none':'block';
+  if(!isOpen){
+    document.getElementById('notif-dot').style.display='none';
+    renderNotifList();
+  }
+}
+function clearNotifs(){notifList=[];renderNotifList();document.getElementById('notif-dot').style.display='none';}
+function addNotif(icon,title,sub){
+  notifList.unshift({icon,title,sub,time:new Date()});
+  if(notifList.length>20)notifList.pop();
+  document.getElementById('notif-dot').style.display='block';
+  renderNotifList();
+}
+function renderNotifList(){
+  const el=document.getElementById('notif-list');
+  if(!notifList.length){el.innerHTML='<div style="padding:24px;text-align:center;color:var(--text-muted);font-size:13px">Nuk ka njoftime të reja.</div>';return;}
+  el.innerHTML=notifList.map(n=>`
+    <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start">
+      <span style="font-size:18px">${n.icon}</span>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:var(--text)">${n.title}</div>
+        <div style="font-size:11.5px;color:var(--text-muted)">${n.sub}</div>
+        <div style="font-size:10.5px;color:var(--text-muted);margin-top:2px">${n.time.toLocaleTimeString('sq-AL',{hour:'2-digit',minute:'2-digit'})}</div>
+      </div>
+    </div>`).join('');
+}
+
+async function pollForUpdates(){
+  try{
+    const stats=await apiGet('/api/admin/stats');
+    if(!stats?.data)return;
+    const d=stats.data;
+    window._lastStats=d;
+    if(lastClientCount===-1){lastClientCount=d.totalUsers||0;lastRegCount=d.totalRegistrations||0;checkWeeklyReport();return;}
+    if((d.totalUsers||0)>lastClientCount){
+      const diff=(d.totalUsers||0)-lastClientCount;
+      addNotif('👤',`${diff} klient${diff>1?'ë':''} i ri u regjistrua!`,`Totali tani: ${d.totalUsers} klientë`);
+      lastClientCount=d.totalUsers||0;
+      if(clients.length)loadDashboardData();
+      if(getNS('emailReg')){
+        fetch('/api/admin/notify-activity',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({type:'client'})}).catch(()=>{});
+      }
+    }
+    if((d.totalRegistrations||0)>lastRegCount){
+      const diff=(d.totalRegistrations||0)-lastRegCount;
+      addNotif('📋',`${diff} regjistrim${diff>1?'e':''} i ri!`,`Totali tani: ${d.totalRegistrations} regjistrime`);
+      lastRegCount=d.totalRegistrations||0;
+      if(getNS('emailReg')){
+        fetch('/api/admin/notify-activity',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({type:'registration'})}).catch(()=>{});
+      }
+    }
+  }catch{}
+}
+
+
+function toggleGlobalSearch(){
+  const box=document.getElementById('global-search-box');
+  const inp=document.getElementById('global-search-input');
+  const isOpen=box.style.display==='block';
+  box.style.display=isOpen?'none':'block';
+  if(!isOpen){inp.value='';document.getElementById('global-search-results').innerHTML='';inp.focus();}
+}
+
+function runGlobalSearch(q){
+  const res=document.getElementById('global-search-results');
+  q=q.trim().toLowerCase();
+  if(!q){res.innerHTML='';return;}
+  const results=[];
+  // Search clients
+  clients.forEach(c=>{
+    const name=((c.firstName||'')+' '+(c.lastName||'')).toLowerCase();
+    if(name.includes(q)||(c.email||'').toLowerCase().includes(q)||(c.phone||'').includes(q)){
+      results.push({type:'client',label:`${c.firstName} ${c.lastName}`,sub:c.email,page:'clients'});
+    }
+  });
+  // Search registrations
+  registrations.forEach(r=>{
+    const name=((r.firstName||'')+' '+(r.lastName||'')).toLowerCase();
+    if(name.includes(q)||(r.email||'').toLowerCase().includes(q)){
+      results.push({type:'reg',label:`${r.firstName} ${r.lastName}`,sub:r.email,page:'registrations'});
+    }
+  });
+  if(!results.length){
+    res.innerHTML='<div style="padding:16px;text-align:center;color:var(--text-muted);font-size:13px">Nuk u gjet asgjë.</div>';
+    return;
+  }
+  const icons={client:'👤',reg:'📋'};
+  res.innerHTML=results.slice(0,8).map(r=>`
+    <div onclick="navigate('${r.page}');toggleGlobalSearch()" style="padding:10px 16px;cursor:pointer;display:flex;align-items:center;gap:10px" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='transparent'">
+      <span style="font-size:16px">${icons[r.type]}</span>
+      <div><div style="font-size:13px;font-weight:600;color:var(--text)">${r.label}</div><div style="font-size:11px;color:var(--text-muted)">${r.sub}</div></div>
+    </div>`).join('');
+}
 
 function exportClientsCSV(){
   if(!clients.length){alert('Nuk ka klientë për të eksportuar.');return;}
@@ -1268,6 +1742,436 @@ function openAddClientModal(){
   ['ac-firstname','ac-lastname','ac-email','ac-phone'].forEach(id=>{document.getElementById(id).value='';});
 }
 function closeAddClientModal(){document.getElementById('addClientModal').classList.remove('open');}
+
+/* ── MANUAL REGISTRATION ── */
+/* ── BLOG ── */
+const blogCatLabels={'zhvillim-personal':'Zhvillim Personal','frymezim':'Frymëzim','zemra-shpirti':'Zemra & Shpirti','veprim-transformim':'Veprim & Transformim'};
+let blogCategories=[];
+async function loadBlog(){
+  try{
+    const r=await fetch('/api/blog/admin/posts',{credentials:'include'});
+    const d=await r.json();
+    renderBlog(d.data?.items||d.data?.posts||[]);
+  }catch{renderBlog([]);}
+}
+function renderBlog(items){
+  const tb=document.getElementById('blog-tbody');if(!tb)return;
+  if(!items.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka artikuj ende.</td></tr>';return;}
+  const stBadge={draft:'<span class="badge badge-gray">Draft</span>',published:'<span class="badge badge-green">Publikuar</span>',archived:'<span class="badge badge-orange">Arkivuar</span>'};
+  tb.innerHTML=items.map(p=>`<tr>
+    <td><div style="font-weight:600;font-size:13px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.titleSq||p.titleEn}</div><div style="font-size:11px;color:var(--text-muted)">${p.titleEn||''}</div></td>
+    <td style="font-size:12px">${p.category?.nameSq||p.category?.nameEn||'—'}</td>
+    <td style="font-size:12px;color:var(--text-muted)">${p.author?.firstName||''} ${p.author?.lastName||''}</td>
+    <td style="font-size:12px;color:var(--text-muted)">${p.publishedAt||p.createdAt?new Date(p.publishedAt||p.createdAt).toLocaleDateString('sq-AL'):'—'}</td>
+    <td>${stBadge[p.status]||p.status}</td>
+    <td style="font-variant-numeric:tabular-nums">${p.viewCount??0}</td>
+    <td><div class="actions">
+      <button class="btn btn-ghost btn-sm" onclick="deleteBlogPost(${p.id})">Fshi</button>
+      ${p.status==='draft'?`<button class="btn btn-primary btn-sm" onclick="publishBlogPost(${p.id})" style="font-size:11px;padding:3px 8px">Publiko</button>`:''}
+    </div></td>
+  </tr>`).join('');
+}
+async function loadBlogCategories(){
+  if(blogCategories.length)return;
+  try{
+    const r=await fetch('/api/blog/categories',{credentials:'include'});
+    const d=await r.json();
+    blogCategories=d.data?.items||[];
+    const sel=document.getElementById('bl-category');
+    if(sel)blogCategories.forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.nameSq||c.nameEn;sel.appendChild(o);});
+  }catch{}
+}
+function openAddBlogModal(){
+  document.getElementById('addBlogModal').classList.add('open');
+  document.getElementById('blog-error').style.display='none';
+  document.getElementById('blog-success').style.display='none';
+  ['bl-title-sq','bl-title-en','bl-excerpt-sq','bl-excerpt-en','bl-cover'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('bl-status').value='draft';
+  document.getElementById('bl-category').value='';
+}
+function closeAddBlogModal(){document.getElementById('addBlogModal').classList.remove('open');}
+async function submitAddBlog(){
+  const titleSq=document.getElementById('bl-title-sq').value.trim();
+  const titleEn=document.getElementById('bl-title-en').value.trim();
+  const errEl=document.getElementById('blog-error');const sucEl=document.getElementById('blog-success');
+  errEl.style.display='none';sucEl.style.display='none';
+  if(!titleSq||!titleEn){errEl.textContent='Titulli (SQ dhe EN) është i detyrueshëm.';errEl.style.display='block';return;}
+  const catId=document.getElementById('bl-category').value;
+  const body={titleSq,titleEn,status:document.getElementById('bl-status').value};
+  const exSq=document.getElementById('bl-excerpt-sq').value.trim();
+  const exEn=document.getElementById('bl-excerpt-en').value.trim();
+  const cover=document.getElementById('bl-cover').value.trim();
+  if(exSq)body.excerptSq=exSq;if(exEn)body.excerptEn=exEn;
+  if(cover)body.coverImagePath=cover;
+  // categories are fixed slugs, not DB IDs yet
+  const btn=document.getElementById('bl-submit');btn.disabled=true;btn.textContent='Duke ruajtur...';
+  try{
+    const r=await apiFetch('/api/blog/posts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const d=await r.json();
+    if(!r.ok){errEl.textContent=d.message||'Gabim gjatë krijimit.';errEl.style.display='block';return;}
+    sucEl.textContent='Artikulli u krijua me sukses!';sucEl.style.display='block';
+    setTimeout(()=>{closeAddBlogModal();loadBlog();},1200);
+  }catch(e){if(e.message!=='session_expired'){errEl.textContent='Gabim lidhjeje.';errEl.style.display='block';}}
+  finally{btn.disabled=false;btn.textContent='Krijo Artikullin';}
+}
+async function deleteBlogPost(id){
+  if(!confirm('Fshi këtë artikull?'))return;
+  try{await apiFetch('/api/blog/posts/'+id,{method:'DELETE'});loadBlog();}catch{}
+}
+async function publishBlogPost(id){
+  try{await apiFetch('/api/blog/posts/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:'published'})});loadBlog();}catch{}
+}
+
+/* ── EVENTS ── */
+const evTypeLabel={retreat:'Retreat',workshop:'Workshop',training:'Trajnim Online'};
+const evStatusBadge={active:'<span class="badge badge-green">Aktiv</span>',draft:'<span class="badge badge-gray">Draft</span>',finished:'<span class="badge badge-orange">Përfunduar</span>'};
+
+function getEvents(){try{return JSON.parse(localStorage.getItem('ag_events')||'[]');}catch{return [];}}
+function saveEvents(evs){localStorage.setItem('ag_events',JSON.stringify(evs));}
+
+function openAddEventModal(){
+  document.getElementById('addEventModal').classList.add('open');
+  document.getElementById('ev-error').style.display='none';
+  ['ev-name','ev-location','ev-desc'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('ev-start').value='';
+  document.getElementById('ev-end').value='';
+  document.getElementById('ev-capacity').value='';
+  document.getElementById('ev-price').value='';
+  document.getElementById('ev-type').value='retreat';
+  document.getElementById('ev-status').value='active';
+}
+function closeAddEventModal(){document.getElementById('addEventModal').classList.remove('open');}
+
+function submitAddEvent(){
+  const name=document.getElementById('ev-name').value.trim();
+  const start=document.getElementById('ev-start').value;
+  const errEl=document.getElementById('ev-error');
+  errEl.style.display='none';
+  if(!name||!start){errEl.textContent='Emri dhe data e fillimit janë të detyrueshme.';errEl.style.display='block';return;}
+  const ev={
+    id:'ev_'+Date.now(),
+    name, type:document.getElementById('ev-type').value,
+    status:document.getElementById('ev-status').value,
+    startDate:start, endDate:document.getElementById('ev-end').value||'',
+    location:document.getElementById('ev-location').value.trim(),
+    capacity:parseInt(document.getElementById('ev-capacity').value)||0,
+    price:parseFloat(document.getElementById('ev-price').value)||0,
+    description:document.getElementById('ev-desc').value.trim(),
+    registered:0, createdAt:new Date().toISOString()
+  };
+  const evs=getEvents();evs.unshift(ev);saveEvents(evs);
+  closeAddEventModal();renderEvents();
+}
+
+function deleteEvent(id){
+  if(!confirm('Fshi këtë event?'))return;
+  saveEvents(getEvents().filter(e=>e.id!==id));renderEvents();
+}
+
+function renderEvents(){
+  const evs=getEvents();
+  const grid=document.getElementById('events-grid');if(!grid)return;
+  if(!evs.length){
+    grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-muted)">Nuk ka evente ende.</div>';
+    return;
+  }
+  grid.innerHTML=evs.map(ev=>{
+    const pct=ev.capacity>0?Math.min(100,Math.round(ev.registered/ev.capacity*100)):0;
+    const dateLbl=ev.startDate?(new Date(ev.startDate+'T00:00:00').toLocaleDateString('sq-AL',{day:'numeric',month:'long',year:'numeric'})):'—';
+    const endLbl=ev.endDate?(` – ${new Date(ev.endDate+'T00:00:00').toLocaleDateString('sq-AL',{day:'numeric',month:'long'})}`):'' ;
+    return`<div class="event-card">
+      <div class="event-card-header">
+        <div>
+          <div class="event-name">${ev.name}</div>
+          <div class="event-date">${dateLbl}${endLbl}</div>
+        </div>
+        ${evStatusBadge[ev.status]||''}
+      </div>
+      ${ev.location?`<div class="event-location">📍 ${ev.location}</div>`:''}
+      ${ev.capacity>0?`<div class="event-capacity">
+        <div class="event-cap-row"><span>Regjistruar</span><span class="event-cap-num">${ev.registered}/${ev.capacity}</span></div>
+        <div style="background:var(--border);border-radius:4px;height:6px"><div style="background:var(--accent);height:6px;border-radius:4px;width:${pct}%"></div></div>
+      </div>`:''}
+      <div class="event-meta">
+        <span class="event-pill">${evTypeLabel[ev.type]||ev.type}</span>
+        ${ev.price>0?`<span class="event-pill">€${ev.price.toFixed(0)}</span>`:''}
+        ${ev.description?`<span class="event-pill" title="${ev.description}" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${ev.description}</span>`:''}
+      </div>
+      <div class="event-actions">
+        <button class="btn btn-ghost btn-sm" onclick="deleteEvent('${ev.id}')">Fshi</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ── SHOP / PRODUCTS ── */
+const prodTypeLabel={book:'Libër',digital:'Digjital',physical:'Fizik',other:'Tjetër'};
+
+function getProducts(){try{return JSON.parse(localStorage.getItem('ag_products')||'[]');}catch{return [];}}
+function saveProducts(prods){localStorage.setItem('ag_products',JSON.stringify(prods));}
+
+function openAddProductModal(){
+  document.getElementById('addProductModal').classList.add('open');
+  document.getElementById('prod-error').style.display='none';
+  document.getElementById('prod-success').style.display='none';
+  ['pr-title-sq','pr-title-en','pr-desc'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('pr-price').value='';
+  document.getElementById('pr-stock').value='';
+  document.getElementById('pr-type').value='book';
+  document.getElementById('pr-status').value='active';
+}
+function closeAddProductModal(){document.getElementById('addProductModal').classList.remove('open');}
+
+function submitAddProduct(){
+  const titleSq=document.getElementById('pr-title-sq').value.trim();
+  const price=parseFloat(document.getElementById('pr-price').value);
+  const errEl=document.getElementById('prod-error');const sucEl=document.getElementById('prod-success');
+  errEl.style.display='none';sucEl.style.display='none';
+  if(!titleSq||isNaN(price)||price<0){errEl.textContent='Emri dhe çmimi janë të detyrueshëm.';errEl.style.display='block';return;}
+  const prod={
+    id:'prod_'+Date.now(),
+    titleSq, titleEn:document.getElementById('pr-title-en').value.trim(),
+    type:document.getElementById('pr-type').value,
+    status:document.getElementById('pr-status').value,
+    price, stock:parseInt(document.getElementById('pr-stock').value)||0,
+    description:document.getElementById('pr-desc').value.trim(),
+    sold:0, createdAt:new Date().toISOString()
+  };
+  const prods=getProducts();prods.unshift(prod);saveProducts(prods);
+  sucEl.textContent='Produkti u shtua me sukses!';sucEl.style.display='block';
+  setTimeout(()=>{closeAddProductModal();renderProducts();},1000);
+}
+
+function deleteProduct(id){
+  if(!confirm('Fshi këtë produkt?'))return;
+  saveProducts(getProducts().filter(p=>p.id!==id));renderProducts();
+}
+
+function renderProducts(){
+  const tb=document.getElementById('shop-tbody');if(!tb)return;
+  const prods=getProducts();
+  if(!prods.length){
+    tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka produkte ende.</td></tr>';
+    return;
+  }
+  tb.innerHTML=prods.map(p=>{
+    const revenue=(p.price*p.sold).toFixed(2);
+    const statusBadge=p.status==='active'
+      ?'<span class="badge badge-green">Aktiv</span>'
+      :'<span class="badge badge-gray">Joaktiv</span>';
+    const stockLbl=p.stock>0?p.stock:'∞';
+    return`<tr>
+      <td><strong>${p.titleSq}</strong>${p.titleEn?`<div style="font-size:11px;color:var(--text-muted)">${p.titleEn}</div>`:''}</td>
+      <td>${prodTypeLabel[p.type]||p.type}</td>
+      <td>€${p.price.toFixed(2)}</td>
+      <td>${p.sold}</td>
+      <td>${stockLbl}</td>
+      <td>€${revenue}</td>
+      <td style="display:flex;align-items:center;gap:8px">${statusBadge}<button class="btn btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" onclick="deleteProduct('${p.id}')">Fshi</button></td>
+    </tr>`;
+  }).join('');
+}
+
+/* ── PROMO CODES ── */
+function getPromos(){try{return JSON.parse(localStorage.getItem('ag_promos')||'[]');}catch{return [];}}
+function savePromos(p){localStorage.setItem('ag_promos',JSON.stringify(p));}
+
+function openAddPromoModal(){
+  document.getElementById('addPromoModal').classList.add('open');
+  document.getElementById('promo-error').style.display='none';
+  document.getElementById('promo-success').style.display='none';
+  document.getElementById('pm-code').value='';
+  document.getElementById('pm-value').value='';
+  document.getElementById('pm-expiry').value='';
+  document.getElementById('pm-limit').value='0';
+  document.getElementById('pm-type').value='percent';
+}
+function closeAddPromoModal(){document.getElementById('addPromoModal').classList.remove('open');}
+
+function submitAddPromo(){
+  const code=document.getElementById('pm-code').value.trim().toUpperCase();
+  const val=parseFloat(document.getElementById('pm-value').value);
+  const errEl=document.getElementById('promo-error');const sucEl=document.getElementById('promo-success');
+  errEl.style.display='none';sucEl.style.display='none';
+  if(!code){errEl.textContent='Kodi është i detyrueshëm.';errEl.style.display='block';return;}
+  if(isNaN(val)||val<=0){errEl.textContent='Vlera e zbritjes duhet të jetë më e madhe se 0.';errEl.style.display='block';return;}
+  const existing=getPromos();
+  if(existing.find(p=>p.code===code)){errEl.textContent='Ky kod ekziston tashmë.';errEl.style.display='block';return;}
+  const promo={
+    id:'promo_'+Date.now(), code,
+    type:document.getElementById('pm-type').value,
+    value:val,
+    expiry:document.getElementById('pm-expiry').value||null,
+    limit:parseInt(document.getElementById('pm-limit').value)||0,
+    used:0, createdAt:new Date().toISOString()
+  };
+  existing.unshift(promo);savePromos(existing);
+  sucEl.textContent='Kodi u krijua me sukses!';sucEl.style.display='block';
+  setTimeout(()=>{closeAddPromoModal();renderPromos();},1000);
+}
+
+function deletePromo(id){
+  if(!confirm('Fshi këtë kod promo?'))return;
+  savePromos(getPromos().filter(p=>p.id!==id));renderPromos();
+}
+
+function renderPromos(){
+  const el=document.getElementById('promo-list');if(!el)return;
+  const promos=getPromos();
+  if(!promos.length){
+    el.innerHTML='<div style="font-size:13px;color:var(--text-muted);padding:12px 0">Nuk ka kode promo ende.</div>';
+    return;
+  }
+  el.innerHTML=promos.map(p=>{
+    const discountLbl=p.type==='percent'?`${p.value}%`:`€${p.value.toFixed(2)}`;
+    const expiryLbl=p.expiry?new Date(p.expiry+'T00:00:00').toLocaleDateString('sq-AL',{day:'numeric',month:'short',year:'numeric'}):'Pa skadencë';
+    const isExpired=p.expiry&&new Date(p.expiry)<new Date();
+    const limitLbl=p.limit>0?`${p.used}/${p.limit}`:`${p.used}/∞`;
+    return`<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px">
+      <div>
+        <strong style="font-family:monospace;letter-spacing:.5px;color:var(--accent)">${p.code}</strong>
+        <span style="margin-left:8px;background:rgba(125,98,190,.1);color:var(--accent);font-size:11px;padding:1px 7px;border-radius:20px">${discountLbl}</span>
+        ${isExpired?'<span style="margin-left:4px;background:#fef2f2;color:#dc2626;font-size:11px;padding:1px 6px;border-radius:20px">Skaduar</span>':''}
+        <div style="color:var(--text-muted);font-size:11px;margin-top:2px">${expiryLbl} · Përdorur: ${limitLbl}</div>
+      </div>
+      <button class="btn btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" onclick="deletePromo('${p.id}')">Fshi</button>
+    </div>`;
+  }).join('');
+}
+
+// Initialize promo list on page load
+(function(){setTimeout(renderPromos,100);})();
+
+function onRegProductChange(sel){
+  document.getElementById('rm-amount').value='';
+  document.getElementById('rm-amount').focus();
+}
+function openAddRegModal(){
+  document.getElementById('addRegModal').classList.add('open');
+  document.getElementById('reg-modal-error').style.display='none';
+  document.getElementById('reg-modal-success').style.display='none';
+  ['rm-firstname','rm-lastname','rm-email','rm-phone','rm-notes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('rm-amount').value='';
+  document.getElementById('rm-status').value='pending';
+  document.getElementById('rm-product').value='';
+}
+function closeAddRegModal(){document.getElementById('addRegModal').classList.remove('open');}
+async function submitAddReg(){
+  const fn=document.getElementById('rm-firstname').value.trim();
+  const ln=document.getElementById('rm-lastname').value.trim();
+  const em=document.getElementById('rm-email').value.trim();
+  const ph=document.getElementById('rm-phone').value.trim();
+  const pid=document.getElementById('rm-product').value;
+  const amt=document.getElementById('rm-amount').value;
+  const st=document.getElementById('rm-status').value;
+  const nt=document.getElementById('rm-notes').value.trim();
+  const errEl=document.getElementById('reg-modal-error');
+  const sucEl=document.getElementById('reg-modal-success');
+  errEl.style.display='none';sucEl.style.display='none';
+  if(!fn||!ln||!em||!pid||amt===''||Number(amt)<=0){errEl.textContent='Emri, mbiemri, emaili, produkti dhe shuma janë të detyrueshme.';errEl.style.display='block';return;}
+  const btn=document.getElementById('rm-submit');btn.disabled=true;btn.textContent='Duke ruajtur...';
+  // Save locally — works immediately without VPS restart
+  const manualReg={
+    id:'manual_'+Date.now(),
+    firstName:fn, lastName:ln, email:em, phone:ph,
+    productType:pid, amount:Number(amt), status:st, method:document.getElementById('rm-method').value,
+    notes:nt, createdAt:new Date().toISOString(), isManual:true
+  };
+  try{
+    const existing=JSON.parse(localStorage.getItem('ag_manual_regs')||'[]');
+    existing.unshift(manualReg);
+    localStorage.setItem('ag_manual_regs',JSON.stringify(existing));
+    sucEl.textContent='Regjistrimi u ruajt me sukses!';sucEl.style.display='block';
+    setTimeout(()=>{closeAddRegModal();renderRegistrations(registrations);},1200);
+  }catch{errEl.textContent='Gabim gjatë ruajtjes.';errEl.style.display='block';}
+  finally{btn.disabled=false;btn.textContent='Shto Regjistrimin';}
+}
+
+/* ── MEDITATIONS ── */
+let medCategories=[];
+async function loadMeditations(){
+  try{
+    const r=await fetch('/api/meditations',{credentials:'include'});
+    const d=await r.json();
+    renderMeditations(d.data?.items||[]);
+  }catch{renderMeditations([]);}
+}
+function renderMeditations(items){
+  const tb=document.getElementById('med-tbody');if(!tb)return;
+  if(!items.length){
+    tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka meditimë ende.</td></tr>';
+    return;
+  }
+  tb.innerHTML=items.map(m=>{
+    const dur=m.durationSeconds?Math.floor(m.durationSeconds/60)+"'":"—";
+    const cat=m.category?.nameSq||m.category?.nameEn||'—';
+    const access=m.isFree?'<span style="color:#16a34a;font-weight:600">Falas</span>':'<span style="color:#7D62BE;font-weight:600">Me pagesë</span>';
+    const status=m.isActive!==false?'<span class="badge badge-confirmed">Aktiv</span>':'<span class="badge badge-cancelled">Jo aktiv</span>';
+    return`<tr>
+      <td><div style="font-weight:600;font-size:13px">${m.titleSq||m.titleEn}</div><div style="font-size:11px;color:var(--text-muted)">${m.titleEn||''}</div></td>
+      <td>${cat}</td><td>${dur}</td><td>${access}</td><td>${m.playCount??0}</td><td>${status}</td>
+      <td><button class="btn btn-ghost btn-sm" onclick="deleteMeditim(${m.id})">Fshi</button></td>
+    </tr>`;
+  }).join('');
+}
+async function loadMedCategories(){
+  try{
+    const r=await fetch('/api/meditations/categories',{credentials:'include'});
+    const d=await r.json();
+    medCategories=d.data?.items||[];
+    const sel=document.getElementById('med-category');
+    if(sel&&medCategories.length){
+      medCategories.forEach(c=>{
+        const o=document.createElement('option');o.value=c.id;o.textContent=c.nameSq||c.nameEn;sel.appendChild(o);
+      });
+    }
+  }catch{}
+}
+function openAddMeditimModal(){
+  document.getElementById('addMeditimModal').classList.add('open');
+  document.getElementById('med-error').style.display='none';
+  document.getElementById('med-success').style.display='none';
+  ['med-title-sq','med-title-en','med-audio','med-cover'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('med-duration').value='';
+  document.getElementById('med-sort').value='0';
+  document.getElementById('med-free').value='false';
+  if(!document.querySelector('#med-category option[value]:not([value=""])'))loadMedCategories();
+}
+function closeAddMeditimModal(){document.getElementById('addMeditimModal').classList.remove('open');}
+async function submitAddMeditim(){
+  const titleSq=document.getElementById('med-title-sq').value.trim();
+  const titleEn=document.getElementById('med-title-en').value.trim();
+  const audioFilePath=document.getElementById('med-audio').value.trim();
+  const errEl=document.getElementById('med-error');
+  const sucEl=document.getElementById('med-success');
+  errEl.style.display='none';sucEl.style.display='none';
+  if(!titleSq||!titleEn||!audioFilePath){errEl.textContent='Titulli (SQ, EN) dhe URL audio janë të detyrueshme.';errEl.style.display='block';return;}
+  const categoryId=document.getElementById('med-category').value?Number(document.getElementById('med-category').value):undefined;
+  const dur=document.getElementById('med-duration').value;
+  const cover=document.getElementById('med-cover').value.trim();
+  const isFree=document.getElementById('med-free').value==='true';
+  const sortOrder=parseInt(document.getElementById('med-sort').value)||0;
+  const body={titleSq,titleEn,audioFilePath,isFree,sortOrder};
+  if(categoryId)body.categoryId=categoryId;
+  if(dur)body.durationSeconds=parseInt(dur);
+  if(cover)body.coverImagePath=cover;
+  const btn=document.getElementById('med-submit');btn.disabled=true;btn.textContent='Duke ruajtur...';
+  try{
+    const r=await fetch('/api/meditations',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify(body)});
+    const d=await r.json();
+    if(!r.ok){errEl.textContent=d.message||'Gabim gjatë shtimit.';errEl.style.display='block';return;}
+    sucEl.textContent='Meditimi u shtua me sukses!';sucEl.style.display='block';
+    setTimeout(()=>{closeAddMeditimModal();loadMeditations();},1200);
+  }catch{errEl.textContent='Gabim lidhjeje.';errEl.style.display='block';}
+  finally{btn.disabled=false;btn.textContent='Shto Meditimin';}
+}
+async function deleteMeditim(id){
+  if(!confirm('Fshi këtë meditim?'))return;
+  try{
+    await fetch('/api/meditations/'+id,{method:'DELETE',credentials:'include'});
+    loadMeditations();
+  }catch{}
+}
 
 async function submitAddClient(){
   const fn=document.getElementById('ac-firstname').value.trim();
@@ -1340,14 +2244,32 @@ async function doLogin(){
 async function showDashboard(){
   document.getElementById('login-screen').style.display='none';
   document.getElementById('app-shell').style.display='block';
-  drawRevenue();drawDonut('donutChart',donutData);drawPayDonut('payChart');
+  loadNotifSettings();
+  drawRevenue();drawDonut('donutChart',[]);drawPayDonut('payChart');
   renderRegistrations(registrations);
   loadDashboardData();
+  setTimeout(pollForUpdates,5000);
+  setInterval(pollForUpdates,30000);
+}
+
+function handleSessionExpiry(){
+  sessionStorage.removeItem('ag_auth');
+  document.getElementById('app-shell').style.display='none';
+  document.getElementById('login-screen').style.display='flex';
+  const errEl=document.getElementById('login-error');
+  if(errEl){errEl.textContent='Sesioni skadoi. Hyr sërisht.';errEl.classList.add('show');}
+}
+
+async function apiFetch(path,opts={}){
+  const r=await fetch(API+path,{credentials:'include',...opts});
+  if(r.status===401){handleSessionExpiry();throw new Error('session_expired');}
+  return r;
 }
 
 async function apiGet(path){
   try{
     const r=await fetch(API+path,{credentials:'include'});
+    if(r.status===401){handleSessionExpiry();return null;}
     if(!r.ok)return null;
     return await r.json();
   }catch{return null;}
@@ -1400,46 +2322,112 @@ function applyStats(d){
 }
 
 function applyRevenue(data){
-  // data: { 1:{retreat,workshop,training,book}, 2:{...}, ... }
   revenueData=data;
+  const totals={retreat:0,workshop:0,training:0,book:0};
+  Object.values(data).forEach(m=>{
+    totals.retreat+=m.retreat||0;totals.workshop+=m.workshop||0;
+    totals.training+=m.training||0;totals.book+=m.book||0;
+  });
+  const grand=totals.retreat+totals.workshop+totals.training+totals.book;
+  if(grand>0){
+    donutData=[
+      {label:'Trajnime Online',pct:Math.round(totals.training/grand*100),val:totals.training,color:'#7D62BE'},
+      {label:'Retreat',pct:Math.round(totals.retreat/grand*100),val:totals.retreat,color:'#F59E0B'},
+      {label:'Workshop',pct:Math.round(totals.workshop/grand*100),val:totals.workshop,color:'#10B981'},
+      {label:'Libra/Audio',pct:Math.round(totals.book/grand*100),val:totals.book,color:'#3B82F6'},
+    ].filter(d=>d.pct>0);
+  } else {
+    donutData=[];
+  }
+  drawDonut('donutChart',donutData);
   drawRevenue();
 }
 let revenueData=null;
+let revPeriod='muaj';
+
+const prodLabel={retreat:'Retreat',training:'Trajnim Online',workshop:'Workshop'};
+const methodBadge={manual:'<span class="badge badge-gray">Manual</span>',whatsapp:'<span class="badge badge-green">WhatsApp</span>',stripe:'<span class="badge badge-purple">Stripe</span>'};
+
+function getManualRegs(){
+  try{return JSON.parse(localStorage.getItem('ag_manual_regs')||'[]');}catch{return [];}
+}
+function deleteManualReg(id){
+  if(!confirm('Fshi këtë regjistrim manual?'))return;
+  const regs=getManualRegs().filter(r=>r.id!==id);
+  localStorage.setItem('ag_manual_regs',JSON.stringify(regs));
+  renderRegistrations(registrations);
+}
+
+function regRowFromAPI(r){
+  const st=r.orderStatus==='paid'?'confirmed':r.orderStatus==='pending'?'pending':'cancelled';
+  return `<tr>
+    <td style="color:var(--text-muted);font-size:12px">#${r.id}</td>
+    <td><strong>${r.firstName} ${r.lastName}</strong></td>
+    <td style="color:var(--accent);font-size:12px">${r.email}</td>
+    <td style="color:var(--text-muted);font-size:12px">${r.phone||'—'}</td>
+    <td style="font-size:12.5px">${r.product?.titleSq||'—'}</td>
+    <td style="color:var(--text-muted)">${new Date(r.createdAt).toLocaleDateString('sq-AL')}</td>
+    <td style="font-weight:700">€${parseFloat(r.totalAmount||0).toFixed(0)}</td>
+    <td>${statusBadge(st)}</td>
+    <td>${r.orderStatus==='paid'?'<span class="badge badge-purple">Stripe</span>':'<span class="badge badge-green">—</span>'}</td>
+    <td><div class="actions">${actBtn('eye','Shiko')}${actBtn('mail','Email')}</div></td>
+  </tr>`;
+}
+function regRowFromManual(r){
+  const st=r.status==='paid'?'confirmed':r.status==='pending'?'pending':'cancelled';
+  return `<tr style="background:rgba(125,98,190,.04)">
+    <td style="color:var(--text-muted);font-size:12px"><span style="font-size:10px;background:var(--accent);color:#fff;border-radius:4px;padding:1px 5px">M</span></td>
+    <td><strong>${r.firstName} ${r.lastName}</strong></td>
+    <td style="color:var(--accent);font-size:12px">${r.email}</td>
+    <td style="color:var(--text-muted);font-size:12px">${r.phone||'—'}</td>
+    <td style="font-size:12.5px">${prodLabel[r.productType]||r.productType}</td>
+    <td style="color:var(--text-muted)">${new Date(r.createdAt).toLocaleDateString('sq-AL')}</td>
+    <td style="font-weight:700">€${Number(r.amount).toFixed(0)}</td>
+    <td>${statusBadge(st)}</td>
+    <td>${methodBadge[r.method]||methodBadge.manual}</td>
+    <td><div class="actions"><button class="act" title="Fshi" onclick="deleteManualReg('${r.id}')" style="color:var(--red)"><svg class="nav-svg"><use href="#ico-x"/></svg></button></div></td>
+  </tr>`;
+}
 
 function applyRegistrations(items){
   registrations=items;
+  renderRegistrations(items);
+}
+
+function renderRegistrations(apiItems){
+  const manuals=getManualRegs();
+  let allRows=[
+    ...manuals.map(r=>({...r,_isManual:true,_sortDate:new Date(r.createdAt).getTime()})),
+    ...apiItems.map(r=>({...r,_isManual:false,_sortDate:new Date(r.createdAt).getTime()}))
+  ].sort((a,b)=>b._sortDate-a._sortDate);
+
+  // apply filters
+  if(regFilter!=='all') allRows=allRows.filter(r=>r._isManual?(r.productType===regFilter):(r.product?.type===regFilter||r.orderStatus===regFilter));
+  if(regSearch){const q=regSearch.toLowerCase();allRows=allRows.filter(r=>{const name=r._isManual?`${r.firstName} ${r.lastName}`:`${r.firstName} ${r.lastName}`;return name.toLowerCase().includes(q)||r.email.toLowerCase().includes(q);});}
+  if(regStatusFilter){allRows=allRows.filter(r=>r._isManual?(r.status===regStatusFilter):(r.orderStatus===regStatusFilter));}
+
   const tbody=document.getElementById('reg-table-body');
   if(!tbody)return;
-  if(!items.length){
+  if(!allRows.length){
     tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka regjistrime ende.</td></tr>';
-    const recent=document.getElementById('recent-registrations');
-    if(recent) recent.innerHTML='<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--text-muted)">Nuk ka regjistrime ende.</td></tr>';
-    return;
+  } else {
+    tbody.innerHTML=allRows.map(r=>r._isManual?regRowFromManual(r):regRowFromAPI(r)).join('');
   }
-  tbody.innerHTML=items.map((r,i)=>`
-    <tr>
-      <td style="color:var(--text-muted)">${r.id}</td>
-      <td><strong>${r.firstName} ${r.lastName}</strong></td>
-      <td style="color:var(--accent);font-size:12px">${r.email}</td>
-      <td style="color:var(--text-muted);font-size:12px">${r.phone||'—'}</td>
-      <td style="font-size:12.5px">${r.product?.titleSq||'—'}</td>
-      <td style="color:var(--text-muted)">${new Date(r.createdAt).toLocaleDateString('sq-AL')}</td>
-      <td style="font-weight:700">€${parseFloat(r.totalAmount||0).toLocaleString()}</td>
-      <td>${statusBadge(r.orderStatus==='paid'?'confirmed':r.orderStatus==='pending'?'pending':'cancelled')}</td>
-      <td>${r.orderStatus==='paid'?'<span class="badge badge-purple">Stripe</span>':'<span class="badge badge-green">—</span>'}</td>
-      <td><div class="actions">${actBtn('eye','Shiko')}${actBtn('mail','Email')}</div></td>
-    </tr>`).join('');
-  // Also update recent registrations on dashboard
+  // Recent on dashboard (top 5)
   const recent=document.getElementById('recent-registrations');
-  if(recent) recent.innerHTML=items.slice(0,5).map(r=>`
-    <tr>
-      <td><strong>${r.firstName} ${r.lastName}</strong></td>
-      <td style="max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.product?.titleSq||'—'}</td>
+  const top5=[...manuals,...apiItems].sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).slice(0,5);
+  if(recent) recent.innerHTML=top5.length?top5.map(r=>{
+    const isM=!!r.isManual;
+    const st=isM?(r.status==='paid'?'confirmed':r.status==='pending'?'pending':'cancelled'):(r.orderStatus==='paid'?'confirmed':r.orderStatus==='pending'?'pending':'cancelled');
+    return`<tr>
+      <td><strong>${r.firstName} ${r.lastName}</strong>${isM?' <span style="font-size:10px;background:var(--accent);color:#fff;border-radius:3px;padding:1px 4px">M</span>':''}</td>
+      <td style="max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${isM?(prodLabel[r.productType]||r.productType):(r.product?.titleSq||'—')}</td>
       <td style="color:var(--text-muted)">${new Date(r.createdAt).toLocaleDateString('sq-AL')}</td>
-      <td style="font-weight:700">€${parseFloat(r.totalAmount||0).toLocaleString()}</td>
-      <td>${statusBadge(r.orderStatus==='paid'?'confirmed':r.orderStatus==='pending'?'pending':'cancelled')}</td>
-      <td>${r.orderStatus==='paid'?'<span class="badge badge-purple">Stripe</span>':'<span class="badge badge-green">—</span>'}</td>
-    </tr>`).join('');
+      <td style="font-weight:700">€${isM?Number(r.amount).toFixed(0):parseFloat(r.totalAmount||0).toFixed(0)}</td>
+      <td>${statusBadge(st)}</td>
+      <td>${isM?(methodBadge[r.method]||methodBadge.manual):'<span class="badge badge-purple">Stripe</span>'}</td>
+    </tr>`;
+  }).join(''):'<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--text-muted)">Nuk ka regjistrime ende.</td></tr>';
 }
 
 function applyClients(items){
