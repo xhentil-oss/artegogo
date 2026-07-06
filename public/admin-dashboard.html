@@ -1472,19 +1472,7 @@ function renderPayments(){
     </tr>`).join('');
 }
 
-const countries=[
-  {flag:'🇦🇱',name:'Shqipëri',val:1240,max:1240},
-  {flag:'🇽🇰',name:'Kosovë',val:780,max:1240},
-  {flag:'🇲🇰',name:'Maqedoni',val:210,max:1240},
-  {flag:'🇨🇭',name:'Zvicër',val:156,max:1240},
-  {flag:'🇩🇪',name:'Gjermani',val:98,max:1240},
-  {flag:'🇺🇸',name:'SHBA',val:63,max:1240},
-];
-document.getElementById('country-list').innerHTML=countries.map(c=>`
-  <div class="country-row">
-    <div class="country-label"><span>${c.flag} ${c.name}</span><span class="country-val">${c.val.toLocaleString()}</span></div>
-    <div class="progress-bar"><div class="progress-fill" style="width:${Math.round(c.val/c.max*100)}%"></div></div>
-  </div>`).join('');
+// country-list is populated dynamically from API data in loadDashboardData()
 
 let donutData=[];
 
