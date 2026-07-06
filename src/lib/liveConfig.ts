@@ -3,25 +3,27 @@ export interface LiveConfig {
   meetingNumber: string;
   password: string;
   title?: string;
+  zoomLink?: string;
 }
 
-const DB_URL = import.meta.env.VITE_FIREBASE_DB_URL;
+const DEFAULTS: LiveConfig = { isLive: false, meetingNumber: '', password: '', title: '' };
 
 export async function getLiveConfig(): Promise<LiveConfig> {
   try {
-    const res = await fetch(`${DB_URL}/live.json`);
-    const data = await res.json();
-    return data ?? { isLive: false, meetingNumber: "", password: "", title: "" };
+    const res = await fetch('/api/live');
+    if (!res.ok) return { ...DEFAULTS };
+    return await res.json();
   } catch {
-    return { isLive: false, meetingNumber: "", password: "", title: "" };
+    return { ...DEFAULTS };
   }
 }
 
 export async function setLiveConfig(config: LiveConfig): Promise<boolean> {
   try {
-    const res = await fetch(`${DB_URL}/live.json`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch('/api/live', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
       body: JSON.stringify(config),
     });
     return res.ok;
@@ -30,17 +32,22 @@ export async function setLiveConfig(config: LiveConfig): Promise<boolean> {
   }
 }
 
-// Real-time listener using Firebase SSE
 export function subscribeLiveConfig(
   onUpdate: (config: LiveConfig) => void
 ): () => void {
-  if (!DB_URL) return () => {};
-  const es = new EventSource(`${DB_URL}/live.json`);
-  es.addEventListener("put", (e: MessageEvent) => {
+  let stopped = false;
+
+  async function poll() {
+    if (stopped) return;
     try {
-      const { data } = JSON.parse(e.data);
-      if (data) onUpdate(data);
-    } catch {}
-  });
-  return () => es.close();
+      const res = await fetch('/api/live');
+      onUpdate(res.ok ? await res.json() : { ...DEFAULTS });
+    } catch {
+      onUpdate({ ...DEFAULTS });
+    }
+    if (!stopped) setTimeout(poll, 5000);
+  }
+
+  poll();
+  return () => { stopped = true; };
 }

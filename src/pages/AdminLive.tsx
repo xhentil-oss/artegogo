@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { getLiveConfig, setLiveConfig, type LiveConfig } from "@/lib/liveConfig";
 
 const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || "artegogo2024";
+const isEmbed = new URLSearchParams(window.location.search).get("embed") === "1";
 
 export const AdminLivePage = () => {
-  const [authed, setAuthed] = useState(false);
+  const [authed, setAuthed] = useState(isEmbed);
   const [pwInput, setPwInput] = useState("");
   const [pwError, setPwError] = useState(false);
 
@@ -171,6 +172,17 @@ export const AdminLivePage = () => {
                 onChange={(e) => setConfig({ ...config, password: e.target.value })}
                 className="w-full border border-zinc-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-violet-400"
               />
+            </div>
+            <div>
+              <label className="text-sm font-medium text-zinc-600 block mb-1">Link direkt Zoom (opsional)</label>
+              <input
+                type="text"
+                placeholder="https://zoom.us/j/123456789?pwd=..."
+                value={config.zoomLink || ""}
+                onChange={(e) => setConfig({ ...config, zoomLink: e.target.value })}
+                className="w-full border border-zinc-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-violet-400"
+              />
+              <p className="text-xs text-zinc-400 mt-1">Nëse lihet bosh, linku ndërtohet automatikisht nga Meeting ID dhe fjalëkalimi.</p>
             </div>
           </div>
 

@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { ZoomMeetingEmbed } from "@/components/ZoomMeetingEmbed";
 import { subscribeLiveConfig, type LiveConfig } from "@/lib/liveConfig";
-
-const SDK_KEY    = import.meta.env.VITE_ZOOM_SDK_KEY    as string;
-const SDK_SECRET = import.meta.env.VITE_ZOOM_SDK_SECRET as string;
 
 export const LivePage = () => {
   const { t } = useLanguage();
@@ -60,23 +56,74 @@ export const LivePage = () => {
           </div>
 
         ) : config.isLive ? (
-          /* LIVE — Zoom embed */
+          /* LIVE — Zoom redirect */
           <div className="mb-10">
-            <div className="flex items-center gap-2 mb-3">
+            {/* Live badge + title */}
+            <div className="flex items-center gap-2 mb-5">
               <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
               <span className="text-red-500 text-xs font-bold uppercase tracking-widest">Live Tani</span>
               {config.title && <span className="text-zinc-500 text-sm ml-1">— {config.title}</span>}
             </div>
-            <ZoomMeetingEmbed
-              sdkKey={SDK_KEY}
-              sdkSecret={SDK_SECRET}
-              meetingNumber={config.meetingNumber}
-              password={config.password}
-              userName="Vizitor"
-            />
-            <p className="text-center text-xs text-zinc-400 mt-3">
-              {t("Keni probleme me lidhjen? Bashkohuni direkt nga aplikacioni Zoom.", "Connection issues? Join directly from the Zoom app.")}
-            </p>
+
+            {/* Join card */}
+            <div className="rounded-3xl border-2 border-violet-300 bg-white p-8 text-center shadow-lg">
+              {/* Zoom logo */}
+              <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-5"
+                style={{ background: 'linear-gradient(135deg, #2D8CFF, #1A6CD4)' }}>
+                <svg viewBox="0 0 64 64" className="w-12 h-12" fill="white">
+                  <path d="M32 8C18.7 8 8 18.7 8 32s10.7 24 24 24 24-10.7 24-24S45.3 8 32 8zm11.2 33.6L36 36.8V40c0 1.1-.9 2-2 2H20c-1.1 0-2-.9-2-2V24c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v3.2l7.2-4.8c.8-.5 1.8.1 1.8 1v21.2c0 .9-1 1.5-1.8 1z"/>
+                </svg>
+              </div>
+
+              <h2 className="text-2xl font-bold text-zinc-900 mb-2">
+                {t("Sesioni Live është Aktiv!", "Live Session is Active!")}
+              </h2>
+              {config.title && (
+                <p className="text-violet-700 font-semibold text-lg mb-3">{config.title}</p>
+              )}
+              <p className="text-zinc-500 text-sm mb-7 max-w-sm mx-auto leading-relaxed">
+                {t("Kliko butonin më poshtë për t'u bashkuar direkt në sesionin live përmes Zoom.", "Click the button below to join the live session directly via Zoom.")}
+              </p>
+
+              <a
+                href={
+                  config.zoomLink ||
+                  `https://zoom.us/j/${config.meetingNumber.replace(/\s/g, '')}${config.password ? `?pwd=${config.password}` : ''}`
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-bold text-lg transition-all hover:scale-105 hover:shadow-lg shadow-md"
+                style={{ background: 'linear-gradient(135deg, #2D8CFF, #1A6CD4)' }}
+              >
+                <svg viewBox="0 0 64 64" className="w-6 h-6" fill="white">
+                  <path d="M32 8C18.7 8 8 18.7 8 32s10.7 24 24 24 24-10.7 24-24S45.3 8 32 8zm11.2 33.6L36 36.8V40c0 1.1-.9 2-2 2H20c-1.1 0-2-.9-2-2V24c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v3.2l7.2-4.8c.8-.5 1.8.1 1.8 1v21.2c0 .9-1 1.5-1.8 1z"/>
+                </svg>
+                {t("Bashkohu në Zoom", "Join on Zoom")}
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+
+              {/* Meeting info */}
+              {config.meetingNumber && (
+                <div className="mt-6 pt-5 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-zinc-500">
+                  <span className="flex items-center gap-1.5">
+                    <svg className="w-4 h-4 text-violet-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    Meeting ID: <strong className="text-zinc-700">{config.meetingNumber}</strong>
+                  </span>
+                  {config.password && (
+                    <span className="flex items-center gap-1.5">
+                      <svg className="w-4 h-4 text-violet-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      {t("Fjalëkalimi", "Password")}: <strong className="text-zinc-700">{config.password}</strong>
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
 
         ) : (
