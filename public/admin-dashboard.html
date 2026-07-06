@@ -629,7 +629,17 @@ tr:hover td{background:var(--bg)}
         </div>
         <div class="chart-card" style="margin-bottom:0">
           <div class="chart-title" style="margin-bottom:14px">Mënyra e Pagesës</div>
-          <div style="padding:30px 0;text-align:center;color:var(--text-muted);font-size:13px">Nuk ka të dhëna ende.</div>
+          <canvas id="payChart" width="160" height="160" style="display:block;margin:0 auto"></canvas>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px">
+              <div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:#7D62BE"></div>Stripe</div>
+              <strong id="payLegendStripe">—</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px">
+              <div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:#10B981"></div>Manual</div>
+              <strong id="payLegendManual">—</strong>
+            </div>
+          </div>
         </div>
         <div class="chart-card" style="margin-bottom:0">
           <div class="chart-title">Vlerësimet</div>
@@ -1446,11 +1456,13 @@ function drawDonut(canvasId,data){
     </div>`).join('');
 }
 
-function drawPayDonut(canvasId){
+function drawPayDonut(canvasId,stripePct,manualPct){
   const canvas=document.getElementById(canvasId);if(!canvas)return;
   const ctx=canvas.getContext('2d');
   const W=canvas.width,H=canvas.height,cx=W/2,cy=H/2,R=64,r=42;
-  const segments=[{pct:64,color:'#7D62BE'},{pct:36,color:'#10B981'}];
+  const s1=stripePct!=null?stripePct:64;
+  const s2=manualPct!=null?manualPct:36;
+  const segments=[{pct:s1,color:'#7D62BE'},{pct:s2,color:'#10B981'}];
   let start=-Math.PI/2;
   segments.forEach(s=>{
     const angle=(s.pct/100)*2*Math.PI;
@@ -1459,7 +1471,7 @@ function drawPayDonut(canvasId){
   });
   ctx.beginPath();ctx.arc(cx,cy,r,0,2*Math.PI);ctx.fillStyle='#fff';ctx.fill();
   ctx.fillStyle='#0F0D14';ctx.font='bold 14px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';
-  ctx.fillText('64/36',cx,cy);
+  ctx.fillText(s1+'/'+s2,cx,cy);
 }
 
 function drawRevenue(){
@@ -2440,6 +2452,18 @@ function applyClients(items){
 
 function applyTransactions(items){
   transactions=items;
+  if(items.length){
+    const stripe=items.filter(t=>t.stripePaymentIntentId).length;
+    const manual=items.length-stripe;
+    const total=items.length;
+    const sp=Math.round(stripe/total*100);
+    const mp=100-sp;
+    drawPayDonut('payChart',sp,mp);
+    const leg=document.getElementById('payLegendStripe');
+    const legM=document.getElementById('payLegendManual');
+    if(leg)leg.textContent=sp+'%';
+    if(legM)legM.textContent=mp+'%';
+  }
   const tbody=document.getElementById('pay-table-body');
   if(!tbody)return;
   if(!items.length){
