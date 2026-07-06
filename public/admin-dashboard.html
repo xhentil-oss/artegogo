@@ -2209,6 +2209,7 @@ function renderManualPayments(){
   }
   updatePayDonutWithManual(manual,api);
   updateFinCards(manual,api);
+  buildDonutData();
   drawRevenue();
 }
 
@@ -2473,7 +2474,7 @@ async function showDashboard(){
   document.getElementById('login-screen').style.display='none';
   document.getElementById('app-shell').style.display='block';
   loadNotifSettings();
-  drawRevenue();drawDonut('donutChart',[]);drawPayDonut('payChart');
+  drawRevenue();buildDonutData();drawPayDonut('payChart');
   renderRegistrations(registrations);
   loadDashboardData();
   setTimeout(pollForUpdates,5000);
@@ -2549,13 +2550,25 @@ function applyStats(d){
   document.querySelectorAll('.mock-total').forEach(el=>el.textContent=(d.totalRegistrations||0).toLocaleString());
 }
 
-function applyRevenue(data){
-  revenueData=data;
+function buildDonutData(){
   const totals={retreat:0,workshop:0,training:0,book:0};
-  Object.values(data).forEach(m=>{
-    totals.retreat+=m.retreat||0;totals.workshop+=m.workshop||0;
-    totals.training+=m.training||0;totals.book+=m.book||0;
-  });
+  if(revenueData){
+    Object.values(revenueData).forEach(m=>{
+      totals.retreat+=m.retreat||0;totals.workshop+=m.workshop||0;
+      totals.training+=m.training||0;totals.book+=m.book||0;
+    });
+  }
+  try{
+    const manual=JSON.parse(localStorage.getItem('ag_manual_payments')||'[]');
+    manual.forEach(p=>{
+      const amt=parseFloat(p.amount||0);if(!amt)return;
+      const prod=(p.product||p.type||'').toLowerCase();
+      if(prod.includes('retreat'))totals.retreat+=amt;
+      else if(prod.includes('workshop'))totals.workshop+=amt;
+      else if(prod.includes('libr')||prod.includes('audio'))totals.book+=amt;
+      else totals.training+=amt;
+    });
+  }catch(e){}
   const grand=totals.retreat+totals.workshop+totals.training+totals.book;
   if(grand>0){
     donutData=[
@@ -2568,6 +2581,11 @@ function applyRevenue(data){
     donutData=[];
   }
   drawDonut('donutChart',donutData);
+}
+
+function applyRevenue(data){
+  revenueData=data;
+  buildDonutData();
   drawRevenue();
 }
 let revenueData=null;
