@@ -730,8 +730,10 @@ tr:hover td{background:var(--bg)}
     <!-- ═══ PAYMENTS ═══ -->
     <section class="page" id="page-payments">
       <div class="page-header">
-        <div class="page-title">Pagesat &amp; Transaksionet</div>
-        <div class="page-sub">Pasqyra financiare e plotë</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div><div class="page-title">Pagesat &amp; Transaksionet</div><div class="page-sub">Pasqyra financiare e plotë</div></div>
+          <button class="btn btn-primary" onclick="openAddPaymentModal()">+ Pagesë Manuale</button>
+        </div>
       </div>
       <div class="fin-grid">
         <div class="fin-card"><div class="fin-label">Sot</div><div class="fin-num">€1,240</div><div class="fin-period">2 Korrik 2026</div></div>
@@ -1101,6 +1103,68 @@ tr:hover td{background:var(--bg)}
         <button class="btn btn-ghost btn-sm" onclick="closeAddProductModal()">Anulo</button>
         <button class="btn btn-primary btn-sm" id="pr-submit" onclick="submitAddProduct()">Shto Produktin</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD PAYMENT MODAL -->
+<div class="modal-overlay" id="addPaymentModal" onclick="if(event.target===this)closeAddPaymentModal()">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-header">
+      <div class="modal-title">Pagesë Manuale e Re</div>
+      <button class="modal-close" onclick="closeAddPaymentModal()">✕</button>
+    </div>
+    <div class="modal-body" style="display:flex;flex-direction:column;gap:14px">
+      <div class="form-field">
+        <label class="form-label">Emri i Klientit *</label>
+        <input class="form-input" id="pay-client" placeholder="p.sh. Artan Hoxha">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Email</label>
+        <input class="form-input" id="pay-email" type="email" placeholder="email@shembull.com">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Produkti / Shërbimi *</label>
+        <input class="form-input" id="pay-product" placeholder="p.sh. Retreat Qershor 2026">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-field">
+          <label class="form-label">Shuma (€) *</label>
+          <input class="form-input" id="pay-amount" type="number" min="0" step="0.01" placeholder="0.00">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Data *</label>
+          <input class="form-input" id="pay-date" type="date">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-field">
+          <label class="form-label">Metoda</label>
+          <select class="form-input" id="pay-method">
+            <option value="whatsapp">WhatsApp</option>
+            <option value="cash">Cash</option>
+            <option value="bank">Bankë</option>
+            <option value="other">Tjetër</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Statusi</label>
+          <select class="form-input" id="pay-status">
+            <option value="paid">Suksesshëm</option>
+            <option value="pending">Në pritë</option>
+            <option value="cancelled">Anuluar</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Shënime</label>
+        <input class="form-input" id="pay-notes" placeholder="Opsionale...">
+      </div>
+      <div id="pay-error" style="color:#ef4444;font-size:13px;display:none"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeAddPaymentModal()">Anulo</button>
+      <button class="btn btn-primary" onclick="submitAddPayment()">Shto Pagesën</button>
     </div>
   </div>
 </div>
@@ -2054,6 +2118,98 @@ function renderPromos(){
 // Initialize promo list on page load
 (function(){setTimeout(renderPromos,100);})();
 
+// ── Manual Payments ───────────────────────────────────────────────
+function getManualPayments(){try{return JSON.parse(localStorage.getItem('ag_manual_payments')||'[]');}catch{return[];}}
+function saveManualPayments(p){localStorage.setItem('ag_manual_payments',JSON.stringify(p));}
+
+function openAddPaymentModal(){
+  document.getElementById('addPaymentModal').classList.add('open');
+  document.getElementById('pay-error').style.display='none';
+  ['pay-client','pay-email','pay-product','pay-amount','pay-notes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('pay-date').value=new Date().toISOString().slice(0,10);
+  document.getElementById('pay-method').value='whatsapp';
+  document.getElementById('pay-status').value='paid';
+}
+function closeAddPaymentModal(){document.getElementById('addPaymentModal').classList.remove('open');}
+
+function submitAddPayment(){
+  const client=document.getElementById('pay-client').value.trim();
+  const product=document.getElementById('pay-product').value.trim();
+  const amount=parseFloat(document.getElementById('pay-amount').value);
+  const date=document.getElementById('pay-date').value;
+  const errEl=document.getElementById('pay-error');
+  if(!client||!product||!date||isNaN(amount)||amount<0){
+    errEl.textContent='Plotëso fushat e detyrueshme (emri, produkti, shuma, data).';
+    errEl.style.display='block';return;
+  }
+  const payment={
+    id:'MP'+Date.now(),
+    client,
+    email:document.getElementById('pay-email').value.trim(),
+    product,
+    amount,
+    date,
+    method:document.getElementById('pay-method').value,
+    status:document.getElementById('pay-status').value,
+    notes:document.getElementById('pay-notes').value.trim(),
+    createdAt:new Date().toISOString()
+  };
+  const all=getManualPayments();
+  all.unshift(payment);
+  saveManualPayments(all);
+  closeAddPaymentModal();
+  renderManualPayments();
+}
+
+function deleteManualPayment(id){
+  if(!confirm('Fshi këtë pagesë manuale?'))return;
+  saveManualPayments(getManualPayments().filter(p=>p.id!==id));
+  renderManualPayments();
+}
+
+function renderManualPayments(){
+  const tbody=document.getElementById('pay-table-body');if(!tbody)return;
+  const manual=getManualPayments();
+  const api=window._apiTransactions||[];
+  const statusBadgeP={paid:'<span class="badge badge-green">Suksesshëm</span>',pending:'<span class="badge badge-orange">Në pritë</span>',cancelled:'<span class="badge badge-red">Anuluar</span>'};
+  const methodLabel={whatsapp:'<span class="badge badge-green">WhatsApp</span>',cash:'<span class="badge badge-gray">Cash</span>',bank:'<span class="badge badge-gray">Bankë</span>',other:'<span class="badge badge-gray">Tjetër</span>'};
+  const manualRows=manual.map(p=>`
+    <tr style="background:rgba(125,98,190,.03)">
+      <td style="font-family:monospace;font-size:11px;color:var(--text-muted)"><span style="font-size:10px;background:var(--accent);color:#fff;border-radius:4px;padding:1px 5px">M</span> ${p.id.slice(-6)}</td>
+      <td><strong>${p.client}</strong>${p.email?`<div style="font-size:11px;color:var(--text-muted)">${p.email}</div>`:''}</td>
+      <td style="font-size:12.5px">${p.product}</td>
+      <td style="color:var(--text-muted)">${new Date(p.date+'T00:00:00').toLocaleDateString('sq-AL')}</td>
+      <td style="font-weight:800">€${parseFloat(p.amount).toFixed(0)}</td>
+      <td>${methodLabel[p.method]||p.method}</td>
+      <td>${statusBadgeP[p.status]||p.status}</td>
+      <td><button class="btn btn-ghost btn-sm" style="padding:2px 8px;font-size:11px;color:#ef4444" onclick="deleteManualPayment('${p.id}')">Fshi</button></td>
+    </tr>`).join('');
+  if(!api.length&&!manual.length){
+    tbody.innerHTML='<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka transaksione ende.</td></tr>';
+  } else {
+    tbody.innerHTML=manualRows+(window._apiPayRows||'');
+  }
+  updatePayDonutWithManual(manual,api);
+}
+
+function updatePayDonutWithManual(manual,api){
+  const allPays=[...manual,...api];
+  if(!allPays.length)return;
+  const stripeCount=api.length;
+  const manualCount=manual.filter(p=>p.status!=='cancelled').length;
+  const total=stripeCount+manualCount;
+  if(!total)return;
+  const sp=Math.round(stripeCount/total*100);
+  const mp=100-sp;
+  drawPayDonut('payChart',sp,mp);
+  const leg=document.getElementById('payLegendStripe');
+  const legM=document.getElementById('payLegendManual');
+  if(leg)leg.textContent=sp+'%';
+  if(legM)legM.textContent=mp+'%';
+}
+
+(function(){setTimeout(renderManualPayments,150);})();
+
 function onRegProductChange(sel){
   document.getElementById('rm-amount').value='';
   document.getElementById('rm-amount').focus();
@@ -2464,14 +2620,8 @@ function applyTransactions(items){
     if(leg)leg.textContent=sp+'%';
     if(legM)legM.textContent=mp+'%';
   }
-  const tbody=document.getElementById('pay-table-body');
-  if(!tbody)return;
-  if(!items.length){
-    tbody.innerHTML='<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka transaksione ende.</td></tr>';
-    return;
-  }
   const statusPay={paid:'<span class="badge badge-green">Suksesshëm</span>',pending:'<span class="badge badge-orange">Pritë</span>',cancelled:'<span class="badge badge-red">Anuluar</span>',refunded:'<span class="badge badge-red">Kthyer</span>'};
-  tbody.innerHTML=items.map(t=>`
+  window._apiPayRows=items.map(t=>`
     <tr>
       <td style="font-family:monospace;font-size:12px;color:var(--text-muted)">#${t.id}</td>
       <td><strong>${t.user?.firstName||''} ${t.user?.lastName||''}</strong><div style="font-size:11px;color:var(--text-muted)">${t.user?.email||''}</div></td>
@@ -2482,6 +2632,8 @@ function applyTransactions(items){
       <td>${statusPay[t.status]||t.status}</td>
       <td>${actBtn('receipt','Fatura')}</td>
     </tr>`).join('');
+  window._apiTransactions=items;
+  renderManualPayments();
 }
 
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.getElementById('login-screen').style.display!=='none')doLogin();});
