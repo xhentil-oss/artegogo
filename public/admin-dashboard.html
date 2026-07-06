@@ -551,9 +551,9 @@ tr:hover td{background:var(--bg)}
             </div>
             <span class="kpi-badge up">+8.5%</span>
           </div>
-          <div class="kpi-num">—</div>
+          <div class="kpi-num" id="kpi-ardhura-mujore">€0</div>
           <div class="kpi-label">Të Ardhura Mujore</div>
-          <div class="kpi-sub"></div>
+          <div class="kpi-sub" id="kpi-ardhura-mujore-period"></div>
         </div>
         <div class="kpi-card">
           <div class="kpi-top">
@@ -2227,6 +2227,10 @@ function updateFinCards(manual,api){
   d.getElementById('fin-muaj-period').textContent=monthNames[M]+' '+Y;
   d.getElementById('fin-vit').textContent=fmt(year);
   d.getElementById('fin-vit-period').textContent='Jan – '+monthNames[M]+' '+Y;
+  const kpiM=d.getElementById('kpi-ardhura-mujore');
+  if(kpiM)kpiM.textContent=fmt(month);
+  const kpiMP=d.getElementById('kpi-ardhura-mujore-period');
+  if(kpiMP)kpiMP.textContent=monthNames[M]+' '+Y;
 }
 
 function updatePayDonutWithManual(manual,api){
