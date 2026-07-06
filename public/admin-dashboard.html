@@ -2729,6 +2729,9 @@ function deleteManualReg(id){
 
 function regRowFromAPI(r){
   const st=r.orderStatus==='paid'?'confirmed':r.orderStatus==='pending'?'pending':'cancelled';
+  const confirmBtn=st!=='confirmed'?`<button class="act" title="Konfirmo" style="color:var(--green)" onclick="confirmReg(${r.orderId})"><svg class="nav-svg"><use href="#ico-check"/></svg></button>`:'';
+  const cancelBtn=st!=='cancelled'?`<button class="act" title="Anulo" style="color:var(--red)" onclick="cancelReg(${r.orderId})"><svg class="nav-svg"><use href="#ico-x"/></svg></button>`:'';
+  const rid=r.id;
   return `<tr>
     <td style="color:var(--text-muted);font-size:12px">#${r.id}</td>
     <td><strong>${r.firstName} ${r.lastName}</strong></td>
@@ -2739,8 +2742,49 @@ function regRowFromAPI(r){
     <td style="font-weight:700">€${parseFloat(r.totalAmount||0).toFixed(0)}</td>
     <td>${statusBadge(st)}</td>
     <td>${r.orderStatus==='paid'?'<span class="badge badge-purple">Stripe</span>':'<span class="badge badge-green">—</span>'}</td>
-    <td><div class="actions">${actBtn('eye','Shiko')}${actBtn('mail','Email')}</div></td>
+    <td><div class="actions"><button class="act" title="Shiko" onclick="viewReg(${rid})"><svg class="nav-svg"><use href="#ico-eye"/></svg></button><button class="act" title="Email" onclick="window.open('mailto:${r.email}')"><svg class="nav-svg"><use href="#ico-mail"/></svg></button>${confirmBtn}${cancelBtn}</div></td>
   </tr>`;
+}
+
+function viewReg(id){
+  const r=registrations.find(x=>x.id===id);
+  if(!r)return;
+  const st=r.orderStatus==='paid'?'Konfirmuar':r.orderStatus==='pending'?'Në pritë':'Anuluar';
+  const stColor=r.orderStatus==='paid'?'var(--green)':r.orderStatus==='pending'?'var(--orange)':'var(--red)';
+  const row=(label,val)=>val?`<tr><td style="color:var(--text-muted);padding:6px 0;font-size:13px;width:130px">${label}</td><td style="padding:6px 0;font-size:13px;font-weight:600">${val}</td></tr>`:'';
+  const html=`<div style="position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:center;justify-content:center" onclick="if(event.target===this)this.remove()">
+    <div style="background:var(--surface);border-radius:16px;padding:28px 32px;max-width:480px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.3);position:relative">
+      <button onclick="this.closest('[style*=fixed]').remove()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-muted)">✕</button>
+      <h3 style="margin:0 0 4px;font-size:17px">${r.firstName} ${r.lastName}</h3>
+      <div style="font-size:12px;color:${stColor};font-weight:700;margin-bottom:18px">${st}</div>
+      <table style="width:100%">
+        ${row('Email',`<a href="mailto:${r.email}" style="color:var(--accent)">${r.email}</a>`)}
+        ${row('Telefon',r.phone)}
+        ${row('Produkti',r.product?.titleSq||'—')}
+        ${row('Data',new Date(r.createdAt).toLocaleDateString('sq-AL'))}
+        ${row('Shuma','€'+parseFloat(r.totalAmount||0).toFixed(2))}
+        ${r.notes?row('Shënime',r.notes):''}
+      </table>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <a href="mailto:${r.email}" style="flex:1;text-align:center;padding:9px;border-radius:8px;background:var(--accent);color:#fff;font-size:13px;font-weight:600;text-decoration:none">✉ Dërgo Email</a>
+        ${r.orderStatus!=='paid'?`<button onclick="this.closest('[style*=fixed]').remove();confirmReg(${r.orderId})" style="flex:1;padding:9px;border-radius:8px;background:var(--green);color:#fff;font-size:13px;font-weight:600;border:none;cursor:pointer">✓ Konfirmo</button>`:''}
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html);
+}
+
+async function confirmReg(orderId){
+  if(!confirm('Konfirmo këtë regjistrim?'))return;
+  const r=await apiFetch('/api/admin/registrations/'+orderId+'/status',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:'paid'})});
+  if(r){alert('✓ Regjistrimi u konfirmua!');const d=await apiGet('/api/admin/registrations?limit=50');if(d?.items)applyRegistrations(d.items);const s=await apiGet('/api/admin/stats');if(s?.data)applyStats(s.data);}
+  else alert('Gabim gjatë konfirmimit.');
+}
+async function cancelReg(orderId){
+  if(!confirm('Anulo këtë regjistrim?'))return;
+  const r=await apiFetch('/api/admin/registrations/'+orderId+'/status',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:'cancelled'})});
+  if(r){alert('Regjistrimi u anulua.');const d=await apiGet('/api/admin/registrations?limit=50');if(d?.items)applyRegistrations(d.items);const s=await apiGet('/api/admin/stats');if(s?.data)applyStats(s.data);}
+  else alert('Gabim gjatë anulimit.');
 }
 function regRowFromManual(r){
   const st=r.status==='paid'?'confirmed':r.status==='pending'?'pending':'cancelled';
