@@ -736,10 +736,10 @@ tr:hover td{background:var(--bg)}
         </div>
       </div>
       <div class="fin-grid">
-        <div class="fin-card"><div class="fin-label">Sot</div><div class="fin-num">€1,240</div><div class="fin-period">2 Korrik 2026</div></div>
-        <div class="fin-card"><div class="fin-label">Kjo Javë</div><div class="fin-num">€8,960</div><div class="fin-period">25 Qer – 2 Kor</div></div>
-        <div class="fin-card"><div class="fin-label">Ky Muaj</div><div class="fin-num">€48,320</div><div class="fin-period">Korriku 2026</div></div>
-        <div class="fin-card"><div class="fin-label">Ky Vit</div><div class="fin-num">€384,200</div><div class="fin-period">Jan – Kor 2026</div></div>
+        <div class="fin-card"><div class="fin-label">Sot</div><div class="fin-num" id="fin-sot">€0</div><div class="fin-period" id="fin-sot-period">—</div></div>
+        <div class="fin-card"><div class="fin-label">Kjo Javë</div><div class="fin-num" id="fin-jave">€0</div><div class="fin-period" id="fin-jave-period">—</div></div>
+        <div class="fin-card"><div class="fin-label">Ky Muaj</div><div class="fin-num" id="fin-muaj">€0</div><div class="fin-period" id="fin-muaj-period">—</div></div>
+        <div class="fin-card"><div class="fin-label">Ky Vit</div><div class="fin-num" id="fin-vit">€0</div><div class="fin-period" id="fin-vit-period">—</div></div>
       </div>
       <div class="search-bar">
         <input type="text" class="search-input" placeholder="Kërko transaksionet...">
@@ -2190,6 +2190,43 @@ function renderManualPayments(){
     tbody.innerHTML=manualRows+(window._apiPayRows||'');
   }
   updatePayDonutWithManual(manual,api);
+  updateFinCards(manual,api);
+}
+
+function updateFinCards(manual,api){
+  const now=new Date();
+  const todayStr=now.toISOString().slice(0,10);
+  const startOfWeek=new Date(now);startOfWeek.setDate(now.getDate()-now.getDay()+1);startOfWeek.setHours(0,0,0,0);
+  const monthNames=['Jan','Shk','Mar','Pri','Maj','Qer','Kor','Gus','Sht','Tet','Nën','Dhj'];
+  const M=now.getMonth(),Y=now.getFullYear();
+
+  const fmt=v=>'€'+Math.round(v).toLocaleString('sq-AL');
+  const sum=(arr,fn)=>arr.reduce((s,x)=>{const v=fn(x);return s+(isNaN(v)?0:v);},0);
+
+  const manualPaid=manual.filter(p=>p.status==='paid');
+  const apiPaid=api.filter(t=>t.status==='paid');
+
+  const allPaid=[
+    ...manualPaid.map(p=>({date:p.date,amount:parseFloat(p.amount||0)})),
+    ...apiPaid.map(t=>({date:t.createdAt?.slice(0,10),amount:parseFloat(t.totalAmount||0)})),
+  ];
+
+  const today=sum(allPaid,p=>p.date===todayStr?p.amount:0);
+  const week=sum(allPaid,p=>new Date(p.date)>=startOfWeek?p.amount:0);
+  const month=sum(allPaid,p=>p.date?.startsWith(Y+'-'+String(M+1).padStart(2,'0'))?p.amount:0);
+  const year=sum(allPaid,p=>p.date?.startsWith(String(Y))?p.amount:0);
+
+  const d=document;
+  d.getElementById('fin-sot').textContent=fmt(today);
+  d.getElementById('fin-sot-period').textContent=now.toLocaleDateString('sq-AL',{day:'numeric',month:'long',year:'numeric'});
+  d.getElementById('fin-jave').textContent=fmt(week);
+  const w1=startOfWeek.toLocaleDateString('sq-AL',{day:'numeric',month:'short'});
+  const w2=now.toLocaleDateString('sq-AL',{day:'numeric',month:'short'});
+  d.getElementById('fin-jave-period').textContent=w1+' – '+w2;
+  d.getElementById('fin-muaj').textContent=fmt(month);
+  d.getElementById('fin-muaj-period').textContent=monthNames[M]+' '+Y;
+  d.getElementById('fin-vit').textContent=fmt(year);
+  d.getElementById('fin-vit-period').textContent='Jan – '+monthNames[M]+' '+Y;
 }
 
 function updatePayDonutWithManual(manual,api){
