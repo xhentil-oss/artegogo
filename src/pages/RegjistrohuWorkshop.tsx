@@ -28,9 +28,47 @@ export const RegjistrohuWorkshopPage = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [toast, setToast] = useState(false);
 
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+
   const showConfirmToast = () => {
     setToast(true);
     setTimeout(() => setToast(false), 5000);
+  };
+
+  const handleSubmit = async () => {
+    if (!firstName.trim() || !lastName.trim() || !email.trim()) {
+      setSubmitError(t('Ju lutemi plotësoni emrin, mbiemrin dhe emailin.', 'Please fill in name and email.'));
+      return;
+    }
+    setSubmitError('');
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/registrations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, lastName, email, phone, whatsapp, country, city, productType: 'workshop' }),
+      });
+      if (!res.ok) {
+        const d = await res.json().catch(() => ({}));
+        setSubmitError(d.message || t('Gabim. Provo përsëri.', 'Error. Please try again.'));
+        return;
+      }
+      setReserveOpen(true);
+      setTimeout(() => setModalVisible(true), 10);
+      showConfirmToast();
+    } catch {
+      setSubmitError(t('Gabim lidhjeje. Provo përsëri.', 'Connection error. Please try again.'));
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   useEffect(() => {
@@ -97,7 +135,7 @@ export const RegjistrohuWorkshopPage = () => {
                     <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t("Emër", "First name")}</label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
-                      <input type="text" placeholder={t("Shkruaj emrin tënd", "First name")}
+                      <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder={t("Shkruaj emrin tënd", "First name")}
                         className="w-full pl-10 pr-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
                         style={{ backgroundColor: '#fafafa' }} />
                     </div>
@@ -106,7 +144,7 @@ export const RegjistrohuWorkshopPage = () => {
                     <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t("Mbiemër", "Last name")}</label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
-                      <input type="text" placeholder={t("Shkruaj mbiemrin tënd", "Last name")}
+                      <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} placeholder={t("Shkruaj mbiemrin tënd", "Last name")}
                         className="w-full pl-10 pr-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
                         style={{ backgroundColor: '#fafafa' }} />
                     </div>
@@ -118,7 +156,7 @@ export const RegjistrohuWorkshopPage = () => {
                     <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t("Shtet", "Country")}</label>
                     <div className="relative">
                       <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" />
-                      <select className="w-full pl-10 pr-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all appearance-none"
+                      <select value={country} onChange={e => setCountry(e.target.value)} className="w-full pl-10 pr-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all appearance-none"
                         style={{ backgroundColor: '#fafafa', color: '#71717a' }}>
                         <option value="">{t("Zgjidh shtetin", "Select country")}</option>
                         <option>Shqipëri</option><option>Kosovë</option><option>Maqedoni e Veriut</option>
@@ -132,7 +170,7 @@ export const RegjistrohuWorkshopPage = () => {
                     <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t("Qytet", "City")}</label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
-                      <input type="text" placeholder={t("Shkruaj qytetin", "City")}
+                      <input type="text" value={city} onChange={e => setCity(e.target.value)} placeholder={t("Shkruaj qytetin", "City")}
                         className="w-full pl-10 pr-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
                         style={{ backgroundColor: '#fafafa' }} />
                     </div>
@@ -143,7 +181,7 @@ export const RegjistrohuWorkshopPage = () => {
                   <label className="block text-xs font-semibold text-zinc-600 mb-1.5">Email</label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
-                    <input type="email" placeholder="example@email.com"
+                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="example@email.com"
                       className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
                       style={{ backgroundColor: '#fafafa' }} />
                   </div>
@@ -153,7 +191,7 @@ export const RegjistrohuWorkshopPage = () => {
                   <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t("Nr. i celularit", "Phone number")}</label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
-                    <input type="tel" placeholder="+355 69 242 0827"
+                    <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+355 69 242 0827"
                       className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
                       style={{ backgroundColor: '#fafafa' }} />
                   </div>
@@ -163,7 +201,7 @@ export const RegjistrohuWorkshopPage = () => {
                   <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t("Nr. i WhatsApp", "WhatsApp number")}</label>
                   <div className="relative">
                     <MessageCircle className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
-                    <input type="tel" placeholder={t("Shkruaj të njëjtin numër nëse përputhet me nr. tënd të celularit", "Same as phone if applicable")}
+                    <input type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder={t("Shkruaj të njëjtin numër nëse përputhet me nr. tënd të celularit", "Same as phone if applicable")}
                       className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
                       style={{ backgroundColor: '#fafafa' }} />
                   </div>
@@ -209,13 +247,18 @@ export const RegjistrohuWorkshopPage = () => {
               </span>
             </label>
 
+            {submitError && (
+              <div className="px-4 py-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs text-center">{submitError}</div>
+            )}
+
             {/* Button */}
             <button
-              onClick={() => { setReserveOpen(true); setTimeout(() => setModalVisible(true), 10); showConfirmToast(); }}
-              className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-white font-bold text-sm transition-all hover:scale-105"
+              onClick={handleSubmit}
+              disabled={submitting}
+              className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-white font-bold text-sm transition-all hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
               style={{ backgroundColor: '#7c3aed' }}>
-              {t("Regjistrohu", "Register")}
-              <ChevronRight className="w-4 h-4" />
+              {submitting ? t("Duke dërguar...", "Sending...") : t("Regjistrohu", "Register")}
+              {!submitting && <ChevronRight className="w-4 h-4" />}
             </button>
 
             <p className="text-xs text-zinc-400 text-center leading-relaxed">
