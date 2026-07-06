@@ -26,6 +26,12 @@ export const RegjistrohuRetreatPage = () => {
   const [agreed, setAgreed] = useState(false);
   const [reserveOpen, setReserveOpen] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [toast, setToast] = useState(false);
+
+  const showConfirmToast = () => {
+    setToast(true);
+    setTimeout(() => setToast(false), 5000);
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -227,7 +233,7 @@ export const RegjistrohuRetreatPage = () => {
 
             {/* Button */}
             <button
-              onClick={() => { setReserveOpen(true); setTimeout(() => setModalVisible(true), 10); }}
+              onClick={() => { setReserveOpen(true); setTimeout(() => setModalVisible(true), 10); showConfirmToast(); }}
               className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-white font-bold text-sm transition-all hover:scale-105"
               style={{ backgroundColor: '#7c3aed' }}>
               {t("Regjistrohu", "Register")}
@@ -301,6 +307,32 @@ export const RegjistrohuRetreatPage = () => {
           </div>
 
         </div>
+      </div>
+
+      {/* Email confirmation toast */}
+      <div
+        className="fixed bottom-6 left-1/2 z-[9999] flex items-start gap-3 rounded-2xl px-5 py-4 shadow-xl transition-all duration-500"
+        style={{
+          transform: toast ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(120px)',
+          opacity: toast ? 1 : 0,
+          pointerEvents: toast ? 'auto' : 'none',
+          backgroundColor: '#fff',
+          border: '1.5px solid #ede9fe',
+          maxWidth: '90vw',
+          width: 380,
+        }}>
+        <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#ede9fe' }}>
+          <Mail className="w-5 h-5" style={{ color: '#7c3aed' }} />
+        </div>
+        <div>
+          <p className="font-bold text-zinc-800 text-sm">{t("Email konfirmimi", "Confirmation email")}</p>
+          <p className="text-zinc-500 text-xs leading-relaxed mt-0.5">
+            {t("Do të ju dërgojmë një email konfirmimi pasi të kryeni regjistrimin tuaj.", "We will send you a confirmation email after you complete your registration.")}
+          </p>
+        </div>
+        <button onClick={() => setToast(false)} className="ml-auto shrink-0 text-zinc-300 hover:text-zinc-500 transition-colors">
+          <X className="w-4 h-4" />
+        </button>
       </div>
 
       {/* Reserve Modal */}
