@@ -1352,7 +1352,7 @@ function navigate(pageId){
   document.querySelectorAll('.nav-item').forEach(n=>{if(n.dataset.page===pageId)n.classList.add('active')});
   document.getElementById('breadcrumb-title').textContent=breadcrumbs[pageId]||pageId;
   if(pageId==='clients')renderClients(clients);
-  if(pageId==='payments')renderPayments();
+  if(pageId==='payments')renderManualPayments();
   if(pageId==='registrations')renderRegistrations(registrations);
   if(pageId==='meditations')loadMeditations();
   if(pageId==='events')renderEvents();
