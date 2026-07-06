@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useAuth } from "@/context/AuthContext";
 
 export const SignUpPage = () => {
   const [showPass, setShowPass] = useState(false);
@@ -11,6 +12,9 @@ export const SignUpPage = () => {
   const [loading, setLoading] = useState(false);
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { refetch } = useAuth();
+  const redirectTo = searchParams.get("redirect") || "/eventet/trajnime-online/platforma";
 
   const update = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((f) => ({ ...f, [field]: e.target.value }));
@@ -43,7 +47,8 @@ export const SignUpPage = () => {
         return;
       }
       setSuccess(data.message || t("Llogaria u krijua! Konfirmo emailin tënd.", "Account created! Please confirm your email."));
-      setTimeout(() => navigate("/login"), 3000);
+      await refetch();
+      setTimeout(() => navigate(redirectTo), 2000);
     } catch {
       setError(t("Gabim lidhjeje. Provo përsëri.", "Connection error. Please try again."));
     } finally {

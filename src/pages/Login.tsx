@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Eye, EyeOff, Mail, Lock, ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useAuth } from "@/context/AuthContext";
 
 export const LoginPage = () => {
   const [showPass, setShowPass] = useState(false);
@@ -15,6 +16,9 @@ export const LoginPage = () => {
   const [forgotError, setForgotError] = useState("");
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { refetch } = useAuth();
+  const redirectTo = searchParams.get("redirect") || "/";
 
   const handleForgot = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,7 +56,8 @@ export const LoginPage = () => {
         setError(data.message || t("Email ose fjalëkalim i gabuar.", "Invalid email or password."));
         return;
       }
-      navigate("/");
+      await refetch();
+      navigate(redirectTo);
     } catch {
       setError(t("Gabim lidhjeje. Provo përsëri.", "Connection error. Please try again."));
     } finally {

@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, ShoppingCart, User } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, ChevronDown, User, LogOut, PlayCircle } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
+import { useAuth } from "@/context/AuthContext";
 
 type DropdownItem = { label: string; href: string };
 type NavItem = {
@@ -213,7 +214,15 @@ export const Navbar = () => {
   const [bannerVisible, setBannerVisible] = useState(true);
   const { totalItems, setCartOpen } = useCart();
   const { lang } = useLanguage();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const navItems = lang === "al" ? navItemsAL : navItemsEN;
+
+  const handleLogout = async () => {
+    await logout();
+    setMobileOpen(false);
+    navigate("/");
+  };
 
   return (
       <header className="sticky top-0 z-50 backdrop-blur-sm border-b" style={{ backgroundColor: 'rgba(255,255,255,0.97)', borderColor: 'rgba(0,0,0,0.08)' }}>
@@ -271,19 +280,46 @@ export const Navbar = () => {
         {/* Desktop CTA */}
         <div className="hidden xl:flex items-center gap-3 shrink-0">
           <LangToggle />
-          <Link
-            to="/login"
-            className="flex items-center gap-1.5 text-sm font-medium text-zinc-700 hover:text-black px-3 py-2 rounded-lg hover:bg-gray-100 transition-all"
-          >
-            <User size={16} />
-            {lang === "al" ? "Hyrja" : "Log In"}
-          </Link>
-          <Link
-            to="/signup"
-            className="bg-black text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-zinc-800 transition-all"
-          >
-            {lang === "al" ? "Regjistrohu" : "Sign Up"}
-          </Link>
+          {user ? (
+            <>
+              <Link
+                to="/eventet/trajnime-online/platforma"
+                className="flex items-center gap-1.5 text-sm font-medium text-violet-700 hover:text-violet-900 px-3 py-2 rounded-lg hover:bg-violet-50 transition-all"
+              >
+                <PlayCircle size={16} />
+                {lang === "al" ? "Trajnimet" : "My Training"}
+              </Link>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-violet-50 border border-violet-100">
+                <div className="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                  {user.firstName?.[0]?.toUpperCase() ?? <User size={14} />}
+                </div>
+                <span className="text-sm font-medium text-zinc-700">{user.firstName}</span>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-red-600 px-3 py-2 rounded-lg hover:bg-red-50 transition-all"
+              >
+                <LogOut size={15} />
+                {lang === "al" ? "Dil" : "Log Out"}
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="flex items-center gap-1.5 text-sm font-medium text-zinc-700 hover:text-black px-3 py-2 rounded-lg hover:bg-gray-100 transition-all"
+              >
+                <User size={16} />
+                {lang === "al" ? "Hyrja" : "Log In"}
+              </Link>
+              <Link
+                to="/signup"
+                className="bg-black text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-zinc-800 transition-all"
+              >
+                {lang === "al" ? "Regjistrohu" : "Sign Up"}
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile right actions */}
@@ -355,20 +391,51 @@ export const Navbar = () => {
             <div className="flex justify-center py-2">
               <LangToggle />
             </div>
-            <Link
-              to="/login"
-              onClick={() => setMobileOpen(false)}
-              className="block text-center border border-gray-200 text-zinc-700 text-sm font-semibold px-4 py-3 rounded-lg hover:bg-gray-50 transition-all"
-            >
-              {lang === "al" ? "Hyrja" : "Log In"}
-            </Link>
-            <Link
-              to="/signup"
-              onClick={() => setMobileOpen(false)}
-              className="block text-center bg-black text-white text-sm font-semibold px-4 py-3 rounded-lg hover:bg-zinc-800 transition-all"
-            >
-              {lang === "al" ? "Regjistrohu" : "Sign Up"}
-            </Link>
+            {user ? (
+              <>
+                <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-violet-50 border border-violet-100">
+                  <div className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center text-white text-sm font-bold shrink-0">
+                    {user.firstName?.[0]?.toUpperCase()}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-zinc-800">{user.firstName} {user.lastName}</p>
+                    <p className="text-xs text-zinc-500">{user.email}</p>
+                  </div>
+                </div>
+                <Link
+                  to="/eventet/trajnime-online/platforma"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2 text-center justify-center bg-violet-600 text-white text-sm font-semibold px-4 py-3 rounded-lg hover:bg-violet-700 transition-all"
+                >
+                  <PlayCircle size={16} />
+                  {lang === "al" ? "Hyr në Trajnime" : "Access Training"}
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 justify-center border border-red-200 text-red-600 text-sm font-semibold px-4 py-3 rounded-lg hover:bg-red-50 transition-all"
+                >
+                  <LogOut size={15} />
+                  {lang === "al" ? "Dil nga llogaria" : "Log Out"}
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  onClick={() => setMobileOpen(false)}
+                  className="block text-center border border-gray-200 text-zinc-700 text-sm font-semibold px-4 py-3 rounded-lg hover:bg-gray-50 transition-all"
+                >
+                  {lang === "al" ? "Hyrja" : "Log In"}
+                </Link>
+                <Link
+                  to="/signup"
+                  onClick={() => setMobileOpen(false)}
+                  className="block text-center bg-black text-white text-sm font-semibold px-4 py-3 rounded-lg hover:bg-zinc-800 transition-all"
+                >
+                  {lang === "al" ? "Regjistrohu" : "Sign Up"}
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

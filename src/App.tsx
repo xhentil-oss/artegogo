@@ -1,5 +1,18 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { AuthProvider, useAuth } from "@/context/AuthContext";
+
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="w-8 h-8 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin" />
+    </div>
+  );
+  if (!user) return <Navigate to={`/login?redirect=${encodeURIComponent(location.pathname)}`} replace />;
+  return <>{children}</>;
+};
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -72,6 +85,7 @@ export const App = () => {
   return (
     <BrowserRouter>
     <LanguageProvider>
+    <AuthProvider>
     <CartProvider>
       <ScrollToTop />
       <Routes>
@@ -89,7 +103,7 @@ export const App = () => {
         <Route path="/shop/regjistrohu-workshop" element={<Layout><RegjistrohuWorkshopPage /></Layout>} />
         <Route path="/shop/regjistrohu-workshop/pagesa" element={<Layout><TrajnimePagesaPage /></Layout>} />
         <Route path="/eventet/trajnime-online" element={<Layout><TrajnimeOnlinePage /></Layout>} />
-        <Route path="/eventet/trajnime-online/platforma" element={<Layout><PlatformaTeachablePage /></Layout>} />
+        <Route path="/eventet/trajnime-online/platforma" element={<Layout><ProtectedRoute><PlatformaTeachablePage /></ProtectedRoute></Layout>} />
         <Route path="/eventet/workshope" element={<Layout><WorkshopePage /></Layout>} />
         <Route path="/live" element={<Layout><LivePage /></Layout>} />
         <Route path="/rezultatet" element={<Navigate to="/rezultatet/testimonials" replace />} />
@@ -114,6 +128,7 @@ export const App = () => {
       </Routes>
       <CartDrawer />
     </CartProvider>
+    </AuthProvider>
     </LanguageProvider>
     </BrowserRouter>
   );

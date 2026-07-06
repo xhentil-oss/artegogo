@@ -1,9 +1,12 @@
 ﻿import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 export const TrajnimeOnlinePage = () => {
   const { t, lang } = useLanguage();
+  const { user } = useAuth();
   const [openMed, setOpenMed] = useState<number | null>(null);
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
@@ -222,14 +225,33 @@ const pillars = [
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-2">
-            <a href="/signup"
-              className="inline-flex items-center gap-1.5 text-white px-3 py-1.5 text-xs md:px-8 md:py-4 md:text-base rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
-              style={{ backgroundColor: "#4e29c5", fontWeight: 600 }}>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-              </svg>
-              {t("Regjistrohu Tani", "Register Now")}
-            </a>
+            {user ? (
+              <>
+                <div className="mb-3 flex items-center gap-2 px-3 py-1.5 rounded-xl" style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.25)" }}>
+                  <svg className="w-4 h-4 text-green-300" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"/>
+                  </svg>
+                  <span className="text-white text-xs font-semibold">{t(`Mirë se vjen, ${user.firstName}! Ke akses të plotë.`, `Welcome, ${user.firstName}! You have full access.`)}</span>
+                </div>
+                <Link to="/eventet/trajnime-online/platforma"
+                  className="inline-flex items-center gap-1.5 text-white px-3 py-1.5 text-xs md:px-8 md:py-4 md:text-base rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
+                  style={{ backgroundColor: "#4e29c5", fontWeight: 600 }}>
+                  <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+                  </svg>
+                  {t("Hyr në Platformë", "Access Platform")}
+                </Link>
+              </>
+            ) : (
+              <Link to="/signup"
+                className="inline-flex items-center gap-1.5 text-white px-3 py-1.5 text-xs md:px-8 md:py-4 md:text-base rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
+                style={{ backgroundColor: "#4e29c5", fontWeight: 600 }}>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                {t("Regjistrohu Tani", "Register Now")}
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -474,11 +496,19 @@ const pillars = [
               </p>
               <p className="font-bold text-violet-900 md:text-white" style={{ fontSize: "clamp(1.8rem, 5vw, 2.5rem)", lineHeight: 1.1 }}>320€</p>
             </div>
-            <a href="/signup"
-              className="inline-flex items-center gap-2 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shrink-0"
-              style={{ backgroundColor: "#7c3aed", fontSize: 14 }}>
-              {t("Regjistrohu Tani", "Register Now")}
-            </a>
+            {user ? (
+              <Link to="/eventet/trajnime-online/platforma"
+                className="inline-flex items-center gap-2 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shrink-0"
+                style={{ backgroundColor: "#7c3aed", fontSize: 14 }}>
+                {t("Hyr në Platformë →", "Access Platform →")}
+              </Link>
+            ) : (
+              <Link to="/signup"
+                className="inline-flex items-center gap-2 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shrink-0"
+                style={{ backgroundColor: "#7c3aed", fontSize: 14 }}>
+                {t("Regjistrohu Tani", "Register Now")}
+              </Link>
+            )}
           </div>
 
           {/* Stats row */}
@@ -944,11 +974,19 @@ const pillars = [
             <p className="font-bold text-white text-3xl md:text-5xl" style={{ lineHeight: 1, fontFamily: "'Inter', sans-serif", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>
               320€
             </p>
-            <a href="/signup"
-              className="inline-flex items-center gap-2 font-bold px-7 py-3.5 rounded-xl transition-all duration-300 hover:scale-105 w-full md:w-auto justify-center text-sm md:text-base"
-              style={{ background: "#ffffff", color: "#4e29c5" }}>
-              {t("Regjistrohu Tani", "Register Now")} →
-            </a>
+            {user ? (
+              <Link to="/eventet/trajnime-online/platforma"
+                className="inline-flex items-center gap-2 font-bold px-7 py-3.5 rounded-xl transition-all duration-300 hover:scale-105 w-full md:w-auto justify-center text-sm md:text-base"
+                style={{ background: "#ffffff", color: "#4e29c5" }}>
+                {t("Hyr në Platformë", "Access Platform")} →
+              </Link>
+            ) : (
+              <Link to="/signup"
+                className="inline-flex items-center gap-2 font-bold px-7 py-3.5 rounded-xl transition-all duration-300 hover:scale-105 w-full md:w-auto justify-center text-sm md:text-base"
+                style={{ background: "#ffffff", color: "#4e29c5" }}>
+                {t("Regjistrohu Tani", "Register Now")} →
+              </Link>
+            )}
             <p className="text-white text-sm md:text-base" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.6)" }}>
               {t("Vendet janë të limituara!", "Spots are limited!")}
             </p>
