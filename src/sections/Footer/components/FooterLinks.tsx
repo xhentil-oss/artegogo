@@ -89,13 +89,17 @@ export const FooterLinks = () => {
         </div>
       </div>
 
-      <div className="border-t border-purple-400/30 pt-6 flex flex-col md:flex-row items-center justify-between gap-2">
+      <div className="border-t border-purple-400/30 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
         <p className="text-white text-base leading-relaxed">
           {t("© 2026 by ", "© 2026 by ")}
           <a href="https://bos.al/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">Bos.al</a>
           {t(". Të gjitha të drejtat e rezervuara.", ". All rights reserved.")}
         </p>
-        <p className="text-white text-base leading-relaxed">Dr. Marvin Bundo &amp; Dr. Artemisa Gogollari</p>
+        <div className="flex flex-wrap gap-4 justify-center">
+          <Link to="/kushtet" className="text-purple-200 hover:text-white text-sm transition-colors">{t("Kushtet e Përdorimit", "Terms of Use")}</Link>
+          <Link to="/kushtet#privatesia" className="text-purple-200 hover:text-white text-sm transition-colors">{t("Privatësia", "Privacy")}</Link>
+          <Link to="/kushtet#rimbursimet" className="text-purple-200 hover:text-white text-sm transition-colors">{t("Rimbursimet", "Refunds")}</Link>
+        </div>
       </div>
     </div>
   );

@@ -74,6 +74,7 @@ const CheckoutForm = () => {
 
   const [method, setMethod] = useState<PayMethod>("card");
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
+  const [agreed, setAgreed] = useState(false);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -90,6 +91,10 @@ const CheckoutForm = () => {
   const handleCardSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!stripe || !elements) return;
+    if (!agreed) {
+      setError(t("Duhet të pranoni Kushtet e Përdorimit dhe Politikën e Privatësisë.", "You must accept the Terms of Use and Privacy Policy."));
+      return;
+    }
     setLoading(true);
     setError(null);
 
@@ -287,9 +292,21 @@ const CheckoutForm = () => {
                   )}
 
                   <form onSubmit={handleCardSubmit}>
+                    {/* Terms checkbox */}
+                    <label className="flex items-start gap-2.5 mb-4 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        checked={agreed}
+                        onChange={e => setAgreed(e.target.checked)}
+                        className="mt-0.5 w-4 h-4 rounded accent-violet-600 shrink-0"
+                      />
+                      <span className="text-xs text-zinc-600 leading-relaxed">
+                        {t("Kam lexuar dhe pranoj ", "I have read and accept the ")}<a href="/kushtet" target="_blank" className="text-violet-600 underline font-semibold">{t("Kushtet e Përdorimit", "Terms of Use")}</a>{t(", ", ", ")}<a href="/kushtet#privatesia" target="_blank" className="text-violet-600 underline font-semibold">{t("Politikën e Privatësisë", "Privacy Policy")}</a>{t(" dhe ", " and ")}<a href="/kushtet#rimbursimet" target="_blank" className="text-violet-600 underline font-semibold">{t("Politikën e Rimbursimit", "Refund Policy")}</a>.
+                      </span>
+                    </label>
                     <button
                       type="submit"
-                      disabled={loading || !stripe}
+                      disabled={loading || !stripe || !agreed}
                       className="w-full flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 disabled:opacity-60 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-violet-200 text-sm md:text-base"
                       style={lemon}
                     >
