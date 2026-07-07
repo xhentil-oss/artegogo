@@ -96,9 +96,9 @@ export const FooterLinks = () => {
           {t(". Të gjitha të drejtat e rezervuara.", ". All rights reserved.")}
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
-          <Link to="/kushtet" className="text-purple-200 hover:text-white text-sm transition-colors">{t("Kushtet e Përdorimit", "Terms of Use")}</Link>
-          <Link to="/kushtet#privatesia" className="text-purple-200 hover:text-white text-sm transition-colors">{t("Privatësia", "Privacy")}</Link>
-          <Link to="/kushtet#rimbursimet" className="text-purple-200 hover:text-white text-sm transition-colors">{t("Rimbursimet", "Refunds")}</Link>
+          <Link to="/kushtet" className="text-white hover:text-purple-200 text-sm transition-colors">{t("Kushtet e Përdorimit", "Terms of Use")}</Link>
+          <Link to="/kushtet#privatesia" className="text-white hover:text-purple-200 text-sm transition-colors">{t("Privatësia", "Privacy")}</Link>
+          <Link to="/kushtet#rimbursimet" className="text-white hover:text-purple-200 text-sm transition-colors">{t("Rimbursimet", "Refunds")}</Link>
         </div>
       </div>
     </div>
