@@ -49,6 +49,10 @@ export const RegjistrohuRetreatPage = () => {
       setSubmitError(t('Ju lutemi plotësoni emrin, mbiemrin dhe emailin.', 'Please fill in name and email.'));
       return;
     }
+    if (!agreed) {
+      setSubmitError(t('Duhet të pranoni Kushtet e Përdorimit dhe Politikën e Privatësisë.', 'You must accept the Terms of Use and Privacy Policy.'));
+      return;
+    }
     setSubmitError('');
     setSubmitting(true);
     try {
@@ -266,7 +270,12 @@ export const RegjistrohuRetreatPage = () => {
               <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)}
                 className="mt-0.5 w-4 h-4 rounded shrink-0 cursor-pointer accent-violet-600" />
               <span className="text-xs text-zinc-600 leading-relaxed">
-                {t("Duke plotësuar këtë formular, konfirmoj se të dhënat e mia janë të sakta dhe dëshiroj të regjistrohem për retreatin.", "By completing this form, I confirm that my details are accurate and I wish to register for the retreat.")}
+                {t("Kam lexuar dhe pranoj ", "I have read and accept the ")}
+                <a href="/kushtet" target="_blank" className="text-violet-600 underline font-semibold">{t("Kushtet e Përdorimit", "Terms of Use")}</a>
+                {t(", ", ", ")}
+                <a href="/kushtet#privatesia" target="_blank" className="text-violet-600 underline font-semibold">{t("Politikën e Privatësisë", "Privacy Policy")}</a>
+                {t(" dhe ", " and ")}
+                <a href="/kushtet#rimbursimet" target="_blank" className="text-violet-600 underline font-semibold">{t("Politikën e Rimbursimit", "Refund Policy")}</a>.
               </span>
             </label>
 
