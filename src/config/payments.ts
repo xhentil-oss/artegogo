@@ -27,7 +27,7 @@
  * ──────────────────────────────────────────────────────────────
  */
 
-export const STRIPE_PUBLISHABLE_KEY = "pk_test_REPLACE_WITH_YOUR_STRIPE_KEY";
+export const STRIPE_PUBLISHABLE_KEY = "pk_live_51QrMydK5Wd5lNzSTxzko1OghEAnDp5xzeBT2T13RTBqqiW2LuA3UZCzGXQQS9E2ia8Yilr19tJd8M4QSn4hNT7dS00yIjFu6EB";
 
 export const PAYPAL_CLIENT_ID = "REPLACE_WITH_YOUR_PAYPAL_CLIENT_ID";
 
