@@ -22,13 +22,35 @@ const PayForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const amount  = parseFloat(params.get('amount') ?? '0') || 0;
-  const name    = params.get('name')  ?? '';
-  const email   = params.get('email') ?? '';
+  const baseAmount = parseFloat(params.get('amount') ?? '0') || 0;
+  const name       = params.get('name')  ?? '';
+  const email      = params.get('email') ?? '';
 
-  const [loading, setLoading]   = useState(false);
-  const [error,   setError]     = useState<string | null>(null);
-  const [success, setSuccess]   = useState(false);
+  const [loading,      setLoading]      = useState(false);
+  const [error,        setError]        = useState<string | null>(null);
+  const [success,      setSuccess]      = useState(false);
+  const [couponCode,   setCouponCode]   = useState('');
+  const [couponMsg,    setCouponMsg]    = useState<string | null>(null);
+  const [discount,     setDiscount]     = useState(0);
+  const [couponLoading,setCouponLoading]= useState(false);
+  const [appliedCode,  setAppliedCode]  = useState('');
+
+  const amount = baseAmount - Math.round(baseAmount * discount / 100);
+
+  const applyCoupon = async () => {
+    if (!couponCode.trim()) return;
+    setCouponLoading(true); setCouponMsg(null);
+    try {
+      const res  = await fetch('/api/coupons/validate', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: couponCode }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setCouponMsg(data.message ?? t('Kupon i pavlefshëm.', 'Invalid coupon.')); setDiscount(0); }
+      else { setDiscount(data.data.discountPercent); setAppliedCode(couponCode); setCouponMsg(`✓ −${data.data.discountPercent}% u aplikua!`); }
+    } catch { setCouponMsg(t('Gabim. Provo përsëri.', 'Error. Try again.')); }
+    finally { setCouponLoading(false); }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,7 +75,10 @@ const PayForm = () => {
       });
 
       if (stripeErr) { setError(stripeErr.message ?? t('Pagesa dështoi.', 'Payment failed.')); setLoading(false); return; }
-      if (paymentIntent?.status === 'succeeded') setSuccess(true);
+      if (paymentIntent?.status === 'succeeded') {
+        if (appliedCode) await fetch('/api/coupons/use', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ code: appliedCode }) });
+        setSuccess(true);
+      }
     } catch {
       setError(t('Gabim lidhjeje. Provo përsëri.', 'Connection error. Please try again.'));
     } finally {
@@ -95,6 +120,22 @@ const PayForm = () => {
                   <CardElement options={CARD_STYLE} />
                 </div>
                 <p className="text-xs text-zinc-400">{t('Karta juaj është e sigurt — e enkriptuar nga Stripe.', 'Your card is secure — encrypted by Stripe.')}</p>
+
+                {/* Coupon */}
+                <div>
+                  <p className="text-xs font-semibold text-zinc-600 mb-1.5">{t('Ke kupon zbritjeje?', 'Have a discount coupon?')}</p>
+                  <div className="flex gap-2">
+                    <input value={couponCode} onChange={e => setCouponCode(e.target.value.toUpperCase())}
+                      placeholder="KOD-KUPONI"
+                      className="flex-1 border border-gray-200 rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-400 uppercase tracking-widest" />
+                    <button type="button" onClick={applyCoupon} disabled={couponLoading || discount > 0}
+                      className="px-4 py-2 rounded-xl text-white text-sm font-semibold disabled:opacity-50 transition"
+                      style={{ backgroundColor: '#7c3aed' }}>
+                      {couponLoading ? '...' : t('Apliko', 'Apply')}
+                    </button>
+                  </div>
+                  {couponMsg && <p className={`text-xs mt-1 ${discount > 0 ? 'text-green-600' : 'text-rose-500'}`}>{couponMsg}</p>}
+                </div>
 
                 {error && (
                   <div className="flex items-center gap-2 text-rose-600 bg-rose-50 border border-rose-200 rounded-xl px-4 py-3 text-sm">

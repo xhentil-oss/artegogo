@@ -66,9 +66,8 @@ export const RegjistrohuRetreatPage = () => {
         setSubmitError(d.message || t('Gabim. Provo përsëri.', 'Error. Please try again.'));
         return;
       }
-      setReserveOpen(true);
-      setTimeout(() => setModalVisible(true), 10);
-      showConfirmToast();
+      const params = new URLSearchParams({ amount: '500', name: `${firstName} ${lastName}`, email });
+      navigate(`/eventet/retreat/pagesa?${params.toString()}`);
     } catch {
       setSubmitError(t('Gabim lidhjeje. Provo përsëri.', 'Connection error. Please try again.'));
     } finally {
@@ -437,7 +436,7 @@ export const RegjistrohuRetreatPage = () => {
                     {t("Plotëso formularin dhe kryej pagesën menjëherë për të siguruar vendin tënd.", "Fill the form and complete payment immediately to secure your spot.")}
                   </p>
                   <button
-                    onClick={() => { setReserveOpen(false); navigate('/eventet/retreat/pagesa'); }}
+                    onClick={() => { const p = new URLSearchParams({ amount: '500', name: `${firstName} ${lastName}`, email }); setReserveOpen(false); navigate(`/eventet/retreat/pagesa?${p.toString()}`); }}
                     className="mt-auto w-full flex items-center justify-center gap-2 py-3 rounded-xl text-white font-bold transition-all hover:scale-105"
                     style={{ backgroundColor: '#7c3aed', fontSize: 15 }}>
                     {t("Regjistrohu online", "Register online")}
