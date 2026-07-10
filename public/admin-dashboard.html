@@ -430,6 +430,9 @@ tr:hover td{background:var(--bg)}
       <div class="nav-item" data-page="payments">
         <svg class="nav-svg"><use href="#ico-payments"/></svg> Pagesat
       </div>
+      <div class="nav-item" data-page="coupons">
+        <svg class="nav-svg"><use href="#ico-ticket"/></svg> Kuponat
+      </div>
       <div class="nav-item" data-page="events">
         <svg class="nav-svg"><use href="#ico-events"/></svg> Eventet
       </div>
@@ -1015,6 +1018,78 @@ tr:hover td{background:var(--bg)}
       </div>
     </section>
 
+    <!-- ═══ COUPONS ═══ -->
+    <section class="page" id="page-coupons">
+      <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+        <div>
+          <div class="page-title">Kuponat e Zbritjes</div>
+          <div class="page-sub">Krijo dhe menaxho kuponat për zbritje në pagesa</div>
+        </div>
+        <button class="btn btn-primary" onclick="openCouponModal()">
+          <svg class="nav-svg" style="width:15px;height:15px"><use href="#ico-ticket"/></svg> Kupon i ri
+        </button>
+      </div>
+
+      <!-- Stats chips -->
+      <div class="stat-chips" id="coupon-stats" style="margin-bottom:18px">
+        <div class="stat-chip"><div class="stat-chip-num" id="c-stat-total">—</div><div class="stat-chip-label">Gjithsej</div></div>
+        <div class="stat-chip"><div class="stat-chip-num" id="c-stat-active">—</div><div class="stat-chip-label">Aktiv</div></div>
+        <div class="stat-chip"><div class="stat-chip-num" id="c-stat-used">—</div><div class="stat-chip-label">Përdorur</div></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="table-wrap">
+          <table id="coupon-table">
+            <thead>
+              <tr>
+                <th>Kodi</th>
+                <th>Zbritja</th>
+                <th>Përdorur / Max</th>
+                <th>Skadon</th>
+                <th>Statusi</th>
+                <th>Krijuar</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="coupon-tbody">
+              <tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:32px">Duke ngarkuar…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coupon Modal -->
+    <div class="modal-overlay" id="coupon-modal">
+      <div class="modal" style="width:440px">
+        <div class="modal-header">
+          <div class="modal-title">Kupon i ri</div>
+          <button class="modal-close" onclick="closeCouponModal()">&#x2715;</button>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Kodi (p.sh. SUMMER20)</label>
+          <input class="form-input" id="c-code" placeholder="KOD-KUPONI" style="text-transform:uppercase;letter-spacing:2px;font-weight:700">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Zbritja %</label>
+          <input class="form-input" id="c-pct" type="number" min="1" max="100" placeholder="20">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Perdorime maksimale</label>
+          <input class="form-input" id="c-max" type="number" min="1" placeholder="1">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Skadon më (opsionale)</label>
+          <input class="form-input" id="c-exp" type="datetime-local">
+        </div>
+        <div id="c-err" style="color:var(--red);font-size:13px;margin-bottom:10px;display:none"></div>
+        <div style="display:flex;gap:10px;justify-content:flex-end">
+          <button class="btn btn-ghost" onclick="closeCouponModal()">Anulo</button>
+          <button class="btn btn-primary" onclick="saveCoupon()">Krijo kuponin</button>
+        </div>
+      </div>
+    </div>
+
     <!-- ═══ SETTINGS ═══ -->
     <section class="page" id="page-settings">
       <div class="page-header">
@@ -1465,7 +1540,7 @@ let clients=[];
 let registrations=[];
 let transactions=[];
 
-const breadcrumbs={dashboard:'Dashboard',registrations:'Regjistrimet',clients:'Klientët',payments:'Pagesat',events:'Eventet',online:'Trajnimet Online',meditations:'Meditimet',blog:'Blog',shop:'Shop / Librat',marketing:'Marketing',settings:'Cilësimet',live:'Live Zoom'};
+const breadcrumbs={dashboard:'Dashboard',registrations:'Regjistrimet',clients:'Klientët',payments:'Pagesat',coupons:'Kuponat',events:'Eventet',online:'Trajnimet Online',meditations:'Meditimet',blog:'Blog',shop:'Shop / Librat',marketing:'Marketing',settings:'Cilësimet',live:'Live Zoom'};
 
 function navigate(pageId){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -1481,6 +1556,7 @@ function navigate(pageId){
   if(pageId==='events')renderEvents();
   if(pageId==='blog')loadBlog();
   if(pageId==='shop')renderProducts();
+  if(pageId==='coupons')loadCoupons();
 }
 document.querySelectorAll('.nav-item[data-page]').forEach(item=>{
   item.addEventListener('click',()=>navigate(item.dataset.page));
@@ -3026,6 +3102,125 @@ document.querySelectorAll('.nav-item[data-page]').forEach(item=>{
   // Also try on page load
   loadCfg();
 })();
+
+// ══════════════════════════════════════
+//  COUPONS
+// ══════════════════════════════════════
+let couponsData = [];
+
+async function loadCoupons() {
+  const tbody = document.getElementById('coupon-tbody');
+  tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:32px">Duke ngarkuar…</td></tr>';
+  try {
+    const token = localStorage.getItem('ag_token');
+    const res = await fetch('/api/coupons', { headers: { Authorization: 'Bearer ' + token } });
+    if (!res.ok) throw new Error('auth');
+    const data = await res.json();
+    couponsData = data.data || [];
+    renderCoupons();
+  } catch(e) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--red);padding:32px">Gabim gjatë ngarkimit.</td></tr>';
+  }
+}
+
+function renderCoupons() {
+  const tbody = document.getElementById('coupon-tbody');
+  const total = couponsData.length;
+  const active = couponsData.filter(c => c.isActive).length;
+  const used = couponsData.reduce((s, c) => s + (c.usedCount || 0), 0);
+  document.getElementById('c-stat-total').textContent = total;
+  document.getElementById('c-stat-active').textContent = active;
+  document.getElementById('c-stat-used').textContent = used;
+
+  if (!total) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:32px">Nuk ka kupona akoma.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = couponsData.map(c => {
+    const exp = c.expiresAt ? new Date(c.expiresAt).toLocaleDateString('sq-AL') : '—';
+    const created = new Date(c.createdAt).toLocaleDateString('sq-AL');
+    const usageLeft = c.maxUses - (c.usedCount || 0);
+    const statusBadge = c.isActive
+      ? '<span class="badge badge-green">Aktiv</span>'
+      : '<span class="badge badge-gray">Joaktiv</span>';
+    const toggleTitle = c.isActive ? 'Çaktivizo' : 'Aktivizo';
+    const toggleIcon = c.isActive ? 'x' : 'check';
+    return `<tr>
+      <td><code style="font-size:13px;font-weight:700;letter-spacing:1.5px;color:var(--accent)">${c.code}</code></td>
+      <td><span class="badge badge-purple">−${c.discountPercent}%</span></td>
+      <td style="font-variant-numeric:tabular-nums">${c.usedCount || 0} / ${c.maxUses} <span style="font-size:11px;color:var(--text-muted)">(${usageLeft} mbeten)</span></td>
+      <td>${exp}</td>
+      <td>${statusBadge}</td>
+      <td style="color:var(--text-muted);font-size:12px">${created}</td>
+      <td>
+        <div class="actions">
+          <button class="act" title="${toggleTitle}" onclick="toggleCoupon(${c.id},${!c.isActive})">
+            <svg class="nav-svg"><use href="#ico-${toggleIcon}"/></svg>
+          </button>
+          <button class="act" title="Fshij" style="color:var(--red)" onclick="deleteCoupon(${c.id},'${c.code}')">
+            <svg class="nav-svg"><use href="#ico-trash"/></svg>
+          </button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+async function toggleCoupon(id, isActive) {
+  const token = localStorage.getItem('ag_token');
+  await fetch('/api/coupons/' + id, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+    body: JSON.stringify({ isActive }),
+  });
+  loadCoupons();
+}
+
+async function deleteCoupon(id, code) {
+  if (!confirm('Fshij kuponin "' + code + '"?')) return;
+  const token = localStorage.getItem('ag_token');
+  await fetch('/api/coupons/' + id, {
+    method: 'DELETE',
+    headers: { Authorization: 'Bearer ' + token },
+  });
+  loadCoupons();
+}
+
+function openCouponModal() {
+  document.getElementById('c-code').value = '';
+  document.getElementById('c-pct').value = '';
+  document.getElementById('c-max').value = '1';
+  document.getElementById('c-exp').value = '';
+  document.getElementById('c-err').style.display = 'none';
+  document.getElementById('coupon-modal').classList.add('open');
+}
+function closeCouponModal() {
+  document.getElementById('coupon-modal').classList.remove('open');
+}
+
+async function saveCoupon() {
+  const code = document.getElementById('c-code').value.trim().toUpperCase();
+  const discountPercent = parseInt(document.getElementById('c-pct').value);
+  const maxUses = parseInt(document.getElementById('c-max').value) || 1;
+  const expiresAt = document.getElementById('c-exp').value || null;
+  const errEl = document.getElementById('c-err');
+  errEl.style.display = 'none';
+
+  if (!code) { errEl.textContent = 'Kodi është i detyrueshëm.'; errEl.style.display = 'block'; return; }
+  if (!discountPercent || discountPercent < 1 || discountPercent > 100) { errEl.textContent = 'Zbritja duhet të jetë 1–100.'; errEl.style.display = 'block'; return; }
+
+  const token = localStorage.getItem('ag_token');
+  const res = await fetch('/api/coupons', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+    body: JSON.stringify({ code, discountPercent, maxUses, expiresAt }),
+  });
+  const data = await res.json();
+  if (!res.ok) { errEl.textContent = data.message || 'Gabim gjatë krijimit.'; errEl.style.display = 'block'; return; }
+  closeCouponModal();
+  loadCoupons();
+}
 </script>
 </body>
 </html>
