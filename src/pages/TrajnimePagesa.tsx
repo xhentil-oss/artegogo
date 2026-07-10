@@ -37,6 +37,7 @@ const PayForm = () => {
     </div>
   );
   if (!user) return <Navigate to={`/login?redirect=${encodeURIComponent(location.pathname + location.search)}`} replace />;
+  if (!baseAmount || !email) return <Navigate to={backUrl} replace />;
 
   const [loading,       setLoading]       = useState(false);
   const [error,         setError]         = useState<string | null>(null);
