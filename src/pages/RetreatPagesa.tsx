@@ -18,7 +18,6 @@ const CARD_STYLE = {
 const PayForm = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const location = useLocation();
   const [params] = useSearchParams();
   const stripe = useStripe();
   const elements = useElements();
