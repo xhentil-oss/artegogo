@@ -25,6 +25,7 @@ const PayForm = () => {
   const name       = params.get('name')    ?? '';
   const email      = params.get('email')   ?? '';
   const type       = params.get('type')    ?? 'training';
+  const orderId    = params.get('orderId') ?? '';
   const backUrl    = type === 'workshop' ? '/shop/regjistrohu-workshop' : '/shop/regjistrohu-trajnim-online';
 
   if (!baseAmount || !email) return <Navigate to={backUrl} replace />;
@@ -80,6 +81,10 @@ const PayForm = () => {
       if (stripeErr) { setError(stripeErr.message ?? t('Pagesa dështoi.', 'Payment failed.')); setLoading(false); return; }
       if (paymentIntent?.status === 'succeeded') {
         if (appliedCode) await fetch('/api/coupons/use', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ code: appliedCode }) });
+        await fetch('/api/payments/confirm', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ orderId: orderId || null, paymentIntentId: paymentIntent.id, amount }),
+        });
         setSuccess(true);
       }
     } catch {

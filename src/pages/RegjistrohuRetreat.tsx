@@ -66,7 +66,9 @@ export const RegjistrohuRetreatPage = () => {
         setSubmitError(d.message || t('Gabim. Provo përsëri.', 'Error. Please try again.'));
         return;
       }
-      const params = new URLSearchParams({ amount: '500', name: `${firstName} ${lastName}`, email });
+      const d = await res.json().catch(() => ({}));
+      const orderId = d?.data?.orderId ?? '';
+      const params = new URLSearchParams({ amount: '500', name: `${firstName} ${lastName}`, email, orderId: String(orderId) });
       navigate(`/eventet/retreat/pagesa?${params.toString()}`);
     } catch {
       setSubmitError(t('Gabim lidhjeje. Provo përsëri.', 'Connection error. Please try again.'));

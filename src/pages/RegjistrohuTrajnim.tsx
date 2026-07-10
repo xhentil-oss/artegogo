@@ -65,7 +65,9 @@ export const RegjistrohuTrajnimPage = () => {
         setSubmitError(d.message || t('Gabim. Provo përsëri.', 'Error. Please try again.'));
         return;
       }
-      const params = new URLSearchParams({ amount: '320', name: `${firstName} ${lastName}`, email, type: 'training' });
+      const d = await res.json().catch(() => ({}));
+      const orderId = d?.data?.orderId ?? '';
+      const params = new URLSearchParams({ amount: '320', name: `${firstName} ${lastName}`, email, type: 'training', orderId: String(orderId) });
       navigate(`/eventet/trajnime-online/pagesa?${params.toString()}`);
     } catch {
       setSubmitError(t('Gabim lidhjeje. Provo përsëri.', 'Connection error. Please try again.'));

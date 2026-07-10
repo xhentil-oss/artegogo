@@ -65,7 +65,9 @@ export const RegjistrohuWorkshopPage = () => {
         setSubmitError(d.message || t('Gabim. Provo përsëri.', 'Error. Please try again.'));
         return;
       }
-      const params = new URLSearchParams({ amount: '135', name: `${firstName} ${lastName}`, email, type: 'workshop' });
+      const d = await res.json().catch(() => ({}));
+      const orderId = d?.data?.orderId ?? '';
+      const params = new URLSearchParams({ amount: '135', name: `${firstName} ${lastName}`, email, type: 'workshop', orderId: String(orderId) });
       navigate(`/shop/regjistrohu-workshop/pagesa?${params.toString()}`);
     } catch {
       setSubmitError(t('Gabim lidhjeje. Provo përsëri.', 'Connection error. Please try again.'));
