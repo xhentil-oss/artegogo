@@ -436,7 +436,7 @@ export const RegjistrohuRetreatPage = () => {
                     {t("Plotëso formularin dhe kryej pagesën menjëherë për të siguruar vendin tënd.", "Fill the form and complete payment immediately to secure your spot.")}
                   </p>
                   <button
-                    onClick={() => { const p = new URLSearchParams({ amount: '500', name: `${firstName} ${lastName}`, email }); setReserveOpen(false); navigate(`/eventet/retreat/pagesa?${p.toString()}`); }}
+                    onClick={() => { setModalVisible(false); setTimeout(() => setReserveOpen(false), 400); }}
                     className="mt-auto w-full flex items-center justify-center gap-2 py-3 rounded-xl text-white font-bold transition-all hover:scale-105"
                     style={{ backgroundColor: '#7c3aed', fontSize: 15 }}>
                     {t("Regjistrohu online", "Register online")}
