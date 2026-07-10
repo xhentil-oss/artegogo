@@ -3189,11 +3189,12 @@ async function deleteCoupon(id, code) {
 
 function openCouponModal() {
   document.getElementById('c-code').value = '';
-  document.getElementById('c-pct').value = '';
+  document.getElementById('c-pct').value = '10';
   document.getElementById('c-max').value = '1';
   document.getElementById('c-exp').value = '';
   document.getElementById('c-err').style.display = 'none';
   document.getElementById('coupon-modal').classList.add('open');
+  setTimeout(()=>document.getElementById('c-code').focus(),100);
 }
 function closeCouponModal() {
   document.getElementById('coupon-modal').classList.remove('open');
