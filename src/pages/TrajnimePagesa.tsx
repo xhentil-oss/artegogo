@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Lock, ChevronLeft, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, Navigate, useLocation } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { STRIPE_PUBLISHABLE_KEY } from '@/config/payments';
+import { useAuth } from '@/context/AuthContext';
 
 const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
 
@@ -18,15 +19,24 @@ const CARD_STYLE = {
 const PayForm = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
   const [params] = useSearchParams();
   const stripe = useStripe();
   const elements = useElements();
+  const { user, loading: authLoading } = useAuth();
 
   const baseAmount = parseFloat(params.get('amount') ?? '0') || 0;
   const name       = params.get('name')    ?? '';
   const email      = params.get('email')   ?? '';
   const type       = params.get('type')    ?? 'training';
   const backUrl    = type === 'workshop' ? '/shop/regjistrohu-workshop' : '/shop/regjistrohu-trajnim-online';
+
+  if (authLoading) return (
+    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#f8f7ff' }}>
+      <span className="w-8 h-8 border-4 border-violet-300 border-t-violet-600 rounded-full animate-spin inline-block" />
+    </div>
+  );
+  if (!user) return <Navigate to={`/login?redirect=${encodeURIComponent(location.pathname + location.search)}`} replace />;
 
   const [loading,       setLoading]       = useState(false);
   const [error,         setError]         = useState<string | null>(null);
