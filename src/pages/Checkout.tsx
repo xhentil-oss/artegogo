@@ -95,48 +95,64 @@ const CheckoutForm = () => {
       setError(t("Duhet të pranoni Kushtet e Përdorimit dhe Politikën e Privatësisë.", "You must accept the Terms of Use and Privacy Policy."));
       return;
     }
+    if (!form.name.trim() || !form.email.trim()) {
+      setError(t("Ju lutemi plotësoni emrin dhe emailin.", "Please fill in your name and email."));
+      return;
+    }
     setLoading(true);
     setError(null);
 
-    const card = elements.getElement(CardElement);
-    if (!card) { setLoading(false); return; }
+    try {
+      // 1. Merr clientSecret nga backend
+      const intentRes = await fetch("/api/payments/intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: Math.round(totalPrice * 100),
+          currency: "eur",
+          email: form.email,
+        }),
+      });
+      const intentData = await intentRes.json();
+      if (!intentRes.ok) {
+        setError(intentData.message ?? t("Gabim serveri.", "Server error."));
+        setLoading(false);
+        return;
+      }
+      const { clientSecret } = intentData.data;
 
-    const { error: stripeErr, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card,
-      billing_details: {
-        name: form.name,
-        email: form.email,
-        phone: form.phone,
-      },
-    });
+      // 2. Konfirmo pagesën me kartë
+      const card = elements.getElement(CardElement);
+      if (!card) { setLoading(false); return; }
 
-    if (stripeErr) {
-      setError(stripeErr.message ?? t("Pagesa dështoi.", "Payment failed."));
+      const { error: stripeErr, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card,
+          billing_details: { name: form.name, email: form.email, phone: form.phone },
+        },
+      });
+
+      if (stripeErr) {
+        setError(stripeErr.message ?? t("Pagesa dështoi.", "Payment failed."));
+        setLoading(false);
+        return;
+      }
+
+      if (paymentIntent?.status === "succeeded") {
+        await sendConfirmationEmail({
+          to_name: form.name,
+          to_email: form.email,
+          order_items: orderItemsText,
+          order_total: `${totalPrice}€`,
+        });
+        clearCart();
+        setSuccess(true);
+      }
+    } catch {
+      setError(t("Gabim lidhjeje. Provo përsëri.", "Connection error. Please try again."));
+    } finally {
       setLoading(false);
-      return;
     }
-
-    /*
-     * paymentMethod.id is now ready.
-     * Send it to your backend to create + confirm a PaymentIntent.
-     * Example:
-     *   const res = await fetch("/api/pay", {
-     *     method: "POST",
-     *     body: JSON.stringify({ paymentMethodId: paymentMethod.id, amount: totalPrice * 100 }),
-     *   });
-     */
-
-    await sendConfirmationEmail({
-      to_name: form.name,
-      to_email: form.email,
-      order_items: orderItemsText,
-      order_total: `${totalPrice}€`,
-    });
-
-    clearCart();
-    setLoading(false);
-    setSuccess(true);
   };
 
   /* ── PayPal approved ── */
