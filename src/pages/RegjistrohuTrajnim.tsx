@@ -321,9 +321,6 @@ export const RegjistrohuTrajnimPage = () => {
                     <a href="mailto:info@artegogo.com" className="flex items-center gap-2 text-zinc-600 hover:text-violet-700 transition-colors" style={{ fontSize: 16 }}>
                       <Mail className="w-3.5 h-3.5" style={{ color: '#7c3aed' }} /> info@artegogo.com
                     </a>
-                    <a href="https://www.artegogo.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-zinc-600 hover:text-violet-700 transition-colors" style={{ fontSize: 16 }}>
-                      <Globe className="w-3.5 h-3.5" style={{ color: '#7c3aed' }} /> www.artegogo.com
-                    </a>
                   </div>
                 </div>
 
