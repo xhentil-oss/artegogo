@@ -464,7 +464,7 @@ const MeditimetView = ({ meditations, hasRetreat, lockedMsg, setLockedMsg, t, na
 
 const MeditationCard = ({ m, unlocked, t, onClick }: { m: Meditation; unlocked: boolean; t: any; onClick: () => void }) => (
   <button onClick={onClick}
-    className={`w-full flex items-center gap-4 bg-white rounded-2xl p-4 border border-gray-100 shadow-sm text-left hover:shadow-md transition-all group ${unlocked && m.pdfUrl ? 'cursor-pointer' : unlocked ? 'cursor-not-allowed opacity-60' : ''}`}>
+    className="w-full flex items-center gap-4 bg-white rounded-2xl p-4 border border-gray-100 shadow-sm text-left hover:shadow-md transition-all group">
     <img src={m.image} alt={m.title} className="w-16 h-16 rounded-xl object-cover shrink-0" />
     <div className="flex-1 min-w-0">
       <p className="font-semibold text-zinc-900 text-sm leading-snug">{m.title}</p>
