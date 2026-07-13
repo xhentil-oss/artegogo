@@ -258,7 +258,7 @@ export const UserDashboardPage = () => {
         )}
 
         {/* Sidebar */}
-        <aside className={`fixed md:static top-0 left-0 h-full md:h-auto w-64 bg-white border-r border-gray-100 z-40 flex flex-col transition-transform duration-300 md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        <aside className={`fixed md:static top-0 left-0 h-full md:h-auto w-72 bg-white border-r border-gray-100 z-40 flex flex-col transition-transform duration-300 md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
           style={{ paddingTop: sidebarOpen ? 0 : undefined }}>
 
           {/* Mobile sidebar header */}
