@@ -207,7 +207,7 @@ export const WorkshopePage = () => {
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-2">
-            <a href="/signup"
+            <a href="/shop/regjistrohu-workshop"
               className="inline-flex items-center gap-1.5 text-white px-3 py-1.5 text-sm md:px-8 md:py-4 md:text-base rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
               style={{ backgroundColor: "#4e29c5", fontWeight: 600 }}>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -471,7 +471,7 @@ export const WorkshopePage = () => {
                 "Reserve your spot now and become part of an experience that will change everything."
               )}
             </p>
-            <a href="/signup"
+            <a href="/shop/regjistrohu-workshop"
               className="inline-flex items-center gap-2 font-semibold px-8 py-3 rounded-xl text-white transition-all hover:scale-105"
               style={{ background: "#7c3aed", fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
               {t("Rezervo Tani", "Reserve Now")} →
