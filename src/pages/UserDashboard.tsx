@@ -413,6 +413,7 @@ const MeditimetView = ({ meditations, hasRetreat, lockedMsg, setLockedMsg, t, na
   meditations: Meditation[]; hasRetreat: boolean; lockedMsg: boolean;
   setLockedMsg: (v: boolean) => void; t: any; navigate: any;
 }) => {
+  const [comingSoon, setComingSoon] = useState(false);
   const free = meditations.filter(m => m.free);
   const premium = meditations.filter(m => !m.free);
   return (
@@ -423,8 +424,19 @@ const MeditimetView = ({ meditations, hasRetreat, lockedMsg, setLockedMsg, t, na
       <div>
         <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">{t('Meditime Falas', 'Free Meditations')}</p>
         <div className="space-y-3">
-          {free.map(m => <MeditationCard key={m.id} m={m} unlocked t={t} onClick={() => { if (m.pdfUrl) window.open(m.pdfUrl, '_blank'); }} />)}
+          {free.map(m => <MeditationCard key={m.id} m={m} unlocked t={t} onClick={() => {
+            if (m.pdfUrl) { window.open(m.pdfUrl, '_blank'); setComingSoon(false); }
+            else setComingSoon(true);
+          }} />)}
         </div>
+        {comingSoon && (
+          <div className="rounded-2xl p-4 flex items-start gap-3" style={{ backgroundColor: '#f5f3ff', border: '1px solid #ede9fe' }}>
+            <svg className="w-4 h-4 shrink-0 mt-0.5" style={{ color: '#7c3aed' }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p className="text-sm text-zinc-700 leading-relaxed">
+              {t('PDF-ja e këtij meditimi është duke u përgatitur dhe do të jetë e disponueshme së shpejti.', 'The PDF for this meditation is being prepared and will be available soon.')}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Premium */}
