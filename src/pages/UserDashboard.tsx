@@ -45,10 +45,15 @@ export const UserDashboardPage = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const [hasRetreat, setHasRetreat] = useState(false);
   const [lockedMsg, setLockedMsg] = useState(false);
+  const [oldPass, setOldPass] = useState('');
   const [newPass, setNewPass] = useState('');
   const [confirmPass, setConfirmPass] = useState('');
   const [passMsg, setPassMsg] = useState('');
   const [passSaving, setPassSaving] = useState(false);
+  const [newEmail, setNewEmail] = useState('');
+  const [emailPass, setEmailPass] = useState('');
+  const [emailMsg, setEmailMsg] = useState('');
+  const [emailSaving, setEmailSaving] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const profileRef = useRef<HTMLDivElement>(null);
@@ -101,19 +106,36 @@ export const UserDashboardPage = () => {
   };
 
   const handleSavePass = async () => {
+    if (!oldPass) { setPassMsg(t('Vendos fjalëkalimin e vjetër.', 'Enter your old password.')); return; }
     if (!newPass || newPass.length < 8) { setPassMsg(t('Min. 8 karaktere.', 'Min. 8 characters.')); return; }
     if (newPass !== confirmPass) { setPassMsg(t('Fjalëkalimet nuk përputhen.', 'Passwords do not match.')); return; }
     setPassSaving(true); setPassMsg('');
     try {
       const res = await fetch('/api/auth/change-password', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        credentials: 'include', body: JSON.stringify({ newPassword: newPass }),
+        credentials: 'include', body: JSON.stringify({ oldPassword: oldPass, newPassword: newPass }),
       });
       const d = await res.json();
       setPassMsg(res.ok ? t('Fjalëkalimi u ndryshua!', 'Password changed!') : (d.message || t('Gabim.', 'Error.')));
-      if (res.ok) { setNewPass(''); setConfirmPass(''); }
+      if (res.ok) { setOldPass(''); setNewPass(''); setConfirmPass(''); }
     } catch { setPassMsg(t('Gabim lidhjeje.', 'Connection error.')); }
     finally { setPassSaving(false); }
+  };
+
+  const handleSaveEmail = async () => {
+    if (!newEmail || !newEmail.includes('@')) { setEmailMsg(t('Vendos email të vlefshëm.', 'Enter a valid email.')); return; }
+    if (!emailPass) { setEmailMsg(t('Vendos fjalëkalimin tënd.', 'Enter your password.')); return; }
+    setEmailSaving(true); setEmailMsg('');
+    try {
+      const res = await fetch('/api/auth/change-email', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', body: JSON.stringify({ newEmail, password: emailPass }),
+      });
+      const d = await res.json();
+      setEmailMsg(res.ok ? t('Emaili u ndryshua!', 'Email changed!') : (d.message || t('Gabim.', 'Error.')));
+      if (res.ok) { setNewEmail(''); setEmailPass(''); }
+    } catch { setEmailMsg(t('Gabim lidhjeje.', 'Connection error.')); }
+    finally { setEmailSaving(false); }
   };
 
   if (loading || !user) return (
@@ -131,7 +153,7 @@ export const UserDashboardPage = () => {
       case 'meditimet': return <MeditimetView meditations={MEDITATIONS} hasRetreat={hasRetreat} lockedMsg={lockedMsg} setLockedMsg={setLockedMsg} t={t} navigate={navigate} />;
       case 'librat': return <ComingSoonView title={t('Librat e mi', 'My Books')} desc={t('Librat tuaj do shfaqen këtu.', 'Your books will appear here.')} t={t} />;
       case 'trajnimet': return <ComingSoonView title={t('Trajnimet e mia', 'My Trainings')} desc={t('Trajnimet tuaja do shfaqen këtu.', 'Your trainings will appear here.')} t={t} />;
-      case 'ndrysho': return <EditProfileView user={user} newPass={newPass} setNewPass={setNewPass} confirmPass={confirmPass} setConfirmPass={setConfirmPass} passMsg={passMsg} passSaving={passSaving} handleSavePass={handleSavePass} t={t} />;
+      case 'ndrysho': return <EditProfileView user={user} oldPass={oldPass} setOldPass={setOldPass} newPass={newPass} setNewPass={setNewPass} confirmPass={confirmPass} setConfirmPass={setConfirmPass} passMsg={passMsg} passSaving={passSaving} handleSavePass={handleSavePass} newEmail={newEmail} setNewEmail={setNewEmail} emailPass={emailPass} setEmailPass={setEmailPass} emailMsg={emailMsg} emailSaving={emailSaving} handleSaveEmail={handleSaveEmail} t={t} />;
       case 'ndihme': return <HelpView t={t} />;
     }
   };
@@ -473,19 +495,28 @@ const ComingSoonView = ({ title, desc, t }: { title: string; desc: string; t: an
   </div>
 );
 
-const EditProfileView = ({ user, newPass, setNewPass, confirmPass, setConfirmPass, passMsg, passSaving, handleSavePass, t }: any) => (
-  <div className="space-y-6">
-    <SectionHeader icon={Settings} title={t('Ndrysho fjalëkalimin', 'Change Password')} desc={t('Vendos fjalëkalim të ri për llogarinë tënde.', 'Set a new password for your account.')} />
+const EditProfileView = ({ user, oldPass, setOldPass, newPass, setNewPass, confirmPass, setConfirmPass, passMsg, passSaving, handleSavePass, newEmail, setNewEmail, emailPass, setEmailPass, emailMsg, emailSaving, handleSaveEmail, t }: any) => (
+  <div className="space-y-8">
+    <SectionHeader icon={Settings} title={t('Ndrysho të dhënat', 'Edit Account')} desc={t('Ndrysho fjalëkalimin ose emailin e llogarisë tënde.', 'Change your password or account email.')} />
+
+    {/* ── Change Password ── */}
     <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4 max-w-md">
+      <p className="text-sm font-bold text-zinc-800">{t('Ndrysho fjalëkalimin', 'Change Password')}</p>
       <div>
-        <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t('Fjalëkalimi i ri', 'New Password')}</label>
-        <input type="password" value={newPass} onChange={e => setNewPass(e.target.value)} placeholder="Min. 8 karaktere"
+        <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t('Fjalëkalimi i vjetër', 'Old Password')}</label>
+        <input type="password" value={oldPass} onChange={e => setOldPass(e.target.value)} placeholder="••••••••"
           className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
           style={{ backgroundColor: '#fafafa' }} />
       </div>
       <div>
-        <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t('Konfirmo fjalëkalimin', 'Confirm Password')}</label>
-        <input type="password" value={confirmPass} onChange={e => setConfirmPass(e.target.value)} placeholder={t('Rishkruaj fjalëkalimin', 'Re-enter password')}
+        <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t('Fjalëkalimi i ri', 'New Password')}</label>
+        <input type="password" value={newPass} onChange={e => setNewPass(e.target.value)} placeholder={t('Min. 8 karaktere, 1 shkronjë e madhe, 1 numër', 'Min. 8 chars, 1 uppercase, 1 number')}
+          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
+          style={{ backgroundColor: '#fafafa' }} />
+      </div>
+      <div>
+        <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t('Konfirmo fjalëkalimin e ri', 'Confirm New Password')}</label>
+        <input type="password" value={confirmPass} onChange={e => setConfirmPass(e.target.value)} placeholder={t('Rishkruaj fjalëkalimin e ri', 'Re-enter new password')}
           className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
           style={{ backgroundColor: '#fafafa' }} />
       </div>
@@ -496,6 +527,35 @@ const EditProfileView = ({ user, newPass, setNewPass, confirmPass, setConfirmPas
         className="w-full py-2.5 rounded-xl text-white text-sm font-semibold transition-all disabled:opacity-60"
         style={{ backgroundColor: '#7c3aed' }}>
         {passSaving ? t('Duke ruajtur...', 'Saving...') : t('Ruaj fjalëkalimin', 'Save Password')}
+      </button>
+    </div>
+
+    {/* ── Change Email ── */}
+    <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4 max-w-md">
+      <p className="text-sm font-bold text-zinc-800">{t('Ndrysho emailin', 'Change Email')}</p>
+      <div>
+        <label className="block text-xs font-semibold text-zinc-500 mb-1">{t('Email aktual', 'Current email')}</label>
+        <p className="text-sm text-zinc-700 font-medium">{user.email}</p>
+      </div>
+      <div>
+        <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t('Email i ri', 'New Email')}</label>
+        <input type="email" value={newEmail} onChange={e => setNewEmail(e.target.value)} placeholder={t('emri@shembull.com', 'name@example.com')}
+          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
+          style={{ backgroundColor: '#fafafa' }} />
+      </div>
+      <div>
+        <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t('Konfirmo me fjalëkalimin tënd', 'Confirm with your password')}</label>
+        <input type="password" value={emailPass} onChange={e => setEmailPass(e.target.value)} placeholder="••••••••"
+          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
+          style={{ backgroundColor: '#fafafa' }} />
+      </div>
+      {emailMsg && (
+        <p className={`text-xs font-medium ${emailMsg.includes('u ndryshua') || emailMsg.includes('changed') ? 'text-green-600' : 'text-red-500'}`}>{emailMsg}</p>
+      )}
+      <button onClick={handleSaveEmail} disabled={emailSaving}
+        className="w-full py-2.5 rounded-xl text-white text-sm font-semibold transition-all disabled:opacity-60"
+        style={{ backgroundColor: '#7c3aed' }}>
+        {emailSaving ? t('Duke ruajtur...', 'Saving...') : t('Ruaj emailin', 'Save Email')}
       </button>
     </div>
   </div>
