@@ -49,7 +49,10 @@ export const UserDashboardPage = () => {
   const [confirmPass, setConfirmPass] = useState('');
   const [passMsg, setPassMsg] = useState('');
   const [passSaving, setPassSaving] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const profileRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!loading && !user) navigate('/login?redirect=/dashboard', { replace: true });
@@ -72,6 +75,25 @@ export const UserDashboardPage = () => {
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
   }, []);
+
+  useEffect(() => {
+    if (searchOpen) setTimeout(() => searchRef.current?.focus(), 50);
+  }, [searchOpen]);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') { setSearchOpen(false); setSearchQuery(''); } };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, []);
+
+  const SEARCH_ITEMS = [
+    ...NAV_ITEMS.map(n => ({ label: n.labelAl, section: n.key as Section, type: 'nav' as const })),
+    ...MEDITATIONS.map(m => ({ label: m.title, section: 'meditimet' as Section, type: 'meditation' as const })),
+  ];
+
+  const searchResults = searchQuery.trim().length > 0
+    ? SEARCH_ITEMS.filter(i => i.label.toLowerCase().includes(searchQuery.toLowerCase()))
+    : [];
 
   const handleLogout = async () => {
     await logout();
@@ -129,7 +151,7 @@ export const UserDashboardPage = () => {
         </div>
 
         <div className="flex items-center gap-2 md:gap-3">
-          <button className="p-2 rounded-xl hover:bg-violet-50 transition-all" title="Kërko">
+          <button className="p-2 rounded-xl hover:bg-violet-50 transition-all" title="Kërko" onClick={() => setSearchOpen(true)}>
             <Search className="w-5 h-5 text-zinc-500" />
           </button>
 
@@ -175,6 +197,59 @@ export const UserDashboardPage = () => {
         </div>
       </header>
 
+      {/* Search overlay */}
+      {searchOpen && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4" style={{ backgroundColor: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)' }}
+          onClick={() => { setSearchOpen(false); setSearchQuery(''); }}>
+          <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100">
+              <Search className="w-5 h-5 text-zinc-400 shrink-0" />
+              <input
+                ref={searchRef}
+                type="text"
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                placeholder={t('Kërko në dashboard...', 'Search dashboard...')}
+                className="flex-1 text-sm text-zinc-800 placeholder-zinc-400 focus:outline-none bg-transparent"
+              />
+              <button onClick={() => { setSearchOpen(false); setSearchQuery(''); }}
+                className="p-1 rounded-lg hover:bg-gray-100 transition shrink-0">
+                <X className="w-4 h-4 text-zinc-400" />
+              </button>
+            </div>
+            <div className="max-h-80 overflow-y-auto py-2">
+              {searchQuery.trim() === '' && (
+                <div className="px-4 py-8 text-center">
+                  <p className="text-xs text-zinc-400">{t('Shkruaj për të kërkuar seksione ose meditime...', 'Type to search sections or meditations...')}</p>
+                </div>
+              )}
+              {searchQuery.trim() !== '' && searchResults.length === 0 && (
+                <div className="px-4 py-8 text-center">
+                  <p className="text-xs text-zinc-400">{t('Asnjë rezultat.', 'No results found.')}</p>
+                </div>
+              )}
+              {searchResults.map((item, i) => (
+                <button key={i}
+                  onClick={() => { setActive(item.section); setSearchOpen(false); setSearchQuery(''); }}
+                  className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-violet-50 transition-all text-left">
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: '#ede9fe' }}>
+                    {item.type === 'nav'
+                      ? (() => { const nav = NAV_ITEMS.find(n => n.key === item.section); return nav ? <nav.Icon className="w-3.5 h-3.5" style={{ color: '#7c3aed' }} /> : null; })()
+                      : <Headphones className="w-3.5 h-3.5" style={{ color: '#7c3aed' }} />
+                    }
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-zinc-800">{item.label}</p>
+                    <p className="text-xs text-zinc-400">{item.type === 'nav' ? t('Seksion', 'Section') : t('Meditim', 'Meditation')}</p>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-zinc-300 ml-auto" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="flex flex-1 overflow-hidden">
 
         {/* Mobile overlay */}
@@ -198,7 +273,7 @@ export const UserDashboardPage = () => {
             {/* Back to site */}
             <Link to="/" className="flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-violet-600 uppercase tracking-widest mb-6 px-2 transition-colors">
               <ArrowLeft className="w-3.5 h-3.5" />
-              {t('Shko tek Kurset', 'Back to Courses')}
+              {t('Shko tek Website', 'Back to Website')}
             </Link>
 
             <p className="text-2xl font-bold text-zinc-900 px-2 mb-5" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>Dashboard</p>
