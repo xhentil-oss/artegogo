@@ -774,7 +774,7 @@ export const WorkshopePage = () => {
               )}
             </p>
 
-            <a href="/kontakt"
+            <a href="/shop/regjistrohu-workshop"
               className="inline-flex items-center gap-2 font-semibold rounded-xl transition-all hover:scale-105"
               style={{ background: "#7c3aed", color: "#ffffff", fontFamily: "'Inter', sans-serif", fontSize: 14, padding: "14px 32px" }}>
               {t("Rezervo Tani", "Reserve Now")} →
