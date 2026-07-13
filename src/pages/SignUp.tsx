@@ -6,7 +6,8 @@ import { useAuth } from "@/context/AuthContext";
 
 export const SignUpPage = () => {
   const [showPass, setShowPass] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", password: "", confirmPassword: "" });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,6 +24,12 @@ export const SignUpPage = () => {
     e.preventDefault();
     setError("");
     setSuccess("");
+
+    if (form.password !== form.confirmPassword) {
+      setError(t("Fjalëkalimet nuk përputhen.", "Passwords do not match."));
+      return;
+    }
+
     setLoading(true);
 
     const parts = form.name.trim().split(" ");
@@ -97,6 +104,16 @@ export const SignUpPage = () => {
                 <input type={showPass ? "text" : "password"} required value={form.password} onChange={update("password")} placeholder={t("Min. 8 karaktere, 1 shkronjë e madhe, 1 numër", "Min. 8 chars, 1 uppercase, 1 number")} minLength={8} className="w-full pl-10 pr-10 py-3 rounded-xl border border-zinc-200 text-sm text-zinc-800 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition" />
                 <button type="button" onClick={() => setShowPass((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600">
                   {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-zinc-700 mb-1.5">{t("Konfirmo Fjalëkalimin", "Confirm Password")}</label>
+              <div className="relative">
+                <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
+                <input type={showConfirmPass ? "text" : "password"} required value={form.confirmPassword} onChange={update("confirmPassword")} placeholder={t("Rishkruaj fjalëkalimin", "Re-enter your password")} minLength={8} className="w-full pl-10 pr-10 py-3 rounded-xl border border-zinc-200 text-sm text-zinc-800 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition" />
+                <button type="button" onClick={() => setShowConfirmPass((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600">
+                  {showConfirmPass ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { User, Mail, Phone, Globe, MapPin, CreditCard, Lock, Lightbulb, Zap, Users, Star, ChevronRight, MessageCircle, Shield, X, CheckCircle, Headphones } from 'lucide-react';
+import { User, Mail, Phone, Globe, MapPin, CreditCard, Lock, Lightbulb, Zap, Users, Star, ChevronRight, MessageCircle, Shield, X, CheckCircle, Headphones, Eye, EyeOff } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -35,6 +35,10 @@ export const RegjistrohuWorkshopPage = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
 
@@ -48,6 +52,14 @@ export const RegjistrohuWorkshopPage = () => {
       setSubmitError(t('Ju lutemi plotësoni emrin, mbiemrin dhe emailin.', 'Please fill in name and email.'));
       return;
     }
+    if (!password.trim()) {
+      setSubmitError(t('Ju lutemi vendosni një fjalëkalim.', 'Please enter a password.'));
+      return;
+    }
+    if (password !== confirmPassword) {
+      setSubmitError(t('Fjalëkalimet nuk përputhen.', 'Passwords do not match.'));
+      return;
+    }
     if (!agreed) {
       setSubmitError(t('Duhet të pranoni Kushtet e Përdorimit dhe Politikën e Privatësisë.', 'You must accept the Terms of Use and Privacy Policy.'));
       return;
@@ -58,7 +70,7 @@ export const RegjistrohuWorkshopPage = () => {
       const res = await fetch('/api/registrations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName, lastName, email, phone, whatsapp, country, city, productType: 'workshop' }),
+        body: JSON.stringify({ firstName, lastName, email, phone, whatsapp, country, city, password, productType: 'workshop' }),
       });
       if (!res.ok) {
         const d = await res.json().catch(() => ({}));
@@ -209,6 +221,34 @@ export const RegjistrohuWorkshopPage = () => {
                     <input type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder={t("Shkruaj të njëjtin numër nëse përputhet me nr. tënd të celularit", "Same as phone if applicable")}
                       className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
                       style={{ backgroundColor: '#fafafa' }} />
+                  </div>
+                </div>
+
+                {/* Fjalëkalimi */}
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t("Fjalëkalimi", "Password")}</label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+                    <input type={showPass ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)} placeholder={t("Min. 8 karaktere", "Min. 8 characters")} minLength={8}
+                      className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
+                      style={{ backgroundColor: '#fafafa' }} />
+                    <button type="button" onClick={() => setShowPass(v => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600">
+                      {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Konfirmo fjalëkalimin */}
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t("Konfirmo Fjalëkalimin", "Confirm Password")}</label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+                    <input type={showConfirmPass ? 'text' : 'password'} value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder={t("Rishkruaj fjalëkalimin", "Re-enter your password")} minLength={8}
+                      className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
+                      style={{ backgroundColor: '#fafafa' }} />
+                    <button type="button" onClick={() => setShowConfirmPass(v => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600">
+                      {showConfirmPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
                   </div>
                 </div>
               </div>

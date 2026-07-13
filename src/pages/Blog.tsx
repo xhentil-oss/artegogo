@@ -218,7 +218,7 @@ const posts: BlogPost[] = [
 
 export const BlogPage = () => {
   const [selectedPost, setSelectedPost] = useState<BlogPost>(posts[0]);
-  const [mobileOpenId, setMobileOpenId] = useState<number | null>(null);
+  const [mobileOpenId, setMobileOpenId] = useState<number | null>(posts[0]?.id ?? null);
   const { t } = useLanguage();
   const paragraphs = t("al", "en") === "al" ? selectedPost.content : selectedPost.contentEn;
 
@@ -248,7 +248,7 @@ export const BlogPage = () => {
           <p className="leading-relaxed mb-4 md:mb-6 text-sm md:text-base" style={{ fontFamily: "'Inter', sans-serif", color: "rgba(255,255,255,0.85)", maxWidth: 420 }}>
             {t("Mendime, reflektime dhe frymëzime nga Dr. Artemisa dhe ekipi ynë.", "Thoughts, reflections and inspirations from Dr. Artemisa and our team.")}
           </p>
-          <a href="/kontakt"
+          <a href="#artikujt"
             className="inline-flex items-center gap-1.5 text-white text-sm md:text-base px-3 py-1.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105"
             style={{ backgroundColor: "#4e29c5", fontFamily: "'Inter', sans-serif", fontWeight: 600 }}>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -260,7 +260,7 @@ export const BlogPage = () => {
       </div>
 
       {/* ── MOBILE accordion layout ── */}
-      <section className="md:hidden px-4 py-6 pb-10">
+      <section id="artikujt" className="md:hidden px-4 py-6 pb-10">
         <div className="bg-white rounded-3xl border border-zinc-100 shadow-sm overflow-hidden mb-4">
           <div className="px-5 py-4 border-b border-zinc-100">
             <h3 className="font-bold text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20 }}>
@@ -326,7 +326,7 @@ export const BlogPage = () => {
       </section>
 
       {/* ── DESKTOP two-column layout ── */}
-      <section className="hidden md:block max-w-6xl mx-auto px-6 py-6 pb-12">
+      <section id="artikujt" className="hidden md:block max-w-6xl mx-auto px-6 py-6 pb-12">
         <div className="flex flex-row gap-6 items-start">
 
           {/* LEFT: Article content + Quote */}

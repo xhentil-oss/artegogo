@@ -372,7 +372,7 @@ export const MeditimePage = () => {
               ))}
             </div>
 
-            <a href="/kontakt"
+            <a href="/signup"
               className="inline-flex items-center gap-2 font-bold px-8 py-3 rounded-xl transition-all hover:scale-105"
               style={{ background: "#7c3aed", color: "#ffffff", fontSize: 15 }}>
               {t("Bashkohu", "Join us")}
