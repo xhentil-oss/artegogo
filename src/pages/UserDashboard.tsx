@@ -568,7 +568,7 @@ const HelpView = ({ t }: { t: any }) => (
       {[
         { q: t('Si mund të ndrysho fjalëkalimin?', 'How can I change my password?'), a: t('Shko te "Ndrysho të dhënat e tua" në menu të majtë.', 'Go to "Edit Profile" in the left menu.') },
         { q: t('Si aksesoj meditimet premium?', 'How do I access premium meditations?'), a: t('Duhet të jesh i regjistruar në një retreat aktiv.', 'You need to be registered for an active retreat.') },
-        { q: t('Kam problem me llogarinë time.', 'I have a problem with my account.'), a: t('Na kontakto përmes WhatsApp ose email-it më poshtë.', 'Contact us via WhatsApp or email below.') },
+        { q: t('Kam problem me llogarinë time.', 'I have a problem with my account.'), a: t('Na kontakto përmes WhatsApp më poshtë.', 'Contact us via WhatsApp below.') },
       ].map(({ q, a }, i) => (
         <div key={i} className="py-3 border-b border-gray-50 last:border-0">
           <p className="font-semibold text-zinc-800 text-sm mb-1">{q}</p>
