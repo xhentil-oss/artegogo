@@ -243,7 +243,7 @@ const pillars = [
                 </Link>
               </>
             ) : (
-              <Link to="/signup"
+              <Link to="/shop/regjistrohu-trajnim-online"
                 className="inline-flex items-center gap-1.5 text-white px-3 py-1.5 text-xs md:px-8 md:py-4 md:text-base rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
                 style={{ backgroundColor: "#4e29c5", fontWeight: 600 }}>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -503,7 +503,7 @@ const pillars = [
                 {t("Hyr në Platformë →", "Access Platform →")}
               </Link>
             ) : (
-              <Link to="/signup"
+              <Link to="/shop/regjistrohu-trajnim-online"
                 className="inline-flex items-center gap-2 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shrink-0"
                 style={{ backgroundColor: "#7c3aed", fontSize: 14 }}>
                 {t("Regjistrohu Tani", "Register Now")}
@@ -981,7 +981,7 @@ const pillars = [
                 {t("Hyr në Platformë", "Access Platform")} →
               </Link>
             ) : (
-              <Link to="/signup"
+              <Link to="/shop/regjistrohu-trajnim-online"
                 className="inline-flex items-center gap-2 font-bold px-7 py-3.5 rounded-xl transition-all duration-300 hover:scale-105 w-full md:w-auto justify-center text-sm md:text-base"
                 style={{ background: "#ffffff", color: "#4e29c5" }}>
                 {t("Regjistrohu Tani", "Register Now")} →
