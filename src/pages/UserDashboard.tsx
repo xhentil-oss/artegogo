@@ -1,14 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
 import {
   LayoutDashboard, User, Headphones, BookOpen, GraduationCap,
   Settings, HelpCircle, LogOut, ChevronRight, Lock, Unlock,
-  Key, Menu, X, ArrowLeft, Search, ChevronDown,
+  Key, Menu, X, ArrowLeft, Search, ChevronDown, ShoppingBag,
 } from 'lucide-react';
 
-type Section = 'dashboard' | 'profili' | 'meditimet' | 'librat' | 'trajnimet' | 'ndrysho' | 'ndihme';
+type Section = 'dashboard' | 'profili' | 'meditimet' | 'librat' | 'trajnimet' | 'porosit' | 'ndrysho' | 'ndihme';
 
 interface Meditation {
   id: number;
@@ -33,6 +33,7 @@ const NAV_ITEMS: { key: Section; labelAl: string; labelEn: string; Icon: React.E
   { key: 'meditimet',  labelAl: 'Meditimet e mia',        labelEn: 'My Meditations',      Icon: Headphones },
   { key: 'librat',     labelAl: 'Librat e mi',            labelEn: 'My Books',            Icon: BookOpen },
   { key: 'trajnimet',  labelAl: 'Trajnimet e mia',        labelEn: 'My Trainings',        Icon: GraduationCap },
+  { key: 'porosit',   labelAl: 'Porositë e mia',         labelEn: 'My Orders',           Icon: ShoppingBag },
   { key: 'ndrysho',    labelAl: 'Ndrysho të dhënat e tua', labelEn: 'Edit Profile',      Icon: Settings },
   { key: 'ndihme',     labelAl: 'Ndihmë',                 labelEn: 'Help',                Icon: HelpCircle },
 ];
@@ -154,6 +155,7 @@ export const UserDashboardPage = () => {
       case 'meditimet': return <MeditimetView meditations={MEDITATIONS} hasRetreat={hasRetreat} lockedMsg={lockedMsg} setLockedMsg={setLockedMsg} t={t} navigate={navigate} />;
       case 'librat': return <ComingSoonView title={t('Librat e mi', 'My Books')} desc={t('Librat tuaj do shfaqen këtu.', 'Your books will appear here.')} t={t} />;
       case 'trajnimet': return <ComingSoonView title={t('Trajnimet e mia', 'My Trainings')} desc={t('Trajnimet tuaja do shfaqen këtu.', 'Your trainings will appear here.')} t={t} />;
+      case 'porosit': return <OrdersView t={t} />;
       case 'ndrysho': return <EditProfileView user={user} oldPass={oldPass} setOldPass={setOldPass} newPass={newPass} setNewPass={setNewPass} confirmPass={confirmPass} setConfirmPass={setConfirmPass} passMsg={passMsg} passSaving={passSaving} handleSavePass={handleSavePass} newEmail={newEmail} setNewEmail={setNewEmail} emailPass={emailPass} setEmailPass={setEmailPass} emailMsg={emailMsg} emailSaving={emailSaving} handleSaveEmail={handleSaveEmail} t={t} />;
       case 'ndihme': return <HelpView t={t} />;
     }
@@ -501,6 +503,100 @@ const MeditationCard = ({ m, unlocked, t, onClick }: { m: Meditation; unlocked: 
     </div>
   </button>
 );
+
+const STATUS_LABELS: Record<string, { label: string; color: string; bg: string }> = {
+  paid:      { label: 'Paguar',    color: '#059669', bg: '#d1fae5' },
+  pending:   { label: 'Në pritje', color: '#d97706', bg: '#fef3c7' },
+  cancelled: { label: 'Anuluar',   color: '#dc2626', bg: '#fee2e2' },
+  refunded:  { label: 'Rimbursuar',color: '#7c3aed', bg: '#ede9fe' },
+};
+
+const OrdersView = ({ t }: { t: any }) => {
+  const [orders, setOrders] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  const fetchOrders = useCallback(async () => {
+    try {
+      const res = await fetch('/api/auth/my-orders', { credentials: 'include' });
+      const d = await res.json();
+      if (!res.ok) throw new Error(d.message || 'Gabim');
+      setOrders(d.data);
+    } catch (e: any) {
+      setError(e.message || t('Gabim gjatë ngarkimit.', 'Error loading orders.'));
+    } finally {
+      setLoading(false);
+    }
+  }, [t]);
+
+  useEffect(() => { fetchOrders(); }, [fetchOrders]);
+
+  if (loading) return (
+    <div className="flex justify-center py-16">
+      <div className="w-7 h-7 rounded-full border-2 border-violet-600 border-t-transparent animate-spin" />
+    </div>
+  );
+
+  if (error) return (
+    <div className="py-8 text-center text-sm text-red-500">{error}</div>
+  );
+
+  return (
+    <div className="space-y-6">
+      <SectionHeader icon={ShoppingBag} title={t('Porositë e mia', 'My Orders')} desc={t('Historia e blerjeve tuaja.', 'Your purchase history.')} />
+      {orders.length === 0 ? (
+        <div className="text-center py-16">
+          <div className="w-16 h-16 rounded-2xl bg-violet-50 flex items-center justify-center mx-auto mb-4">
+            <ShoppingBag className="w-8 h-8 text-violet-400" />
+          </div>
+          <p className="text-sm text-zinc-500">{t('Nuk keni asnjë porosi ende.', 'You have no orders yet.')}</p>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {orders.map((order: any) => {
+            const st = STATUS_LABELS[order.status] ?? { label: order.status, color: '#6b7280', bg: '#f3f4f6' };
+            const date = new Date(order.createdAt).toLocaleDateString('sq-AL', { day: '2-digit', month: 'long', year: 'numeric' });
+            return (
+              <div key={order.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                {/* Order header */}
+                <div className="flex items-center justify-between px-5 py-4 border-b border-gray-50">
+                  <div>
+                    <p className="text-xs text-zinc-400 font-medium">{t('Porosia', 'Order')} <span className="font-bold text-zinc-700">#{order.id}</span></p>
+                    <p className="text-xs text-zinc-400 mt-0.5">{date}</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ color: st.color, backgroundColor: st.bg }}>
+                      {st.label}
+                    </span>
+                    <p className="text-sm font-bold text-zinc-800">{order.totalAmount} {order.currency}</p>
+                  </div>
+                </div>
+                {/* Items */}
+                <div className="px-5 py-3 space-y-2">
+                  {order.items.length === 0 && (
+                    <p className="text-xs text-zinc-400 italic">{t('Nuk ka artikuj.', 'No items.')}</p>
+                  )}
+                  {order.items.map((item: any, i: number) => (
+                    <div key={i} className="flex items-center justify-between py-1">
+                      <div>
+                        <p className="text-sm font-medium text-zinc-800">{item.productTitleSq}</p>
+                        {item.variantNameSq && <p className="text-xs text-zinc-400">{item.variantNameSq}</p>}
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm font-semibold text-zinc-700">{item.unitPrice} {order.currency}</p>
+                        {item.quantity > 1 && <p className="text-xs text-zinc-400">x{item.quantity}</p>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const ComingSoonView = ({ title, desc, t }: { title: string; desc: string; t: any }) => (
   <div className="space-y-6">
