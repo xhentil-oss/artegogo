@@ -17,13 +17,14 @@ interface Meditation {
   description: string;
   image: string;
   free: boolean;
+  pdfUrl: string;
 }
 
 const MEDITATIONS: Meditation[] = [
-  { id: 1, title: 'Meditimi i Faljes', duration: '10 min', description: 'Falje dhe çlirim emocional', image: '/img/TONI1692.JPG', free: true },
-  { id: 2, title: 'Qetësia e Brendshme', duration: '15 min', description: 'Relaksim i thellë i mendjes', image: '/img/TONI2743.JPG', free: true },
-  { id: 3, title: 'Harmonizim i Avancuar', duration: '20 min', description: 'Harmonizim i thellë i energjive dhe zemrës.', image: '/img/TONI2879.JPG', free: false },
-  { id: 4, title: 'Transformim i Plotë', duration: '25 min', description: 'Udhëtim i strukturuar për ndryshim të qëndrueshëm.', image: '/img/TONI1692.JPG', free: false },
+  { id: 1, title: 'Meditimi i Faljes', duration: '10 min', description: 'Falje dhe çlirim emocional', image: '/img/TONI1692.JPG', free: true, pdfUrl: '' },
+  { id: 2, title: 'Qetësia e Brendshme', duration: '15 min', description: 'Relaksim i thellë i mendjes', image: '/img/TONI2743.JPG', free: true, pdfUrl: '' },
+  { id: 3, title: 'Harmonizim i Avancuar', duration: '20 min', description: 'Harmonizim i thellë i energjive dhe zemrës.', image: '/img/TONI2879.JPG', free: false, pdfUrl: '' },
+  { id: 4, title: 'Transformim i Plotë', duration: '25 min', description: 'Udhëtim i strukturuar për ndryshim të qëndrueshëm.', image: '/img/TONI1692.JPG', free: false, pdfUrl: '' },
 ];
 
 const NAV_ITEMS: { key: Section; labelAl: string; labelEn: string; Icon: React.ElementType }[] = [
@@ -422,7 +423,7 @@ const MeditimetView = ({ meditations, hasRetreat, lockedMsg, setLockedMsg, t, na
       <div>
         <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">{t('Meditime Falas', 'Free Meditations')}</p>
         <div className="space-y-3">
-          {free.map(m => <MeditationCard key={m.id} m={m} unlocked t={t} onClick={() => {}} />)}
+          {free.map(m => <MeditationCard key={m.id} m={m} unlocked t={t} onClick={() => { if (m.pdfUrl) window.open(m.pdfUrl, '_blank'); }} />)}
         </div>
       </div>
 
@@ -463,7 +464,7 @@ const MeditimetView = ({ meditations, hasRetreat, lockedMsg, setLockedMsg, t, na
 
 const MeditationCard = ({ m, unlocked, t, onClick }: { m: Meditation; unlocked: boolean; t: any; onClick: () => void }) => (
   <button onClick={onClick}
-    className="w-full flex items-center gap-4 bg-white rounded-2xl p-4 border border-gray-100 shadow-sm text-left hover:shadow-md transition-all group">
+    className={`w-full flex items-center gap-4 bg-white rounded-2xl p-4 border border-gray-100 shadow-sm text-left hover:shadow-md transition-all group ${unlocked && m.pdfUrl ? 'cursor-pointer' : unlocked ? 'cursor-not-allowed opacity-60' : ''}`}>
     <img src={m.image} alt={m.title} className="w-16 h-16 rounded-xl object-cover shrink-0" />
     <div className="flex-1 min-w-0">
       <p className="font-semibold text-zinc-900 text-sm leading-snug">{m.title}</p>
@@ -471,6 +472,12 @@ const MeditationCard = ({ m, unlocked, t, onClick }: { m: Meditation; unlocked: 
         <span>⏱</span>{m.duration}
       </p>
       <p className="text-xs text-zinc-500 mt-0.5 leading-relaxed">{m.description}</p>
+      {unlocked && m.pdfUrl && (
+        <span className="inline-flex items-center gap-1 mt-1 text-xs font-semibold text-violet-600">
+          <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          {t('Hap PDF', 'Open PDF')}
+        </span>
+      )}
     </div>
     <div className="flex items-center gap-2 shrink-0">
       <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ backgroundColor: unlocked ? '#d1fae5' : '#f4f4f5' }}>
