@@ -18,7 +18,7 @@ export const LoginPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { refetch } = useAuth();
-  const redirectTo = searchParams.get("redirect") || "/";
+  const redirectTo = searchParams.get("redirect") || "/dashboard";
 
   const handleForgot = async (e: React.FormEvent) => {
     e.preventDefault();

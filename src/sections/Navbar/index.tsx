@@ -282,13 +282,6 @@ export const Navbar = () => {
           <LangToggle />
           {user ? (
             <>
-              <Link
-                to="/eventet/trajnime-online/platforma"
-                className="flex items-center gap-1.5 text-sm font-medium text-violet-700 hover:text-violet-900 px-3 py-2 rounded-lg hover:bg-violet-50 transition-all"
-              >
-                <PlayCircle size={16} />
-                {lang === "al" ? "Trajnimet" : "My Training"}
-              </Link>
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-violet-50 border border-violet-100">
                 <div className="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
                   {user.firstName?.[0]?.toUpperCase() ?? <User size={14} />}
@@ -402,14 +395,6 @@ export const Navbar = () => {
                     <p className="text-xs text-zinc-500">{user.email}</p>
                   </div>
                 </div>
-                <Link
-                  to="/eventet/trajnime-online/platforma"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center gap-2 text-center justify-center bg-violet-600 text-white text-sm font-semibold px-4 py-3 rounded-lg hover:bg-violet-700 transition-all"
-                >
-                  <PlayCircle size={16} />
-                  {lang === "al" ? "Hyr në Trajnime" : "Access Training"}
-                </Link>
                 <button
                   onClick={handleLogout}
                   className="flex items-center gap-2 justify-center border border-red-200 text-red-600 text-sm font-semibold px-4 py-3 rounded-lg hover:bg-red-50 transition-all"

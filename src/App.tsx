@@ -57,6 +57,7 @@ import { AdminDashboard } from "@/pages/Admin";
 import { KushtetPage } from "@/pages/Kushtet";
 import { ResetPasswordPage } from "@/pages/ResetPassword";
 import { VerifyEmailPage } from "@/pages/VerifyEmail";
+import { UserDashboardPage } from "@/pages/UserDashboard";
 
 const WhatsAppButton = () => (
   <a
@@ -104,7 +105,7 @@ export const App = () => {
         <Route path="/shop/regjistrohu-workshop" element={<Layout><RegjistrohuWorkshopPage /></Layout>} />
         <Route path="/shop/regjistrohu-workshop/pagesa" element={<Layout><TrajnimePagesaPage /></Layout>} />
         <Route path="/eventet/trajnime-online" element={<Layout><TrajnimeOnlinePage /></Layout>} />
-        <Route path="/eventet/trajnime-online/platforma" element={<Layout><ProtectedRoute><PlatformaTeachablePage /></ProtectedRoute></Layout>} />
+        <Route path="/eventet/trajnime-online/platforma" element={<Layout><PlatformaTeachablePage /></Layout>} />
         <Route path="/eventet/workshope" element={<Layout><WorkshopePage /></Layout>} />
         <Route path="/live" element={<Layout><LivePage /></Layout>} />
         <Route path="/rezultatet" element={<Navigate to="/rezultatet/testimonials" replace />} />
@@ -119,6 +120,7 @@ export const App = () => {
         <Route path="/shop/librat" element={<Layout><ShopLibratPage /></Layout>} />
         <Route path="/kontakt" element={<Layout><KontaktPage /></Layout>} />
         <Route path="/faq" element={<Layout><FAQPage /></Layout>} />
+        <Route path="/dashboard" element={<UserDashboardPage />} />
         <Route path="/login" element={<Layout><LoginPage /></Layout>} />
         <Route path="/signup" element={<Layout><SignUpPage /></Layout>} />
         <Route path="/auth/reset-password" element={<Layout><ResetPasswordPage /></Layout>} />
