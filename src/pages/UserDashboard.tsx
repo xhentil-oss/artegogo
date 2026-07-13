@@ -115,7 +115,7 @@ export const UserDashboardPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#f5f3ff' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#f5f3ff', fontFamily: "'Inter', 'Poppins', sans-serif" }}>
 
       {/* Top Header */}
       <header className="bg-white border-b border-gray-100 px-4 md:px-6 py-3 flex items-center justify-between sticky top-0 z-40 shadow-sm">
@@ -201,7 +201,7 @@ export const UserDashboardPage = () => {
               {t('Shko tek Kurset', 'Back to Courses')}
             </Link>
 
-            <p className="text-2xl font-bold text-zinc-900 px-2 mb-5">Dashboard</p>
+            <p className="text-2xl font-bold text-zinc-900 px-2 mb-5" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>Dashboard</p>
 
             <nav className="space-y-1">
               {NAV_ITEMS.map(({ key, labelAl, labelEn, Icon }) => {
@@ -244,10 +244,10 @@ export const UserDashboardPage = () => {
 const DashboardHome = ({ user, setActive, t, hasRetreat }: { user: any; setActive: (s: Section) => void; t: any; hasRetreat: boolean }) => (
   <div className="space-y-6">
     <div>
-      <h1 className="text-2xl md:text-3xl font-bold text-zinc-900">
+      <h1 className="text-2xl md:text-3xl font-bold text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
         {t(`Mirë se erdhe, ${user.firstName}!`, `Welcome, ${user.firstName}!`)}
       </h1>
-      <p className="text-zinc-500 text-sm mt-1">{t('Nga këtu menaxho gjithçka.', 'Manage everything from here.')}</p>
+      <p className="text-zinc-500 text-sm mt-1" style={{ fontFamily: "'Inter', sans-serif" }}>{t('Nga këtu menaxho gjithçka.', 'Manage everything from here.')}</p>
     </div>
 
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -293,7 +293,7 @@ const ProfileView = ({ user, t }: { user: any; t: any }) => (
           {`${user.firstName?.[0] ?? ''}${user.lastName?.[0] ?? ''}`.toUpperCase()}
         </div>
         <div>
-          <p className="font-bold text-zinc-900 text-lg">{user.firstName} {user.lastName}</p>
+          <p className="font-bold text-zinc-900 text-lg" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{user.firstName} {user.lastName}</p>
           <p className="text-sm text-zinc-500">{user.email}</p>
         </div>
       </div>
@@ -392,7 +392,7 @@ const ComingSoonView = ({ title, desc, t }: { title: string; desc: string; t: an
       <div className="w-16 h-16 rounded-2xl bg-violet-50 flex items-center justify-center mx-auto mb-4">
         <BookOpen className="w-8 h-8 text-violet-400" />
       </div>
-      <h2 className="text-xl font-bold text-zinc-800 mb-2">{title}</h2>
+      <h2 className="text-xl font-bold text-zinc-800 mb-2" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{title}</h2>
       <p className="text-sm text-zinc-500">{desc}</p>
     </div>
   </div>
@@ -455,8 +455,8 @@ const SectionHeader = ({ icon: Icon, title, desc }: { icon: React.ElementType; t
       <Icon className="w-6 h-6" style={{ color: '#7c3aed' }} />
     </div>
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-zinc-900">{title}</h1>
-      <p className="text-sm text-zinc-500">{desc}</p>
+      <h1 className="text-xl md:text-2xl font-bold text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{title}</h1>
+      <p className="text-sm text-zinc-500" style={{ fontFamily: "'Inter', sans-serif" }}>{desc}</p>
     </div>
   </div>
 );
