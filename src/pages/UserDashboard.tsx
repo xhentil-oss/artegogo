@@ -5,7 +5,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import {
   LayoutDashboard, User, Headphones, BookOpen, GraduationCap,
   Settings, HelpCircle, LogOut, ChevronRight, Lock, Unlock,
-  Key, Menu, X, ArrowLeft, Bell, ChevronDown,
+  Key, Menu, X, ArrowLeft, Search, ChevronDown,
 } from 'lucide-react';
 
 type Section = 'dashboard' | 'profili' | 'meditimet' | 'librat' | 'trajnimet' | 'ndrysho' | 'ndihme';
@@ -129,8 +129,8 @@ export const UserDashboardPage = () => {
         </div>
 
         <div className="flex items-center gap-2 md:gap-3">
-          <button className="p-2 rounded-xl hover:bg-violet-50 transition-all relative" title="Njoftimet">
-            <Bell className="w-5 h-5 text-zinc-500" />
+          <button className="p-2 rounded-xl hover:bg-violet-50 transition-all" title="Kërko">
+            <Search className="w-5 h-5 text-zinc-500" />
           </button>
 
           {/* Profile dropdown */}
