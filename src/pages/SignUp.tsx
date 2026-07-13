@@ -15,7 +15,7 @@ export const SignUpPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { refetch } = useAuth();
-  const redirectTo = searchParams.get("redirect") || "/eventet/trajnime-online/platforma";
+  const redirectTo = searchParams.get("redirect") || "/dashboard";
 
   const update = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((f) => ({ ...f, [field]: e.target.value }));
