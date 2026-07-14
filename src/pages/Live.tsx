@@ -41,9 +41,6 @@ export const LivePage = () => {
               {t("Live", "Broadcasts")}
             </span>
           </h1>
-          <p className="text-sm leading-relaxed text-zinc-700 md:text-base max-w-2xl mx-auto">
-            {t("Ndiqni sesionet tona live të meditimit, workshopeve dhe seancave të koçingut në kohë reale.", "Follow our live meditation sessions, workshops and coaching sessions in real time.")}
-          </p>
         </div>
       </div>
 
