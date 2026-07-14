@@ -68,8 +68,10 @@ export const UserDashboardPage = () => {
   useEffect(() => {
     const checkRetreat = async () => {
       try {
-        const res = await fetch('/api/auth/me', { credentials: 'include' });
+        const res = await fetch('/api/auth/has-retreat', { credentials: 'include' });
         if (!res.ok) return;
+        const d = await res.json();
+        setHasRetreat(d.hasRetreat === true);
       } catch { /* ignore */ }
     };
     checkRetreat();
