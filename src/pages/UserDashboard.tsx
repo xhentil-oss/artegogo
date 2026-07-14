@@ -68,7 +68,11 @@ export const UserDashboardPage = () => {
   useEffect(() => {
     const checkRetreat = async () => {
       try {
-        const res = await fetch('/api/auth/has-retreat', { credentials: 'include' });
+        let res = await fetch('/api/auth/has-retreat', { credentials: 'include' });
+        if (res.status === 401) {
+          const ref = await fetch('/api/auth/refresh', { method: 'POST', credentials: 'include' });
+          if (ref.ok) res = await fetch('/api/auth/has-retreat', { credentials: 'include' });
+        }
         if (!res.ok) return;
         const d = await res.json();
         setHasRetreat(d.hasRetreat === true);
@@ -520,7 +524,14 @@ const OrdersView = ({ t }: { t: any }) => {
 
   const fetchOrders = useCallback(async () => {
     try {
-      const res = await fetch('/api/auth/my-orders', { credentials: 'include' });
+      let res = await fetch('/api/auth/my-orders', { credentials: 'include' });
+      if (res.status === 401) {
+        // Token skadoi — provo refresh
+        const ref = await fetch('/api/auth/refresh', { method: 'POST', credentials: 'include' });
+        if (ref.ok) {
+          res = await fetch('/api/auth/my-orders', { credentials: 'include' });
+        }
+      }
       const d = await res.json();
       if (!res.ok) throw new Error(d.message || 'Gabim');
       setOrders(d.data);
