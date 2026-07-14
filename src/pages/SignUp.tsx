@@ -9,7 +9,7 @@ export const SignUpPage = () => {
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", password: "", confirmPassword: "" });
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const { t } = useLanguage();
   const navigate = useNavigate();
@@ -53,15 +53,58 @@ export const SignUpPage = () => {
         }
         return;
       }
-      setSuccess(data.message || t("Llogaria u krijua! Konfirmo emailin tënd.", "Account created! Please confirm your email."));
+      setSuccess(true);
       await refetch();
-      setTimeout(() => navigate(redirectTo), 2000);
     } catch {
       setError(t("Gabim lidhjeje. Provo përsëri.", "Connection error. Please try again."));
     } finally {
       setLoading(false);
     }
   };
+
+  if (success) return (
+    <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-purple-50 via-violet-50 to-white px-4 py-16">
+      <div className="w-full max-w-md">
+        <div className="bg-white rounded-2xl border border-purple-100 p-8 text-center">
+          <div className="flex justify-center mb-6">
+            <img src="https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776774255229-0.png" alt="Arte Gogo" className="h-14 w-auto object-contain" />
+          </div>
+          <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h1 className="text-2xl font-bold text-zinc-800 mb-2">{t("Regjistrimi u krye me sukses!", "Registration successful!")}</h1>
+          <p className="text-zinc-500 text-sm mb-6 leading-relaxed">
+            {t(
+              `Llogaria juaj u krijua. Kemi dërguar një email konfirmimi tek ${form.email} — konfirmoni emailin tuaj para se të hyni.`,
+              `Your account has been created. We sent a confirmation email to ${form.email} — please verify your email before signing in.`
+            )}
+          </p>
+          <div className="bg-violet-50 border border-violet-100 rounded-xl p-4 mb-6 text-left space-y-2">
+            <div className="flex items-start gap-2">
+              <span className="text-violet-600 mt-0.5">✓</span>
+              <p className="text-sm text-zinc-700">{t("Llogaria u krijua", "Account created")}</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-violet-600 mt-0.5">✓</span>
+              <p className="text-sm text-zinc-700">{t("Email konfirmimi u dërgua", "Confirmation email sent")}</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-amber-500 mt-0.5">→</span>
+              <p className="text-sm text-zinc-700">{t("Konfirmoni emailin pastaj hyni", "Confirm your email then sign in")}</p>
+            </div>
+          </div>
+          <Link
+            to="/login"
+            className="block w-full py-3 rounded-xl text-sm font-semibold text-white text-center bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 transition-all"
+          >
+            {t("Hyr në llogari", "Sign In")}
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-purple-50 via-violet-50 to-white px-4 py-16">
@@ -75,11 +118,6 @@ export const SignUpPage = () => {
           {error && (
             <div className="mb-4 px-4 py-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm text-center">
               {error}
-            </div>
-          )}
-          {success && (
-            <div className="mb-4 px-4 py-3 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm text-center">
-              {success}
             </div>
           )}
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
