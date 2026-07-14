@@ -41,8 +41,6 @@ export const RegjistrohuWorkshopPage = () => {
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
-  const [existingUserWarning, setExistingUserWarning] = useState(false);
-  const [pendingNavigate, setPendingNavigate] = useState<string | null>(null);
 
   const showConfirmToast = () => {
     setToast(true);
@@ -82,13 +80,7 @@ export const RegjistrohuWorkshopPage = () => {
       const d = await res.json().catch(() => ({}));
       const orderId = d?.data?.orderId ?? '';
       const params = new URLSearchParams({ amount: '135', name: `${firstName} ${lastName}`, email, type: 'workshop', orderId: String(orderId) });
-      const dest = `/shop/regjistrohu-workshop/pagesa?${params.toString()}`;
-      if (d?.data?.isExistingUser) {
-        setPendingNavigate(dest);
-        setExistingUserWarning(true);
-      } else {
-        navigate(dest);
-      }
+      navigate(`/shop/regjistrohu-workshop/pagesa?${params.toString()}`);
     } catch {
       setSubmitError(t('Gabim lidhjeje. Provo përsëri.', 'Connection error. Please try again.'));
     } finally {
@@ -305,20 +297,6 @@ export const RegjistrohuWorkshopPage = () => {
               </span>
             </label>
 
-            {existingUserWarning && (
-              <div className="px-4 py-4 rounded-xl bg-amber-50 border border-amber-200 text-sm text-zinc-800 space-y-3">
-                <p className="font-semibold text-amber-800">⚠️ {t('Ky email ka tashmë një llogari', 'This email already has an account')}</p>
-                <p className="text-xs text-zinc-600 leading-relaxed">{t('Fjalëkalimi i ri që vendosët NUK u aplikua. Hyni me fjalëkalimin tuaj ekzistues.', 'The new password you entered was NOT applied. Use your existing password to sign in.')}</p>
-                <div className="flex gap-2">
-                  <button onClick={() => { if (pendingNavigate) navigate(pendingNavigate); }} className="flex-1 py-2 rounded-lg text-xs font-semibold text-white bg-violet-600 hover:bg-violet-700 transition">
-                    {t('Vazhdo te pagesa →', 'Continue to payment →')}
-                  </button>
-                  <button onClick={() => navigate('/login')} className="flex-1 py-2 rounded-lg text-xs font-semibold text-zinc-700 border border-zinc-200 hover:bg-zinc-50 transition">
-                    {t('Hyr me llogari', 'Sign In')}
-                  </button>
-                </div>
-              </div>
-            )}
             {submitError && (
               <div className="px-4 py-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs text-center">{submitError}</div>
             )}
