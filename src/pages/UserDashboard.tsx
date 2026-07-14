@@ -390,32 +390,78 @@ const DashboardHome = ({ user, setActive, t, hasRetreat }: { user: any; setActiv
   </div>
 );
 
-const ProfileView = ({ user, t }: { user: any; t: any }) => (
-  <div className="space-y-6">
-    <SectionHeader icon={User} title={t('Profili im', 'My Profile')} desc={t('Të dhënat e llogarisë suaj.', 'Your account details.')} />
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
-      <div className="flex items-center gap-4 pb-4 border-b border-gray-100">
-        <div className="w-16 h-16 rounded-full bg-violet-600 flex items-center justify-center text-white text-xl font-bold">
-          {`${user.firstName?.[0] ?? ''}${user.lastName?.[0] ?? ''}`.toUpperCase()}
+const ProfileView = ({ user, t }: { user: any; t: any }) => {
+  const [profile, setProfile] = useState<any>(null);
+  const [ordersCount, setOrdersCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        let res = await fetch('/api/auth/me', { credentials: 'include' });
+        if (res.status === 401) {
+          const ref = await fetch('/api/auth/refresh', { method: 'POST', credentials: 'include' });
+          if (ref.ok) res = await fetch('/api/auth/me', { credentials: 'include' });
+        }
+        const d = await res.json();
+        if (res.ok) setProfile(d.data?.user ?? d.user ?? null);
+      } catch { /* ignore */ }
+
+      try {
+        let res2 = await fetch('/api/auth/my-orders', { credentials: 'include' });
+        if (res2.status === 401) {
+          const ref = await fetch('/api/auth/refresh', { method: 'POST', credentials: 'include' });
+          if (ref.ok) res2 = await fetch('/api/auth/my-orders', { credentials: 'include' });
+        }
+        const d2 = await res2.json();
+        if (res2.ok) setOrdersCount(Array.isArray(d2.data) ? d2.data.length : 0);
+      } catch { /* ignore */ }
+    };
+    load();
+  }, []);
+
+  const data = profile ?? user;
+  const joinDate = data?.createdAt
+    ? new Date(data.createdAt).toLocaleDateString('sq-AL', { day: '2-digit', month: 'long', year: 'numeric' })
+    : '—';
+
+  return (
+    <div className="space-y-6">
+      <SectionHeader icon={User} title={t('Profili im', 'My Profile')} desc={t('Të dhënat e llogarisë suaj.', 'Your account details.')} />
+      <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
+        {/* Avatar + name */}
+        <div className="flex items-center gap-4 pb-4 border-b border-gray-100">
+          <div className="w-16 h-16 rounded-full bg-violet-600 flex items-center justify-center text-white text-xl font-bold shrink-0">
+            {`${data.firstName?.[0] ?? ''}${data.lastName?.[0] ?? ''}`.toUpperCase()}
+          </div>
+          <div>
+            <p className="font-bold text-zinc-900 text-lg" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{data.firstName} {data.lastName}</p>
+            <p className="text-sm text-zinc-500">{data.email}</p>
+          </div>
         </div>
-        <div>
-          <p className="font-bold text-zinc-900 text-lg" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{user.firstName} {user.lastName}</p>
-          <p className="text-sm text-zinc-500">{user.email}</p>
+
+        {/* Fields */}
+        {[
+          { label: t('Emri', 'First Name'),    value: data.firstName },
+          { label: t('Mbiemri', 'Last Name'),   value: data.lastName },
+          { label: 'Email',                      value: data.email },
+          { label: t('Telefon', 'Phone'),        value: data.phone || '—' },
+          { label: t('Anëtar që nga', 'Member since'), value: joinDate },
+        ].map(({ label, value }) => (
+          <div key={label} className="flex items-center justify-between py-2 border-b border-gray-50">
+            <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wide">{label}</span>
+            <span className="text-sm font-medium text-zinc-800">{value}</span>
+          </div>
+        ))}
+
+        {/* Orders count */}
+        <div className="flex items-center justify-between py-2">
+          <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wide">{t('Numri i porosive', 'Total orders')}</span>
+          <span className="text-sm font-bold text-violet-700">{ordersCount !== null ? ordersCount : '—'}</span>
         </div>
       </div>
-      {[
-        { label: t('Emri', 'First Name'), value: user.firstName },
-        { label: t('Mbiemri', 'Last Name'), value: user.lastName },
-        { label: 'Email', value: user.email },
-      ].map(({ label, value }) => (
-        <div key={label} className="flex items-center justify-between py-2 border-b border-gray-50">
-          <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wide">{label}</span>
-          <span className="text-sm font-medium text-zinc-800">{value}</span>
-        </div>
-      ))}
     </div>
-  </div>
-);
+  );
+};
 
 const MeditimetView = ({ meditations, hasRetreat, lockedMsg, setLockedMsg, t, navigate }: {
   meditations: Meditation[]; hasRetreat: boolean; lockedMsg: boolean;
