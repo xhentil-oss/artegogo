@@ -225,33 +225,14 @@ const pillars = [
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-2">
-            {user ? (
-              <>
-                <div className="mb-3 flex items-center gap-2 px-3 py-1.5 rounded-xl" style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.25)" }}>
-                  <svg className="w-4 h-4 text-green-300" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                  <span className="text-white text-xs font-semibold">{t(`Mirë se vjen, ${user.firstName}! Ke akses të plotë.`, `Welcome, ${user.firstName}! You have full access.`)}</span>
-                </div>
-                <Link to="/eventet/trajnime-online/platforma"
-                  className="inline-flex items-center gap-1.5 text-white px-3 py-1.5 text-xs md:px-8 md:py-4 md:text-base rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
-                  style={{ backgroundColor: "#4e29c5", fontWeight: 600 }}>
-                  <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
-                  </svg>
-                  {t("Hyr në Platformë", "Access Platform")}
-                </Link>
-              </>
-            ) : (
-              <Link to="/shop/regjistrohu-trajnim-online"
-                className="inline-flex items-center gap-1.5 text-white px-3 py-1.5 text-xs md:px-8 md:py-4 md:text-base rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
-                style={{ backgroundColor: "#4e29c5", fontWeight: 600 }}>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-                </svg>
-                {t("Regjistrohu Tani", "Register Now")}
-              </Link>
-            )}
+            <Link to="/shop/regjistrohu-trajnim-online"
+              className="inline-flex items-center gap-1.5 text-white px-3 py-1.5 text-xs md:px-8 md:py-4 md:text-base rounded-xl transition-all duration-300 hover:scale-105 active:scale-100"
+              style={{ backgroundColor: "#4e29c5", fontWeight: 600 }}>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
+              {t("Regjistrohu Tani", "Register Now")}
+            </Link>
           </div>
         </div>
       </div>
