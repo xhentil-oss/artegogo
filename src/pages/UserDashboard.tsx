@@ -803,7 +803,8 @@ const EditProfileView = ({ user, oldPass, setOldPass, newPass, setNewPass, confi
           style={{ backgroundColor: '#fafafa' }} />
       </div>
       <div>
-        <label className="block text-xs font-semibold text-zinc-600 mb-1.5">{t('Konfirmo me fjalëkalimin tënd', 'Confirm with your password')}</label>
+        <label className="block text-xs font-semibold text-zinc-600 mb-0.5">{t('Konfirmo me fjalëkalimin tënd', 'Confirm with your password')}</label>
+        <p className="text-xs text-zinc-400 mb-1.5">{t('Fjalëkalimi me të cilin hyni në llogarinë tuaj aktuale.', 'The password you use to log into your current account.')}</p>
         <input type="password" value={emailPass} onChange={e => setEmailPass(e.target.value)} placeholder="••••••••"
           className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-violet-400 transition-all"
           style={{ backgroundColor: '#fafafa' }} />
