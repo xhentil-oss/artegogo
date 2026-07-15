@@ -282,12 +282,12 @@ export const Navbar = () => {
           <LangToggle />
           {user ? (
             <>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-violet-50 border border-violet-100">
+              <Link to="/dashboard" className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-violet-50 border border-violet-100 hover:bg-violet-100 transition-colors">
                 <div className="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
                   {user.firstName?.[0]?.toUpperCase() ?? <User size={14} />}
                 </div>
                 <span className="text-sm font-medium text-zinc-700">{user.firstName}</span>
-              </div>
+              </Link>
               <button
                 onClick={handleLogout}
                 className="flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-red-600 px-3 py-2 rounded-lg hover:bg-red-50 transition-all"
@@ -386,7 +386,7 @@ export const Navbar = () => {
             </div>
             {user ? (
               <>
-                <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-violet-50 border border-violet-100">
+                <Link to="/dashboard" className="flex items-center gap-2 px-4 py-3 rounded-lg bg-violet-50 border border-violet-100 hover:bg-violet-100 transition-colors">
                   <div className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center text-white text-sm font-bold shrink-0">
                     {user.firstName?.[0]?.toUpperCase()}
                   </div>
@@ -394,7 +394,7 @@ export const Navbar = () => {
                     <p className="text-sm font-semibold text-zinc-800">{user.firstName} {user.lastName}</p>
                     <p className="text-xs text-zinc-500">{user.email}</p>
                   </div>
-                </div>
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="flex items-center gap-2 justify-center border border-red-200 text-red-600 text-sm font-semibold px-4 py-3 rounded-lg hover:bg-red-50 transition-all"
