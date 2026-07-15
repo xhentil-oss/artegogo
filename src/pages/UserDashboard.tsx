@@ -347,113 +347,209 @@ export const UserDashboardPage = () => {
 
 /* ── Sections ─────────────────────────────────────────────────────── */
 
-const DashboardHome = ({ user, setActive, t, hasRetreat }: { user: any; setActive: (s: Section) => void; t: any; hasRetreat: boolean }) => (
-  <div className="space-y-6">
+const DashboardHome = ({ user, setActive, t, hasRetreat }: { user: any; setActive: (s: Section) => void; t: any; hasRetreat: boolean }) => {
+  const [ordersCount, setOrdersCount] = useState(0);
+  const [trainingsCount, setTrainingsCount] = useState(0);
+  const [lastOrder, setLastOrder] = useState<any>(null);
+  const [statsLoading, setStatsLoading] = useState(true);
 
-    {/* Hero banner */}
-    <div className="relative rounded-2xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #3b1fa3 0%, #6d28d9 60%, #a855f7 100%)' }}>
-      {/* decorative circles */}
-      <div className="absolute -right-8 -top-8 w-40 h-40 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #fff, transparent)' }} />
-      <div className="absolute -right-2 bottom-0 w-24 h-24 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #fff, transparent)' }} />
-      {/* lotus */}
-      <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-20 hidden sm:block">
-        <svg width="90" height="90" viewBox="0 0 64 64" fill="none">
-          <path d="M32 8C32 8 24 18 24 28C24 33 27.6 37 32 37C36.4 37 40 33 40 28C40 18 32 8 32 8Z" fill="white"/>
-          <path d="M12 22C12 22 18 32 26 35" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-          <path d="M52 22C52 22 46 32 38 35" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-          <path d="M6 14C6 14 14 24 22 28" stroke="white" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
-          <path d="M58 14C58 14 50 24 42 28" stroke="white" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
-          <path d="M32 37V52" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-        </svg>
-      </div>
-      <div className="px-6 py-7 relative z-10">
-        <p className="text-violet-200 text-xs font-semibold uppercase tracking-widest mb-2">Arte Gogo</p>
-        <h1 className="text-2xl md:text-3xl font-bold text-white mb-2" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-          {t(`Mirë se erdhe, ${user.firstName}!`, `Welcome, ${user.firstName}!`)}
-        </h1>
-        <p className="text-violet-100 text-sm leading-relaxed max-w-sm">
-          {t('Ky është hapësira jote personale — menaxho meditimet, trajnimet dhe udhëtimin tënd.', 'This is your personal space — manage your meditations, trainings and journey.')}
-        </p>
-      </div>
-    </div>
+  useEffect(() => {
+    const load = async () => {
+      try {
+        let resO = await fetch('/api/auth/my-orders', { credentials: 'include' });
+        if (resO.status === 401) {
+          const ref = await fetch('/api/auth/refresh', { method: 'POST', credentials: 'include' });
+          if (ref.ok) resO = await fetch('/api/auth/my-orders', { credentials: 'include' });
+        }
+        const dO = await resO.json();
+        const orders = resO.ok && Array.isArray(dO.data) ? dO.data : [];
+        setOrdersCount(orders.length);
+        if (orders.length > 0) setLastOrder(orders[0]);
 
-    {/* Section title */}
-    <div>
-      <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">{t('Çfarë dëshironi të bëni?', 'What would you like to do?')}</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        let resT = await fetch('/api/auth/my-trainings', { credentials: 'include' });
+        if (resT.status === 401) {
+          const ref = await fetch('/api/auth/refresh', { method: 'POST', credentials: 'include' });
+          if (ref.ok) resT = await fetch('/api/auth/my-trainings', { credentials: 'include' });
+        }
+        const dT = await resT.json();
+        setTrainingsCount(resT.ok && Array.isArray(dT.data) ? dT.data.length : 0);
+      } catch { /* ignore */ } finally {
+        setStatsLoading(false);
+      }
+    };
+    load();
+  }, []);
 
-        <button onClick={() => setActive('meditimet')}
-          className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-left hover:shadow-md hover:-translate-y-0.5 transition-all group">
-          <div className="flex items-start gap-4">
-            <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#ede9fe' }}>
-              <Headphones className="w-5 h-5" style={{ color: '#7c3aed' }} />
-            </div>
-            <div>
-              <p className="font-semibold text-zinc-800 text-sm">{t('Meditimet e mia', 'My Meditations')}</p>
-              <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">{t('Dëgo meditimet falas dhe premium.', 'Listen to free and premium meditations.')}</p>
-            </div>
-          </div>
-        </button>
+  const hour = new Date().getHours();
+  const greeting = hour < 12
+    ? t('Mirëmëngjes', 'Good morning')
+    : hour < 18
+    ? t('Mirëdita', 'Good afternoon')
+    : t('Mirëmbrëma', 'Good evening');
 
-        <button onClick={() => setActive('trajnimet')}
-          className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-left hover:shadow-md hover:-translate-y-0.5 transition-all group">
-          <div className="flex items-start gap-4">
-            <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#d1fae5' }}>
-              <GraduationCap className="w-5 h-5" style={{ color: '#059669' }} />
-            </div>
-            <div>
-              <p className="font-semibold text-zinc-800 text-sm">{t('Trajnimet e mia', 'My Trainings')}</p>
-              <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">{t('Shiko trajnimet ku jeni regjistruar.', 'View the trainings you have registered for.')}</p>
-            </div>
-          </div>
-        </button>
+  const initials = `${user.firstName?.[0] ?? ''}${user.lastName?.[0] ?? ''}`.toUpperCase();
 
-        <button onClick={() => setActive('porosit')}
-          className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-left hover:shadow-md hover:-translate-y-0.5 transition-all group">
-          <div className="flex items-start gap-4">
-            <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#fef3c7' }}>
-              <ShoppingBag className="w-5 h-5" style={{ color: '#d97706' }} />
-            </div>
-            <div>
-              <p className="font-semibold text-zinc-800 text-sm">{t('Porositë e mia', 'My Orders')}</p>
-              <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">{t('Historia e blerjeve dhe pagesave tuaja.', 'Your purchase and payment history.')}</p>
-            </div>
-          </div>
-        </button>
+  const STAT_ST: Record<string, { label: string; color: string }> = {
+    paid:      { label: t('Paguar', 'Paid'),       color: '#059669' },
+    pending:   { label: t('Në pritje', 'Pending'),  color: '#d97706' },
+    cancelled: { label: t('Anuluar', 'Cancelled'),  color: '#dc2626' },
+    refunded:  { label: t('Rimbursuar','Refunded'), color: '#7c3aed' },
+  };
 
-        <button onClick={() => setActive('profili')}
-          className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-left hover:shadow-md hover:-translate-y-0.5 transition-all group">
-          <div className="flex items-start gap-4">
-            <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#e0f2fe' }}>
-              <User className="w-5 h-5" style={{ color: '#0284c7' }} />
-            </div>
-            <div>
-              <p className="font-semibold text-zinc-800 text-sm">{t('Profili im', 'My Profile')}</p>
-              <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">{t('Shiko dhe përditëso të dhënat e llogarisë.', 'View and update your account details.')}</p>
-            </div>
-          </div>
-        </button>
+  const checklist = [
+    { done: true,                              label: t('Llogaria u krijua', 'Account created') },
+    { done: ordersCount > 0,                   label: t('Bëre blerjen e parë', 'Made your first purchase') },
+    { done: hasRetreat || trainingsCount > 0,  label: t('U regjistrove në retreat ose trajnim', 'Registered for retreat or training') },
+    { done: hasRetreat,                        label: t('Ke akses në meditimet premium', 'Access to premium meditations') },
+  ];
 
-      </div>
-    </div>
+  return (
+    <div className="space-y-5">
 
-    {/* Unlock premium */}
-    {!hasRetreat && (
-      <div className="rounded-2xl border border-violet-100 p-5 flex items-start gap-4" style={{ background: 'linear-gradient(135deg, #faf5ff 0%, #f5f3ff 100%)' }}>
-        <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#ede9fe' }}>
-          <Key className="w-5 h-5" style={{ color: '#7c3aed' }} />
+      {/* ── Hero banner ── */}
+      <div className="relative rounded-2xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #3b1fa3 0%, #6d28d9 60%, #a855f7 100%)' }}>
+        <div className="absolute -right-8 -top-8 w-40 h-40 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #fff, transparent)' }} />
+        <div className="absolute -right-2 bottom-0 w-24 h-24 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #fff, transparent)' }} />
+        <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-15 hidden sm:block">
+          <svg width="90" height="90" viewBox="0 0 64 64" fill="none">
+            <path d="M32 8C32 8 24 18 24 28C24 33 27.6 37 32 37C36.4 37 40 33 40 28C40 18 32 8 32 8Z" fill="white"/>
+            <path d="M12 22C12 22 18 32 26 35" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+            <path d="M52 22C52 22 46 32 38 35" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+            <path d="M6 14C6 14 14 24 22 28" stroke="white" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
+            <path d="M58 14C58 14 50 24 42 28" stroke="white" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
+            <path d="M32 37V52" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
         </div>
-        <div className="flex-1">
-          <p className="font-semibold text-zinc-800 text-sm">{t('Zhblloko meditimet premium', 'Unlock premium meditations')}</p>
-          <p className="text-xs text-zinc-500 mt-0.5 leading-relaxed">{t('Regjistrohu në retreat ose trajnim për të aksesuar të gjitha meditimet dhe materialet ekskluzive.', 'Join a retreat or training to access all meditations and exclusive materials.')}</p>
-          <Link to="/eventet/retreat" className="inline-flex items-center gap-1 mt-2.5 text-xs font-semibold text-violet-600 hover:text-violet-800 transition-colors">
-            {t('Shiko retreat-et', 'View retreats')} <ChevronRight className="w-3 h-3" />
-          </Link>
+        <div className="px-6 py-6 relative z-10">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-11 h-11 rounded-full bg-white/20 border border-white/30 flex items-center justify-center text-white font-bold text-base shrink-0">
+              {initials}
+            </div>
+            <div>
+              <p className="text-violet-200 text-xs font-medium">{greeting}</p>
+              <h1 className="text-xl md:text-2xl font-bold text-white leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                {user.firstName} {user.lastName}
+              </h1>
+            </div>
+          </div>
+          <p className="text-violet-100 text-sm leading-relaxed max-w-sm mb-4">
+            {t('Ky është hapësira jote personale — menaxho meditimet, trajnimet dhe udhëtimin tënd.', 'This is your personal space — manage your meditations, trainings and journey.')}
+          </p>
+          {trainingsCount > 0 && (
+            <Link to="/eventet/trajnime-online/platforma"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-violet-700 bg-white hover:bg-violet-50 transition-all shadow-sm">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+              </svg>
+              {t('Hyr në Platformë', 'Access Platform')}
+            </Link>
+          )}
         </div>
       </div>
-    )}
-  </div>
-);
+
+      {/* ── Stats row ── */}
+      <div className="grid grid-cols-3 gap-3">
+        {[
+          { label: t('Porosi', 'Orders'),    value: statsLoading ? '…' : String(ordersCount),   color: '#fef3c7', text: '#d97706' },
+          { label: t('Trajnime', 'Trainings'), value: statsLoading ? '…' : String(trainingsCount), color: '#d1fae5', text: '#059669' },
+          { label: t('Meditime', 'Meditations'), value: hasRetreat ? t('Premium', 'Premium') : '2 free', color: '#ede9fe', text: '#7c3aed' },
+        ].map(s => (
+          <div key={s.label} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 text-center">
+            <p className="text-lg font-bold" style={{ color: s.text }}>{s.value}</p>
+            <p className="text-xs text-zinc-400 mt-0.5">{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Quick actions ── */}
+      <div>
+        <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">{t('Çfarë dëshironi të bëni?', 'What would you like to do?')}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {[
+            { key: 'meditimet' as Section, icon: Headphones,   bg: '#ede9fe', ic: '#7c3aed', label: t('Meditimet e mia','My Meditations'),  desc: t('Dëgo meditimet falas dhe premium.','Listen to free and premium meditations.') },
+            { key: 'trajnimet' as Section, icon: GraduationCap,bg: '#d1fae5', ic: '#059669', label: t('Trajnimet e mia','My Trainings'),    desc: t('Shiko trajnimet ku jeni regjistruar.','View the trainings you have registered for.') },
+            { key: 'porosit'   as Section, icon: ShoppingBag,  bg: '#fef3c7', ic: '#d97706', label: t('Porositë e mia','My Orders'),        desc: t('Historia e blerjeve dhe pagesave tuaja.','Your purchase and payment history.') },
+            { key: 'profili'   as Section, icon: User,         bg: '#e0f2fe', ic: '#0284c7', label: t('Profili im','My Profile'),           desc: t('Shiko dhe përditëso të dhënat e llogarisë.','View and update your account details.') },
+          ].map(({ key, icon: Icon, bg, ic, label, desc }) => (
+            <button key={key} onClick={() => setActive(key)}
+              className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-left hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: bg }}>
+                  <Icon className="w-5 h-5" style={{ color: ic }} />
+                </div>
+                <div>
+                  <p className="font-semibold text-zinc-800 text-sm">{label}</p>
+                  <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Last order ── */}
+      {lastOrder && (
+        <div>
+          <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">{t('Aktiviteti i fundit', 'Recent activity')}</p>
+          <button onClick={() => setActive('porosit')}
+            className="w-full bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex items-center justify-between text-left hover:shadow-md transition-all">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
+                <ShoppingBag className="w-4 h-4 text-amber-500" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-zinc-800">{t('Porosia', 'Order')} #{lastOrder.id}</p>
+                <p className="text-xs text-zinc-400">{new Date(lastOrder.createdAt).toLocaleDateString('sq-AL', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ color: STAT_ST[lastOrder.status]?.color ?? '#6b7280', backgroundColor: lastOrder.status === 'paid' ? '#d1fae5' : lastOrder.status === 'pending' ? '#fef3c7' : '#fee2e2' }}>
+                {STAT_ST[lastOrder.status]?.label ?? lastOrder.status}
+              </span>
+              <p className="text-sm font-bold text-zinc-700">{lastOrder.totalAmount} {lastOrder.currency}</p>
+              <ChevronRight className="w-4 h-4 text-zinc-300" />
+            </div>
+          </button>
+        </div>
+      )}
+
+      {/* ── Onboarding checklist ── */}
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+        <p className="text-sm font-bold text-zinc-800 mb-4">{t('Hapat e tua', 'Your journey')}</p>
+        <div className="space-y-3">
+          {checklist.map((item, i) => (
+            <div key={i} className="flex items-center gap-3">
+              <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${item.done ? 'bg-violet-600' : 'border-2 border-zinc-200'}`}>
+                {item.done && (
+                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
+                  </svg>
+                )}
+              </div>
+              <p className={`text-sm ${item.done ? 'text-zinc-700 font-medium' : 'text-zinc-400'}`}>{item.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Unlock premium ── */}
+      {!hasRetreat && (
+        <div className="rounded-2xl border border-violet-100 p-5 flex items-start gap-4" style={{ background: 'linear-gradient(135deg, #faf5ff 0%, #f5f3ff 100%)' }}>
+          <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#ede9fe' }}>
+            <Key className="w-5 h-5" style={{ color: '#7c3aed' }} />
+          </div>
+          <div className="flex-1">
+            <p className="font-semibold text-zinc-800 text-sm">{t('Zhblloko meditimet premium', 'Unlock premium meditations')}</p>
+            <p className="text-xs text-zinc-500 mt-0.5 leading-relaxed">{t('Regjistrohu në retreat ose trajnim për të aksesuar të gjitha meditimet ekskluzive.', 'Join a retreat or training to access all exclusive meditations.')}</p>
+            <Link to="/eventet/retreat" className="inline-flex items-center gap-1 mt-2.5 text-xs font-semibold text-violet-600 hover:text-violet-800 transition-colors">
+              {t('Shiko retreat-et', 'View retreats')} <ChevronRight className="w-3 h-3" />
+            </Link>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const ProfileView = ({ user, t }: { user: any; t: any }) => {
   const [profile, setProfile] = useState<any>(null);
