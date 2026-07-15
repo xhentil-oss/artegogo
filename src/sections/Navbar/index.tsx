@@ -318,6 +318,11 @@ export const Navbar = () => {
         {/* Mobile right actions */}
         <div className="xl:hidden flex items-center gap-1">
           <LangToggle />
+          {user && (
+            <Link to="/dashboard" className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center text-white text-xs font-bold shrink-0 hover:bg-violet-700 transition-colors">
+              {user.firstName?.[0]?.toUpperCase()}
+            </Link>
+          )}
           <button
             onClick={() => setMobileOpen((o) => !o)}
             className="p-2 rounded-lg text-zinc-600 hover:bg-gray-100"
