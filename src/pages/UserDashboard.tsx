@@ -349,40 +349,105 @@ export const UserDashboardPage = () => {
 
 const DashboardHome = ({ user, setActive, t, hasRetreat }: { user: any; setActive: (s: Section) => void; t: any; hasRetreat: boolean }) => (
   <div className="space-y-6">
+
+    {/* Hero banner */}
+    <div className="relative rounded-2xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #3b1fa3 0%, #6d28d9 60%, #a855f7 100%)' }}>
+      {/* decorative circles */}
+      <div className="absolute -right-8 -top-8 w-40 h-40 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #fff, transparent)' }} />
+      <div className="absolute -right-2 bottom-0 w-24 h-24 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #fff, transparent)' }} />
+      {/* lotus */}
+      <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-20 hidden sm:block">
+        <svg width="90" height="90" viewBox="0 0 64 64" fill="none">
+          <path d="M32 8C32 8 24 18 24 28C24 33 27.6 37 32 37C36.4 37 40 33 40 28C40 18 32 8 32 8Z" fill="white"/>
+          <path d="M12 22C12 22 18 32 26 35" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M52 22C52 22 46 32 38 35" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M6 14C6 14 14 24 22 28" stroke="white" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
+          <path d="M58 14C58 14 50 24 42 28" stroke="white" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
+          <path d="M32 37V52" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      </div>
+      <div className="px-6 py-7 relative z-10">
+        <p className="text-violet-200 text-xs font-semibold uppercase tracking-widest mb-2">Arte Gogo</p>
+        <h1 className="text-2xl md:text-3xl font-bold text-white mb-2" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+          {t(`Mirë se erdhe, ${user.firstName}!`, `Welcome, ${user.firstName}!`)}
+        </h1>
+        <p className="text-violet-100 text-sm leading-relaxed max-w-sm">
+          {t('Ky është hapësira jote personale — menaxho meditimet, trajnimet dhe udhëtimin tënd.', 'This is your personal space — manage your meditations, trainings and journey.')}
+        </p>
+      </div>
+    </div>
+
+    {/* Section title */}
     <div>
-      <h1 className="text-2xl md:text-3xl font-bold text-zinc-900" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-        {t(`Mirë se erdhe, ${user.firstName}!`, `Welcome, ${user.firstName}!`)}
-      </h1>
-      <p className="text-zinc-500 text-sm mt-1" style={{ fontFamily: "'Inter', sans-serif" }}>{t('Nga këtu menaxho gjithçka.', 'Manage everything from here.')}</p>
-    </div>
+      <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">{t('Çfarë dëshironi të bëni?', 'What would you like to do?')}</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-      {[
-        { key: 'meditimet' as Section, icon: Headphones, label: t('Meditimet e mia', 'My Meditations'), count: '2 falas', color: '#ede9fe', iconColor: '#7c3aed' },
-        { key: 'librat'    as Section, icon: BookOpen,   label: t('Librat e mi', 'My Books'),           count: '—',         color: '#fce7f3', iconColor: '#db2777' },
-        { key: 'trajnimet' as Section, icon: GraduationCap, label: t('Trajnimet e mia', 'My Trainings'), count: '—',       color: '#d1fae5', iconColor: '#059669' },
-      ].map(({ key, icon: Icon, label, count, color, iconColor }) => (
-        <button key={key} onClick={() => setActive(key)}
-          className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-left hover:shadow-md transition-all hover:-translate-y-0.5">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ backgroundColor: color }}>
-            <Icon className="w-5 h-5" style={{ color: iconColor }} />
+        <button onClick={() => setActive('meditimet')}
+          className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-left hover:shadow-md hover:-translate-y-0.5 transition-all group">
+          <div className="flex items-start gap-4">
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#ede9fe' }}>
+              <Headphones className="w-5 h-5" style={{ color: '#7c3aed' }} />
+            </div>
+            <div>
+              <p className="font-semibold text-zinc-800 text-sm">{t('Meditimet e mia', 'My Meditations')}</p>
+              <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">{t('Dëgo meditimet falas dhe premium.', 'Listen to free and premium meditations.')}</p>
+            </div>
           </div>
-          <p className="font-semibold text-zinc-800 text-sm">{label}</p>
-          <p className="text-xs text-zinc-400 mt-0.5">{count}</p>
         </button>
-      ))}
+
+        <button onClick={() => setActive('trajnimet')}
+          className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-left hover:shadow-md hover:-translate-y-0.5 transition-all group">
+          <div className="flex items-start gap-4">
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#d1fae5' }}>
+              <GraduationCap className="w-5 h-5" style={{ color: '#059669' }} />
+            </div>
+            <div>
+              <p className="font-semibold text-zinc-800 text-sm">{t('Trajnimet e mia', 'My Trainings')}</p>
+              <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">{t('Shiko trajnimet ku jeni regjistruar.', 'View the trainings you have registered for.')}</p>
+            </div>
+          </div>
+        </button>
+
+        <button onClick={() => setActive('porosit')}
+          className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-left hover:shadow-md hover:-translate-y-0.5 transition-all group">
+          <div className="flex items-start gap-4">
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#fef3c7' }}>
+              <ShoppingBag className="w-5 h-5" style={{ color: '#d97706' }} />
+            </div>
+            <div>
+              <p className="font-semibold text-zinc-800 text-sm">{t('Porositë e mia', 'My Orders')}</p>
+              <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">{t('Historia e blerjeve dhe pagesave tuaja.', 'Your purchase and payment history.')}</p>
+            </div>
+          </div>
+        </button>
+
+        <button onClick={() => setActive('profili')}
+          className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-left hover:shadow-md hover:-translate-y-0.5 transition-all group">
+          <div className="flex items-start gap-4">
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#e0f2fe' }}>
+              <User className="w-5 h-5" style={{ color: '#0284c7' }} />
+            </div>
+            <div>
+              <p className="font-semibold text-zinc-800 text-sm">{t('Profili im', 'My Profile')}</p>
+              <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">{t('Shiko dhe përditëso të dhënat e llogarisë.', 'View and update your account details.')}</p>
+            </div>
+          </div>
+        </button>
+
+      </div>
     </div>
 
+    {/* Unlock premium */}
     {!hasRetreat && (
-      <div className="bg-white rounded-2xl border border-violet-100 p-5 flex items-start gap-4">
-        <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#ede9fe' }}>
+      <div className="rounded-2xl border border-violet-100 p-5 flex items-start gap-4" style={{ background: 'linear-gradient(135deg, #faf5ff 0%, #f5f3ff 100%)' }}>
+        <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#ede9fe' }}>
           <Key className="w-5 h-5" style={{ color: '#7c3aed' }} />
         </div>
-        <div>
-          <p className="font-semibold text-zinc-800 text-sm">{t('Zhblloko përmbajtje premium', 'Unlock premium content')}</p>
-          <p className="text-xs text-zinc-500 mt-0.5 leading-relaxed">{t('Regjistrohu në retreat ose trajnim për të aksesuar meditimet dhe materialet ekskluzive.', 'Register for a retreat or training to access exclusive meditations and materials.')}</p>
-          <Link to="/shop/regjistrohu-retreat" className="inline-block mt-2 text-xs font-semibold text-violet-600 hover:text-violet-800 transition-colors">
-            {t('Shiko retreat-et →', 'View retreats →')}
+        <div className="flex-1">
+          <p className="font-semibold text-zinc-800 text-sm">{t('Zhblloko meditimet premium', 'Unlock premium meditations')}</p>
+          <p className="text-xs text-zinc-500 mt-0.5 leading-relaxed">{t('Regjistrohu në retreat ose trajnim për të aksesuar të gjitha meditimet dhe materialet ekskluzive.', 'Join a retreat or training to access all meditations and exclusive materials.')}</p>
+          <Link to="/eventet/retreat" className="inline-flex items-center gap-1 mt-2.5 text-xs font-semibold text-violet-600 hover:text-violet-800 transition-colors">
+            {t('Shiko retreat-et', 'View retreats')} <ChevronRight className="w-3 h-3" />
           </Link>
         </div>
       </div>
