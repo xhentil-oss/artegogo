@@ -846,85 +846,53 @@ const OrdersView = ({ t }: { t: any }) => {
     <div className="py-8 text-center text-sm text-red-500">{error}</div>
   );
 
-  const ICON_MAP: Record<string, string> = {
-    retreat: '🏕️', workshop: '🎨', training: '🎓', default: '📦',
-  };
-
   return (
     <div className="space-y-6">
       <SectionHeader icon={ShoppingBag} title={t('Porositë e mia', 'My Orders')} desc={t('Historia e blerjeve tuaja.', 'Your purchase history.')} />
-
       {orders.length === 0 ? (
-        <div className="text-center py-20">
-          <div className="w-20 h-20 rounded-3xl bg-violet-50 flex items-center justify-center mx-auto mb-5">
-            <ShoppingBag className="w-9 h-9 text-violet-300" />
+        <div className="text-center py-16">
+          <div className="w-16 h-16 rounded-2xl bg-violet-50 flex items-center justify-center mx-auto mb-4">
+            <ShoppingBag className="w-8 h-8 text-violet-400" />
           </div>
-          <p className="text-base font-semibold text-zinc-700 mb-1">{t('Asnjë porosi ende', 'No orders yet')}</p>
-          <p className="text-sm text-zinc-400">{t('Blerjet tuaja do shfaqen këtu.', 'Your purchases will appear here.')}</p>
+          <p className="text-sm text-zinc-500">{t('Nuk keni asnjë porosi ende.', 'You have no orders yet.')}</p>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-4">
           {orders.map((order: any) => {
             const st = STATUS_LABELS[order.status] ?? { label: order.status, color: '#6b7280', bg: '#f3f4f6' };
             const date = new Date(order.createdAt).toLocaleDateString('sq-AL', { day: '2-digit', month: 'long', year: 'numeric' });
-            const isPaid = order.status === 'paid';
-            const firstItem = order.items[0];
-            const typeKey = firstItem?.productTitleSq?.toLowerCase().includes('retreat') ? 'retreat'
-              : firstItem?.productTitleSq?.toLowerCase().includes('workshop') ? 'workshop'
-              : firstItem?.productTitleSq?.toLowerCase().includes('trajnim') ? 'training'
-              : 'default';
             return (
-              <div key={order.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                {/* coloured top stripe */}
-                <div className="h-1 w-full" style={{ backgroundColor: st.color, opacity: 0.6 }} />
-
-                <div className="px-5 py-4">
-                  {/* Header row */}
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0" style={{ backgroundColor: st.bg }}>
-                        {ICON_MAP[typeKey]}
-                      </div>
-                      <div>
-                        <p className="text-sm font-bold text-zinc-800">
-                          {firstItem?.productTitleSq ?? t('Porosi', 'Order')}
-                        </p>
-                        <p className="text-xs text-zinc-400 mt-0.5">{date} · #{order.id}</p>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-end gap-1.5 shrink-0">
-                      <span className="text-xs font-bold px-2.5 py-0.5 rounded-full" style={{ color: st.color, backgroundColor: st.bg }}>
-                        {st.label}
-                      </span>
-                      <p className="text-sm font-bold text-zinc-800">
-                        {parseFloat(order.totalAmount) > 0 ? `${order.totalAmount} ${order.currency}` : '—'}
-                      </p>
-                    </div>
+              <div key={order.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                {/* Order header */}
+                <div className="flex items-center justify-between px-5 py-4 border-b border-gray-50">
+                  <div>
+                    <p className="text-xs text-zinc-400 font-medium">{t('Porosia', 'Order')} <span className="font-bold text-zinc-700">#{order.id}</span></p>
+                    <p className="text-xs text-zinc-400 mt-0.5">{date}</p>
                   </div>
-
-                  {/* Items (if more than one) */}
-                  {order.items.length > 1 && (
-                    <div className="border-t border-gray-50 pt-3 mt-1 space-y-1.5">
-                      {order.items.map((item: any, i: number) => (
-                        <div key={i} className="flex items-center justify-between">
-                          <p className="text-xs text-zinc-500">{item.productTitleSq}</p>
-                          <p className="text-xs font-medium text-zinc-600">
-                            {parseFloat(item.unitPrice) > 0 ? `${item.unitPrice} ${order.currency}` : '—'}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ color: st.color, backgroundColor: st.bg }}>
+                      {st.label}
+                    </span>
+                    <p className="text-sm font-bold text-zinc-800">{order.totalAmount} {order.currency}</p>
+                  </div>
+                </div>
+                {/* Items */}
+                <div className="px-5 py-3 space-y-2">
+                  {order.items.length === 0 && (
+                    <p className="text-xs text-zinc-400 italic">{t('Nuk ka artikuj.', 'No items.')}</p>
                   )}
-
-                  {/* Paid badge */}
-                  {isPaid && (
-                    <div className="mt-3 flex items-center gap-1.5">
-                      <svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                      </svg>
-                      <p className="text-xs text-green-600 font-medium">{t('Pagesa e konfirmuar', 'Payment confirmed')}</p>
+                  {order.items.map((item: any, i: number) => (
+                    <div key={i} className="flex items-center justify-between py-1">
+                      <div>
+                        <p className="text-sm font-medium text-zinc-800">{item.productTitleSq}</p>
+                        {item.variantNameSq && <p className="text-xs text-zinc-400">{item.variantNameSq}</p>}
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm font-semibold text-zinc-700">{item.unitPrice} {order.currency}</p>
+                        {item.quantity > 1 && <p className="text-xs text-zinc-400">x{item.quantity}</p>}
+                      </div>
                     </div>
-                  )}
+                  ))}
                 </div>
               </div>
             );
