@@ -160,7 +160,7 @@ export const UserDashboardPage = () => {
       case 'profili': return <ProfileView user={user} t={t} />;
       case 'meditimet': return <MeditimetView meditations={MEDITATIONS} hasRetreat={hasRetreat} lockedMsg={lockedMsg} setLockedMsg={setLockedMsg} t={t} navigate={navigate} />;
       case 'librat': return <ComingSoonView title={t('Librat e mi', 'My Books')} desc={t('Librat tuaj do shfaqen këtu.', 'Your books will appear here.')} t={t} />;
-      case 'trajnimet': return <ComingSoonView title={t('Trajnimet e mia', 'My Trainings')} desc={t('Trajnimet tuaja do shfaqen këtu.', 'Your trainings will appear here.')} t={t} />;
+      case 'trajnimet': return <TrainingsView t={t} />;
       case 'porosit': return <OrdersView t={t} />;
       case 'ndrysho': return <EditProfileView user={user} oldPass={oldPass} setOldPass={setOldPass} newPass={newPass} setNewPass={setNewPass} confirmPass={confirmPass} setConfirmPass={setConfirmPass} passMsg={passMsg} passSaving={passSaving} handleSavePass={handleSavePass} newEmail={newEmail} setNewEmail={setNewEmail} emailPass={emailPass} setEmailPass={setEmailPass} emailMsg={emailMsg} emailSaving={emailSaving} handleSaveEmail={handleSaveEmail} t={t} />;
       case 'ndihme': return <HelpView t={t} />;
@@ -561,6 +561,91 @@ const STATUS_LABELS: Record<string, { label: string; color: string; bg: string }
   pending:   { label: 'Në pritje', color: '#d97706', bg: '#fef3c7' },
   cancelled: { label: 'Anuluar',   color: '#dc2626', bg: '#fee2e2' },
   refunded:  { label: 'Rimbursuar',color: '#7c3aed', bg: '#ede9fe' },
+};
+
+const TrainingsView = ({ t }: { t: any }) => {
+  const [trainings, setTrainings] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  const fetchTrainings = useCallback(async () => {
+    try {
+      let res = await fetch('/api/auth/my-trainings', { credentials: 'include' });
+      if (res.status === 401) {
+        const ref = await fetch('/api/auth/refresh', { method: 'POST', credentials: 'include' });
+        if (ref.ok) res = await fetch('/api/auth/my-trainings', { credentials: 'include' });
+      }
+      const d = await res.json();
+      if (!res.ok) throw new Error(d.message || 'Gabim');
+      setTrainings(d.data);
+    } catch (e: any) {
+      setError(e.message || t('Gabim gjatë ngarkimit.', 'Error loading trainings.'));
+    } finally {
+      setLoading(false);
+    }
+  }, [t]);
+
+  useEffect(() => { fetchTrainings(); }, [fetchTrainings]);
+
+  if (loading) return (
+    <div className="flex justify-center py-16">
+      <div className="w-7 h-7 rounded-full border-2 border-violet-600 border-t-transparent animate-spin" />
+    </div>
+  );
+
+  if (error) return <div className="py-8 text-center text-sm text-red-500">{error}</div>;
+
+  return (
+    <div className="space-y-6">
+      <SectionHeader icon={GraduationCap} title={t('Trajnimet e mia', 'My Trainings')} desc={t('Trajnimet që keni ndjekur.', 'Trainings you have registered for.')} />
+      {trainings.length === 0 ? (
+        <div className="text-center py-16">
+          <div className="w-16 h-16 rounded-2xl bg-violet-50 flex items-center justify-center mx-auto mb-4">
+            <GraduationCap className="w-8 h-8 text-violet-400" />
+          </div>
+          <p className="text-sm text-zinc-500">{t('Nuk keni asnjë trajnim të regjistruar ende.', 'You have no registered trainings yet.')}</p>
+          <Link to="/eventet/trajnime-online" className="inline-block mt-4 text-xs font-semibold text-violet-600 hover:underline">
+            {t('Shiko trajnimet →', 'View trainings →')}
+          </Link>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {trainings.map((tr: any) => {
+            const st = STATUS_LABELS[tr.status] ?? { label: tr.status, color: '#6b7280', bg: '#f3f4f6' };
+            const date = new Date(tr.createdAt).toLocaleDateString('sq-AL', { day: '2-digit', month: 'long', year: 'numeric' });
+            return (
+              <div key={tr.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div className="flex items-center justify-between px-5 py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center flex-shrink-0">
+                      <GraduationCap className="w-5 h-5 text-violet-500" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-zinc-800">{tr.productTitleSq}</p>
+                      <p className="text-xs text-zinc-400 mt-0.5">{date}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ color: st.color, backgroundColor: st.bg }}>
+                      {st.label}
+                    </span>
+                    {tr.totalAmount && (
+                      <p className="text-sm font-bold text-zinc-700">{tr.totalAmount} {tr.currency}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+          <div className="pt-2">
+            <Link to="/eventet/trajnime-online/platforma" className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-600 hover:underline">
+              {t('Hyr në Platformë →', 'Access Platform →')}
+            </Link>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 const OrdersView = ({ t }: { t: any }) => {
