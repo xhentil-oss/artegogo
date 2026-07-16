@@ -381,9 +381,6 @@ export const Navbar = () => {
             </div>
           ))}
           <div className="mt-4 flex flex-col gap-2">
-            <div className="flex justify-center py-2">
-              <LangToggle />
-            </div>
             {user ? (
               <>
                 <Link to="/dashboard" className="flex items-center gap-2 px-4 py-3 rounded-lg bg-violet-50 border border-violet-100 hover:bg-violet-100 transition-colors">
