@@ -41,7 +41,7 @@ export const BlogPage = () => {
       </div>
 
       {/* ── Card Grid ── */}
-      <section id="artikujt" className="max-w-6xl mx-auto px-4 md:px-6 pt-20 pb-12 md:pb-16">
+      <section id="artikujt" className="max-w-6xl mx-auto px-4 md:px-6 pt-8 pb-8 md:pb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" style={{ rowGap: 32 }}>
           {posts.map((post) => (
             <div

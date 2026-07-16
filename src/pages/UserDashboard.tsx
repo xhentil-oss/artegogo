@@ -872,7 +872,7 @@ const OrdersView = ({ t }: { t: any }) => {
                 {/* Order header */}
                 <div className="flex items-center justify-between px-5 py-4 border-b border-gray-50">
                   <div>
-                    <p className="text-xs text-zinc-400 font-medium">{t('Porosia', 'Order')} <span className="font-bold text-zinc-700">#{order.id}</span></p>
+                    <p className="font-bold text-zinc-800 text-sm">{order.items[0]?.productTitleSq ?? `${t('Porosia', 'Order')} #${order.id}`}</p>
                     <p className="text-xs text-zinc-400 mt-0.5">{date}</p>
                   </div>
                   <div className="flex items-center gap-3">
