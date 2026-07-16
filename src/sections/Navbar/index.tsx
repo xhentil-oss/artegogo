@@ -383,7 +383,7 @@ export const Navbar = () => {
           <div className="mt-4 flex flex-col gap-2">
             {user ? (
               <>
-                <Link to="/dashboard" className="flex items-center gap-2 px-4 py-3 rounded-lg bg-violet-50 border border-violet-100 hover:bg-violet-100 transition-colors">
+                <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-violet-50 border border-violet-100">
                   <div className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center text-white text-sm font-bold shrink-0">
                     {user.firstName?.[0]?.toUpperCase()}
                   </div>
@@ -391,6 +391,13 @@ export const Navbar = () => {
                     <p className="text-sm font-semibold text-zinc-800">{user.firstName} {user.lastName}</p>
                     <p className="text-xs text-zinc-500">{user.email}</p>
                   </div>
+                </div>
+                <Link
+                  to="/dashboard"
+                  onClick={() => setMobileOpen(false)}
+                  className="block text-center bg-violet-600 text-white text-sm font-semibold px-4 py-3 rounded-lg hover:bg-violet-700 transition-all"
+                >
+                  {lang === "al" ? "Shko te Profili" : "Go to Profile"}
                 </Link>
                 <button
                   onClick={handleLogout}
