@@ -410,7 +410,7 @@ export const Navbar = () => {
                   onClick={() => setMobileOpen(false)}
                   className="block text-center border border-gray-200 text-zinc-700 text-sm font-semibold px-4 py-3 rounded-lg hover:bg-gray-50 transition-all"
                 >
-                  {lang === "al" ? "Hyrja" : "Log In"}
+                  {lang === "al" ? "Hyrja te Profili" : "Log In"}
                 </Link>
                 <Link
                   to="/signup"
