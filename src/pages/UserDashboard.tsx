@@ -42,7 +42,7 @@ export const UserDashboardPage = () => {
   const { user, logout, loading } = useAuth();
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [active, setActive] = useState<Section>('meditimet');
+  const [active, setActive] = useState<Section>('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [hasRetreat, setHasRetreat] = useState(false);
