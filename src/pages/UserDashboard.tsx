@@ -179,6 +179,10 @@ export const UserDashboardPage = () => {
           <Link to="/" className="flex items-center gap-2">
             <img src="https://c.animaapp.com/mo8jie1sg5kjlz/img/uploaded-asset-1776774255229-0.png" alt="Arte Gogo" className="h-8 w-auto object-contain" />
           </Link>
+          <Link to="/" className="md:hidden flex items-center gap-1 text-xs font-medium text-zinc-400 hover:text-violet-600 transition-colors">
+            <ArrowLeft className="w-3 h-3" />
+            {t('Shko tek faqja kryesore', 'Homepage')}
+          </Link>
         </div>
 
         <div className="flex items-center gap-2 md:gap-3">
@@ -209,6 +213,7 @@ export const UserDashboardPage = () => {
                   { key: 'meditimet' as Section, label: t('Meditimet e mia', 'My Meditations') },
                   { key: 'librat' as Section, label: t('Librat e mi', 'My Books') },
                   { key: 'trajnimet' as Section, label: t('Trajnimet e mia', 'My Trainings') },
+                  { key: 'porosit' as Section, label: t('Porositë e mia', 'My Orders') },
                   { key: 'ndihme' as Section, label: t('Ndihmë', 'Help') },
                 ].map(item => (
                   <button key={item.key} onClick={() => { setActive(item.key); setProfileOpen(false); }}
@@ -304,7 +309,7 @@ export const UserDashboardPage = () => {
             {/* Back to site */}
             <Link to="/" className="flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-violet-600 uppercase tracking-widest mb-6 px-2 transition-colors">
               <ArrowLeft className="w-3.5 h-3.5" />
-              {t('Shko tek Website', 'Back to Website')}
+              {t('Shko tek faqja kryesore', 'Back to Homepage')}
             </Link>
 
             <p className="text-2xl font-bold text-zinc-900 px-2 mb-5" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>Dashboard</p>
@@ -468,6 +473,7 @@ const DashboardHome = ({ user, setActive, t, hasRetreat }: { user: any; setActiv
           {[
             { key: 'meditimet' as Section, icon: Headphones,   bg: '#ede9fe', ic: '#7c3aed', label: t('Meditimet e mia','My Meditations'),  desc: t('Dëgo meditimet falas dhe premium.','Listen to free and premium meditations.') },
             { key: 'trajnimet' as Section, icon: GraduationCap,bg: '#d1fae5', ic: '#059669', label: t('Trajnimet e mia','My Trainings'),    desc: t('Shiko trajnimet ku jeni regjistruar.','View the trainings you have registered for.') },
+            { key: 'librat'    as Section, icon: BookOpen,     bg: '#fce7f3', ic: '#db2777', label: t('Librat e mi','My Books'),            desc: t('Librat që keni blerë.','Books you have purchased.') },
             { key: 'porosit'   as Section, icon: ShoppingBag,  bg: '#fef3c7', ic: '#d97706', label: t('Porositë e mia','My Orders'),        desc: t('Historia e blerjeve dhe pagesave tuaja.','Your purchase and payment history.') },
             { key: 'profili'   as Section, icon: User,         bg: '#e0f2fe', ic: '#0284c7', label: t('Profili im','My Profile'),           desc: t('Shiko dhe përditëso të dhënat e llogarisë.','View and update your account details.') },
           ].map(({ key, icon: Icon, bg, ic, label, desc }) => (

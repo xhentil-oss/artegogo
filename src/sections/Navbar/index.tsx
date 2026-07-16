@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown, User, LogOut, PlayCircle } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight, User, LogOut, PlayCircle } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { useAuth } from "@/context/AuthContext";
@@ -317,6 +317,22 @@ export const Navbar = () => {
 
         {/* Mobile right actions */}
         <div className="xl:hidden flex items-center gap-1">
+          {user ? (
+            <Link
+              to="/dashboard"
+              className="w-6 h-6 rounded-full bg-violet-600 flex items-center justify-center text-white shrink-0"
+              style={{ fontSize: 9, fontWeight: 700 }}
+            >
+              {(user.firstName?.[0] ?? '') + (user.lastName?.[0] ?? '')}
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="flex items-center justify-center p-1 text-zinc-400 hover:text-zinc-600 transition-colors"
+            >
+              <User size={18} strokeWidth={1.5} />
+            </Link>
+          )}
           <LangToggle />
           <button
             onClick={() => setMobileOpen((o) => !o)}
@@ -331,6 +347,26 @@ export const Navbar = () => {
       {/* Mobile drawer */}
       {mobileOpen && (
         <div className="xl:hidden border-t px-4 pb-6 pt-2 max-h-[80vh] overflow-y-auto" style={{ backgroundColor: '#ffffff', borderColor: 'rgba(0,0,0,0.08)' }}>
+          {user && (
+            <div className="mb-3 pt-1 flex flex-col gap-2">
+              <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-violet-50 border border-violet-100">
+                <div className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center text-white text-sm font-bold shrink-0">
+                  {user.firstName?.[0]?.toUpperCase()}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-zinc-800 truncate">{user.firstName} {user.lastName}</p>
+                  <p className="text-xs text-zinc-500 truncate">{user.email}</p>
+                </div>
+                <Link
+                  to="/dashboard"
+                  onClick={() => setMobileOpen(false)}
+                  className="shrink-0 text-xs font-semibold text-violet-600 bg-violet-100 hover:bg-violet-200 px-3 py-1.5 rounded-lg transition-colors"
+                >
+                  {lang === "al" ? "Shko te Profili" : "Go to Profile"}
+                </Link>
+              </div>
+            </div>
+          )}
           {navItems.map((item) => (
             <div key={item.href} className="border-b last:border-0" style={{ borderColor: 'rgba(0,0,0,0.06)' }}>
               {item.children ? (
@@ -383,22 +419,6 @@ export const Navbar = () => {
           <div className="mt-4 flex flex-col gap-2">
             {user ? (
               <>
-                <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-violet-50 border border-violet-100">
-                  <div className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center text-white text-sm font-bold shrink-0">
-                    {user.firstName?.[0]?.toUpperCase()}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-zinc-800">{user.firstName} {user.lastName}</p>
-                    <p className="text-xs text-zinc-500">{user.email}</p>
-                  </div>
-                </div>
-                <Link
-                  to="/dashboard"
-                  onClick={() => setMobileOpen(false)}
-                  className="block text-center bg-violet-600 text-white text-sm font-semibold px-4 py-3 rounded-lg hover:bg-violet-700 transition-all"
-                >
-                  {lang === "al" ? "Shko te Profili" : "Go to Profile"}
-                </Link>
                 <button
                   onClick={handleLogout}
                   className="flex items-center gap-2 justify-center border border-red-200 text-red-600 text-sm font-semibold px-4 py-3 rounded-lg hover:bg-red-50 transition-all"

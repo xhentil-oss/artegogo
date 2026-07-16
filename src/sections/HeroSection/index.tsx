@@ -146,7 +146,7 @@ export const HeroSection = () => {
   const dotIndex = (current - FIRST_REAL + SLIDES.length) % SLIDES.length;
 
   const StatsBar = () => (
-    <div className="stats-bar absolute bottom-[-48px] left-0 right-0 w-full px-4 md:px-10 lg:px-16" style={{ zIndex: 9999 }}>
+    <div className="stats-bar absolute bottom-[-48px] left-0 right-0 w-full px-4 md:px-10 lg:px-16" style={{ zIndex: 10 }}>
       <div
         className="max-w-5xl mx-auto flex rounded-2xl overflow-hidden"
         style={{ background: "#ffffff", border: "1px solid #f0eeff", boxShadow: "0 8px 32px rgba(78,41,197,0.12)" }}
