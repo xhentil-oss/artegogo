@@ -24,7 +24,7 @@ interface Meditation {
 const MEDITATIONS: Meditation[] = [
   { id: 1, title: 'Meditimi i Faljes', duration: '10 min', description: 'Falje dhe çlirim emocional', image: '/img/TONI1692.JPG', free: true, pdfUrl: '' },
   { id: 2, title: 'Qetësia e Brendshme', duration: '15 min', description: 'Relaksim i thellë i mendjes', image: '/img/TONI2743.JPG', free: true, pdfUrl: '' },
-  { id: 3, title: 'Harmonizim i Avancuar', duration: '20 min', description: 'Harmonizim i thellë i energjive dhe zemrës.', image: '/img/TONI2879.JPG', free: false, pdfUrl: '', audioUrl: 'https://api.drartegogo.com/uploads/audio/harmonizim-i-avancuar.mp3' },
+  { id: 3, title: 'Harmonizim i Avancuar', duration: '20 min', description: 'Harmonizim i thellë i energjive dhe zemrës.', image: '/img/TONI2879.JPG', free: false, pdfUrl: '', audioUrl: 'https://api.drartegogo.com/uploads/audio/harmonizim-i-avancuar.mp3?v=2' },
   { id: 4, title: 'Transformim i Plotë', duration: '25 min', description: 'Udhëtim i strukturuar për ndryshim të qëndrueshëm.', image: '/img/TONI1692.JPG', free: false, pdfUrl: '' },
 ];
 
