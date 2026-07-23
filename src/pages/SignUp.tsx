@@ -3,6 +3,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useAuth } from "@/context/AuthContext";
+import { GoogleIcon } from "@/components/GoogleIcon";
 
 export const SignUpPage = () => {
   const [showPass, setShowPass] = useState(false);
@@ -165,6 +166,21 @@ export const SignUpPage = () => {
               {loading ? t("Duke u regjistruar...", "Creating account...") : t("Regjistrohu", "Sign Up")}
             </button>
           </form>
+
+          <div className="flex items-center gap-3 my-6">
+            <div className="flex-1 h-px bg-zinc-200" />
+            <span className="text-xs text-zinc-400 font-medium">{t("OSE", "OR")}</span>
+            <div className="flex-1 h-px bg-zinc-200" />
+          </div>
+
+          <a
+            href={`/api/auth/google?redirect=${encodeURIComponent(redirectTo)}`}
+            className="w-full flex items-center justify-center gap-3 py-3 rounded-xl text-sm font-semibold text-zinc-700 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all"
+          >
+            <GoogleIcon />
+            {t("Vazhdo me Google", "Continue with Google")}
+          </a>
+
           <p className="text-center text-sm text-zinc-500 mt-6">
             {t("Keni llogari?", "Already have an account?")}{" "}
             <Link to="/login" className="text-purple-600 font-semibold hover:underline">{t("Hyr", "Sign In")}</Link>

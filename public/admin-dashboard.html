@@ -885,14 +885,16 @@ tr:hover td{background:var(--bg)}
     <!-- ═══ ONLINE TRAINING ═══ -->
     <section class="page" id="page-online">
       <div class="page-header">
-        <div class="page-title">Trajnimet Online</div>
-        <div class="page-sub">Menaxhimi i kurseve online dhe aksesit</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div><div class="page-title">Trajnimet Online</div><div class="page-sub">Menaxhimi i kurseve online dhe aksesit</div></div>
+          <button class="btn btn-primary" onclick="openAddTrainingModal()">+ Trajnim i Ri</button>
+        </div>
       </div>
       <div class="chart-card" style="padding:0;overflow:hidden">
         <div class="table-wrap">
           <table>
             <thead><tr><th>Kursi</th><th>Regjistruar</th><th>Aktiv</th><th>Përfunduan</th><th>Të Ardhura</th><th>Vlerësimi</th><th>Aksesi</th></tr></thead>
-            <tbody><tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka trajnime online ende.</td></tr></tbody>
+            <tbody id="training-tbody"><tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Duke ngarkuar...</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -1489,6 +1491,43 @@ tr:hover td{background:var(--bg)}
   </div>
 </div>
 
+<!-- ADD TRAINING MODAL -->
+<div class="modal-overlay" id="addTrainingModal" onclick="if(event.target===this)closeAddTrainingModal()">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-header">
+      <div class="modal-title">Trajnim Online i Ri</div>
+      <button class="modal-close" onclick="closeAddTrainingModal()">&#x2715;</button>
+    </div>
+    <div style="padding:0 24px 24px">
+      <div id="tr-error" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#fef2f2;border:1px solid #fecaca;color:#dc2626;font-size:13px"></div>
+      <div id="tr-success" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#f0fdf4;border:1px solid #bbf7d0;color:#16a34a;font-size:13px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field"><label class="form-label">Titulli (SQ) *</label><input class="form-input" id="tr-title-sq" placeholder="p.sh. Kursi i Meditimit"></div>
+        <div class="form-field"><label class="form-label">Titulli (EN) *</label><input class="form-input" id="tr-title-en" placeholder="e.g. Meditation Course"></div>
+      </div>
+      <div class="form-field" style="margin-bottom:12px"><label class="form-label">URL e Platformës (Teachable) *</label><input class="form-input" id="tr-platform" placeholder="https://arte-gogo.teachable.com/..."></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="form-field"><label class="form-label">Çmimi (€) *</label><input class="form-input" id="tr-price" type="number" min="0" step="0.01" placeholder="0.00"></div>
+        <div class="form-field"><label class="form-label">Kohëzgjatja (javë)</label><input class="form-input" id="tr-duration" type="number" min="1" placeholder="p.sh. 6"></div>
+      </div>
+      <div class="form-field" style="margin-bottom:12px">
+        <label class="form-label">Niveli</label>
+        <select class="form-input" id="tr-level">
+          <option value="">— Pa nivel —</option>
+          <option value="beginner">Fillestar</option>
+          <option value="intermediate">Mesatar</option>
+          <option value="advanced">I Avancuar</option>
+        </select>
+      </div>
+      <div class="form-field" style="margin-bottom:20px"><label class="form-label">Përshkrim i shkurtër (opsional)</label><input class="form-input" id="tr-desc" placeholder="Përshkrim i shkurtër i kursit..."></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn btn-ghost btn-sm" onclick="closeAddTrainingModal()">Anulo</button>
+        <button class="btn btn-primary btn-sm" id="tr-submit" onclick="submitAddTraining()">Shto Trajnimin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- CLIENT MODAL -->
 <div class="modal-overlay" id="clientModal">
   <div class="modal">
@@ -1540,6 +1579,7 @@ function navigate(pageId){
   if(pageId==='payments')renderManualPayments();
   if(pageId==='registrations')renderRegistrations(registrations);
   if(pageId==='meditations')loadMeditations();
+  if(pageId==='online')loadTrainings();
   if(pageId==='events')renderEvents();
   if(pageId==='blog')loadBlog();
   if(pageId==='shop')renderProducts();
@@ -2588,6 +2628,81 @@ async function deleteMeditim(id){
   try{
     await fetch('/api/meditations/'+id,{method:'DELETE',credentials:'include'});
     loadMeditations();
+  }catch{}
+}
+
+/* ── ONLINE TRAININGS ── */
+async function loadTrainings(){
+  try{
+    const r=await fetch('/api/products/admin/list?type=training&limit=50',{credentials:'include'});
+    const d=await r.json();
+    renderTrainings(d.data?.items||[]);
+  }catch{renderTrainings([]);}
+}
+function renderTrainings(items){
+  const tb=document.getElementById('training-tbody');if(!tb)return;
+  if(!items.length){
+    tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted)">Nuk ka trajnime online ende.</td></tr>';
+    return;
+  }
+  tb.innerHTML=items.map(p=>{
+    const registered=p.bookedSpots||0;
+    const revenue=registered*parseFloat(p.basePrice||0);
+    const rating=p.rating&&Number(p.rating)>0?Number(p.rating).toFixed(1)+' ★':'—';
+    const access=p.platformUrl
+      ?`<a href="${p.platformUrl}" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Hap ↗</a>`
+      :'—';
+    return`<tr>
+      <td><div style="font-weight:600;font-size:13px">${p.titleSq||p.titleEn}</div><div style="font-size:11px;color:var(--text-muted)">${p.titleEn||''}</div></td>
+      <td>${registered}</td>
+      <td>—</td>
+      <td>—</td>
+      <td>€${revenue.toFixed(0)}</td>
+      <td>${rating}</td>
+      <td style="display:flex;gap:6px;align-items:center">${access}<button class="btn btn-ghost btn-sm" onclick="deleteTraining(${p.id})">Fshi</button></td>
+    </tr>`;
+  }).join('');
+}
+function openAddTrainingModal(){
+  document.getElementById('addTrainingModal').classList.add('open');
+  document.getElementById('tr-error').style.display='none';
+  document.getElementById('tr-success').style.display='none';
+  ['tr-title-sq','tr-title-en','tr-platform','tr-price','tr-duration','tr-desc'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('tr-level').value='';
+}
+function closeAddTrainingModal(){document.getElementById('addTrainingModal').classList.remove('open');}
+async function submitAddTraining(){
+  const titleSq=document.getElementById('tr-title-sq').value.trim();
+  const titleEn=document.getElementById('tr-title-en').value.trim();
+  const platformUrl=document.getElementById('tr-platform').value.trim();
+  const price=document.getElementById('tr-price').value;
+  const errEl=document.getElementById('tr-error');
+  const sucEl=document.getElementById('tr-success');
+  errEl.style.display='none';sucEl.style.display='none';
+  if(!titleSq||!titleEn||!platformUrl||!price){errEl.textContent='Titulli (SQ, EN), URL e platformës dhe çmimi janë të detyrueshme.';errEl.style.display='block';return;}
+  const durationWeeks=document.getElementById('tr-duration').value;
+  const level=document.getElementById('tr-level').value;
+  const shortDesc=document.getElementById('tr-desc').value.trim();
+  const details={platformUrl};
+  if(durationWeeks)details.durationWeeks=parseInt(durationWeeks);
+  if(level)details.level=level;
+  const body={type:'training',titleSq,titleEn,basePrice:parseFloat(price),details};
+  if(shortDesc){body.shortDescriptionSq=shortDesc;body.shortDescriptionEn=shortDesc;}
+  const btn=document.getElementById('tr-submit');btn.disabled=true;btn.textContent='Duke ruajtur...';
+  try{
+    const r=await fetch('/api/products',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify(body)});
+    const d=await r.json();
+    if(!r.ok){errEl.textContent=d.message||'Gabim gjatë shtimit.';errEl.style.display='block';return;}
+    sucEl.textContent='Trajnimi u shtua me sukses!';sucEl.style.display='block';
+    setTimeout(()=>{closeAddTrainingModal();loadTrainings();},1200);
+  }catch{errEl.textContent='Gabim lidhjeje.';errEl.style.display='block';}
+  finally{btn.disabled=false;btn.textContent='Shto Trajnimin';}
+}
+async function deleteTraining(id){
+  if(!confirm('Fshi këtë trajnim?'))return;
+  try{
+    await fetch('/api/products/'+id,{method:'DELETE',credentials:'include'});
+    loadTrainings();
   }catch{}
 }
 

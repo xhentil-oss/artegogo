@@ -58,6 +58,7 @@ import { AdminDashboard } from "@/pages/Admin";
 import { KushtetPage } from "@/pages/Kushtet";
 import { ResetPasswordPage } from "@/pages/ResetPassword";
 import { VerifyEmailPage } from "@/pages/VerifyEmail";
+import { AuthCallbackPage } from "@/pages/AuthCallback";
 import { UserDashboardPage } from "@/pages/UserDashboard";
 
 const WhatsAppButton = () => (
@@ -128,6 +129,7 @@ export const App = () => {
         <Route path="/auth/reset-password" element={<Layout><ResetPasswordPage /></Layout>} />
         <Route path="/kushtet" element={<Layout><KushtetPage /></Layout>} />
         <Route path="/auth/verify-email" element={<Layout><VerifyEmailPage /></Layout>} />
+        <Route path="/auth/callback" element={<Layout><AuthCallbackPage /></Layout>} />
         <Route path="/checkout" element={<Layout><CheckoutPage /></Layout>} />
         <Route path="/admin/live" element={<AdminLivePage />} />
         <Route path="/admin" element={<AdminDashboard />} />
