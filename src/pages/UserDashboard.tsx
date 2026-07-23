@@ -18,12 +18,13 @@ interface Meditation {
   image: string;
   free: boolean;
   pdfUrl: string;
+  audioUrl?: string;
 }
 
 const MEDITATIONS: Meditation[] = [
   { id: 1, title: 'Meditimi i Faljes', duration: '10 min', description: 'Falje dhe çlirim emocional', image: '/img/TONI1692.JPG', free: true, pdfUrl: '' },
   { id: 2, title: 'Qetësia e Brendshme', duration: '15 min', description: 'Relaksim i thellë i mendjes', image: '/img/TONI2743.JPG', free: true, pdfUrl: '' },
-  { id: 3, title: 'Harmonizim i Avancuar', duration: '20 min', description: 'Harmonizim i thellë i energjive dhe zemrës.', image: '/img/TONI2879.JPG', free: false, pdfUrl: '' },
+  { id: 3, title: 'Harmonizim i Avancuar', duration: '20 min', description: 'Harmonizim i thellë i energjive dhe zemrës.', image: '/img/TONI2879.JPG', free: false, pdfUrl: '', audioUrl: 'https://api.drartegogo.com/uploads/audio/harmonizim-i-avancuar.mp3' },
   { id: 4, title: 'Transformim i Plotë', duration: '25 min', description: 'Udhëtim i strukturuar për ndryshim të qëndrueshëm.', image: '/img/TONI1692.JPG', free: false, pdfUrl: '' },
 ];
 
@@ -635,8 +636,16 @@ const MeditimetView = ({ meditations, hasRetreat, lockedMsg, setLockedMsg, t, na
   setLockedMsg: (v: boolean) => void; t: any; navigate: any;
 }) => {
   const [comingSoon, setComingSoon] = useState(false);
+  const [playing, setPlaying] = useState<Meditation | null>(null);
   const free = meditations.filter(m => m.free);
   const premium = meditations.filter(m => !m.free);
+
+  const openMeditation = (m: Meditation) => {
+    if (m.audioUrl) { setPlaying(m); setComingSoon(false); }
+    else if (m.pdfUrl) { window.open(m.pdfUrl, '_blank'); setComingSoon(false); }
+    else setComingSoon(true);
+  };
+
   return (
     <div className="space-y-6">
       <SectionHeader icon={Headphones} title={t('Meditimet e mia', 'My Meditations')} desc={t('Zgjidh meditimin që dëshiron të dëgjosh.', 'Choose the meditation you want to listen to.')} />
@@ -645,10 +654,7 @@ const MeditimetView = ({ meditations, hasRetreat, lockedMsg, setLockedMsg, t, na
       <div>
         <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">{t('Meditime Falas', 'Free Meditations')}</p>
         <div className="space-y-3">
-          {free.map(m => <MeditationCard key={m.id} m={m} unlocked t={t} onClick={() => {
-            if (m.pdfUrl) { window.open(m.pdfUrl, '_blank'); setComingSoon(false); }
-            else setComingSoon(true);
-          }} />)}
+          {free.map(m => <MeditationCard key={m.id} m={m} unlocked t={t} onClick={() => openMeditation(m)} />)}
         </div>
         {comingSoon && (
           <div className="rounded-2xl p-4 flex items-start gap-3" style={{ backgroundColor: '#f5f3ff', border: '1px solid #ede9fe' }}>
@@ -672,7 +678,7 @@ const MeditimetView = ({ meditations, hasRetreat, lockedMsg, setLockedMsg, t, na
         <div className="space-y-3">
           {premium.map(m => (
             <MeditationCard key={m.id} m={m} unlocked={hasRetreat} t={t}
-              onClick={() => { if (!hasRetreat) setLockedMsg(true); }} />
+              onClick={() => { if (!hasRetreat) setLockedMsg(true); else openMeditation(m); }} />
           ))}
         </div>
       </div>
@@ -688,6 +694,27 @@ const MeditimetView = ({ meditations, hasRetreat, lockedMsg, setLockedMsg, t, na
             <Link to="/shop/regjistrohu-retreat" className="inline-block mt-1.5 text-xs font-semibold text-violet-600 hover:underline">
               {t('Regjistrohu tani →', 'Register now →')}
             </Link>
+          </div>
+        </div>
+      )}
+
+      {/* Audio player modal */}
+      {playing && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ backgroundColor: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)' }}
+          onClick={() => setPlaying(null)}>
+          <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-6" onClick={e => e.stopPropagation()}>
+            <div className="flex items-start justify-between gap-3 mb-4">
+              <div>
+                <p className="font-bold text-zinc-800">{playing.title}</p>
+                <p className="text-xs text-zinc-500 mt-0.5">{playing.description}</p>
+              </div>
+              <button onClick={() => setPlaying(null)} className="p-1 rounded-lg hover:bg-gray-100 transition shrink-0">
+                <X className="w-4 h-4 text-zinc-400" />
+              </button>
+            </div>
+            <audio controls autoPlay src={playing.audioUrl} className="w-full">
+              {t('Shfletuesi juaj nuk mbështet luajtjen e audios.', 'Your browser does not support audio playback.')}
+            </audio>
           </div>
         </div>
       )}
